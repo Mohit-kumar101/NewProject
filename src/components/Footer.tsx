@@ -10,7 +10,8 @@ export function Footer() {
           <Logo size="sm" />
           <p className="max-w-sm text-sm leading-relaxed text-[var(--muted)]">
             CalculioHub delivers fast, accurate calculators across finance,
-            education, math, HR, travel, and lifestyle—150 tools built for clarity.
+            education, math, HR, travel, and lifestyle—built for clarity and
+            constantly expanding.
           </p>
         </div>
         <div>
@@ -37,7 +38,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-[var(--muted)]">
             <li>
               <Link href="/#tools" className="hover:text-[var(--accent)]">
-                All 150 Calculators
+                All Calculators
               </Link>
             </li>
             <li>

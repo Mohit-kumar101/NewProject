@@ -8,7 +8,7 @@ export default function HomePage() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "150 free online calculators for finance, education, math, HR, travel, and lifestyle.",
+      "Free online calculators for finance, education, math, HR, travel, and lifestyle.",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

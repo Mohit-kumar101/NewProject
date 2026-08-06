@@ -154,7 +154,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               {!splitActive && (
                 <>
                   <p className="mb-5 text-sm font-medium tracking-[0.2em] text-[var(--accent)] uppercase">
-                    150 precision calculators
+                    Free precision calculators
                   </p>
                   <h1 className="font-[family-name:var(--font-display)] max-w-3xl text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-6xl">
                     Money decisions,{" "}
@@ -214,7 +214,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 placeholder={
                   splitActive
                     ? "mortgage, GPA, tip, FIRE…"
-                    : "Click to search all 150 calculators…"
+                    : "Click to search all calculators…"
                 }
                 className="w-full bg-transparent text-lg text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
                 autoComplete="off"

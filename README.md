@@ -1,6 +1,6 @@
 # CalculioHub
 
-Production-ready Next.js calculator suite with **150** programmatic SEO tools across 10 categories.
+Production-ready Next.js calculator suite with programmatic SEO tools across multiple categories.
 
 ## Stack
 
@@ -27,7 +27,7 @@ npm start
 
 ## Structure
 
-- `data/calculators.json` — all 150 calculator definitions
+- `data/calculators.json` — calculator definitions
 - `src/lib/formulas.ts` — client-side calculation engine
 - `src/app/tools/[slug]/page.tsx` — static tool pages + metadata
 - `src/app/sitemap.ts` — XML sitemap for all tool URLs

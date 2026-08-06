@@ -21,11 +21,11 @@ const body = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — 150 Free Online Calculators`,
+    default: `${SITE_NAME} — Free Online Calculators`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "CalculioHub offers 150 free online calculators for loans, investing, GPA, math, payroll, travel, and lifestyle. Instant results—no signup required.",
+    "CalculioHub offers free online calculators for loans, investing, GPA, math, payroll, travel, and lifestyle. Instant results—no signup required.",
   keywords: [
     "online calculator",
     "free calculator",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — 150 Free Online Calculators`,
+    title: `${SITE_NAME} — Free Online Calculators`,
     description:
       "Fast, accurate calculators for money, school, math, work, travel, and everyday life.",
     url: SITE_URL,
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — 150 Free Online Calculators`,
+    title: `${SITE_NAME} — Free Online Calculators`,
     description:
       "Fast, accurate calculators for money, school, math, work, travel, and everyday life.",
     images: ["/myicon.png"],
