@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { CalculatorWorkspace } from "@/components/CalculatorWorkspace";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
+import { ReviewSection } from "@/components/ReviewSection";
+import { SuggestionBox } from "@/components/SuggestionBox";
 import {
   SITE_NAME,
   SITE_URL,
@@ -74,6 +76,7 @@ export default async function ToolPage({ params }: PageProps) {
   if (!calculator) notFound();
 
   const related = getRelatedCalculators(calculator, 6);
+  const toolUrl = `${SITE_URL}/tools/${calculator.slug}`;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
@@ -126,6 +129,11 @@ export default async function ToolPage({ params }: PageProps) {
         </h2>
         <FaqAccordion faqs={calculator.seoContent.faqs} />
       </section>
+
+      <div className="mx-auto mt-4 max-w-3xl">
+        <ReviewSection toolTitle={calculator.title} toolUrl={toolUrl} />
+        <SuggestionBox toolTitle={calculator.title} toolUrl={toolUrl} />
+      </div>
     </div>
   );
 }
