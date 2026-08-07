@@ -4,7 +4,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/#categories", label: "Categories" },
-  { href: "/#tools", label: "All Tools" },
+  { href: "/tools", label: "All Tools" },
 ];
 
 export function Header() {

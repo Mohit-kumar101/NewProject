@@ -26,6 +26,10 @@ export interface Calculator {
   inputs: CalculatorInput[];
   formulaType: string;
   seoContent: CalculatorSeoContent;
+  /** Optional SEO overrides (otherwise derived from title/description). */
+  seoTitle?: string;
+  seoDescription?: string;
+  seoKeywords?: string[];
 }
 
 export interface CalcResultItem {

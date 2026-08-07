@@ -340,6 +340,65 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
 
       {!splitActive && (
         <>
+          <section className="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.18em] text-[var(--accent)] uppercase">
+                  Featured tools
+                </p>
+                <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">
+                  Dedicated pages for every calculator
+                </h2>
+                <p className="mt-2 max-w-2xl text-[var(--muted)]">
+                  Search here, then open any tool on its own SEO-friendly URL.
+                </p>
+              </div>
+              <Link
+                href="/tools"
+                className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              >
+                Browse all tools →
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                {
+                  slug: "scientific-calculator",
+                  blurb: "Trig, logs, roots, memory, and deg/rad modes.",
+                },
+                {
+                  slug: "ai-nutrition-calorie-calculator",
+                  blurb: "BMR, TDEE, calorie targets, and macro splits.",
+                },
+                {
+                  slug: "compound-interest-calculator",
+                  blurb: "Growth, contributions, and coasting projections.",
+                },
+              ].map((item) => {
+                const tool = calculators.find((c) => c.slug === item.slug);
+                if (!tool) return null;
+                return (
+                  <Link
+                    key={tool.slug}
+                    href={`/tools/${tool.slug}`}
+                    className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_20px_40px_-24px_rgba(41,121,255,0.45)]"
+                  >
+                    <div className="mb-3 h-1.5 w-14 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF]" />
+                    <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)]">
+                      {tool.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                      {item.blurb}
+                    </p>
+                    <p className="mt-4 text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
+                      /tools/{tool.slug}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+
           <section id="categories" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>

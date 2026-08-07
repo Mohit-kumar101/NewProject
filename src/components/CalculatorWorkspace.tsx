@@ -23,29 +23,27 @@ export function CalculatorWorkspace({
 
   if (isScientific) {
     return (
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(240px,0.65fr)] xl:items-start">
+      <div className="space-y-5">
         <ScientificCalculator />
-        <aside className="xl:sticky xl:top-24">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-sm font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
+        <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+          <div className="mb-3 flex items-baseline justify-between gap-3">
+            <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
               Related tools
             </h2>
-            <p className="mt-2 text-xs text-[var(--muted)]">
-              More in {calculator.category}
-            </p>
-            <ul className="mt-4 space-y-2">
-              {related.map((tool) => (
-                <li key={tool.slug}>
-                  <Link
-                    href={`/tools/${tool.slug}`}
-                    className="block rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
-                  >
-                    {tool.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <p className="text-[11px] text-[var(--muted)]">{calculator.category}</p>
           </div>
+          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((tool) => (
+              <li key={tool.slug}>
+                <Link
+                  href={`/tools/${tool.slug}`}
+                  className="block rounded-xl border border-transparent px-3 py-2 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
+                >
+                  {tool.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </aside>
       </div>
     );

@@ -7816,6 +7816,101 @@
     }
   },
   {
+    "slug": "ai-nutrition-calorie-calculator",
+    "title": "AI Nutrition & Calorie Calculator",
+    "category": "Media, Photography, Cooking & Lifestyle",
+    "description": "Estimate BMR, TDEE, daily calorie targets, and macro splits from your age, sex, weight, height, activity level, and goal adjustment.",
+    "seoTitle": "AI Nutrition & Calorie Calculator",
+    "seoDescription": "Estimate BMR, TDEE, and daily calorie targets with smart macro suggestions based on age, sex, weight, height, activity level, and goals.",
+    "seoKeywords": [
+      "calorie calculator",
+      "TDEE calculator",
+      "BMR calculator",
+      "macro calculator",
+      "nutrition calculator",
+      "AI nutrition calculator"
+    ],
+    "inputs": [
+      {
+        "id": "sex",
+        "label": "Sex (0 = Female, 1 = Male)",
+        "defaultValue": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1
+      },
+      {
+        "id": "age",
+        "label": "Age (years)",
+        "defaultValue": 30,
+        "min": 15,
+        "max": 90,
+        "step": 1
+      },
+      {
+        "id": "weightKg",
+        "label": "Weight (kg)",
+        "defaultValue": 75,
+        "min": 35,
+        "max": 200,
+        "step": 0.5
+      },
+      {
+        "id": "heightCm",
+        "label": "Height (cm)",
+        "defaultValue": 175,
+        "min": 120,
+        "max": 230,
+        "step": 1
+      },
+      {
+        "id": "activityMultiplier",
+        "label": "Activity Multiplier (1.2 sedentary \u2192 1.9 very active)",
+        "defaultValue": 1.55,
+        "min": 1.2,
+        "max": 1.9,
+        "step": 0.05
+      },
+      {
+        "id": "goalAdjustment",
+        "label": "Goal Adjustment (kcal / day)",
+        "defaultValue": -300,
+        "min": -1000,
+        "max": 1000,
+        "step": 50
+      }
+    ],
+    "formulaType": "aiNutrition",
+    "seoContent": {
+      "intro": "The AI Nutrition & Calorie Calculator turns body stats and lifestyle into actionable daily targets. It estimates basal metabolic rate, total daily energy expenditure, goal calories, and a practical protein-forward macro split\u2014ideal for meal planning and fitness tracking.",
+      "howToUse": [
+        "Set sex to 0 for female or 1 for male.",
+        "Enter age, weight in kilograms, and height in centimeters.",
+        "Choose an activity multiplier that matches your weekly training and daily movement.",
+        "Use a negative goal adjustment for fat loss, zero for maintenance, or positive for surplus.",
+        "Review BMR, TDEE, calorie target, and suggested protein, carbs, and fat."
+      ],
+      "faqs": [
+        {
+          "question": "What formula does this calorie calculator use?",
+          "answer": "Basal metabolic rate is estimated with the Mifflin\u2013St Jeor equation, then multiplied by your activity factor to approximate TDEE. Goal calories apply your chosen surplus or deficit."
+        },
+        {
+          "question": "What do activity multipliers mean?",
+          "answer": "About 1.2 is sedentary, 1.375 lightly active, 1.55 moderately active, 1.725 very active, and around 1.9 is extra active. Pick the closest match to your real weekly energy output."
+        },
+        {
+          "question": "How are macros calculated?",
+          "answer": "Protein is set near 1.8 g per kg of body weight, fat at roughly 25% of calories, and remaining calories are assigned to carbohydrates."
+        },
+        {
+          "question": "Is this medical or dietary advice?",
+          "answer": "No. Results are educational estimates for planning. Talk with a clinician or registered dietitian for personalized nutrition guidance."
+        }
+      ]
+    }
+  },
+  {
     "slug": "recipe-ingredient-scaler-calculator",
     "title": "Recipe Ingredient Scaler Calculator",
     "category": "Media, Photography, Cooking & Lifestyle",

@@ -2147,6 +2147,46 @@ export function runCalculation(
       ]);
     }
 
+    case "aiNutrition": {
+      const sex = inputs.sex >= 0.5 ? 1 : 0; // 1 male, 0 female
+      const age = Math.max(15, inputs.age);
+      const weightKg = Math.max(30, inputs.weightKg);
+      const heightCm = Math.max(120, inputs.heightCm);
+      const activity = Math.min(1.9, Math.max(1.2, inputs.activityMultiplier));
+      const goalAdj = inputs.goalAdjustment ?? 0;
+
+      // Mifflin–St Jeor
+      const bmr =
+        10 * weightKg +
+        6.25 * heightCm -
+        5 * age +
+        (sex === 1 ? 5 : -161);
+      const tdee = bmr * activity;
+      const target = Math.max(1200, tdee + goalAdj);
+
+      // Protein-forward macro split
+      const proteinGrams = Math.round(weightKg * 1.8);
+      const fatGrams = Math.round((target * 0.25) / 9);
+      const proteinCals = proteinGrams * 4;
+      const fatCals = fatGrams * 9;
+      const carbGrams = Math.max(
+        0,
+        Math.round((target - proteinCals - fatCals) / 4)
+      );
+
+      return result("Daily Calorie Target", `${number(target, 0)} kcal`, [
+        { label: "BMR (Mifflin–St Jeor)", value: `${number(bmr, 0)} kcal` },
+        { label: "TDEE (Maintenance)", value: `${number(tdee, 0)} kcal` },
+        { label: "Protein", value: `${proteinGrams} g` },
+        { label: "Carbs", value: `${carbGrams} g` },
+        { label: "Fat", value: `${fatGrams} g` },
+        {
+          label: "Profile",
+          value: `${sex === 1 ? "Male" : "Female"} · activity ×${number(activity, 2)}`,
+        },
+      ]);
+    }
+
     default:
       return result("Result", "—", [
         { label: "Status", value: "Unknown formula type" },

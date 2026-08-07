@@ -37,8 +37,13 @@ export function Footer() {
           </h3>
           <ul className="space-y-2 text-sm text-[var(--muted)]">
             <li>
-              <Link href="/#tools" className="hover:text-[var(--accent)]">
+              <Link href="/tools" className="hover:text-[var(--accent)]">
                 All Calculators
+              </Link>
+            </li>
+            <li>
+              <Link href="/tools/scientific-calculator" className="hover:text-[var(--accent)]">
+                Scientific Calculator
               </Link>
             </li>
             <li>
