@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const TO_EMAIL = process.env.FEEDBACK_TO_EMAIL || "Mohit.k3089@gmail.com";
+const TO_EMAIL = process.env.FEEDBACK_TO_EMAIL || "mohit.k3089@gmail.com";
 const FROM_EMAIL =
   process.env.FEEDBACK_FROM_EMAIL || "CalculioHub <onboarding@resend.dev>";
 
@@ -26,7 +26,7 @@ function escapeHtml(value: string) {
 
 export async function POST(request: Request) {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) {
       return NextResponse.json(
         {
