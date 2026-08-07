@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "mathjs": "^15.2.0",
     "next": "16.3.0",
     "next-themes": "^0.4.6",
     "react": "19.2.8",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/mathjs": "^9.4.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

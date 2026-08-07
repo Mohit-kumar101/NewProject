@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import Link from "next/link";
 import type { Calculator } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
+import { ScientificCalculator } from "@/components/ScientificCalculator";
 
 export function CalculatorWorkspace({
   calculator,
@@ -12,12 +13,65 @@ export function CalculatorWorkspace({
   calculator: Calculator;
   related: Calculator[];
 }) {
+  const isScientific = calculator.formulaType === "scientificCalculator";
+
   const [values, setValues] = useState<Record<string, number>>(() =>
     Object.fromEntries(
       calculator.inputs.map((input) => [input.id, input.defaultValue])
     )
   );
 
+  if (isScientific) {
+    return (
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(240px,0.65fr)] xl:items-start">
+        <ScientificCalculator />
+        <aside className="xl:sticky xl:top-24">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+            <h2 className="text-sm font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
+              Related tools
+            </h2>
+            <p className="mt-2 text-xs text-[var(--muted)]">
+              More in {calculator.category}
+            </p>
+            <ul className="mt-4 space-y-2">
+              {related.map((tool) => (
+                <li key={tool.slug}>
+                  <Link
+                    href={`/tools/${tool.slug}`}
+                    className="block rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
+                  >
+                    {tool.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    );
+  }
+
+  return (
+    <StandardCalculatorWorkspace
+      calculator={calculator}
+      related={related}
+      values={values}
+      setValues={setValues}
+    />
+  );
+}
+
+function StandardCalculatorWorkspace({
+  calculator,
+  related,
+  values,
+  setValues,
+}: {
+  calculator: Calculator;
+  related: Calculator[];
+  values: Record<string, number>;
+  setValues: Dispatch<SetStateAction<Record<string, number>>>;
+}) {
   const result = useMemo(
     () => runCalculation(calculator.formulaType, values),
     [calculator.formulaType, values]
