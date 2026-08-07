@@ -1,12 +1,11 @@
 import type { ReactNode } from "react";
 import type { Calculator } from "@/lib/types";
-import { ExploreTools } from "@/components/ExploreTools";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { ReviewSection } from "@/components/ReviewSection";
 import { SuggestionBox } from "@/components/SuggestionBox";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
-import { calculators } from "@/lib/calculators";
+import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { getToolCanonicalUrl } from "@/lib/seo";
 
 /**
@@ -23,12 +22,6 @@ export function ToolPageShell({
   guideExtra?: ReactNode;
 }) {
   const toolUrl = getToolCanonicalUrl(calculator);
-  const exploreTools = calculators.map((tool) => ({
-    slug: tool.slug,
-    title: tool.title,
-    description: tool.description,
-    category: tool.category,
-  }));
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
@@ -81,7 +74,10 @@ export function ToolPageShell({
         <FaqAccordion faqs={calculator.seoContent.faqs} />
       </section>
 
-      <ExploreTools tools={exploreTools} currentSlug={calculator.slug} />
+      <ToolSearchFooter
+        currentCategory={calculator.category}
+        currentSlug={calculator.slug}
+      />
 
       <div className="mx-auto mt-4 max-w-3xl">
         <ReviewSection toolTitle={calculator.title} toolUrl={toolUrl} />
