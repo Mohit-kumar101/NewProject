@@ -21,17 +21,18 @@ const body = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Free Online Calculators`,
+    default: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "CalculioHub offers free online calculators for loans, investing, GPA, math, payroll, travel, and lifestyle. Instant results—no signup required.",
+    "Free online calculators for finance, math, science, and nutrition.",
   keywords: [
     "online calculator",
     "free calculator",
     "financial calculator",
     "GPA calculator",
     "mortgage calculator",
+    "scientific calculator",
     "CalculioHub",
   ],
   alternates: {
@@ -40,9 +41,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Free Online Calculators`,
+    title: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
     description:
-      "Fast, accurate calculators for money, school, math, work, travel, and everyday life.",
+      "Free online calculators for finance, math, science, and nutrition.",
     url: SITE_URL,
     locale: "en_US",
     images: [
@@ -56,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Free Online Calculators`,
+    title: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
     description:
-      "Fast, accurate calculators for money, school, math, work, travel, and everyday life.",
+      "Free online calculators for finance, math, science, and nutrition.",
     images: ["/myicon.png"],
   },
   robots: {
@@ -66,14 +67,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: [
-      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
-      { url: "/myicon.png", type: "image/png" },
-    ],
-    apple: [{ url: "/favicon-192.png", sizes: "192x192", type: "image/png" }],
-    shortcut: "/favicon-48.png",
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
   },
 };
 
