@@ -3324,5 +3324,35 @@
       "Category: Media, Photography, Cooking & Lifestyle.",
       "Planning estimates only—not professional advice."
     ]
+  },
+  "expenseTracker": {
+    "formula": "Balance = Σ Income − Σ Expenses",
+    "summary": "Your running balance is the sum of all income transactions minus the sum of all expense transactions stored in this browser. Each row is an immutable ledger entry until you delete it.",
+    "variables": [
+      {
+        "symbol": "Income",
+        "name": "Total income",
+        "description": "Sum of all transactions marked as income (paychecks, freelance, transfers in)."
+      },
+      {
+        "symbol": "Expenses",
+        "name": "Total expenses",
+        "description": "Sum of all transactions marked as expense (bills, food, shopping, etc.)."
+      },
+      {
+        "symbol": "Balance",
+        "name": "Net balance",
+        "description": "Income minus expenses—positive means surplus, negative means overspending in the logged period."
+      },
+      {
+        "symbol": "Category",
+        "name": "Category label",
+        "description": "Groups transactions for filtering (Food, Transport, Salary, and more)."
+      }
+    ],
+    "notes": [
+      "Data persists only in this browser’s localStorage—not across devices.",
+      "Figures are for personal budgeting awareness, not formal accounting or tax records."
+    ]
   }
 }

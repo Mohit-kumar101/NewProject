@@ -2147,6 +2147,14 @@ export function runCalculation(
       ]);
     }
 
+    case "expenseTracker":
+      return result("Balance", "Use tracker", [
+        {
+          label: "Note",
+          value: "Interactive localStorage ledger — open the Expense Tracker UI",
+        },
+      ]);
+
     case "aiNutrition": {
       const sex = inputs.sex >= 0.5 ? 1 : 0; // 1 male, 0 female
       const age = Math.max(15, inputs.age);

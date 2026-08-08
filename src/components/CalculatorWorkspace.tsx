@@ -6,6 +6,7 @@ import type { Calculator } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
 import { getSmartAdvice } from "@/lib/smartAdvice";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
+import { ExpenseTracker } from "@/components/ExpenseTracker";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
 
 export function CalculatorWorkspace({
@@ -16,6 +17,7 @@ export function CalculatorWorkspace({
   related: Calculator[];
 }) {
   const isScientific = calculator.formulaType === "scientificCalculator";
+  const isExpenseTracker = calculator.formulaType === "expenseTracker";
 
   const [values, setValues] = useState<Record<string, number>>(() =>
     Object.fromEntries(
@@ -49,6 +51,10 @@ export function CalculatorWorkspace({
         </aside>
       </div>
     );
+  }
+
+  if (isExpenseTracker) {
+    return <ExpenseTracker />;
   }
 
   return (
@@ -92,7 +98,7 @@ function StandardCalculatorWorkspace({
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-6 xl:grid-cols-[1.05fr_0.9fr_0.75fr] xl:items-start">
+      <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
           <h2 className="mb-5 text-lg font-semibold">Inputs</h2>
           <div className="space-y-6">
@@ -138,7 +144,7 @@ function StandardCalculatorWorkspace({
           </div>
         </div>
 
-        <aside className="xl:sticky xl:top-24">
+        <aside className="lg:sticky lg:top-24">
           <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               Live results
@@ -146,7 +152,7 @@ function StandardCalculatorWorkspace({
             <p className="mt-3 text-sm text-[var(--muted)]">
               {result.primary.label}
             </p>
-            <p className="result-glow mt-1 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            <p className="result-glow mt-1 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
               {result.primary.value}
             </p>
 
@@ -194,32 +200,30 @@ function StandardCalculatorWorkspace({
             </p>
           </div>
         </aside>
-
-        <aside className="xl:sticky xl:top-24">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="text-sm font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
-              Related tools
-            </h2>
-            <p className="mt-2 text-xs text-[var(--muted)]">
-              More in {calculator.category}
-            </p>
-            <ul className="mt-4 space-y-2">
-              {related.map((tool) => (
-                <li key={tool.slug}>
-                  <Link
-                    href={`/tools/${tool.slug}`}
-                    className="block rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
-                  >
-                    {tool.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </aside>
       </div>
 
-      <SmartAdviceBox items={advice} className="max-w-3xl" />
+      <SmartAdviceBox items={advice} />
+
+      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="mb-3 flex items-baseline justify-between gap-3">
+          <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
+            Related tools
+          </h2>
+          <p className="text-[11px] text-[var(--muted)]">{calculator.category}</p>
+        </div>
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {related.map((tool) => (
+            <li key={tool.slug}>
+              <Link
+                href={`/tools/${tool.slug}`}
+                className="block rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
+              >
+                {tool.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </aside>
     </div>
   );
 }

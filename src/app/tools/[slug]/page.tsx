@@ -14,7 +14,9 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return calculators.map((calculator) => ({ slug: calculator.slug }));
+  return calculators
+    .filter((calculator) => calculator.slug !== "expense-tracker")
+    .map((calculator) => ({ slug: calculator.slug }));
 }
 
 export async function generateMetadata({

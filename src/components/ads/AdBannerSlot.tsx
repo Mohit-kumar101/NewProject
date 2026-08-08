@@ -11,13 +11,13 @@ type AdBannerSlotProps = {
 };
 
 /**
- * Production-ready ad rail slot.
- * Leave empty / use the dashed placeholder until AdSense or sponsors are wired in.
+ * Sticky rail slot for ads or interim promotional content.
+ * Pass children for live ads / fillers; dashed placeholder remains as fallback.
  */
 export function AdBannerSlot({
   side = "right",
   children,
-  label = "Advertisement Space",
+  label = "Sidebar",
   className = "",
 }: AdBannerSlotProps) {
   return (
@@ -26,20 +26,18 @@ export function AdBannerSlot({
       data-ad-side={side}
       className={`w-full min-w-0 ${className}`}
     >
-      <div className="sticky top-24">
+      <div className="sticky top-24 space-y-4">
         {children ? (
-          <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]">
-            {children}
-          </div>
+          children
         ) : (
           <div
-            className="flex min-h-[600px] items-center justify-center rounded-xl border border-dashed border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_70%,transparent)] px-3 text-center"
+            className="flex min-h-[280px] items-center justify-center rounded-xl border border-dashed border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_70%,transparent)] px-3 text-center"
             role="presentation"
           >
             <div className="space-y-2">
               <div className="mx-auto h-1 w-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF] opacity-50" />
               <p className="text-[11px] font-medium tracking-[0.14em] text-[var(--muted)] uppercase">
-                {label}
+                Reserved for ads
               </p>
               <p className="text-[10px] leading-relaxed text-[var(--muted)] opacity-70">
                 {side === "left" ? "160×600 / 300×600" : "300×600 skyscraper"}

@@ -19,18 +19,20 @@ type ToolCard = {
 };
 
 const DEFAULT_RELATED = 3;
-const SEARCH_LIMIT = 6;
+/** Cap search hits so the footer stays scannable while still filtering the full catalog. */
+const SEARCH_LIMIT = 12;
 
 function matchesQuery(tool: ToolCard, query: string) {
   const q = query.trim().toLowerCase();
   if (!q) return false;
-  const haystack = `${tool.title} ${tool.description} ${tool.category} ${tool.slug}`.toLowerCase();
+  const haystack =
+    `${tool.title} ${tool.description} ${tool.category} ${tool.slug}`.toLowerCase();
   return q.split(/\s+/).every((token) => haystack.includes(token));
 }
 
 /**
  * Post-FAQ internal linking widget.
- * Default: 3 same-category tools · Search: up to 6 global matches.
+ * Default: 3 same-category tools · Search: live filter across the full catalog.
  */
 export function ToolSearchFooter({
   currentCategory,
@@ -62,17 +64,23 @@ export function ToolSearchFooter({
   const filtered = useMemo(() => {
     const q = query.trim();
     if (!q) return relatedInCategory;
-    return catalog.filter((tool) => matchesQuery(tool, q)).slice(0, SEARCH_LIMIT);
+    return catalog
+      .filter((tool) => matchesQuery(tool, q))
+      .slice(0, SEARCH_LIMIT);
   }, [catalog, query, relatedInCategory]);
 
   const isSearching = query.trim().length > 0;
+  const totalMatches = useMemo(() => {
+    if (!isSearching) return relatedInCategory.length;
+    return catalog.filter((tool) => matchesQuery(tool, query)).length;
+  }, [catalog, isSearching, query, relatedInCategory.length]);
 
   return (
     <section
-      className="mt-16 max-w-3xl"
+      className="mt-16 w-full"
       aria-labelledby="tool-search-footer-heading"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/50 p-5 transition-colors dark:border-slate-800 dark:bg-slate-900/50 sm:p-6">
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
         <div className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
         <div className="pointer-events-none absolute -bottom-14 -left-10 h-32 w-32 rounded-full bg-gradient-to-tr from-[#2979FF22] to-transparent blur-2xl" />
 
@@ -86,7 +94,7 @@ export function ToolSearchFooter({
           >
             Explore More Calculators
           </h2>
-          <p className="mt-2 text-sm text-[var(--muted)]">
+          <p className="mt-2 text-sm text-[color-mix(in_srgb,var(--foreground)_75%,var(--muted))]">
             {isSearching
               ? "Searching all CalculioHub tools for matching titles and keywords."
               : `Related tools in ${currentCategory} — strengthening topical internal links.`}
@@ -94,7 +102,7 @@ export function ToolSearchFooter({
 
           <label className="mt-5 block">
             <span className="sr-only">Search other calculators</span>
-            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/80 px-3.5 py-3 transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.12)] dark:border-slate-700 dark:bg-slate-950/60">
+            <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-3 transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.12)]">
               <svg
                 width="18"
                 height="18"
@@ -121,7 +129,7 @@ export function ToolSearchFooter({
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search other calculators (e.g., scientific, nutrition, interest)..."
+                placeholder="Search all calculators (e.g., scientific, nutrition, interest)..."
                 className="w-full bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--muted)] sm:text-[15px]"
                 autoComplete="off"
                 spellCheck={false}
@@ -130,7 +138,7 @@ export function ToolSearchFooter({
                 <button
                   type="button"
                   onClick={() => setQuery("")}
-                  className="shrink-0 rounded-md border border-slate-200 px-2 py-0.5 text-[11px] font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)] dark:border-slate-700"
+                  className="shrink-0 rounded-md border border-[var(--border)] px-2 py-0.5 text-[11px] font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
                 >
                   Clear
                 </button>
@@ -141,7 +149,7 @@ export function ToolSearchFooter({
           <div className="mt-4 flex items-center justify-between gap-3">
             <p className="text-xs text-[var(--muted)]" aria-live="polite">
               {isSearching
-                ? `${filtered.length} match${filtered.length === 1 ? "" : "es"}`
+                ? `${filtered.length} of ${totalMatches} match${totalMatches === 1 ? "" : "es"}`
                 : `Same category · ${filtered.length} tool${filtered.length === 1 ? "" : "s"}`}
             </p>
             <Link
@@ -153,18 +161,22 @@ export function ToolSearchFooter({
           </div>
 
           {filtered.length === 0 ? (
-            <p className="mt-4 rounded-xl border border-dashed border-slate-200 px-4 py-10 text-center text-sm text-[var(--muted)] dark:border-slate-700">
+            <p className="mt-4 rounded-xl border border-dashed border-[var(--border)] px-4 py-10 text-center text-sm text-[var(--muted)]">
               {isSearching
                 ? `No tools match “${query.trim()}”. Try scientific, nutrition, or interest.`
                 : "No other tools found in this category yet."}
             </p>
           ) : (
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div
+              className={`mt-4 grid grid-cols-1 gap-4 ${
+                isSearching ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-3"
+              }`}
+            >
               {filtered.map((tool, index) => (
                 <Link
                   key={tool.slug}
                   href={`/tools/${tool.slug}`}
-                  className="result-card group rounded-xl border border-slate-200 bg-white/90 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_14px_30px_-20px_rgba(41,121,255,0.55)] dark:border-slate-700 dark:bg-slate-950/50"
+                  className="result-card group rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_14px_30px_-20px_rgba(41,121,255,0.55)]"
                   style={{
                     animationDelay: `${Math.min(index, 6) * 35}ms`,
                   }}
@@ -176,7 +188,7 @@ export function ToolSearchFooter({
                   <p className="mt-1 text-[10px] font-semibold tracking-wide text-[var(--accent)] uppercase">
                     {tool.category}
                   </p>
-                  <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-[var(--muted)]">
+                  <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-[color-mix(in_srgb,var(--foreground)_72%,var(--muted))]">
                     {tool.description}
                   </p>
                 </Link>

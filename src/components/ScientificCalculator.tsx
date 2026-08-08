@@ -617,7 +617,7 @@ export function ScientificCalculator() {
       type="button"
       aria-label={key.ariaLabel}
       onClick={key.action}
-      className={`flex h-9 items-center justify-center rounded-lg border text-[12px] font-semibold transition active:scale-[0.98] sm:h-10 sm:rounded-xl sm:text-sm ${toneClass(
+      className={`flex h-full min-h-[2.25rem] items-center justify-center rounded-lg border text-[12px] font-semibold transition active:scale-[0.98] sm:min-h-[2.5rem] sm:rounded-xl sm:text-sm ${toneClass(
         key.tone
       )} ${key.span === 2 ? "col-span-2" : ""}`}
     >
@@ -627,10 +627,10 @@ export function ScientificCalculator() {
 
   return (
     <div className="space-y-5">
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(220px,0.75fr)] lg:items-stretch">
-      <section
-        className="results-card flex h-[calc(100vh-10.5rem)] max-h-[720px] min-h-[480px] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] sm:h-[calc(100vh-11rem)]"
-      >
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(200px,0.75fr)] lg:items-stretch">
+        <section
+          className="results-card flex h-[min(600px,calc(100dvh-9rem))] max-h-[calc(100dvh-9rem)] min-h-0 flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]"
+        >
         {/* Toolbar */}
         <div className="shrink-0 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--background)_70%,transparent)] px-3 py-2 sm:px-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -690,15 +690,15 @@ export function ScientificCalculator() {
         </div>
 
         {/* Display */}
-        <div className="shrink-0 px-3 pt-3 sm:px-4 sm:pt-3.5">
+        <div className="shrink-0 px-3 pt-2.5 sm:px-4 sm:pt-3">
           <div
-            className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-2.5 sm:px-4 sm:py-3"
+            className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-2 sm:px-4 sm:py-2.5"
             aria-live="polite"
             aria-atomic="true"
             id={liveId}
           >
             <div className="flex items-start justify-between gap-2">
-              <p className="max-h-10 flex-1 overflow-y-auto break-all text-right font-mono text-xs text-[var(--muted)] sm:text-sm">
+              <p className="max-h-8 flex-1 overflow-y-auto break-all text-right font-mono text-xs text-[var(--muted)] sm:text-sm">
                 {expression || "0"}
               </p>
               {hasMemory && (
@@ -708,13 +708,13 @@ export function ScientificCalculator() {
               )}
             </div>
             <p
-              className={`mt-1 break-all text-right font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl ${
+              className={`mt-0.5 break-all text-right font-[family-name:var(--font-display)] text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl ${
                 error ? "text-[#d64545] dark:text-[#ff8a8a]" : "result-glow"
               }`}
             >
               {displayResult}
             </p>
-            <p className="mt-1 text-right text-[10px] text-[var(--muted)] sm:text-[11px]">
+            <p className="mt-0.5 text-right text-[10px] text-[var(--muted)] sm:text-[11px]">
               {error
                 ? error
                 : hasMemory
@@ -726,13 +726,12 @@ export function ScientificCalculator() {
           </div>
         </div>
 
-        {/* Keypad fills remaining height */}
-        <div className="flex min-h-0 flex-1 flex-col gap-1.5 px-3 pb-3 pt-2.5 sm:gap-2 sm:px-4 sm:pb-4">
-          {/* Scientific functions: always on md+, toggle drawer on mobile */}
+        {/* Keypad fills remaining height — scrolls internally if needed */}
+        <div className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto overscroll-contain px-3 pb-3 pt-2 sm:gap-2 sm:px-4 sm:pb-3.5">
           <div
             className={`${
               sciOpen ? "block" : "hidden"
-            } max-h-[38%] overflow-y-auto md:block md:max-h-none md:overflow-visible`}
+            } shrink-0 md:block`}
           >
             <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
               {sciKeys.map(renderKey)}
@@ -743,13 +742,13 @@ export function ScientificCalculator() {
             {mainKeys.map(renderKey)}
           </div>
         </div>
-      </section>
+        </section>
 
       {/* History rail / drawer */}
       <aside
-        className={`flex max-h-[220px] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3 sm:p-4 lg:max-h-[720px] lg:h-[calc(100vh-10.5rem)] ${
-          historyOpen ? "flex" : "hidden lg:flex"
-        }`}
+        className={`flex min-h-0 flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3 sm:p-4 ${
+          historyOpen ? "flex max-h-[40vh]" : "hidden"
+        } lg:flex lg:h-[min(600px,calc(100dvh-9rem))] lg:max-h-[calc(100dvh-9rem)]`}
       >
         <div className="flex shrink-0 items-center justify-between gap-3">
           <div>

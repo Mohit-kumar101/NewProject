@@ -43,6 +43,18 @@ const TOOL_SEO_OVERRIDES: Record<
       "AI nutrition calculator",
     ],
   },
+  "expense-tracker": {
+    title: "Free Personal Expense Tracker",
+    description:
+      "Track income and expenses privately in your browser with localStorage. Log, search, and filter transactions—no signup required.",
+    keywords: [
+      "expense tracker",
+      "personal expense tracker",
+      "budget tracker",
+      "income expense tracker",
+      "free budget tool",
+    ],
+  },
 };
 
 export function getToolPageTitle(calculator: Calculator): string {
