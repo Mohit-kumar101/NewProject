@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { SITE_SUPPORT_EMAIL } from "@/lib/calculators";
 
-const TO_EMAIL = process.env.FEEDBACK_TO_EMAIL || "mohit.k3089@gmail.com";
+const TO_EMAIL = process.env.FEEDBACK_TO_EMAIL || SITE_SUPPORT_EMAIL;
 const FROM_EMAIL =
   process.env.FEEDBACK_FROM_EMAIL || "CalculioHub <onboarding@resend.dev>";
 

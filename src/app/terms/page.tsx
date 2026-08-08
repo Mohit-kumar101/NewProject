@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InfoPageShell, InfoSection } from "@/components/InfoPageShell";
-import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { SITE_NAME, SITE_URL, SITE_SUPPORT_EMAIL } from "@/lib/calculators";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -131,10 +131,10 @@ export default function TermsPage() {
           </a>{" "}
           or at{" "}
           <a
-            href="mailto:hello@calculiohub.com"
+            href={`mailto:${SITE_SUPPORT_EMAIL}`}
             className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
           >
-            hello@calculiohub.com
+            {SITE_SUPPORT_EMAIL}
           </a>
           .
         </p>

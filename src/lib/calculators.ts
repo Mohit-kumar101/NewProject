@@ -78,3 +78,4 @@ export function searchCalculators(query: string): Calculator[] {
 
 export const SITE_URL = "https://calculiohub.com";
 export const SITE_NAME = "CalculioHub";
+export const SITE_SUPPORT_EMAIL = "calculiohub.support@gmail.com";
