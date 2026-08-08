@@ -1,0 +1,3328 @@
+{
+  "carLoanPayoff": {
+    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Amortizing auto loan payment with optional extra principal to shorten payoff and cut interest.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Monthly payment",
+        "description": "Fixed installment covering interest and principal."
+      },
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount borrowed or remaining balance."
+      },
+      {
+        "symbol": "r",
+        "name": "Monthly rate",
+        "description": "Annual APR ÷ 12 ÷ 100."
+      },
+      {
+        "symbol": "n",
+        "name": "Term (months)",
+        "description": "Number of scheduled payments."
+      }
+    ],
+    "notes": [
+      "Extra payments reduce n and total interest when the tool supports them."
+    ]
+  },
+  "personalLoan": {
+    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Fixed-rate personal loan amortization from principal, APR, and term.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Monthly payment",
+        "description": "Fixed installment covering interest and principal."
+      },
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount borrowed or remaining balance."
+      },
+      {
+        "symbol": "r",
+        "name": "Monthly rate",
+        "description": "Annual APR ÷ 12 ÷ 100."
+      },
+      {
+        "symbol": "n",
+        "name": "Term (months)",
+        "description": "Number of scheduled payments."
+      }
+    ],
+    "notes": [
+      "Extra payments reduce n and total interest when the tool supports them."
+    ]
+  },
+  "studentLoanPayoff": {
+    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Student loan payoff under a fixed schedule; extra payments accelerate freedom from debt.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Monthly payment",
+        "description": "Fixed installment covering interest and principal."
+      },
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount borrowed or remaining balance."
+      },
+      {
+        "symbol": "r",
+        "name": "Monthly rate",
+        "description": "Annual APR ÷ 12 ÷ 100."
+      },
+      {
+        "symbol": "n",
+        "name": "Term (months)",
+        "description": "Number of scheduled payments."
+      }
+    ],
+    "notes": [
+      "Extra payments reduce n and total interest when the tool supports them."
+    ]
+  },
+  "creditCardMinimum": {
+    "formula": "Balance_{t+1} = Balance_t·(1+r) − payment_t",
+    "summary": "Simulates month-by-month minimum (or percent-of-balance) payments until payoff—or flags debt that never clears.",
+    "variables": [
+      {
+        "symbol": "r",
+        "name": "Monthly APR",
+        "description": "Annual rate ÷ 12."
+      },
+      {
+        "symbol": "payment",
+        "name": "Min payment",
+        "description": "Floor dollar amount or percent of balance."
+      }
+    ],
+    "notes": [
+      "If payment ≤ monthly interest, the balance never shrinks."
+    ]
+  },
+  "debtSnowball": {
+    "formula": "Attack smallest balance first; roll freed payment into next debt",
+    "summary": "Pays minimums on all debts, then directs surplus to the smallest balance for quick psychological wins.",
+    "variables": [
+      {
+        "symbol": "Budget",
+        "name": "Monthly budget",
+        "description": "Total cash available for all debts."
+      }
+    ],
+    "notes": [
+      "Compare with avalanche (highest APR first) for interest minimization."
+    ]
+  },
+  "debtAvalanche": {
+    "formula": "Attack highest APR first; roll freed payment into next debt",
+    "summary": "Mathematically minimizes interest by prioritizing the costliest debt while paying minimums on the rest.",
+    "variables": [
+      {
+        "symbol": "Budget",
+        "name": "Monthly budget",
+        "description": "Total cash available for all debts."
+      }
+    ],
+    "notes": [
+      "Usually cheaper than snowball when rates differ widely."
+    ]
+  },
+  "loanRefinance": {
+    "formula": "Savings = Cost_old − (Cost_new + closing fees) over remaining horizon",
+    "summary": "Compares keeping your current loan versus refinancing into a new rate/term after fees.",
+    "variables": [
+      {
+        "symbol": "Cost_old",
+        "name": "Stay path",
+        "description": "Remaining interest/payments on current loan."
+      },
+      {
+        "symbol": "Cost_new",
+        "name": "Refinance path",
+        "description": "New loan cost including fees."
+      }
+    ],
+    "notes": [
+      "Break-even months = fees ÷ monthly savings."
+    ]
+  },
+  "homeEquityLoan": {
+    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Home equity loan payment using standard amortization.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Monthly payment",
+        "description": "Fixed installment covering interest and principal."
+      },
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount borrowed or remaining balance."
+      },
+      {
+        "symbol": "r",
+        "name": "Monthly rate",
+        "description": "Annual APR ÷ 12 ÷ 100."
+      },
+      {
+        "symbol": "n",
+        "name": "Term (months)",
+        "description": "Number of scheduled payments."
+      }
+    ],
+    "notes": [
+      "Extra payments reduce n and total interest when the tool supports them."
+    ]
+  },
+  "biWeeklyMortgage": {
+    "formula": "Bi-weekly = Annual PI / 26   ·   ~13 monthly-equivalents / year",
+    "summary": "Splits the equivalent of one extra monthly payment across 26 bi-weekly payments to accelerate payoff.",
+    "variables": [
+      {
+        "symbol": "PI",
+        "name": "Monthly PI",
+        "description": "Standard monthly principal & interest."
+      }
+    ],
+    "notes": [
+      "Confirm your lender applies bi-weekly payments to principal correctly."
+    ]
+  },
+  "balloonLoan": {
+    "formula": "M = interest-only or amortizing payment; Balloon = remaining principal at term end",
+    "summary": "Models a loan with smaller payments during the term and a large balloon balance due at maturity.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Periodic payment",
+        "description": "Payment during the balloon period."
+      },
+      {
+        "symbol": "Balloon",
+        "name": "Balloon due",
+        "description": "Principal remaining when the term ends."
+      }
+    ],
+    "notes": [
+      "Plan liquidity for the balloon or a refinance before maturity."
+    ]
+  },
+  "monthlyMortgage": {
+    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Classic fixed-rate mortgage principal-and-interest payment.",
+    "variables": [
+      {
+        "symbol": "M",
+        "name": "Monthly payment",
+        "description": "Fixed installment covering interest and principal."
+      },
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount borrowed or remaining balance."
+      },
+      {
+        "symbol": "r",
+        "name": "Monthly rate",
+        "description": "Annual APR ÷ 12 ÷ 100."
+      },
+      {
+        "symbol": "n",
+        "name": "Term (months)",
+        "description": "Number of scheduled payments."
+      }
+    ],
+    "notes": [
+      "Extra payments reduce n and total interest when the tool supports them."
+    ]
+  },
+  "rentVsBuy": {
+    "formula": "Compare cumulative rent vs. ownership (mortgage + tax + maint − equity)",
+    "summary": "Cash and opportunity-cost style comparison of renting versus buying over a holding period.",
+    "variables": [
+      {
+        "symbol": "Rent",
+        "name": "Rent path",
+        "description": "Expected rental payments."
+      },
+      {
+        "symbol": "Own",
+        "name": "Ownership path",
+        "description": "Mortgage and carrying costs net of equity."
+      }
+    ],
+    "notes": [
+      "Local taxes, HOA, and maintenance vary widely—stress-test assumptions."
+    ]
+  },
+  "homeAffordability": {
+    "formula": "Max housing ≤ income × DTI − other debts; loan ← reverse amortization",
+    "summary": "Backs into an affordable purchase/loan from income and debt-to-income limits.",
+    "variables": [
+      {
+        "symbol": "DTI",
+        "name": "Debt-to-income",
+        "description": "Allowed payment share of income."
+      }
+    ],
+    "notes": [
+      "Lenders may use different DTI and qualifying rates."
+    ]
+  },
+  "propertyTax": {
+    "formula": "Tax ≈ AssessedValue × taxRate",
+    "summary": "Estimates annual property tax from assessed value and local rate.",
+    "variables": [
+      {
+        "symbol": "Value",
+        "name": "Assessed value",
+        "description": "Taxable property value."
+      },
+      {
+        "symbol": "Rate",
+        "name": "Tax rate",
+        "description": "Mill rate or percent."
+      }
+    ],
+    "notes": [
+      "Exemptions and caps differ by jurisdiction."
+    ]
+  },
+  "rentalCashFlow": {
+    "formula": "Cash flow = Rent − (mortgage + tax + insurance + ops + vacancy)",
+    "summary": "Monthly income left after operating and financing costs on a rental.",
+    "variables": [
+      {
+        "symbol": "Rent",
+        "name": "Gross rent",
+        "description": "Expected rental income."
+      },
+      {
+        "symbol": "Ops",
+        "name": "Operating costs",
+        "description": "Taxes, insurance, maintenance, vacancy."
+      }
+    ],
+    "notes": [
+      "Positive cash flow ≠ automatic strong return—check cap rate and equity."
+    ]
+  },
+  "capRate": {
+    "formula": "Cap rate = NOI / PropertyValue",
+    "summary": "Unlevered yield on an income property using net operating income.",
+    "variables": [
+      {
+        "symbol": "NOI",
+        "name": "Net operating income",
+        "description": "Income after operating expenses."
+      },
+      {
+        "symbol": "Value",
+        "name": "Property value",
+        "description": "Price or market value."
+      }
+    ],
+    "notes": [
+      "Ignores financing—use cash-on-cash for levered views."
+    ]
+  },
+  "grossRentMultiplier": {
+    "formula": "GRM = Price / GrossAnnualRent",
+    "summary": "Quick valuation multiple relating price to gross rents (before expenses).",
+    "variables": [
+      {
+        "symbol": "Price",
+        "name": "Purchase price",
+        "description": "Property cost."
+      },
+      {
+        "symbol": "Rent",
+        "name": "Gross rent",
+        "description": "Annual rental income."
+      }
+    ],
+    "notes": [
+      "Lower GRM can mean cheaper relative to rents—compare comps carefully."
+    ]
+  },
+  "homeImprovementRoi": {
+    "formula": "ROI ≈ (valueAdd − projectCost) / projectCost",
+    "summary": "Rough return on a renovation from cost versus estimated value added.",
+    "variables": [
+      {
+        "symbol": "Cost",
+        "name": "Project cost",
+        "description": "All-in renovation spend."
+      },
+      {
+        "symbol": "valueAdd",
+        "name": "Value added",
+        "description": "Expected increase in home value."
+      }
+    ],
+    "notes": [
+      "Appraisal reality varies—local comps matter more than national averages."
+    ]
+  },
+  "downPaymentTimeline": {
+    "formula": "Months ≈ iterate savings until down-payment target",
+    "summary": "Projects how long to accumulate a down payment at your savings rate.",
+    "variables": [
+      {
+        "symbol": "Target",
+        "name": "Down payment",
+        "description": "Cash needed at purchase."
+      },
+      {
+        "symbol": "PMT",
+        "name": "Monthly save",
+        "description": "Amount set aside each month."
+      }
+    ],
+    "notes": [
+      "Include earnest money and closing costs in your real target."
+    ]
+  },
+  "closingCosts": {
+    "formula": "Total closing ≈ Σ fees + points + prepaid items",
+    "summary": "Adds typical buyer/seller closing line items into an all-in estimate.",
+    "variables": [
+      {
+        "symbol": "Fees",
+        "name": "Closing fees",
+        "description": "Title, escrow, lender, taxes, etc."
+      }
+    ],
+    "notes": [
+      "Always verify with your Loan Estimate / Closing Disclosure."
+    ]
+  },
+  "compoundInterest": {
+    "formula": "A = P(1 + r/n)^(n·t) + PMT · [((1 + r/n)^(n·t) − 1) / (r/n)]",
+    "summary": "Future value of principal plus recurring contributions with compounding. Optional coasting years grow without new deposits.",
+    "variables": [
+      {
+        "symbol": "A",
+        "name": "Future value",
+        "description": "Projected ending balance."
+      },
+      {
+        "symbol": "P",
+        "name": "Initial deposit",
+        "description": "Starting principal."
+      },
+      {
+        "symbol": "r",
+        "name": "Annual rate",
+        "description": "Nominal annual rate (decimal)."
+      },
+      {
+        "symbol": "n",
+        "name": "Compounds / year",
+        "description": "Compounding frequency."
+      },
+      {
+        "symbol": "PMT",
+        "name": "Contribution",
+        "description": "Periodic deposit."
+      },
+      {
+        "symbol": "t",
+        "name": "Years",
+        "description": "Contribution horizon (+ coasting)."
+      }
+    ],
+    "notes": [
+      "Assumes constant rate and uninterrupted contributions."
+    ]
+  },
+  "fireRetirement": {
+    "formula": "FIRE# ≈ AnnualSpend / SafeWithdrawalRate",
+    "summary": "Nest egg needed so a chosen withdrawal rate covers annual spending.",
+    "variables": [
+      {
+        "symbol": "Spend",
+        "name": "Annual expenses",
+        "description": "Expected yearly spending."
+      },
+      {
+        "symbol": "SWR",
+        "name": "Safe withdrawal rate",
+        "description": "e.g. 0.04 for the classic 4% rule."
+      }
+    ],
+    "notes": [
+      "Historical SWRs are guidelines, not guarantees."
+    ]
+  },
+  "retirementGoal": {
+    "formula": "Required PMT from FV annuity formula solving for payment",
+    "summary": "Backs into the savings rate needed to reach a retirement nest-egg target.",
+    "variables": [
+      {
+        "symbol": "FV",
+        "name": "Goal",
+        "description": "Target portfolio value."
+      },
+      {
+        "symbol": "PMT",
+        "name": "Monthly save",
+        "description": "Contribution required."
+      }
+    ],
+    "notes": [
+      "Inflation and sequence-of-returns risk are not fully modeled."
+    ]
+  },
+  "rrsp401kGrowth": {
+    "formula": "FV = P(1+r)^t + PMT · [((1+r)^t − 1)/r]",
+    "summary": "Projects tax-advantaged account growth from balance, contributions, and assumed return.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Current balance",
+        "description": "Starting account value."
+      },
+      {
+        "symbol": "PMT",
+        "name": "Contribution",
+        "description": "Recurring deposits."
+      },
+      {
+        "symbol": "r",
+        "name": "Return",
+        "description": "Expected growth rate."
+      }
+    ],
+    "notes": [
+      "Ignores contribution limits and tax nuances—verify plan rules."
+    ]
+  },
+  "dividendReinvestment": {
+    "formula": "Shares grow via DRIP: dividends buy more shares each period",
+    "summary": "Models share count and value when dividends are reinvested rather than taken as cash.",
+    "variables": [
+      {
+        "symbol": "Yield",
+        "name": "Dividend yield",
+        "description": "Annual dividend ÷ price."
+      },
+      {
+        "symbol": "Growth",
+        "name": "Price growth",
+        "description": "Assumed capital appreciation."
+      }
+    ],
+    "notes": [
+      "Assumes stable yield and reinvestment at modeled prices."
+    ]
+  },
+  "inflationPurchasingPower": {
+    "formula": "Real = Nominal / (1 + i)^t",
+    "summary": "Shows how inflation erodes the buying power of a nominal amount over time.",
+    "variables": [
+      {
+        "symbol": "i",
+        "name": "Inflation",
+        "description": "Expected annual inflation rate."
+      },
+      {
+        "symbol": "t",
+        "name": "Years",
+        "description": "Horizon."
+      }
+    ],
+    "notes": [
+      "Uses a constant inflation assumption."
+    ]
+  },
+  "netWorthTracker": {
+    "formula": "Net worth = Total assets − Total liabilities",
+    "summary": "Simple balance-sheet snapshot of what you own minus what you owe.",
+    "variables": [
+      {
+        "symbol": "Assets",
+        "name": "Assets",
+        "description": "Cash, investments, property, etc."
+      },
+      {
+        "symbol": "Liabilities",
+        "name": "Debts",
+        "description": "Loans, cards, mortgages."
+      }
+    ],
+    "notes": [
+      "Use consistent market values for a fair snapshot."
+    ]
+  },
+  "ruleOf72": {
+    "formula": "Years to double ≈ 72 / r",
+    "summary": "Fast mental estimate of doubling time at constant annual return r (%).",
+    "variables": [
+      {
+        "symbol": "r",
+        "name": "Annual return (%)",
+        "description": "Expected yearly percentage return."
+      }
+    ],
+    "notes": [
+      "Best near typical market rates; less accurate at extremes."
+    ]
+  },
+  "dollarCostAveraging": {
+    "formula": "Avg cost = total invested / shares accumulated across periods",
+    "summary": "Spreads purchases over time to average entry price rather than timing a lump sum.",
+    "variables": [
+      {
+        "symbol": "PMT",
+        "name": "Periodic buy",
+        "description": "Amount invested each period."
+      }
+    ],
+    "notes": [
+      "Does not guarantee better returns than lump-sum investing."
+    ]
+  },
+  "feeImpact": {
+    "formula": "ΔFV ≈ FV(r) − FV(r − fee)",
+    "summary": "Quantifies how annual expense ratios drag long-term portfolio value.",
+    "variables": [
+      {
+        "symbol": "fee",
+        "name": "Expense ratio",
+        "description": "Annual fee as a percent."
+      },
+      {
+        "symbol": "r",
+        "name": "Gross return",
+        "description": "Return before fees."
+      }
+    ],
+    "notes": [
+      "Small fees compound into large dollar gaps over decades."
+    ]
+  },
+  "freelanceHourlyRate": {
+    "formula": "Rate ≈ (Target income + expenses) / billable hours",
+    "summary": "Backs into an hourly rate that covers income goals, overhead, and non-billable time.",
+    "variables": [
+      {
+        "symbol": "Income",
+        "name": "Income goal",
+        "description": "Desired annual take."
+      },
+      {
+        "symbol": "Hours",
+        "name": "Billable hours",
+        "description": "Realistic billable capacity."
+      }
+    ],
+    "notes": [
+      "Include taxes, benefits, and downtime in expenses."
+    ]
+  },
+  "takeHomePay": {
+    "formula": "Net ≈ Gross − effectiveTax%·Gross − other deductions",
+    "summary": "Simplified estimate of paycheck net after an effective tax/withholding rate.",
+    "variables": [
+      {
+        "symbol": "Gross",
+        "name": "Gross pay",
+        "description": "Pay before deductions."
+      },
+      {
+        "symbol": "tax%",
+        "name": "Effective rate",
+        "description": "Combined withholding estimate."
+      }
+    ],
+    "notes": [
+      "Not a substitute for payroll or tax software."
+    ]
+  },
+  "selfEmploymentTax": {
+    "formula": "SE tax ≈ taxableSE × combined OASDI/Medicare rate (simplified)",
+    "summary": "Rough self-employment tax estimate on net business earnings.",
+    "variables": [
+      {
+        "symbol": "SE income",
+        "name": "Net earnings",
+        "description": "Profit subject to SE tax."
+      }
+    ],
+    "notes": [
+      "Confirm current IRS rates and deductions with a tax pro."
+    ]
+  },
+  "salaryToHourly": {
+    "formula": "Hourly ≈ AnnualSalary / annualHours",
+    "summary": "Converts salary to an equivalent hourly rate for a chosen work-year.",
+    "variables": [
+      {
+        "symbol": "Salary",
+        "name": "Annual salary",
+        "description": "Gross yearly pay."
+      },
+      {
+        "symbol": "Hours",
+        "name": "Hours / year",
+        "description": "e.g. 2080 for 40×52."
+      }
+    ],
+    "notes": [
+      "Overtime-eligible roles may differ legally."
+    ]
+  },
+  "overtimePay": {
+    "formula": "OT = OT_hours × hourly × OT_multiplier",
+    "summary": "Computes overtime earnings from hours above standard at a multiplier (often 1.5×).",
+    "variables": [
+      {
+        "symbol": "OT_hours",
+        "name": "Overtime hours",
+        "description": "Hours beyond regular."
+      },
+      {
+        "symbol": "mult",
+        "name": "OT multiplier",
+        "description": "e.g. 1.5 for time-and-a-half."
+      }
+    ],
+    "notes": [
+      "Jurisdiction rules for OT thresholds vary."
+    ]
+  },
+  "salaryRaise": {
+    "formula": "New = Old × (1 + raise%)    ·    Δ = New − Old",
+    "summary": "Projects new pay and the dollar increase from a raise percentage.",
+    "variables": [
+      {
+        "symbol": "Old",
+        "name": "Current pay",
+        "description": "Salary before raise."
+      },
+      {
+        "symbol": "raise%",
+        "name": "Raise",
+        "description": "Percent increase."
+      }
+    ],
+    "notes": [
+      "Compare to inflation for real purchasing-power change."
+    ]
+  },
+  "salesCommission": {
+    "formula": "Pay = Base + Sales × commission%",
+    "summary": "Combines base pay with variable commission on sales volume.",
+    "variables": [
+      {
+        "symbol": "Sales",
+        "name": "Sales volume",
+        "description": "Revenue or quota credit."
+      },
+      {
+        "symbol": "commission%",
+        "name": "Rate",
+        "description": "Commission percentage."
+      }
+    ],
+    "notes": [
+      "Accelerators and spiffs may apply beyond this simple model."
+    ]
+  },
+  "sideHustleProfit": {
+    "formula": "Profit = Revenue − expenses − tax%·profitApprox",
+    "summary": "Estimates side-income profit after costs and a simplified tax bite.",
+    "variables": [
+      {
+        "symbol": "Revenue",
+        "name": "Gross revenue",
+        "description": "Total hustle income."
+      },
+      {
+        "symbol": "Expenses",
+        "name": "Costs",
+        "description": "Direct and overhead costs."
+      }
+    ],
+    "notes": [
+      "Track deductible expenses carefully for tax filing."
+    ]
+  },
+  "billableHours": {
+    "formula": "Utilization = billable / available    ·    Capacity = available × util%",
+    "summary": "Turns available work hours into expected billable capacity at a utilization rate.",
+    "variables": [
+      {
+        "symbol": "util%",
+        "name": "Utilization",
+        "description": "Share of time that is billable."
+      }
+    ],
+    "notes": [
+      "Healthy utilization leaves room for admin and learning."
+    ]
+  },
+  "costOfLivingAdjustment": {
+    "formula": "Adjusted = Salary × (Index_new / Index_old)",
+    "summary": "Rescales pay between cities/regions using cost-of-living index ratios.",
+    "variables": [
+      {
+        "symbol": "Index",
+        "name": "COL index",
+        "description": "Relative cost index for each location."
+      }
+    ],
+    "notes": [
+      "Indexes are averages—housing micro-markets differ."
+    ]
+  },
+  "emergencyFund": {
+    "formula": "Target = MonthlyExpenses × Months   ·   Gap = max(0, Target − Current)",
+    "summary": "Sizes a cash reserve from essential spending and desired coverage months.",
+    "variables": [
+      {
+        "symbol": "Target",
+        "name": "Fund goal",
+        "description": "Ideal emergency reserve."
+      },
+      {
+        "symbol": "Gap",
+        "name": "Shortfall",
+        "description": "Still needed to reach the goal."
+      }
+    ],
+    "notes": [
+      "Common targets are 3–6 months of essential expenses."
+    ]
+  },
+  "savingsGoalDate": {
+    "formula": "Iterate balance ← balance·(1+r) + PMT until goal",
+    "summary": "Projects months to reach a savings target given contributions and optional yield.",
+    "variables": [
+      {
+        "symbol": "Goal",
+        "name": "Target",
+        "description": "Amount you want to reach."
+      },
+      {
+        "symbol": "PMT",
+        "name": "Monthly save",
+        "description": "Contribution each month."
+      }
+    ],
+    "notes": [
+      "If contributions and yield are both ~0, the goal may be unreachable."
+    ]
+  },
+  "latteFactor": {
+    "formula": "FV = smallSpend · [((1+r)^n − 1)/r]",
+    "summary": "Shows the future value of redirecting a recurring small purchase into investing.",
+    "variables": [
+      {
+        "symbol": "smallSpend",
+        "name": "Habit cost",
+        "description": "Recurring discretionary amount."
+      },
+      {
+        "symbol": "r",
+        "name": "Return",
+        "description": "Assumed investment yield."
+      }
+    ],
+    "notes": [
+      "Illustrative—actual markets vary."
+    ]
+  },
+  "tipBillSplit": {
+    "formula": "Tip = Bill × tip%    ·    Share = (Bill + Tip) / people",
+    "summary": "Adds gratuity then splits the total evenly.",
+    "variables": [
+      {
+        "symbol": "Bill",
+        "name": "Pre-tip total",
+        "description": "Check before tip."
+      },
+      {
+        "symbol": "tip%",
+        "name": "Tip rate",
+        "description": "Gratuity percent."
+      }
+    ],
+    "notes": [
+      "Adjust for uneven orders if your group prefers itemized splits."
+    ]
+  },
+  "discountSale": {
+    "formula": "Sale price = List × (1 − discount%)",
+    "summary": "Applies a percentage off the list price.",
+    "variables": [
+      {
+        "symbol": "List",
+        "name": "List price",
+        "description": "Original price."
+      },
+      {
+        "symbol": "d",
+        "name": "Discount %",
+        "description": "Percent off."
+      }
+    ],
+    "notes": [
+      "Stacking coupons may use different merchant rules."
+    ]
+  },
+  "unitPriceComparison": {
+    "formula": "Unit price = PackagePrice / Quantity",
+    "summary": "Normalizes package prices to a per-unit basis for fair comparison.",
+    "variables": [
+      {
+        "symbol": "Price",
+        "name": "Package price",
+        "description": "Shelf price."
+      },
+      {
+        "symbol": "Qty",
+        "name": "Quantity",
+        "description": "Oz, count, liters, etc."
+      }
+    ],
+    "notes": [
+      "Compare identical units (e.g. both per oz)."
+    ]
+  },
+  "fuelCostTrip": {
+    "formula": "Cost = (Distance / MPG) × PricePerGallon",
+    "summary": "Estimates fuel spend for a trip from distance, efficiency, and fuel price.",
+    "variables": [
+      {
+        "symbol": "D",
+        "name": "Distance",
+        "description": "Trip miles (or km)."
+      },
+      {
+        "symbol": "MPG",
+        "name": "Efficiency",
+        "description": "Miles per gallon (or equivalent)."
+      }
+    ],
+    "notes": [
+      "Real MPG varies with speed, load, and weather."
+    ]
+  },
+  "subscriptionAggregator": {
+    "formula": "Monthly total = Σ subscriptions    ·    Annual = monthly × 12",
+    "summary": "Rolls recurring subscriptions into monthly and yearly spend.",
+    "variables": [
+      {
+        "symbol": "Σ",
+        "name": "Sum of plans",
+        "description": "Each recurring charge."
+      }
+    ],
+    "notes": [
+      "Cancel unused trials—small line items add up fast."
+    ]
+  },
+  "simpleInterest": {
+    "formula": "I = P · r · t    ·    A = P + I",
+    "summary": "Interest grows linearly—no compounding on prior interest.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Starting amount."
+      },
+      {
+        "symbol": "r",
+        "name": "Rate",
+        "description": "Annual rate as a decimal."
+      },
+      {
+        "symbol": "t",
+        "name": "Time",
+        "description": "Years."
+      }
+    ],
+    "notes": [
+      "Common for short-term notes; long horizons usually compound."
+    ]
+  },
+  "percentageChange": {
+    "formula": "%Δ = ((New − Old) / Old) × 100",
+    "summary": "Relative change between two values as a percentage.",
+    "variables": [
+      {
+        "symbol": "Old",
+        "name": "Baseline",
+        "description": "Starting value."
+      },
+      {
+        "symbol": "New",
+        "name": "New value",
+        "description": "Comparison value."
+      }
+    ],
+    "notes": [
+      "Undefined if the baseline is zero."
+    ]
+  },
+  "cumulativeGpa": {
+    "formula": "GPA = (prevGPA·prevCredits + termGPA·termCredits) / totalCredits",
+    "summary": "Credit-weighted combination of prior cumulative GPA and the current term.",
+    "variables": [
+      {
+        "symbol": "prevGPA",
+        "name": "Previous GPA",
+        "description": "Cumulative GPA before this term."
+      },
+      {
+        "symbol": "termGPA",
+        "name": "Term GPA",
+        "description": "GPA earned this term."
+      }
+    ],
+    "notes": [
+      "Schools may exclude certain courses from cumulative GPA."
+    ]
+  },
+  "finalExamNeeded": {
+    "formula": "Need = (Goal − Current·(1−w)) / w",
+    "summary": "Exam score required to hit a course goal given the final’s weight.",
+    "variables": [
+      {
+        "symbol": "Goal",
+        "name": "Target grade",
+        "description": "Desired overall %."
+      },
+      {
+        "symbol": "w",
+        "name": "Exam weight",
+        "description": "Fraction of grade from the final."
+      }
+    ],
+    "notes": [
+      "If Need > 100%, the goal may be unreachable."
+    ]
+  },
+  "weightedGrade": {
+    "formula": "Grade = Σ (score_i × weight_i) / Σ weight_i",
+    "summary": "Combines category scores by their syllabus weights.",
+    "variables": [
+      {
+        "symbol": "score_i",
+        "name": "Category score",
+        "description": "Percent in each category."
+      },
+      {
+        "symbol": "weight_i",
+        "name": "Weight",
+        "description": "Syllabus weight for that category."
+      }
+    ],
+    "notes": [
+      "Normalize weights if they do not already sum to 100%."
+    ]
+  },
+  "satActPercentile": {
+    "formula": "Result = f(Tes, Sco)",
+    "summary": "Estimate percentile standing from SAT or ACT composite scores. Contextualize results against peer performance. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Tes",
+        "name": "Test Type",
+        "description": "Input “Test Type (1=SAT, 2=ACT)” (typical range 1–2)."
+      },
+      {
+        "symbol": "Sco",
+        "name": "Composite Score",
+        "description": "Input “Composite Score” (typical range 1–1600)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "collegeTuitionPlanner": {
+    "formula": "Result = f(Ann, t, Inf, Aid)",
+    "summary": "Project multi-year college costs with tuition inflation. Plan savings and aid gaps before enrollment. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Ann",
+        "name": "Current Annual Cost",
+        "description": "Input “Current Annual Cost ($)” (typical range 1000–90000)."
+      },
+      {
+        "symbol": "t",
+        "name": "Years Attending",
+        "description": "Input “Years Attending” (typical range 1–6)."
+      },
+      {
+        "symbol": "Inf",
+        "name": "Tuition Inflation",
+        "description": "Input “Tuition Inflation (%/yr)” (typical range 0–12)."
+      },
+      {
+        "symbol": "Aid",
+        "name": "Annual Aid / Scholarships",
+        "description": "Input “Annual Aid / Scholarships ($)” (typical range 0–90000)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "studentLoanAmortization": {
+    "formula": "Result = f(P, r, Ter)",
+    "summary": "Build a student loan amortization estimate with payment and interest totals. Understand repayment before you borrow. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Loan Amount",
+        "description": "Input “Loan Amount ($)” (typical range 1000–300000)."
+      },
+      {
+        "symbol": "r",
+        "name": "Interest Rate",
+        "description": "Input “Interest Rate (%)” (typical range 0–15)."
+      },
+      {
+        "symbol": "Ter",
+        "name": "Term",
+        "description": "Input “Term (years)” (typical range 1–30)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "studyTimeAllocation": {
+    "formula": "Result = f(Cre, Hou, Ava)",
+    "summary": "Allocate weekly study hours across courses by credit load and difficulty. Build a realistic study schedule. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Cre",
+        "name": "Total Credit Hours",
+        "description": "Input “Total Credit Hours” (typical range 1–24)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Study Hours per Credit",
+        "description": "Input “Study Hours per Credit” (typical range 1–5)."
+      },
+      {
+        "symbol": "Ava",
+        "name": "Available Study Hours / Week",
+        "description": "Input “Available Study Hours / Week” (typical range 5–80)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "readingTime": {
+    "formula": "Result = f(Wor, Wpm)",
+    "summary": "Estimate reading time from word count and reading speed. Plan assignments and research sessions accurately. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Wor",
+        "name": "Word Count",
+        "description": "Input “Word Count” (typical range 100–200000)."
+      },
+      {
+        "symbol": "Wpm",
+        "name": "Reading Speed",
+        "description": "Input “Reading Speed (WPM)” (typical range 50–600)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "pageToWord": {
+    "formula": "Result = f(Pag, Wor)",
+    "summary": "Convert page counts to estimated word counts using spacing and font assumptions. Scope essays and reports faster. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Pag",
+        "name": "Number of Pages",
+        "description": "Input “Number of Pages” (typical range 1–100)."
+      },
+      {
+        "symbol": "Wor",
+        "name": "Words per Page",
+        "description": "Input “Words per Page” (typical range 150–500)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "scholarshipRoi": {
+    "formula": "Result = f(Awa, Hou, Win)",
+    "summary": "Measure scholarship return against application time invested. Prioritize awards with the best payoff. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Awa",
+        "name": "Scholarship Amount",
+        "description": "Input “Scholarship Amount ($)” (typical range 50–50000)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Hours to Apply",
+        "description": "Input “Hours to Apply” (typical range 0.5–80)."
+      },
+      {
+        "symbol": "Win",
+        "name": "Win Probability",
+        "description": "Input “Win Probability (%)” (typical range 1–100)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "apExamScore": {
+    "formula": "Result = f(McC, McT, Frq, McW)",
+    "summary": "Estimate AP exam composite conversion to a 1–5 score. Gauge readiness before test day. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "McC",
+        "name": "Multiple Choice Correct",
+        "description": "Input “Multiple Choice Correct” (typical range 0–55)."
+      },
+      {
+        "symbol": "McT",
+        "name": "Multiple Choice Total",
+        "description": "Input “Multiple Choice Total” (typical range 1–60)."
+      },
+      {
+        "symbol": "Frq",
+        "name": "FRQ Score",
+        "description": "Input “FRQ Score (%)” (typical range 0–100)."
+      },
+      {
+        "symbol": "McW",
+        "name": "MC Weight",
+        "description": "Input “MC Weight (%)” (typical range 30–70)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "classRank": {
+    "formula": "Result = f(Ran, Cla)",
+    "summary": "Convert class rank and class size into percentile standing. Understand relative academic position quickly. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Ran",
+        "name": "Your Rank",
+        "description": "Input “Your Rank” (typical range 1–2000)."
+      },
+      {
+        "symbol": "Cla",
+        "name": "Class Size",
+        "description": "Input “Class Size” (typical range 2–5000)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "gradePercentageConverter": {
+    "formula": "Result = f(Per)",
+    "summary": "Convert between letter grades and percentage ranges. Standardize transcripts and syllabus comparisons. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Per",
+        "name": "Percentage Grade",
+        "description": "Input “Percentage Grade” (typical range 0–100)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "quizScore": {
+    "formula": "Result = f(Cor, Tot)",
+    "summary": "Convert correct answers into quiz percentages and letter estimates. Grade practice tests in seconds. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Cor",
+        "name": "Correct Answers",
+        "description": "Input “Correct Answers” (typical range 0–100)."
+      },
+      {
+        "symbol": "Tot",
+        "name": "Total Questions",
+        "description": "Input “Total Questions” (typical range 1–100)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "homeschoolBudget": {
+    "formula": "Result = f(Cur, Act, Sup, Stu)",
+    "summary": "Estimate annual homeschool costs across curriculum, activities, and supplies. Plan education spending with clarity. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Cur",
+        "name": "Curriculum",
+        "description": "Input “Curriculum ($/yr)” (typical range 0–10000)."
+      },
+      {
+        "symbol": "Act",
+        "name": "Activities / Co-ops",
+        "description": "Input “Activities / Co-ops ($/yr)” (typical range 0–10000)."
+      },
+      {
+        "symbol": "Sup",
+        "name": "Supplies & Tech",
+        "description": "Input “Supplies & Tech ($/yr)” (typical range 0–10000)."
+      },
+      {
+        "symbol": "Stu",
+        "name": "Number of Students",
+        "description": "Input “Number of Students” (typical range 1–10)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "dormRoomExpense": {
+    "formula": "Result = f(Set, Mon, Mon)",
+    "summary": "Budget dorm setup and monthly living extras beyond tuition. Avoid surprise first-year housing costs. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Set",
+        "name": "One-time Setup",
+        "description": "Input “One-time Setup ($)” (typical range 0–5000)."
+      },
+      {
+        "symbol": "Mon",
+        "name": "Monthly Extras",
+        "description": "Input “Monthly Extras ($)” (typical range 0–2000)."
+      },
+      {
+        "symbol": "Mon",
+        "name": "Months on Campus",
+        "description": "Input “Months on Campus” (typical range 1–12)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "textbookResale": {
+    "formula": "Result = f(Pur, Res, Fee)",
+    "summary": "Estimate textbook resale value and net cost of ownership. Decide whether to buy new, used, or rent. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Pur",
+        "name": "Purchase Price",
+        "description": "Input “Purchase Price ($)” (typical range 5–500)."
+      },
+      {
+        "symbol": "Res",
+        "name": "Expected Resale",
+        "description": "Input “Expected Resale ($)” (typical range 0–500)."
+      },
+      {
+        "symbol": "Fee",
+        "name": "Resale Fees",
+        "description": "Input “Resale Fees ($)” (typical range 0–50)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "gradSchoolDebtPayoff": {
+    "formula": "Result = f(P, r, Ter, E)",
+    "summary": "Project graduate school loan payoff timelines with optional extra payments. Plan repayment before you enroll. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Loan Balance",
+        "description": "Input “Loan Balance ($)” (typical range 1000–400000)."
+      },
+      {
+        "symbol": "r",
+        "name": "Interest Rate",
+        "description": "Input “Interest Rate (%)” (typical range 0–15)."
+      },
+      {
+        "symbol": "Ter",
+        "name": "Term",
+        "description": "Input “Term (years)” (typical range 5–30)."
+      },
+      {
+        "symbol": "E",
+        "name": "Extra Monthly",
+        "description": "Input “Extra Monthly ($)” (typical range 0–3000)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "onlineCourseCompletion": {
+    "formula": "Result = f(Tot, Hou, Com)",
+    "summary": "Estimate weeks needed to finish an online course at your weekly study pace. Stay accountable to launch dates. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Tot",
+        "name": "Total Course Hours",
+        "description": "Input “Total Course Hours” (typical range 1–400)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Hours Available / Week",
+        "description": "Input “Hours Available / Week” (typical range 1–40)."
+      },
+      {
+        "symbol": "Com",
+        "name": "Hours Already Completed",
+        "description": "Input “Hours Already Completed” (typical range 0–400)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "attendancePercentage": {
+    "formula": "Result = f(Att, Sch)",
+    "summary": "Calculate attendance percentage from classes attended versus scheduled. Monitor course participation requirements. Academic formulas follow common credit-weighted or percentage rules used by many schools.",
+    "variables": [
+      {
+        "symbol": "Att",
+        "name": "Classes Attended",
+        "description": "Input “Classes Attended” (typical range 0–200)."
+      },
+      {
+        "symbol": "Sch",
+        "name": "Classes Scheduled",
+        "description": "Input “Classes Scheduled” (typical range 1–200)."
+      }
+    ],
+    "notes": [
+      "Category: Education, GPA & Academic.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "scientificCalculator": {
+    "formula": "result = eval(expression) with θ ∈ {deg, rad}",
+    "summary": "Evaluates arithmetic and scientific functions (trig, logs, powers, roots, factorial) in your angle mode.",
+    "variables": [
+      {
+        "symbol": "θ",
+        "name": "Angle mode",
+        "description": "Degrees or radians for trig."
+      },
+      {
+        "symbol": "Inv",
+        "name": "Inverse mode",
+        "description": "Enables arcsin/arccos/arctan and related inverses."
+      }
+    ],
+    "notes": [
+      "Domain errors (e.g. √(−1), log(0)) surface as clear error states."
+    ]
+  },
+  "stdDevVariance": {
+    "formula": "σ² = Σ(xᵢ − μ)² / N    ·    σ = √σ²",
+    "summary": "Population variance and standard deviation of the provided values.",
+    "variables": [
+      {
+        "symbol": "μ",
+        "name": "Mean",
+        "description": "Average of observations."
+      },
+      {
+        "symbol": "σ",
+        "name": "Std. deviation",
+        "description": "Spread around the mean."
+      }
+    ],
+    "notes": [
+      "Sample variance would divide by N−1 instead of N."
+    ]
+  },
+  "sampleSize": {
+    "formula": "n ≈ (z·σ / E)²",
+    "summary": "Sample size needed for a desired margin of error at a confidence level.",
+    "variables": [
+      {
+        "symbol": "E",
+        "name": "Margin of error",
+        "description": "Allowed half-width."
+      },
+      {
+        "symbol": "z",
+        "name": "Critical z",
+        "description": "From confidence level."
+      }
+    ],
+    "notes": [
+      "Uses a planning-stage σ estimate."
+    ]
+  },
+  "confidenceInterval": {
+    "formula": "CI = x̄ ± z·(σ/√n)",
+    "summary": "Normal-approximation confidence interval for a mean.",
+    "variables": [
+      {
+        "symbol": "x̄",
+        "name": "Sample mean",
+        "description": "Observed average."
+      },
+      {
+        "symbol": "z",
+        "name": "Critical z",
+        "description": "From confidence level."
+      }
+    ],
+    "notes": [
+      "Assumes approximate normality / large n."
+    ]
+  },
+  "zScorePValue": {
+    "formula": "z = (x − μ) / σ",
+    "summary": "Standardizes a value and relates it to a normal-tail probability.",
+    "variables": [
+      {
+        "symbol": "x",
+        "name": "Observation",
+        "description": "Raw score."
+      },
+      {
+        "symbol": "μ,σ",
+        "name": "Mean & SD",
+        "description": "Reference distribution."
+      }
+    ],
+    "notes": [
+      "p-values assume a normal model."
+    ]
+  },
+  "permutationCombination": {
+    "formula": "P(n,k)=n!/(n−k)!    ·    C(n,k)=n!/(k!(n−k)!)",
+    "summary": "Counts ordered arrangements (permutations) or unordered selections (combinations).",
+    "variables": [
+      {
+        "symbol": "n",
+        "name": "Set size",
+        "description": "Total items."
+      },
+      {
+        "symbol": "k",
+        "name": "Chosen",
+        "description": "Items selected."
+      }
+    ],
+    "notes": [
+      "Requires integers with 0 ≤ k ≤ n."
+    ]
+  },
+  "pythagorean": {
+    "formula": "c² = a² + b²",
+    "summary": "Right-triangle side relationship. Mode 1 solves hypotenuse; mode 2 solves a missing leg.",
+    "variables": [
+      {
+        "symbol": "a,b",
+        "name": "Legs",
+        "description": "Sides forming the right angle."
+      },
+      {
+        "symbol": "c",
+        "name": "Hypotenuse",
+        "description": "Side opposite the right angle."
+      }
+    ],
+    "notes": [
+      "Requires a right triangle; inputs must be positive."
+    ]
+  },
+  "quadraticSolver": {
+    "formula": "x = (−b ± √(b² − 4ac)) / (2a)",
+    "summary": "Solves ax² + bx + c = 0 using the discriminant Δ = b² − 4ac.",
+    "variables": [
+      {
+        "symbol": "a,b,c",
+        "name": "Coefficients",
+        "description": "Parameters of the quadratic."
+      },
+      {
+        "symbol": "Δ",
+        "name": "Discriminant",
+        "description": "Two, one, or no real roots."
+      }
+    ],
+    "notes": [
+      "Complex roots are not shown when Δ < 0."
+    ]
+  },
+  "matrixMultiply2x2": {
+    "formula": "C = A · B for 2×2 matrices",
+    "summary": "Multiplies two 2×2 matrices entry-wise via row·column dot products.",
+    "variables": [
+      {
+        "symbol": "A,B",
+        "name": "Matrices",
+        "description": "Left and right 2×2 operands."
+      }
+    ],
+    "notes": [
+      "Matrix multiplication is not commutative in general."
+    ]
+  },
+  "fractionDecimal": {
+    "formula": "decimal = numerator / denominator",
+    "summary": "Converts a fraction to decimal form (and related representations).",
+    "variables": [
+      {
+        "symbol": "num",
+        "name": "Numerator",
+        "description": "Top of the fraction."
+      },
+      {
+        "symbol": "den",
+        "name": "Denominator",
+        "description": "Bottom of the fraction (≠ 0)."
+      }
+    ],
+    "notes": [
+      "Division by zero is undefined."
+    ]
+  },
+  "lcmGcd": {
+    "formula": "gcd via Euclid    ·    lcm(a,b)=|a·b|/gcd(a,b)",
+    "summary": "Greatest common divisor and least common multiple of two integers.",
+    "variables": [
+      {
+        "symbol": "a,b",
+        "name": "Integers",
+        "description": "Input whole numbers."
+      }
+    ],
+    "notes": [
+      "gcd(0,0) is undefined in this tool."
+    ]
+  },
+  "logExponentialGrowth": {
+    "formula": "A = A₀ · e^(kt)    or    A = A₀ · b^t",
+    "summary": "Models continuous or discrete exponential growth/decay.",
+    "variables": [
+      {
+        "symbol": "A₀",
+        "name": "Initial value",
+        "description": "Starting quantity."
+      },
+      {
+        "symbol": "k",
+        "name": "Growth rate",
+        "description": "Continuous rate (or use base b)."
+      }
+    ],
+    "notes": [
+      "Negative k (or 0<b<1) models decay."
+    ]
+  },
+  "sequenceProgression": {
+    "formula": "Arithmetic: a_n = a₁+(n−1)d    ·    Geometric: a_n = a₁·r^(n−1)",
+    "summary": "nth term of an arithmetic or geometric sequence from first term and common difference/ratio.",
+    "variables": [
+      {
+        "symbol": "a₁",
+        "name": "First term",
+        "description": "Starting value."
+      },
+      {
+        "symbol": "d/r",
+        "name": "Step",
+        "description": "Common difference or ratio."
+      }
+    ],
+    "notes": [
+      "Choose the mode that matches your sequence type."
+    ]
+  },
+  "compoundProbability": {
+    "formula": "Independent: P(A∩B)=P(A)P(B)    ·    Mutually exclusive: P(A∪B)=P(A)+P(B)",
+    "summary": "Combines event probabilities under independence or exclusivity assumptions.",
+    "variables": [
+      {
+        "symbol": "P(A)",
+        "name": "Event A",
+        "description": "Probability of A."
+      },
+      {
+        "symbol": "P(B)",
+        "name": "Event B",
+        "description": "Probability of B."
+      }
+    ],
+    "notes": [
+      "Dependent events need conditional probability instead."
+    ]
+  },
+  "descriptiveStats": {
+    "formula": "mean, median, range from the sample",
+    "summary": "Core descriptive statistics summarizing center and spread of your data.",
+    "variables": [
+      {
+        "symbol": "xᵢ",
+        "name": "Observations",
+        "description": "Input data values."
+      }
+    ],
+    "notes": [
+      "Outliers can skew the mean more than the median."
+    ]
+  },
+  "marginOfError": {
+    "formula": "E = z · √(p̂(1−p̂)/n)",
+    "summary": "Margin of error for a proportion at a chosen confidence level.",
+    "variables": [
+      {
+        "symbol": "p̂",
+        "name": "Sample proportion",
+        "description": "Observed success rate."
+      },
+      {
+        "symbol": "n",
+        "name": "Sample size",
+        "description": "Number of observations."
+      }
+    ],
+    "notes": [
+      "Requires adequate np̂ and n(1−p̂)."
+    ]
+  },
+  "hypothesisTesting": {
+    "formula": "z = (p̂ − p₀) / √(p₀(1−p₀)/n)",
+    "summary": "Simplified z-test style comparison of a sample proportion to a hypothesized value.",
+    "variables": [
+      {
+        "symbol": "p₀",
+        "name": "Null value",
+        "description": "Hypothesized proportion."
+      },
+      {
+        "symbol": "p̂",
+        "name": "Sample",
+        "description": "Observed proportion."
+      }
+    ],
+    "notes": [
+      "Educational approximation—not a full stats package."
+    ]
+  },
+  "correlationCoefficient": {
+    "formula": "r = Σ((x−x̄)(y−ȳ)) / (√Σ(x−x̄)² √Σ(y−ȳ)²)",
+    "summary": "Pearson correlation measuring linear association between paired values.",
+    "variables": [
+      {
+        "symbol": "r",
+        "name": "Correlation",
+        "description": "Ranges from −1 to +1."
+      }
+    ],
+    "notes": [
+      "Correlation ≠ causation."
+    ]
+  },
+  "factorialExponent": {
+    "formula": "n! = 1·2·…·n    ·    a^b = exp(b·ln a)",
+    "summary": "Computes factorial and/or exponentiation for the provided inputs.",
+    "variables": [
+      {
+        "symbol": "n",
+        "name": "Integer",
+        "description": "Non-negative integer for n!."
+      },
+      {
+        "symbol": "a^b",
+        "name": "Power",
+        "description": "Base and exponent."
+      }
+    ],
+    "notes": [
+      "Large factorials overflow floating-point quickly."
+    ]
+  },
+  "polygonGeometry": {
+    "formula": "Regular n-gon: A = (1/4)·n·s²·cot(π/n)",
+    "summary": "Area (and related measures) for a regular polygon from side length and side count.",
+    "variables": [
+      {
+        "symbol": "n",
+        "name": "Sides",
+        "description": "Number of sides."
+      },
+      {
+        "symbol": "s",
+        "name": "Side length",
+        "description": "Length of each side."
+      }
+    ],
+    "notes": [
+      "Assumes a regular (equilateral & equiangular) polygon."
+    ]
+  },
+  "circleGeometry": {
+    "formula": "A = πr²    ·    C = 2πr",
+    "summary": "Area and circumference from radius.",
+    "variables": [
+      {
+        "symbol": "r",
+        "name": "Radius",
+        "description": "Center to edge distance."
+      }
+    ],
+    "notes": [
+      "Diameter d = 2r if you prefer that input framing."
+    ]
+  },
+  "severancePay": {
+    "formula": "Severance ≈ weeksPerYearOfService × years × weeklyPay",
+    "summary": "Estimates a severance package from tenure and weekly pay assumptions.",
+    "variables": [
+      {
+        "symbol": "years",
+        "name": "Tenure",
+        "description": "Years of service."
+      },
+      {
+        "symbol": "weeklyPay",
+        "name": "Weekly pay",
+        "description": "Base weekly compensation."
+      }
+    ],
+    "notes": [
+      "Policies and local law vary widely—verify with HR/counsel."
+    ]
+  },
+  "ptoAccrual": {
+    "formula": "Result = f(Hou, Acc, Cur)",
+    "summary": "Calculate paid time off accrued from hours worked and accrual rates. Track leave balances accurately. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Hou",
+        "name": "Hours Worked",
+        "description": "Input “Hours Worked” (typical range 1–300)."
+      },
+      {
+        "symbol": "Acc",
+        "name": "PTO Hours per Hour Worked",
+        "description": "Input “PTO Hours per Hour Worked” (typical range 0.01–0.5)."
+      },
+      {
+        "symbol": "Cur",
+        "name": "Current PTO Balance",
+        "description": "Input “Current PTO Balance (hours)” (typical range 0–500)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "fmlaLeave": {
+    "formula": "Result = f(Ent, Use, Wor)",
+    "summary": "Estimate remaining FMLA leave from entitlement and days already used. Track protected leave availability. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Ent",
+        "name": "Entitlement Weeks",
+        "description": "Input “Entitlement Weeks” (typical range 1–26)."
+      },
+      {
+        "symbol": "Use",
+        "name": "Days Already Used",
+        "description": "Input “Days Already Used” (typical range 0–130)."
+      },
+      {
+        "symbol": "Wor",
+        "name": "Days in Workweek",
+        "description": "Input “Days in Workweek” (typical range 1–7)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "workersComp": {
+    "formula": "Result = f(Avg, Rep, Wee)",
+    "summary": "Estimate temporary disability weekly benefits from wage replacement percentage. Rough-plan injury income support. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Avg",
+        "name": "Average Weekly Wage",
+        "description": "Input “Average Weekly Wage ($)” (typical range 100–10000)."
+      },
+      {
+        "symbol": "Rep",
+        "name": "Replacement Rate",
+        "description": "Input “Replacement Rate (%)” (typical range 40–100)."
+      },
+      {
+        "symbol": "Wee",
+        "name": "Benefit Weeks",
+        "description": "Input “Benefit Weeks” (typical range 1–520)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "employeeTurnover": {
+    "formula": "Result = f(Sep, Avg)",
+    "summary": "Calculate employee turnover rate for a period from separations and average headcount. Monitor retention health. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Sep",
+        "name": "Separations",
+        "description": "Input “Separations” (typical range 0–5000)."
+      },
+      {
+        "symbol": "Avg",
+        "name": "Average Headcount",
+        "description": "Input “Average Headcount” (typical range 1–100000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "payrollTax": {
+    "formula": "Withholding ≈ wages × combined payroll rates (simplified)",
+    "summary": "Rough employer/employee payroll tax estimate from wages and rate inputs.",
+    "variables": [
+      {
+        "symbol": "wages",
+        "name": "Taxable wages",
+        "description": "Pay subject to payroll tax."
+      }
+    ],
+    "notes": [
+      "Wage bases and rates change yearly."
+    ]
+  },
+  "contractorVsW2": {
+    "formula": "Result = f(WSa, Bur, Con, Hou)",
+    "summary": "Compare total cost of a W2 hire versus a contractor rate. Make staffing model decisions with clearer math. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "WSa",
+        "name": "W2 Annual Salary",
+        "description": "Input “W2 Annual Salary ($)” (typical range 20000–400000)."
+      },
+      {
+        "symbol": "Bur",
+        "name": "Employer Burden",
+        "description": "Input “Employer Burden (%)” (typical range 5–60)."
+      },
+      {
+        "symbol": "Con",
+        "name": "Contractor Hourly Rate",
+        "description": "Input “Contractor Hourly Rate ($)” (typical range 10–500)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Annual Hours",
+        "description": "Input “Annual Hours” (typical range 200–3000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "nonCompeteSettlement": {
+    "formula": "Result = f(Mon, Rem, Mul)",
+    "summary": "Estimate settlement value from remaining restricted months and monthly pay. Frame negotiation ranges for covenants. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Mon",
+        "name": "Monthly Pay",
+        "description": "Input “Monthly Pay ($)” (typical range 1000–50000)."
+      },
+      {
+        "symbol": "Rem",
+        "name": "Remaining Restriction Months",
+        "description": "Input “Remaining Restriction Months” (typical range 1–36)."
+      },
+      {
+        "symbol": "Mul",
+        "name": "Settlement Multiplier",
+        "description": "Input “Settlement Multiplier” (typical range 0.1–2)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "wrongfulTermination": {
+    "formula": "Result = f(Wee, Wee, Mit)",
+    "summary": "Estimate wage-loss damages from lost pay over a claim period. Support early case valuation discussions. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Wee",
+        "name": "Weekly Pay",
+        "description": "Input “Weekly Pay ($)” (typical range 100–20000)."
+      },
+      {
+        "symbol": "Wee",
+        "name": "Weeks of Lost Work",
+        "description": "Input “Weeks of Lost Work” (typical range 1–260)."
+      },
+      {
+        "symbol": "Mit",
+        "name": "Mitigation Income",
+        "description": "Input “Mitigation Income ($)” (typical range 0–500000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "overtimeExemption": {
+    "formula": "Result = f(Ann, Thr, Wee)",
+    "summary": "Check how a salary compares with an overtime exemption threshold. Flag potential nonexempt risk quickly. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Ann",
+        "name": "Annual Salary",
+        "description": "Input “Annual Salary ($)” (typical range 15000–300000)."
+      },
+      {
+        "symbol": "Thr",
+        "name": "Exemption Threshold",
+        "description": "Input “Exemption Threshold ($)” (typical range 20000–200000)."
+      },
+      {
+        "symbol": "Wee",
+        "name": "Typical Weekly Hours",
+        "description": "Input “Typical Weekly Hours” (typical range 30–80)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "oshaRecordable": {
+    "formula": "Result = f(Cas, Hou)",
+    "summary": "Compute OSHA incidence rates from recordable cases and hours worked. Benchmark workplace safety performance. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Cas",
+        "name": "Recordable Cases",
+        "description": "Input “Recordable Cases” (typical range 0–1000)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Total Hours Worked",
+        "description": "Input “Total Hours Worked” (typical range 1000–100000000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "applicantScorecard": {
+    "formula": "Result = f(Ski, Ski, Cul, Cul, Pot, Pot)",
+    "summary": "Score candidates with weighted hiring criteria. Standardize interview evaluations across a hiring panel. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Ski",
+        "name": "Skills Score",
+        "description": "Input “Skills Score (1-10)” (typical range 1–10)."
+      },
+      {
+        "symbol": "Ski",
+        "name": "Skills Weight",
+        "description": "Input “Skills Weight (%)” (typical range 0–100)."
+      },
+      {
+        "symbol": "Cul",
+        "name": "Culture Score",
+        "description": "Input “Culture Score (1-10)” (typical range 1–10)."
+      },
+      {
+        "symbol": "Cul",
+        "name": "Culture Weight",
+        "description": "Input “Culture Weight (%)” (typical range 0–100)."
+      },
+      {
+        "symbol": "Pot",
+        "name": "Potential Score",
+        "description": "Input “Potential Score (1-10)” (typical range 1–10)."
+      },
+      {
+        "symbol": "Pot",
+        "name": "Potential Weight",
+        "description": "Input “Potential Weight (%)” (typical range 0–100)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "enps": {
+    "formula": "Result = f(Pro, Pas, Det)",
+    "summary": "Calculate employee Net Promoter Score from promoters, passives, and detractors. Measure workplace advocacy. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Pro",
+        "name": "Promoters",
+        "description": "Input “Promoters” (typical range 0–10000)."
+      },
+      {
+        "symbol": "Pas",
+        "name": "Passives",
+        "description": "Input “Passives” (typical range 0–10000)."
+      },
+      {
+        "symbol": "Det",
+        "name": "Detractors",
+        "description": "Input “Detractors” (typical range 0–10000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "costPerHire": {
+    "formula": "Result = f(Int, Ext, Hir)",
+    "summary": "Measure recruiting cost per hire from internal and external spend. Optimize hiring budget efficiency. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Int",
+        "name": "Internal Recruiting Cost",
+        "description": "Input “Internal Recruiting Cost ($)” (typical range 0–5000000)."
+      },
+      {
+        "symbol": "Ext",
+        "name": "External Recruiting Cost",
+        "description": "Input “External Recruiting Cost ($)” (typical range 0–5000000)."
+      },
+      {
+        "symbol": "Hir",
+        "name": "Number of Hires",
+        "description": "Input “Number of Hires” (typical range 1–1000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "timeToFill": {
+    "formula": "Result = f(Tot, Hir)",
+    "summary": "Calculate average days to fill open roles from total days open and hire count. Track recruiting speed. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Tot",
+        "name": "Total Job-Days Open",
+        "description": "Input “Total Job-Days Open” (typical range 1–100000)."
+      },
+      {
+        "symbol": "Hir",
+        "name": "Roles Filled",
+        "description": "Input “Roles Filled” (typical range 1–1000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "trainingRoi": {
+    "formula": "Result = f(Tra, Ben)",
+    "summary": "Estimate return on training investment from program cost and performance gains. Justify L&D spend with numbers. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Tra",
+        "name": "Training Cost",
+        "description": "Input “Training Cost ($)” (typical range 100–5000000)."
+      },
+      {
+        "symbol": "Ben",
+        "name": "Measured Benefit",
+        "description": "Input “Measured Benefit ($)” (typical range 0–10000000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "performanceBonus": {
+    "formula": "Result = f(Bas, Tar, Att)",
+    "summary": "Calculate performance bonuses from target bonus and attainment percentage. Communicate variable pay clearly. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Bas",
+        "name": "Base Salary",
+        "description": "Input “Base Salary ($)” (typical range 20000–500000)."
+      },
+      {
+        "symbol": "Tar",
+        "name": "Target Bonus",
+        "description": "Input “Target Bonus (%)” (typical range 0–100)."
+      },
+      {
+        "symbol": "Att",
+        "name": "Attainment",
+        "description": "Input “Attainment (%)” (typical range 0–200)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "relocationReimbursement": {
+    "formula": "Result = f(Mov, Tem, Tra, Mis)",
+    "summary": "Total relocation reimbursement from moving, housing, and travel allowances. Clarify package value before a move. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Mov",
+        "name": "Moving Costs",
+        "description": "Input “Moving Costs ($)” (typical range 0–50000)."
+      },
+      {
+        "symbol": "Tem",
+        "name": "Temporary Housing",
+        "description": "Input “Temporary Housing ($)” (typical range 0–50000)."
+      },
+      {
+        "symbol": "Tra",
+        "name": "Travel Costs",
+        "description": "Input “Travel Costs ($)” (typical range 0–20000)."
+      },
+      {
+        "symbol": "Mis",
+        "name": "Misc Allowance",
+        "description": "Input “Misc Allowance ($)” (typical range 0–20000)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "perDiemAllowance": {
+    "formula": "Result = f(Dai, Ful, Tra, Tra)",
+    "summary": "Calculate trip per diem totals from daily rates and travel days. Simplify business travel allowances. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Dai",
+        "name": "Daily Per Diem",
+        "description": "Input “Daily Per Diem ($)” (typical range 10–500)."
+      },
+      {
+        "symbol": "Ful",
+        "name": "Full Days",
+        "description": "Input “Full Days” (typical range 0–60)."
+      },
+      {
+        "symbol": "Tra",
+        "name": "Travel Days",
+        "description": "Input “Travel Days” (typical range 0–20)."
+      },
+      {
+        "symbol": "Tra",
+        "name": "Travel Day Rate",
+        "description": "Input “Travel Day Rate (%)” (typical range 0–100)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "pensionVesting": {
+    "formula": "Result = f(Bal, Ves, Yea)",
+    "summary": "Estimate vested pension value from account balance and vesting percentage. Understand retirement benefit ownership. Results apply simplified planning formulas—confirm with a qualified professional for decisions.",
+    "variables": [
+      {
+        "symbol": "Bal",
+        "name": "Plan Balance",
+        "description": "Input “Plan Balance ($)” (typical range 0–5000000)."
+      },
+      {
+        "symbol": "Ves",
+        "name": "Vested",
+        "description": "Input “Vested (%)” (typical range 0–100)."
+      },
+      {
+        "symbol": "Yea",
+        "name": "Years of Service",
+        "description": "Input “Years of Service” (typical range 0–45)."
+      }
+    ],
+    "notes": [
+      "Category: Legal, HR & Payroll Management.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "roadTripGas": {
+    "formula": "Fuel cost = (miles / MPG) × $/gal",
+    "summary": "Trip fuel budget from distance, efficiency, and gas price.",
+    "variables": [
+      {
+        "symbol": "miles",
+        "name": "Distance",
+        "description": "Total trip miles."
+      },
+      {
+        "symbol": "MPG",
+        "name": "Efficiency",
+        "description": "Expected fuel economy."
+      }
+    ],
+    "notes": [
+      "Add buffer for detours and city driving."
+    ]
+  },
+  "evChargingCost": {
+    "formula": "Cost = kWh needed × $/kWh",
+    "summary": "Estimates charging cost from energy required and electricity price.",
+    "variables": [
+      {
+        "symbol": "kWh",
+        "name": "Energy",
+        "description": "Kilowatt-hours to add."
+      },
+      {
+        "symbol": "$/kWh",
+        "name": "Rate",
+        "description": "Electricity price."
+      }
+    ],
+    "notes": [
+      "Public DC fast charging is often priced differently than home rates."
+    ]
+  },
+  "carLeaseVsBuy": {
+    "formula": "Result = f(Lea, Lea, Due, Loa, Loa, Dow)",
+    "summary": "Compare multi-year lease payments against buying and ownership costs. Decide with clearer long-term math. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Lea",
+        "name": "Monthly Lease",
+        "description": "Input “Monthly Lease ($)” (typical range 100–2000)."
+      },
+      {
+        "symbol": "Lea",
+        "name": "Lease Months",
+        "description": "Input “Lease Months” (typical range 12–48)."
+      },
+      {
+        "symbol": "Due",
+        "name": "Lease Due at Signing",
+        "description": "Input “Lease Due at Signing ($)” (typical range 0–20000)."
+      },
+      {
+        "symbol": "Loa",
+        "name": "Monthly Loan",
+        "description": "Input “Monthly Loan ($)” (typical range 100–2000)."
+      },
+      {
+        "symbol": "Loa",
+        "name": "Loan Months",
+        "description": "Input “Loan Months” (typical range 12–84)."
+      },
+      {
+        "symbol": "Dow",
+        "name": "Buy Down Payment",
+        "description": "Input “Buy Down Payment ($)” (typical range 0–50000)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "vehicleDepreciation": {
+    "formula": "Result = f(Pur, Ann, t)",
+    "summary": "Estimate vehicle value after years of depreciation. Forecast ownership equity and replacement timing. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Pur",
+        "name": "Purchase Price",
+        "description": "Input “Purchase Price ($)” (typical range 5000–200000)."
+      },
+      {
+        "symbol": "Ann",
+        "name": "Annual Depreciation",
+        "description": "Input “Annual Depreciation (%)” (typical range 1–40)."
+      },
+      {
+        "symbol": "t",
+        "name": "Years Owned",
+        "description": "Input “Years Owned” (typical range 1–20)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "tollCommute": {
+    "formula": "Result = f(Tol, Day, Wee)",
+    "summary": "Calculate monthly and annual toll spend for a commute. Weigh express-lane costs against time savings. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Tol",
+        "name": "One-Way Toll",
+        "description": "Input “One-Way Toll ($)” (typical range 0–50)."
+      },
+      {
+        "symbol": "Day",
+        "name": "Commute Days / Week",
+        "description": "Input “Commute Days / Week” (typical range 1–7)."
+      },
+      {
+        "symbol": "Wee",
+        "name": "Weeks / Year",
+        "description": "Input “Weeks / Year” (typical range 1–52)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "carInsuranceCompare": {
+    "formula": "Result = f(Pre, Ded, Pre, Ded, Cla)",
+    "summary": "Compare two auto insurance quotes by premium and deductible tradeoffs. Identify the lower expected annual cost. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Pre",
+        "name": "Quote A Annual Premium",
+        "description": "Input “Quote A Annual Premium ($)” (typical range 100–10000)."
+      },
+      {
+        "symbol": "Ded",
+        "name": "Quote A Deductible",
+        "description": "Input “Quote A Deductible ($)” (typical range 0–5000)."
+      },
+      {
+        "symbol": "Pre",
+        "name": "Quote B Annual Premium",
+        "description": "Input “Quote B Annual Premium ($)” (typical range 100–10000)."
+      },
+      {
+        "symbol": "Ded",
+        "name": "Quote B Deductible",
+        "description": "Input “Quote B Deductible ($)” (typical range 0–5000)."
+      },
+      {
+        "symbol": "Cla",
+        "name": "Chance of Claim",
+        "description": "Input “Chance of Claim (%)” (typical range 0–100)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "flightCarbon": {
+    "formula": "CO₂ ≈ distance × emission factor per passenger-km",
+    "summary": "Order-of-magnitude flight carbon estimate from distance and an emission factor.",
+    "variables": [
+      {
+        "symbol": "distance",
+        "name": "Flight distance",
+        "description": "Great-circle or ticket miles."
+      }
+    ],
+    "notes": [
+      "Radiative forcing multipliers are debated—treat as approximate."
+    ]
+  },
+  "hotelStayBudget": {
+    "formula": "Result = f(Nig, Nig, Tax, Res)",
+    "summary": "Budget hotel stays including nightly rate, taxes, and fees. Avoid surprise lodging totals at checkout. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Nig",
+        "name": "Nightly Rate",
+        "description": "Input “Nightly Rate ($)” (typical range 30–2000)."
+      },
+      {
+        "symbol": "Nig",
+        "name": "Nights",
+        "description": "Input “Nights” (typical range 1–60)."
+      },
+      {
+        "symbol": "Tax",
+        "name": "Tax / Fee Rate",
+        "description": "Input “Tax / Fee Rate (%)” (typical range 0–40)."
+      },
+      {
+        "symbol": "Res",
+        "name": "Resort Fee per Night",
+        "description": "Input “Resort Fee per Night ($)” (typical range 0–100)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "vacationCurrency": {
+    "formula": "Result = f(Hom, Exc, Day)",
+    "summary": "Convert vacation budgets between home and destination currencies. Plan spending before you travel abroad. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Hom",
+        "name": "Home Currency Budget",
+        "description": "Input “Home Currency Budget” (typical range 50–100000)."
+      },
+      {
+        "symbol": "Exc",
+        "name": "Destination per Home Unit",
+        "description": "Input “Destination per Home Unit” (typical range 0.001–1000)."
+      },
+      {
+        "symbol": "Day",
+        "name": "Trip Days",
+        "description": "Input “Trip Days” (typical range 1–90)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "baggageFee": {
+    "formula": "Result = f(Tra, Bag, Fee, Fee)",
+    "summary": "Estimate airline baggage fees for checked bags across travelers. Prevent packing surprises at the counter. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Tra",
+        "name": "Travelers",
+        "description": "Input “Travelers” (typical range 1–10)."
+      },
+      {
+        "symbol": "Bag",
+        "name": "Checked Bags per Traveler",
+        "description": "Input “Checked Bags per Traveler” (typical range 0–3)."
+      },
+      {
+        "symbol": "Fee",
+        "name": "First Bag Fee",
+        "description": "Input “First Bag Fee ($)” (typical range 0–200)."
+      },
+      {
+        "symbol": "Fee",
+        "name": "Second+ Bag Fee",
+        "description": "Input “Second+ Bag Fee ($)” (typical range 0–200)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "speedingTicket": {
+    "formula": "Result = f(Bas, Ove, Per, Fee)",
+    "summary": "Estimate speeding fines from base penalty plus per-mph overage. Understand potential ticket costs. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Bas",
+        "name": "Base Fine",
+        "description": "Input “Base Fine ($)” (typical range 0–1000)."
+      },
+      {
+        "symbol": "Ove",
+        "name": "MPH Over Limit",
+        "description": "Input “MPH Over Limit” (typical range 0–50)."
+      },
+      {
+        "symbol": "Per",
+        "name": "Extra $ per MPH",
+        "description": "Input “Extra $ per MPH” (typical range 0–50)."
+      },
+      {
+        "symbol": "Fee",
+        "name": "Court / Admin Fees",
+        "description": "Input “Court / Admin Fees ($)” (typical range 0–500)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "drivingDistanceMatrix": {
+    "formula": "Result = f(Dis, Avg, Mpg, Gas)",
+    "summary": "Estimate drive time and fuel use between distance and average speed. Plan multi-stop driving days. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Dis",
+        "name": "Distance",
+        "description": "Input “Distance (miles)” (typical range 1–3000)."
+      },
+      {
+        "symbol": "Avg",
+        "name": "Average Speed",
+        "description": "Input “Average Speed (mph)” (typical range 10–85)."
+      },
+      {
+        "symbol": "Mpg",
+        "name": "MPG",
+        "description": "Input “MPG” (typical range 5–120)."
+      },
+      {
+        "symbol": "Gas",
+        "name": "Gas Price",
+        "description": "Input “Gas Price ($/gal)” (typical range 1–10)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "parkingGarage": {
+    "formula": "Result = f(Hou, Hou, Dai, Day)",
+    "summary": "Estimate parking garage totals from hourly rates, daily caps, and duration. Budget urban parking accurately. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Hou",
+        "name": "Hourly Rate",
+        "description": "Input “Hourly Rate ($)” (typical range 1–40)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Hours Parked",
+        "description": "Input “Hours Parked” (typical range 0.5–24)."
+      },
+      {
+        "symbol": "Dai",
+        "name": "Daily Maximum",
+        "description": "Input “Daily Maximum ($)” (typical range 5–100)."
+      },
+      {
+        "symbol": "Day",
+        "name": "Days",
+        "description": "Input “Days” (typical range 1–14)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "rvTowingWeight": {
+    "formula": "Result = f(Tow, Tra, Car)",
+    "summary": "Check tow capacity headroom from vehicle rating and trailer weight. Tow more safely with clearer margins. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Tow",
+        "name": "Max Tow Capacity",
+        "description": "Input “Max Tow Capacity (lbs)” (typical range 1000–35000)."
+      },
+      {
+        "symbol": "Tra",
+        "name": "Trailer Weight",
+        "description": "Input “Trailer Weight (lbs)” (typical range 500–30000)."
+      },
+      {
+        "symbol": "Car",
+        "name": "Cargo / Passengers",
+        "description": "Input “Cargo / Passengers (lbs)” (typical range 0–5000)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "motorcycleLoan": {
+    "formula": "Result = f(Pri, Dow, r, n)",
+    "summary": "Estimate motorcycle loan payments from price, rate, and term. Plan financing before you buy. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Pri",
+        "name": "Bike Price",
+        "description": "Input “Bike Price ($)” (typical range 1000–80000)."
+      },
+      {
+        "symbol": "Dow",
+        "name": "Down Payment",
+        "description": "Input “Down Payment ($)” (typical range 0–40000)."
+      },
+      {
+        "symbol": "r",
+        "name": "APR",
+        "description": "Input “APR (%)” (typical range 0–25)."
+      },
+      {
+        "symbol": "n",
+        "name": "Term",
+        "description": "Input “Term (months)” (typical range 12–84)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "boatMaintenance": {
+    "formula": "Result = f(Boa, Mai, Sli, Ins)",
+    "summary": "Estimate annual boat maintenance from value-based percentages and slip fees. Budget ownership beyond the purchase. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Boa",
+        "name": "Boat Value",
+        "description": "Input “Boat Value ($)” (typical range 2000–2000000)."
+      },
+      {
+        "symbol": "Mai",
+        "name": "Maintenance",
+        "description": "Input “Maintenance (% of value)” (typical range 1–20)."
+      },
+      {
+        "symbol": "Sli",
+        "name": "Annual Slip / Storage",
+        "description": "Input “Annual Slip / Storage ($)” (typical range 0–50000)."
+      },
+      {
+        "symbol": "Ins",
+        "name": "Annual Insurance",
+        "description": "Input “Annual Insurance ($)” (typical range 0–20000)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "rideshareEarnings": {
+    "formula": "Result = f(Gro, Pla, Fue, Oth, Hou)",
+    "summary": "Estimate rideshare net earnings after platform fees, fuel, and expenses. Know your true hourly take-home. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Gro",
+        "name": "Gross Fares",
+        "description": "Input “Gross Fares ($)” (typical range 50–20000)."
+      },
+      {
+        "symbol": "Pla",
+        "name": "Platform Fee",
+        "description": "Input “Platform Fee (%)” (typical range 0–50)."
+      },
+      {
+        "symbol": "Fue",
+        "name": "Fuel / Energy Cost",
+        "description": "Input “Fuel / Energy Cost ($)” (typical range 0–2000)."
+      },
+      {
+        "symbol": "Oth",
+        "name": "Other Expenses",
+        "description": "Input “Other Expenses ($)” (typical range 0–2000)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Hours Online",
+        "description": "Input “Hours Online” (typical range 1–100)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "transitPassSavings": {
+    "formula": "Result = f(Pas, Rid, Rid)",
+    "summary": "Compare monthly transit passes against pay-per-ride costs. See whether a pass actually saves money. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Pas",
+        "name": "Monthly Pass",
+        "description": "Input “Monthly Pass ($)” (typical range 10–400)."
+      },
+      {
+        "symbol": "Rid",
+        "name": "Single Ride Fare",
+        "description": "Input “Single Ride Fare ($)” (typical range 0.5–20)."
+      },
+      {
+        "symbol": "Rid",
+        "name": "Rides per Month",
+        "description": "Input “Rides per Month” (typical range 1–200)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "carRentalTotal": {
+    "formula": "Result = f(Dai, Day, Tax, Ext)",
+    "summary": "Estimate total car rental cost including daily rate, taxes, and extras. Budget rental cars without fee surprises. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Dai",
+        "name": "Daily Rate",
+        "description": "Input “Daily Rate ($)” (typical range 10–400)."
+      },
+      {
+        "symbol": "Day",
+        "name": "Rental Days",
+        "description": "Input “Rental Days” (typical range 1–60)."
+      },
+      {
+        "symbol": "Tax",
+        "name": "Taxes / Fees",
+        "description": "Input “Taxes / Fees (%)” (typical range 0–50)."
+      },
+      {
+        "symbol": "Ext",
+        "name": "Extras Total",
+        "description": "Input “Extras Total ($)” (typical range 0–1000)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "jetLagPlanner": {
+    "formula": "Result = f(Tim, Dir, Rec)",
+    "summary": "Estimate jet lag recovery days from time zones crossed. Plan arrival buffers for important trips. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
+    "variables": [
+      {
+        "symbol": "Tim",
+        "name": "Time Zones Crossed",
+        "description": "Input “Time Zones Crossed” (typical range 1–14)."
+      },
+      {
+        "symbol": "Dir",
+        "name": "Direction",
+        "description": "Input “Direction (1=east, 2=west)” (typical range 1–2)."
+      },
+      {
+        "symbol": "Rec",
+        "name": "Days per Time Zone",
+        "description": "Input “Days per Time Zone” (typical range 0.25–1.5)."
+      }
+    ],
+    "notes": [
+      "Category: Automotive, Travel & Transit.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "aiNutrition": {
+    "formula": "BMR = 10w + 6.25h − 5a + s    ·    TDEE = BMR × activity    ·    Target = TDEE + adj",
+    "summary": "Mifflin–St Jeor BMR scaled by activity for TDEE, then adjusted for your calorie goal with protein-forward macros.",
+    "variables": [
+      {
+        "symbol": "w,h,a",
+        "name": "Weight, height, age",
+        "description": "kg, cm, years."
+      },
+      {
+        "symbol": "s",
+        "name": "Sex constant",
+        "description": "+5 male / −161 female."
+      },
+      {
+        "symbol": "activity",
+        "name": "Activity factor",
+        "description": "≈1.2 sedentary to ≈1.9 very active."
+      }
+    ],
+    "notes": [
+      "Estimates only—not medical advice."
+    ]
+  },
+  "recipeScaler": {
+    "formula": "Scaled qty = original × (newServings / oldServings)",
+    "summary": "Proportionally scales ingredient amounts when changing serving count.",
+    "variables": [
+      {
+        "symbol": "servings",
+        "name": "Serving ratio",
+        "description": "New ÷ original servings."
+      }
+    ],
+    "notes": [
+      "Spices and leaveners sometimes need non-linear tweaks."
+    ]
+  },
+  "bakingPanConverter": {
+    "formula": "Result = f(Fro, Fro, ToL, ToW, Bat)",
+    "summary": "Convert batter volume between baking pan areas. Move recipes across pan sizes with better confidence. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Fro",
+        "name": "From Pan Length",
+        "description": "Input “From Pan Length (in)” (typical range 4–18)."
+      },
+      {
+        "symbol": "Fro",
+        "name": "From Pan Width",
+        "description": "Input “From Pan Width (in)” (typical range 4–18)."
+      },
+      {
+        "symbol": "ToL",
+        "name": "To Pan Length",
+        "description": "Input “To Pan Length (in)” (typical range 4–18)."
+      },
+      {
+        "symbol": "ToW",
+        "name": "To Pan Width",
+        "description": "Input “To Pan Width (in)” (typical range 4–18)."
+      },
+      {
+        "symbol": "Bat",
+        "name": "Batter Volume",
+        "description": "Input “Batter Volume (cups)” (typical range 0.5–30)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "coffeeBrewRatio": {
+    "formula": "Water = coffeeDose × brewRatio",
+    "summary": "Dial-in brew water from dose and a chosen coffee-to-water ratio.",
+    "variables": [
+      {
+        "symbol": "dose",
+        "name": "Coffee dose",
+        "description": "Grams of ground coffee."
+      },
+      {
+        "symbol": "ratio",
+        "name": "Brew ratio",
+        "description": "Water mass per coffee mass."
+      }
+    ],
+    "notes": [
+      "Typical filter ratios land near 1:15–1:17."
+    ]
+  },
+  "meatCookingTime": {
+    "formula": "Result = f(Wei, Min, Res)",
+    "summary": "Estimate roasting time from weight and minutes-per-pound guidance. Plan oven schedules with fewer surprises. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Wei",
+        "name": "Meat Weight",
+        "description": "Input “Meat Weight (lbs)” (typical range 0.5–30)."
+      },
+      {
+        "symbol": "Min",
+        "name": "Minutes per Pound",
+        "description": "Input “Minutes per Pound” (typical range 5–60)."
+      },
+      {
+        "symbol": "Res",
+        "name": "Rest Time",
+        "description": "Input “Rest Time (minutes)” (typical range 0–60)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "shutterExposure": {
+    "formula": "Exposure reciprocity among ISO, aperture (f-stop), and shutter",
+    "summary": "Balances exposure triangle parameters so image brightness stays consistent when one setting changes.",
+    "variables": [
+      {
+        "symbol": "ISO",
+        "name": "Sensitivity",
+        "description": "Sensor/film sensitivity."
+      },
+      {
+        "symbol": "f",
+        "name": "Aperture",
+        "description": "f-number."
+      },
+      {
+        "symbol": "t",
+        "name": "Shutter",
+        "description": "Exposure time."
+      }
+    ],
+    "notes": [
+      "Creative intent (motion blur, DoF) may override ‘equivalent’ exposure."
+    ]
+  },
+  "hyperfocalDistance": {
+    "formula": "Result = f(Foc, Ape, Coc)",
+    "summary": "Estimate hyperfocal distance from focal length, aperture, and circle of confusion. Maximize landscape sharpness. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Foc",
+        "name": "Focal Length",
+        "description": "Input “Focal Length (mm)” (typical range 8–400)."
+      },
+      {
+        "symbol": "Ape",
+        "name": "Aperture",
+        "description": "Input “Aperture (f-number)” (typical range 1.2–32)."
+      },
+      {
+        "symbol": "Coc",
+        "name": "Circle of Confusion",
+        "description": "Input “Circle of Confusion (mm)” (typical range 0.005–0.05)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "timelapseInterval": {
+    "formula": "Result = f(Eve, Cli, Fps)",
+    "summary": "Calculate time-lapse shooting intervals from event duration and clip length. Plan smoother sequences. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Eve",
+        "name": "Real Event Duration",
+        "description": "Input “Real Event Duration (min)” (typical range 1–1440)."
+      },
+      {
+        "symbol": "Cli",
+        "name": "Final Clip Length",
+        "description": "Input “Final Clip Length (sec)” (typical range 1–120)."
+      },
+      {
+        "symbol": "Fps",
+        "name": "Playback FPS",
+        "description": "Input “Playback FPS” (typical range 12–60)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "videoBitrateSize": {
+    "formula": "Result = f(Bit, Min, Aud)",
+    "summary": "Estimate video file size from bitrate and duration. Plan storage and upload bandwidth ahead of shoots. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Bit",
+        "name": "Video Bitrate",
+        "description": "Input “Video Bitrate (Mbps)” (typical range 1–400)."
+      },
+      {
+        "symbol": "Min",
+        "name": "Duration",
+        "description": "Input “Duration (minutes)” (typical range 0.5–300)."
+      },
+      {
+        "symbol": "Aud",
+        "name": "Audio Bitrate",
+        "description": "Input “Audio Bitrate (kbps)” (typical range 64–1600)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "audioWavelength": {
+    "formula": "Result = f(Fre, Spe)",
+    "summary": "Convert sound frequency to wavelength in air. Useful for room treatment and speaker placement intuition. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Fre",
+        "name": "Frequency",
+        "description": "Input “Frequency (Hz)” (typical range 20–20000)."
+      },
+      {
+        "symbol": "Spe",
+        "name": "Speed of Sound",
+        "description": "Input “Speed of Sound (m/s)” (typical range 300–360)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "lightingLumens": {
+    "formula": "Result = f(Are, Foo)",
+    "summary": "Estimate lumens needed from room area and foot-candle targets. Plan brighter, more usable spaces. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Are",
+        "name": "Room Area",
+        "description": "Input “Room Area (sq ft)” (typical range 20–5000)."
+      },
+      {
+        "symbol": "Foo",
+        "name": "Target Foot-Candles",
+        "description": "Input “Target Foot-Candles” (typical range 5–100)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "plantWatering": {
+    "formula": "Result = f(Bas, Cli, Pla)",
+    "summary": "Estimate watering frequency from soil dry-down days and climate multipliers. Build a practical plant care cadence. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Bas",
+        "name": "Base Dry-Down Days",
+        "description": "Input “Base Dry-Down Days” (typical range 1–30)."
+      },
+      {
+        "symbol": "Cli",
+        "name": "Climate Factor",
+        "description": "Input “Climate Factor” (typical range 0.5–2)."
+      },
+      {
+        "symbol": "Pla",
+        "name": "Plant Factor",
+        "description": "Input “Plant Factor” (typical range 0.5–2)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "aquariumVolume": {
+    "formula": "Volume ≈ length × width × height (unit-consistent)",
+    "summary": "Tank volume from dimensions, converted to gallons or liters as labeled.",
+    "variables": [
+      {
+        "symbol": "L,W,H",
+        "name": "Dimensions",
+        "description": "Interior tank measurements."
+      }
+    ],
+    "notes": [
+      "Decor and substrate reduce actual water volume."
+    ]
+  },
+  "paintCoverage": {
+    "formula": "Gallons ≈ (area × coats) / coveragePerGallon",
+    "summary": "Paint quantity from wall area, coats, and label coverage rate.",
+    "variables": [
+      {
+        "symbol": "area",
+        "name": "Surface area",
+        "description": "Wall/ceiling area to cover."
+      },
+      {
+        "symbol": "coverage",
+        "name": "Coverage rate",
+        "description": "Sq ft (or m²) per gallon."
+      }
+    ],
+    "notes": [
+      "Buy ~10% extra for cuts, texture, and touch-ups."
+    ]
+  },
+  "wallpaperRolls": {
+    "formula": "Result = f(Wal, Rol, Was)",
+    "summary": "Estimate wallpaper rolls from wall area and roll coverage. Reduce leftover waste and mid-project shortages. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Wal",
+        "name": "Wall Area",
+        "description": "Input “Wall Area (sq ft)” (typical range 20–5000)."
+      },
+      {
+        "symbol": "Rol",
+        "name": "Coverage per Roll",
+        "description": "Input “Coverage per Roll (sq ft)” (typical range 10–60)."
+      },
+      {
+        "symbol": "Was",
+        "name": "Waste / Match",
+        "description": "Input “Waste / Match (%)” (typical range 0–40)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "flooringWaste": {
+    "formula": "Order qty = area × (1 + waste%)",
+    "summary": "Adds a waste factor so you order enough flooring for cuts and mistakes.",
+    "variables": [
+      {
+        "symbol": "area",
+        "name": "Room area",
+        "description": "Measured floor area."
+      },
+      {
+        "symbol": "waste%",
+        "name": "Waste factor",
+        "description": "Extra percent to order."
+      }
+    ],
+    "notes": [
+      "Complex layouts and diagonals need higher waste %."
+    ]
+  },
+  "movingTruckSize": {
+    "formula": "Result = f(Roo, Box, CuF, CuF)",
+    "summary": "Estimate moving truck size from rooms and box counts. Plan move day capacity with less stress. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Roo",
+        "name": "Number of Rooms",
+        "description": "Input “Number of Rooms” (typical range 1–15)."
+      },
+      {
+        "symbol": "Box",
+        "name": "Number of Boxes",
+        "description": "Input “Number of Boxes” (typical range 0–500)."
+      },
+      {
+        "symbol": "CuF",
+        "name": "Cu Ft per Room",
+        "description": "Input “Cu Ft per Room” (typical range 50–400)."
+      },
+      {
+        "symbol": "CuF",
+        "name": "Cu Ft per Box",
+        "description": "Input “Cu Ft per Box” (typical range 1–8)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  },
+  "holidayGiftBudget": {
+    "formula": "Per person = (totalBudget − reserved) / recipients",
+    "summary": "Splits remaining gift budget evenly across recipients.",
+    "variables": [
+      {
+        "symbol": "Budget",
+        "name": "Total budget",
+        "description": "Overall gift spend cap."
+      },
+      {
+        "symbol": "reserved",
+        "name": "Already reserved",
+        "description": "Committed purchases."
+      }
+    ],
+    "notes": [
+      "Uneven gifts are fine—use this as a planning ceiling."
+    ]
+  },
+  "weddingSeating": {
+    "formula": "Tables = ceil((guests − headTable) / seatsPerTable)",
+    "summary": "Estimates standard tables needed after reserving head-table seats.",
+    "variables": [
+      {
+        "symbol": "guests",
+        "name": "Guest count",
+        "description": "Total attendees to seat."
+      },
+      {
+        "symbol": "seats",
+        "name": "Seats / table",
+        "description": "Capacity of each standard table."
+      }
+    ],
+    "notes": [
+      "Add buffer tables for last-minute RSVPs."
+    ]
+  },
+  "petFoodPortion": {
+    "formula": "Cups/day = (weight × kcalPerLb) / kcalPerCup",
+    "summary": "Daily food volume from calorie needs and food energy density.",
+    "variables": [
+      {
+        "symbol": "weight",
+        "name": "Pet weight",
+        "description": "Body weight in lb (as labeled)."
+      },
+      {
+        "symbol": "kcal",
+        "name": "Energy density",
+        "description": "Calories per cup of food."
+      }
+    ],
+    "notes": [
+      "Confirm with your vet—needs vary by age and health."
+    ]
+  },
+  "aquariumCo2": {
+    "formula": "Result = f(Gal, Bub, Hou)",
+    "summary": "Estimate CO2 injection rate targets from tank volume and drop-checker goals. Support planted tank stability. The tool maps your inputs through a domain-specific formula to the live results panel.",
+    "variables": [
+      {
+        "symbol": "Gal",
+        "name": "Tank Volume",
+        "description": "Input “Tank Volume (gal)” (typical range 5–300)."
+      },
+      {
+        "symbol": "Bub",
+        "name": "Bubbles per Second",
+        "description": "Input “Bubbles per Second” (typical range 0.5–10)."
+      },
+      {
+        "symbol": "Hou",
+        "name": "Injection Hours / Day",
+        "description": "Input “Injection Hours / Day” (typical range 1–24)."
+      }
+    ],
+    "notes": [
+      "Category: Media, Photography, Cooking & Lifestyle.",
+      "Planning estimates only—not professional advice."
+    ]
+  }
+}

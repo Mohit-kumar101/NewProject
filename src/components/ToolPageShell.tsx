@@ -5,12 +5,14 @@ import { JsonLd } from "@/components/JsonLd";
 import { ReviewSection } from "@/components/ReviewSection";
 import { SuggestionBox } from "@/components/SuggestionBox";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
+import { ToolExplanation } from "@/components/ToolExplanation";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { getToolCanonicalUrl } from "@/lib/seo";
+import { getToolExplanation } from "@/lib/toolExplanations";
 
 /**
  * Unified tool page template:
- * Breadcrumbs → Header → Workspace → Guide/FAQ → Explore → Reviews → Suggestions
+ * Breadcrumbs → Header → Workspace → Formula → Guide/FAQ → Explore → Reviews → Suggestions
  */
 export function ToolPageShell({
   calculator,
@@ -22,6 +24,7 @@ export function ToolPageShell({
   guideExtra?: ReactNode;
 }) {
   const toolUrl = getToolCanonicalUrl(calculator);
+  const explanation = getToolExplanation(calculator);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
@@ -45,6 +48,8 @@ export function ToolPageShell({
       </header>
 
       <div className="min-w-0">{workspace}</div>
+
+      <ToolExplanation title={calculator.title} content={explanation} />
 
       <section className="mt-16 max-w-3xl">
         <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight">

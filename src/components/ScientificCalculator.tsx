@@ -13,6 +13,8 @@ import {
   formatDisplayValue,
   type AngleMode,
 } from "@/lib/scientificEngine";
+import { getScientificAdvice } from "@/lib/smartAdvice";
+import { SmartAdviceBox } from "@/components/SmartAdviceBox";
 
 type HistoryItem = {
   id: string;
@@ -604,6 +606,11 @@ export function ScientificCalculator() {
         ? preview.formatted
         : result;
 
+  const scientificAdvice = useMemo(
+    () => getScientificAdvice(error, displayResult),
+    [error, displayResult]
+  );
+
   const renderKey = (key: KeyDef) => (
     <button
       key={key.id}
@@ -619,7 +626,8 @@ export function ScientificCalculator() {
   );
 
   return (
-    <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(220px,0.75fr)] lg:items-stretch">
+    <div className="space-y-5">
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(220px,0.75fr)] lg:items-stretch">
       <section
         className="results-card flex h-[calc(100vh-10.5rem)] max-h-[720px] min-h-[480px] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] sm:h-[calc(100vh-11rem)]"
       >
@@ -792,6 +800,9 @@ export function ScientificCalculator() {
           )}
         </ul>
       </aside>
+      </div>
+
+      <SmartAdviceBox items={scientificAdvice} className="max-w-3xl" />
     </div>
   );
 }

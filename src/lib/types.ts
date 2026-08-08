@@ -46,3 +46,25 @@ export interface CalcResult {
   /** Optional insight callout (used by specific tools only). */
   insight?: string;
 }
+
+export interface ToolExplanationVariable {
+  symbol: string;
+  name: string;
+  description: string;
+}
+
+export interface ToolExplanationContent {
+  formula: string;
+  summary: string;
+  variables: ToolExplanationVariable[];
+  notes?: string[];
+}
+
+export type AdviceTone = "positive" | "caution" | "warning" | "info";
+
+export interface AdviceItem {
+  tone: AdviceTone;
+  badge: string;
+  title: string;
+  message: string;
+}
