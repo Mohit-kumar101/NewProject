@@ -1,100 +1,292 @@
 import type { Metadata } from "next";
 import type { Calculator } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { CRYPTO_CATEGORY, CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
 
-/** Per-tool SEO overrides keyed by slug. */
-const TOOL_SEO_OVERRIDES: Record<
-  string,
-  { title: string; description: string; keywords?: string[] }
-> = {
-  "scientific-calculator": {
-    title: "Free Online Scientific Calculator",
-    description:
-      "Use our advanced online scientific calculator with trigonometric, logarithmic, exponential functions, degree/radian modes, and calculation history.",
-    keywords: [
-      "scientific calculator",
-      "online scientific calculator",
-      "trigonometry calculator",
-      "logarithm calculator",
-      "degree radian calculator",
-    ],
-  },
-  "compound-interest-calculator": {
-    title: "Compound Interest Calculator",
-    description:
-      "Project investment growth with compound interest, monthly contributions, compounding frequency, and a coasting phase after you stop depositing.",
-    keywords: [
-      "compound interest calculator",
-      "investment growth calculator",
-      "compounding calculator",
-      "coasting calculator",
-    ],
-  },
-  "ai-nutrition-calorie-calculator": {
-    title: "AI Nutrition & Calorie Calculator",
-    description:
-      "Estimate BMR, TDEE, and daily calorie targets with smart macro suggestions based on age, sex, weight, height, activity level, and goals.",
-    keywords: [
-      "calorie calculator",
-      "TDEE calculator",
-      "BMR calculator",
-      "macro calculator",
-      "nutrition calculator",
-      "AI nutrition calculator",
-    ],
-  },
-  "expense-tracker": {
-    title: "Free Personal Expense Tracker",
-    description:
-      "Track income and expenses privately in your browser with localStorage. Log, search, and filter transactions—no signup required.",
-    keywords: [
-      "expense tracker",
-      "personal expense tracker",
-      "budget tracker",
-      "income expense tracker",
-      "free budget tool",
-    ],
-  },
-};
+const META_DESCRIPTION_MAX = 155;
 
-export function getToolPageTitle(calculator: Calculator): string {
-  return (
-    calculator.seoTitle ||
-    TOOL_SEO_OVERRIDES[calculator.slug]?.title ||
-    calculator.title
+export const SEO_MODIFIERS = [
+  "free online tool",
+  "no sign up",
+  "instant calculation",
+  "formula & step-by-step example",
+] as const;
+
+const TITLE_SUFFIX_CALCULATOR = "(Free Calculator & Formula)";
+const TITLE_SUFFIX_TOOL = "(Free Online Tool & Formula)";
+
+/** Short crypto path for a tools slug, if registered. */
+function cryptoPublicPath(toolSlug: string): string | null {
+  const entry = Object.entries(CRYPTO_SHORT_SLUGS).find(
+    ([, full]) => full === toolSlug
   );
+  return entry ? `/crypto/${entry[0]}` : null;
 }
 
-export function getToolPageDescription(calculator: Calculator): string {
-  const override =
-    calculator.seoDescription ||
-    TOOL_SEO_OVERRIDES[calculator.slug]?.description;
-  if (override) return override;
+export function isFileConverter(calculator: Calculator): boolean {
+  return calculator.category.includes("Converter");
+}
 
-  return calculator.description.endsWith(".")
-    ? `${calculator.description} Free, instant results—no signup required.`
-    : `${calculator.description}. Free, instant results—no signup required.`;
+export function usesCalculatorTitleSuffix(calculator: Calculator): boolean {
+  if (isFileConverter(calculator)) return false;
+  if (/tracker|generator|extractor/i.test(calculator.slug)) return false;
+  return true;
+}
+
+/** Human metric name, e.g. "Car Loan Payoff" from "Car Loan Payoff Calculator". */
+export function getToolMetricName(calculator: Calculator): string {
+  const stripped = calculator.title
+    .replace(
+      /\s*(Calculator|Converter|Tracker|Generator|Extractor|Wizard|Studio)\s*$/i,
+      ""
+    )
+    .replace(/\s*Online$/i, "")
+    .replace(/^Free\s+/i, "")
+    .trim();
+  return stripped || calculator.title;
+}
+
+function titleSuffix(calculator: Calculator): string {
+  return usesCalculatorTitleSuffix(calculator)
+    ? TITLE_SUFFIX_CALCULATOR
+    : TITLE_SUFFIX_TOOL;
+}
+
+function withRequiredTitleFormat(
+  name: string,
+  calculator: Calculator
+): string {
+  const suffix = titleSuffix(calculator);
+  const cleaned = name
+    .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
+    .replace(/^Free\s+/i, "")
+    .trim();
+  return `${cleaned} ${suffix}`;
+}
+
+/**
+ * Curated long-tail titles (question / role-specific).
+ * Values are the name portion only — the free-formula suffix is appended.
+ */
+const LONG_TAIL_TITLES: Record<string, string> = {
+  "scientific-calculator":
+    "How to Solve Trig and Log Problems on a Scientific Calculator",
+  "compound-interest-calculator":
+    "How to Calculate Compound Interest with Monthly Contributions",
+  "ai-nutrition-calorie-calculator":
+    "How to Calculate TDEE and Macro Targets from BMR",
+  "expense-tracker": "How to Track Personal Expenses Without Signing Up",
+  "car-loan-payoff-calculator":
+    "How Extra Payments Change a Car Loan Payoff Date",
+  "personal-loan-calculator":
+    "How to Calculate Personal Loan Payments Before You Borrow",
+  "json-csv-converter": "How to Convert JSON to CSV Without Uploading a File",
+  "heic-jpg-converter": "How to Convert iPhone HEIC Photos to JPG in Browser",
+  "pdf-merge-split": "How to Merge or Split PDF Files Without an Account",
+  "mp4-mp3-converter": "How to Extract MP3 Audio from an MP4 in Your Browser",
+  "pdf-text-converter": "How to Extract Text from a PDF Without Uploading",
+  "crypto-profit-calculator":
+    "How to Calculate Crypto Profit After Trading Fees",
+  "crypto-dca-calculator":
+    "How to Calculate Dollar-Cost Averaging Returns on Crypto",
+  "crypto-market-cap-calculator":
+    "How to Calculate Token Market Cap from Price and Supply",
+  "crypto-fdv-calculator":
+    "How to Calculate Fully Diluted Valuation from Max Supply",
+  "crypto-token-price-calculator":
+    "How to Back Into Token Price from a Target Market Cap",
+  "crypto-tokenomics-calculator":
+    "How to Model Token Vesting and Circulating Supply",
+  "crypto-liquidity-calculator":
+    "How to Calculate DEX Pool Share with Constant Product",
+  "crypto-staking-calculator":
+    "How to Estimate Staking Yield Before You Lock Tokens",
+  "crypto-roi-calculator":
+    "How to Calculate Crypto ROI Including Fees and Hold Time",
+  "crypto-token-launch-cost-calculator":
+    "How to Budget a Token Launch Including Gas and Liquidity",
+  "bc-used-vehicle-private-sale-pst-calculator":
+    "BC Used Car Private Sale PST Calculator (Black Book Value)",
+};
+
+const LONG_TAIL_DESCRIPTIONS: Record<string, string> = {
+  "scientific-calculator":
+    "Solve trig, logs, and exponents with deg/rad modes. Free online tool, no sign up, instant calculation.",
+  "compound-interest-calculator":
+    "Project growth with monthly deposits and compounding. Free, instant, no email required.",
+  "ai-nutrition-calorie-calculator":
+    "Estimate BMR, TDEE, and macros from age, weight, and activity. Free online tool, no sign up.",
+  "expense-tracker":
+    "Log income and spending privately in your browser. Free online tool, no sign up required.",
+  "car-loan-payoff-calculator":
+    "See how extra payments cut auto-loan interest and months left. Free, instant, no email required.",
+  "personal-loan-calculator":
+    "Estimate monthly payments and total interest before you apply. Free online tool, no sign up.",
+  "json-csv-converter":
+    "Convert JSON to CSV (and back) on-device. Free online tool, no sign up, instant conversion.",
+  "heic-jpg-converter":
+    "Turn iPhone HEIC photos into JPG in your browser. Free online tool, no sign up, nothing uploaded.",
+  "pdf-merge-split":
+    "Merge or split PDFs privately in your browser. Free online tool, no sign up, instant result.",
+  "mp4-mp3-converter":
+    "Extract MP3 from MP4 in your browser. Free online tool, no sign up, instant conversion.",
+  "pdf-text-converter":
+    "Extract PDF text or wrap text as PDF on-device. Free online tool, no sign up required.",
+  "crypto-profit-calculator":
+    "Get net P&L and ROI after buy/sell fees. Free online tool, no sign up, instant calculation.",
+  "crypto-dca-calculator":
+    "Model DCA returns from periodic buys. Free, instant, no email required.",
+  "crypto-fdv-calculator":
+    "Compute FDV from price and max supply. Free online tool, no sign up required.",
+  "crypto-tokenomics-calculator":
+    "Project vesting unlocks and circulating supply. Free, instant, no email required.",
+  "crypto-staking-calculator":
+    "Estimate compounding staking rewards before you lock. Free online tool, no sign up.",
+  "crypto-token-launch-cost-calculator":
+    "Budget gas, liquidity, and launch fees for a token. Free, instant, no email required.",
+  "bc-used-vehicle-private-sale-pst-calculator":
+    "Calculate BC private-sale used-car PST from Black Book vs price. Free, instant, no email required.",
+};
+
+function defaultLongTailName(calculator: Calculator): string {
+  const metric = getToolMetricName(calculator);
+  if (isFileConverter(calculator)) {
+    return metric;
+  }
+  if (/tracker/i.test(calculator.slug)) {
+    return `How to Track ${metric}`;
+  }
+  return `How to Calculate ${metric}`;
+}
+
+/** Page title: "[Long-tail] (Free Calculator & Formula)". */
+export function getToolPageTitle(calculator: Calculator): string {
+  if (calculator.seoH1) return calculator.seoH1;
+  const name =
+    LONG_TAIL_TITLES[calculator.slug] ||
+    (calculator.seoTitle
+      ? calculator.seoTitle
+          .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
+          .replace(/^Free\s+/i, "")
+          .trim()
+      : defaultLongTailName(calculator));
+  return withRequiredTitleFormat(name, calculator);
+}
+
+/** Visible H1 — same long-tail target as the title tag. */
+export function getToolPageH1(calculator: Calculator): string {
+  if (calculator.seoH1) return calculator.seoH1;
+  return getToolPageTitle(calculator);
+}
+
+export function getHowToHeading(calculator: Calculator): string {
+  const metric = getToolMetricName(calculator);
+  if (isFileConverter(calculator)) {
+    return `How to Convert ${metric} Step-by-Step`;
+  }
+  if (/tracker/i.test(calculator.slug)) {
+    return `How to Track ${metric} Step-by-Step`;
+  }
+  return `How to Calculate ${metric} Step-by-Step`;
+}
+
+export function getFormulaHeading(calculator: Calculator): string {
+  return `${getToolMetricName(calculator)} Formula & Practical Example`;
+}
+
+export function getFaqHeading(): string {
+  return "Frequently Asked Questions";
+}
+
+function clampMetaDescription(text: string, max = META_DESCRIPTION_MAX): string {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (normalized.length <= max) return normalized;
+  const cut = normalized.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  const base = (lastSpace > 90 ? cut.slice(0, lastSpace) : cut).replace(
+    /[.,;: ]+$/,
+    ""
+  );
+  return `${base}…`;
+}
+
+function ensureUtilityModifiers(text: string): string {
+  let t = text.trim();
+  if (!t.endsWith(".")) t += ".";
+  const missing: string[] = [];
+  if (!/\bfree\b/i.test(t)) missing.push("Free");
+  if (!/\binstant\b/i.test(t)) missing.push("instant");
+  if (!/no sign ?up|no email/i.test(t)) missing.push("no email required");
+  if (missing.length === 0) return t;
+  return `${t} ${missing.join(", ")}.`;
+}
+
+function defaultDescription(calculator: Calculator): string {
+  const metric = getToolMetricName(calculator);
+  if (isFileConverter(calculator)) {
+    return `Convert ${metric} in your browser. Instant, private, no sign up. Free online tool with formula & step-by-step example.`;
+  }
+  return `Calculate ${metric} instantly with the formula and a step-by-step example. Free online tool, no sign up required.`;
+}
+
+/** Meta description, 155 characters max, utility-first. */
+export function getToolPageDescription(calculator: Calculator): string {
+  const curated = LONG_TAIL_DESCRIPTIONS[calculator.slug];
+  const source =
+    curated || calculator.seoDescription || defaultDescription(calculator);
+  return clampMetaDescription(ensureUtilityModifiers(source));
 }
 
 export function getToolPageKeywords(calculator: Calculator): string[] {
-  const override =
-    calculator.seoKeywords || TOOL_SEO_OVERRIDES[calculator.slug]?.keywords;
+  const metric = getToolMetricName(calculator);
+  const override = calculator.seoKeywords;
+  const longTail = isFileConverter(calculator)
+    ? [
+        `how to convert ${metric.toLowerCase()}`,
+        `convert ${metric.toLowerCase()} free`,
+        `${metric.toLowerCase()} no sign up`,
+      ]
+    : [
+        `how to calculate ${metric.toLowerCase()}`,
+        `${metric.toLowerCase()} formula`,
+        `${metric.toLowerCase()} step-by-step example`,
+      ];
+
+  const extras = [
+    SITE_NAME,
+    ...SEO_MODIFIERS,
+    calculator.category,
+    ...longTail,
+  ];
+
   if (override?.length) {
-    return [...override, SITE_NAME, "online calculator"];
+    return [...override, ...extras];
   }
 
-  return [
-    calculator.title,
-    `${calculator.title} online`,
-    `free ${calculator.title.toLowerCase()}`,
-    calculator.category,
-    SITE_NAME,
-    "online calculator",
-  ];
+  return [calculator.title, getToolPageTitle(calculator), ...extras];
 }
 
 export function getToolCanonicalUrl(calculator: Calculator): string {
+  if (calculator.category === CRYPTO_CATEGORY) {
+    const cryptoPath = cryptoPublicPath(calculator.slug);
+    if (cryptoPath) return `${SITE_URL}${cryptoPath}`;
+  }
   return `${SITE_URL}/tools/${calculator.slug}`;
+}
+
+export function getPracticalExample(calculator: Calculator): string {
+  const inputs = calculator.inputs.slice(0, 3);
+  if (inputs.length === 0) {
+    return "Use the defaults, then adjust one input at a time to see the result update instantly—no sign up.";
+  }
+  const bits = inputs.map((input) => {
+    const value =
+      Number.isInteger(input.defaultValue) || input.step >= 1
+        ? input.defaultValue.toLocaleString()
+        : String(input.defaultValue);
+    return `${input.label} = ${value}`;
+  });
+  return `Practical example: set ${bits.join(", ")}, then read the result instantly in your browser. Free online tool, no sign up.`;
 }
 
 /**

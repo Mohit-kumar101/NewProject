@@ -792,6 +792,132 @@ const TRAVEL_TYPES = new Set([
   "rideshareEarnings",
 ]);
 
+const CRYPTO_TYPES = new Set([
+  "cryptoProfit",
+  "cryptoDca",
+  "cryptoMarketCap",
+  "cryptoFdv",
+  "cryptoTokenPrice",
+  "cryptoTokenomics",
+  "cryptoLiquidity",
+  "cryptoStaking",
+  "cryptoRoi",
+  "cryptoTokenLaunchCost",
+]);
+
+function cryptoAdvice(formulaType: string, inputs: Inputs): AdviceItem[] {
+  const advice: AdviceItem[] = [
+    item(
+      "info",
+      "Disclaimer",
+      "Educational estimates only",
+      "These figures are for informational purposes and do not constitute financial, investment, or trading advice. Crypto markets are highly volatile."
+    ),
+  ];
+
+  if (formulaType === "cryptoProfit") {
+    const fees = (inputs.buyFeePercent ?? 0) + (inputs.sellFeePercent ?? 0);
+    if (fees >= 1) {
+      advice.push(
+        item(
+          "caution",
+          "Fees",
+          "Round-trip fees are material",
+          `Combined fees of ~${fees}% can wipe out thin margins. Consider fewer trades or lower-fee venues.`
+        )
+      );
+    }
+    if ((inputs.sellPrice ?? 0) < (inputs.buyPrice ?? 0)) {
+      advice.push(
+        item(
+          "warning",
+          "Loss scenario",
+          "Exit is below entry",
+          "Your modeled sell price is under the buy price—confirm this is an intentional loss or hedge scenario."
+        )
+      );
+    }
+  }
+
+  if (formulaType === "cryptoDca" && (inputs.annualGrowth ?? 0) >= 50) {
+    advice.push(
+      item(
+        "caution",
+        "Optimistic growth",
+        "Stress-test lower returns",
+        "Assumed growth is aggressive. Re-run with flat or negative growth to see downside outcomes."
+      )
+    );
+  }
+
+  if (formulaType === "cryptoFdv") {
+    const max = inputs.maxSupply ?? 0;
+    const circ = inputs.circulatingSupply ?? 0;
+    if (max > 0 && circ / max < 0.3) {
+      advice.push(
+        item(
+          "caution",
+          "Dilution",
+          "Most supply is still locked",
+          "Circulating float is under 30% of max supply—FDV may overstate what the market has actually absorbed."
+        )
+      );
+    }
+  }
+
+  if (formulaType === "cryptoLiquidity" && (inputs.swapTokenIn ?? 0) > 0) {
+    const reserve = inputs.reserveToken ?? 0;
+    if (reserve > 0 && inputs.swapTokenIn / reserve > 0.05) {
+      advice.push(
+        item(
+          "warning",
+          "Impact",
+          "Swap is large vs pool",
+          "Trades above ~5% of reserves often suffer heavy price impact on xy=k pools. Split the trade or find deeper liquidity."
+        )
+      );
+    }
+  }
+
+  if (formulaType === "cryptoStaking" && (inputs.aprPercent ?? 0) >= 40) {
+    advice.push(
+      item(
+        "warning",
+        "High APR",
+        "Elevated yield often means elevated risk",
+        "Double-digit APRs that look “too good” can reflect inflationary emissions, smart-contract risk, or unsustainable incentives."
+      )
+    );
+  }
+
+  if (formulaType === "cryptoTokenLaunchCost") {
+    const audit = inputs.auditCost ?? 0;
+    const liq = inputs.liquidityBudget ?? 0;
+    if (audit < 5000 && (inputs.contractDevCost ?? 0) > 0) {
+      advice.push(
+        item(
+          "caution",
+          "Security",
+          "Audit budget looks light",
+          "Underfunded reviews are a common launch risk. Prioritize reputable audits before depositing user funds."
+        )
+      );
+    }
+    if (liq > 0 && liq < 10000) {
+      advice.push(
+        item(
+          "caution",
+          "Liquidity",
+          "Thin launch liquidity",
+          "Shallow pools invite extreme slippage and easy price manipulation on day one."
+        )
+      );
+    }
+  }
+
+  return advice;
+}
+
 /**
  * Reactive advice from formula type, live inputs, and current CalcResult.
  */
@@ -812,6 +938,7 @@ export function getSmartAdvice(
   }
 
   if (formulaType === "aiNutrition") return nutritionAdvice(inputs);
+  if (CRYPTO_TYPES.has(formulaType)) return cryptoAdvice(formulaType, inputs);
   if (LOAN_TYPES.has(formulaType)) return loanAdvice(inputs, result);
   if (SAVE_TYPES.has(formulaType)) return savingsAdvice(inputs, result);
   if (INVEST_TYPES.has(formulaType)) return investAdvice(inputs, result);
@@ -820,6 +947,62 @@ export function getSmartAdvice(
   if (HOUSING_TYPES.has(formulaType)) return housingAdvice(inputs, result);
   if (WORK_TYPES.has(formulaType)) return workPayAdvice(inputs);
   if (TRAVEL_TYPES.has(formulaType)) return travelAdvice(inputs);
+
+  if (formulaType === "bcUsedVehiclePst") {
+    const purchase = inputs.purchasePrice ?? 0;
+    const book = inputs.blackBookValue ?? 0;
+    const isZev = (inputs.isZeroEmission ?? 0) >= 0.5;
+    const taxable = Math.max(purchase, book);
+    const advice: AdviceItem[] = [];
+    if (isZev) {
+      advice.push(
+        item(
+          "positive",
+          "ZEV",
+          "Zero-emission exemption applied",
+          "Qualifying ZEVs are modelled at 0% PST. Confirm ICBC still classifies this vehicle as zero-emission before you transfer."
+        )
+      );
+    } else if (taxable >= 150000) {
+      advice.push(
+        item(
+          "warning",
+          "20% tier",
+          "Luxury PST at 20%",
+          "Taxable value is $150,000 or more, so the 20% private-sale used-vehicle rate applies to the full taxable amount."
+        )
+      );
+    } else if (taxable >= 125000) {
+      advice.push(
+        item(
+          "caution",
+          "15% tier",
+          "Mid luxury PST at 15%",
+          "Taxable value is in the $125,000–$149,999 band. A small change in Black Book or price can move you into 12% or 20%."
+        )
+      );
+    } else {
+      advice.push(
+        item(
+          "info",
+          "12% tier",
+          "Standard used-vehicle PST",
+          "Under $125,000 taxable value, PST is 12% of the higher of purchase price or Black Book wholesale."
+        )
+      );
+    }
+    if (!isZev && book > purchase + 500) {
+      advice.push(
+        item(
+          "caution",
+          "Black Book",
+          "Wholesale value is higher than the sale price",
+          "ICBC taxes the greater figure. A discounted private price will not reduce PST if Black Book wholesale is higher."
+        )
+      );
+    }
+    return advice.slice(0, 3);
+  }
 
   if (
     /paint|floor|wallpaper|recipe|coffee|aquarium|wedding|gift|pet|moving|plant|lighting|video|audio|shutter|timelapse|baking|meat|hyperfocal/i.test(

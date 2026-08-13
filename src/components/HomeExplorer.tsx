@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Calculator } from "@/lib/types";
-import { CATEGORIES } from "@/lib/calculators";
+import { CATEGORIES, toolMatchesQuery } from "@/lib/calculators";
+import { getToolHref } from "@/lib/cryptoFormulas";
 import { Logo } from "@/components/Logo";
 
 const categoryMeta: Record<
@@ -24,6 +25,11 @@ const categoryMeta: Record<
     icon: "I",
     blurb: "Compounding, FIRE, retirement, and fee impact.",
     accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  "Crypto & Digital Assets": {
+    icon: "C",
+    blurb: "Profit, DCA, market cap, FDV, staking, and tokenomics.",
+    accent: "from-[#00E5FF] to-[#00B8D4]",
   },
   "Freelance & Self-Employment": {
     icon: "F",
@@ -50,6 +56,21 @@ const categoryMeta: Record<
     blurb: "Payroll, PTO, hiring metrics, and workplace tools.",
     accent: "from-[#00B0FF] to-[#2979FF]",
   },
+  "HR & Ops": {
+    icon: "O",
+    blurb: "Runway, hiring cost, meetings, PTO, and overtime math.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "BC Local Taxes": {
+    icon: "B",
+    blurb: "British Columbia PST, property transfer tax, and stat pay.",
+    accent: "from-[#2979FF] to-[#00B8D4]",
+  },
+  "Specialized Business": {
+    icon: "S",
+    blurb: "Warehouse, YouTube RPM, dropshipping, FX lots, and PM vs downtime.",
+    accent: "from-[#00B8D4] to-[#1565C0]",
+  },
   "Automotive, Travel & Transit": {
     icon: "T",
     blurb: "Trips, vehicles, tolls, flights, and travel budgets.",
@@ -59,6 +80,26 @@ const categoryMeta: Record<
     icon: "M",
     blurb: "Recipes, camera math, home projects, and lifestyle.",
     accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "Data & Code Converters": {
+    icon: "D",
+    blurb: "JSON, CSV, YAML, XML, Markdown, Base64, and more—client-side.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "Image Converters": {
+    icon: "P",
+    blurb: "PNG, JPG, WEBP, SVG, ICO, HEIC, TIFF—Canvas previews, no uploads.",
+    accent: "from-[#2979FF] to-[#00E5FF]",
+  },
+  "Document Converters": {
+    icon: "F",
+    blurb: "PDF text, images, HTML/Markdown, merge & split—with progress bars.",
+    accent: "from-[#00E5FF] to-[#1565C0]",
+  },
+  "Audio & Video Converters": {
+    icon: "V",
+    blurb: "MP4, MP3, WAV, MOV, WebM, OGG, FLAC—FFmpeg.wasm in your browser.",
+    accent: "from-[#2979FF] to-[#00B8D4]",
   },
 };
 
@@ -81,15 +122,9 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
   }, []);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim();
     if (!q) return [];
-    return calculators.filter(
-      (c) =>
-        c.title.toLowerCase().includes(q) ||
-        c.description.toLowerCase().includes(q) ||
-        c.category.toLowerCase().includes(q) ||
-        c.slug.includes(q)
-    );
+    return calculators.filter((c) => toolMatchesQuery(c, q));
   }, [calculators, query]);
 
   const splitActive = searchOpen || query.trim().length > 0;
@@ -154,17 +189,29 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               {!splitActive && (
                 <>
                   <p className="mb-5 text-sm font-medium tracking-[0.2em] text-[var(--accent)] uppercase">
-                    Free precision calculators
+                    Free alternative · No paywall
                   </p>
                   <h1 className="font-[family-name:var(--font-display)] max-w-3xl text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-6xl">
-                    Money decisions,{" "}
-                    <span className="gradient-text">calculated instantly</span>
+                    The tools you paid for,{" "}
+                    <span className="gradient-text">now free</span>
                   </h1>
                   <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-                    CalculioHub is your fintech command center for finance,
-                    education, math, HR, travel, and lifestyle tools—fast,
-                    private, and free.
+                    Skip the subscription. Convert PDFs, video, and photos — plus
+                    finance and crypto calculators — with no watermark, no daily
+                    cap, and nothing uploaded.
                   </p>
+                  <ul className="mx-auto mt-7 flex flex-wrap justify-center gap-2">
+                    {["No subscription", "No watermark", "Files stay on-device"].map(
+                      (item) => (
+                        <li
+                          key={item}
+                          className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-[var(--muted)]"
+                        >
+                          {item}
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </>
               )}
 
@@ -177,8 +224,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                     Find the right tool
                   </h1>
                   <p className="mt-2 text-sm text-[var(--muted)]">
-                    Type to filter all {calculators.length} calculators in real
-                    time.
+                    Type to filter all {calculators.length} tools in real
+                    time—calculators and file converters.
                   </p>
                 </div>
               )}
@@ -213,12 +260,12 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 onFocus={() => setSearchOpen(true)}
                 placeholder={
                   splitActive
-                    ? "mortgage, GPA, tip, FIRE…"
-                    : "Click to search all calculators…"
+                    ? "mortgage, pdf, mp3, json, png…"
+                    : "Click to search calculators & converters…"
                 }
                 className="w-full bg-transparent text-lg text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
                 autoComplete="off"
-                aria-label="Search all calculators"
+                aria-label="Search all calculators and converters"
               />
               {splitActive && (
                 <button
@@ -233,7 +280,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
 
             {splitActive && (
               <div className="mt-4 flex flex-wrap gap-2">
-                {["mortgage", "GPA", "tip", "salary", "fuel", "paint"].map(
+                {["pdf", "heic", "mp3", "json", "mortgage", "GPA"].map(
                   (chip) => (
                     <button
                       key={chip}
@@ -315,7 +362,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                     {filtered.map((tool, index) => (
                       <Link
                         key={tool.slug}
-                        href={`/tools/${tool.slug}`}
+                        href={getToolHref(tool.slug)}
                         className="result-card rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 transition hover:border-[var(--accent)] hover:shadow-[0_12px_28px_-18px_rgba(41,121,255,0.55)]"
                         style={{ animationDelay: `${Math.min(index, 12) * 30}ms` }}
                       >
@@ -344,13 +391,14 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold tracking-[0.18em] text-[var(--accent)] uppercase">
-                  Featured tools
+                  Start here
                 </p>
                 <h2 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">
-                  Dedicated pages for every calculator
+                  What people usually pay for
                 </h2>
                 <p className="mt-2 max-w-2xl text-[var(--muted)]">
-                  Search here, then open any tool on its own SEO-friendly URL.
+                  PDF, photo, and video jobs that paid converters charge for —
+                  free here, then keep going with calculators.
                 </p>
               </div>
               <Link
@@ -363,16 +411,16 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
             <div className="grid gap-3 sm:grid-cols-3">
               {[
                 {
-                  slug: "scientific-calculator",
-                  blurb: "Trig, logs, roots, memory, and deg/rad modes.",
+                  slug: "pdf-merge-split",
+                  blurb: "Merge or split PDFs in the browser — no Smallpdf fee.",
                 },
                 {
-                  slug: "ai-nutrition-calorie-calculator",
-                  blurb: "BMR, TDEE, calorie targets, and macro splits.",
+                  slug: "heic-jpg-converter",
+                  blurb: "iPhone HEIC photos to JPG, privately on-device.",
                 },
                 {
-                  slug: "compound-interest-calculator",
-                  blurb: "Growth, contributions, and coasting projections.",
+                  slug: "mp4-mp3-converter",
+                  blurb: "Extract audio from video without a CloudConvert cap.",
                 },
               ].map((item) => {
                 const tool = calculators.find((c) => c.slug === item.slug);
@@ -380,7 +428,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 return (
                   <Link
                     key={tool.slug}
-                    href={`/tools/${tool.slug}`}
+                    href={getToolHref(tool.slug)}
                     className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_20px_40px_-24px_rgba(41,121,255,0.45)]"
                   >
                     <div className="mb-3 h-1.5 w-14 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF]" />
@@ -460,7 +508,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                       {tools.map((tool) => (
                         <Link
                           key={tool.slug}
-                          href={`/tools/${tool.slug}`}
+                          href={getToolHref(tool.slug)}
                           className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)] hover:bg-[var(--background)]"
                         >
                           <div className="font-semibold text-[var(--foreground)]">

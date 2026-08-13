@@ -5,6 +5,8 @@ export interface CalculatorInput {
   min: number;
   max: number;
   step: number;
+  /** Optional control type. Defaults to numeric slider. */
+  inputType?: "number" | "checkbox";
 }
 
 export interface CalculatorFaq {
@@ -30,6 +32,8 @@ export interface Calculator {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
+  /** Exact on-page H1 / title when a long-tail phrase is required. */
+  seoH1?: string;
 }
 
 export interface CalcResultItem {

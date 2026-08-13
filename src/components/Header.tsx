@@ -1,9 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { href: "/#categories", label: "Categories" },
+  { href: "/crypto", label: "Crypto" },
   { href: "/tools", label: "All Tools" },
 ];
 
@@ -13,7 +15,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo size="sm" />
         <nav className="flex items-center gap-2 sm:gap-4">
-          <div className="hidden items-center gap-1 sm:flex">
+          <div className="hidden items-center gap-1 md:flex">
             {links.map((link) => (
               <Link
                 key={link.href}

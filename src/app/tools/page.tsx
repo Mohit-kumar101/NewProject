@@ -7,18 +7,19 @@ import {
   calculators,
   getCalculatorsByCategory,
 } from "@/lib/calculators";
+import { getToolHref } from "@/lib/cryptoFormulas";
 
 export const metadata: Metadata = {
-  title: "All Calculator Tools",
+  title: "All Calculators & File Converters",
   description:
-    "Browse every CalculioHub calculator by category—finance, investing, math, nutrition, travel, and lifestyle tools with dedicated SEO-friendly pages.",
+    "Free alternative to paid converters. Browse every CalculioHub calculator and file converter—PDF, HEIC, video, JSON/CSV, finance, and crypto tools with no paywall.",
   alternates: {
     canonical: `${SITE_URL}/tools`,
   },
   openGraph: {
-    title: `All Calculator Tools | ${SITE_NAME}`,
+    title: `All Calculators & File Converters | ${SITE_NAME}`,
     description:
-      "Explore the full CalculioHub toolkit. Every calculator has its own indexable URL.",
+      "The free alternative to paid PDF, video, and image converters — plus finance and crypto calculators. Every tool is free and private.",
     url: `${SITE_URL}/tools`,
     type: "website",
     siteName: SITE_NAME,
@@ -33,9 +34,9 @@ export default function ToolsIndexPage() {
   const itemList = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `All Calculator Tools | ${SITE_NAME}`,
+    name: `All Calculators & File Converters | ${SITE_NAME}`,
     description:
-      "Directory of CalculioHub online calculators with dedicated pages for each tool.",
+      "Directory of CalculioHub online calculators and private file converters with dedicated pages for each tool.",
     url: `${SITE_URL}/tools`,
     isPartOf: {
       "@type": "WebSite",
@@ -48,7 +49,7 @@ export default function ToolsIndexPage() {
       itemListElement: calculators.map((tool, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${SITE_URL}/tools/${tool.slug}`,
+        url: `${SITE_URL}${getToolHref(tool.slug)}`,
         name: tool.title,
       })),
     },
@@ -77,15 +78,16 @@ export default function ToolsIndexPage() {
 
       <header className="mb-10 max-w-3xl">
         <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[var(--accent)] uppercase">
-          Tool directory
+          Free alternative · No paywall
         </p>
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
-          All calculator tools
+          All calculators & file converters
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-          Every CalculioHub calculator lives on its own URL for clean indexing
-          and sharing. Browse {calculators.length} tools across{" "}
-          {CATEGORIES.length} categories.
+          Same jobs as the paid PDF, video, and image converters — plus finance
+          and crypto calculators. Browse {calculators.length} tools across{" "}
+          {CATEGORIES.length} categories. Every tool is free, private, and on
+          its own URL.
         </p>
       </header>
 
@@ -118,7 +120,7 @@ export default function ToolsIndexPage() {
                 {tools.map((tool) => (
                   <Link
                     key={tool.slug}
-                    href={`/tools/${tool.slug}`}
+                    href={getToolHref(tool.slug)}
                     className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)] hover:bg-[var(--background)]"
                   >
                     <div className="font-semibold text-[var(--foreground)]">

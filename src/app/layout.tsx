@@ -21,18 +21,20 @@ const body = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
+    default: `${SITE_NAME} — Free Calculators & File Converters`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Free online calculators for finance, math, science, and nutrition.",
+    "The free alternative to paid converters. PDF, HEIC, video, and data tools plus finance and crypto calculators — no subscription, no watermark, files stay in your browser.",
   keywords: [
+    "free file converter",
+    "free PDF converter",
+    "HEIC to JPG",
+    "MP4 to MP3",
     "online calculator",
     "free calculator",
-    "financial calculator",
-    "GPA calculator",
-    "mortgage calculator",
-    "scientific calculator",
+    "CloudConvert alternative",
+    "Smallpdf alternative",
     "CalculioHub",
   ],
   alternates: {
@@ -41,9 +43,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
+    title: `${SITE_NAME} — Free Calculators & File Converters`,
     description:
-      "Free online calculators for finance, math, science, and nutrition.",
+      "The free alternative to paid converters. PDF, HEIC, video, and data tools plus finance and crypto calculators — no subscription, no watermark.",
     url: SITE_URL,
     locale: "en_US",
     images: [
@@ -57,9 +59,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Free Online Calculators & Developer Utilities`,
+    title: `${SITE_NAME} — Free Calculators & File Converters`,
     description:
-      "Free online calculators for finance, math, science, and nutrition.",
+      "The free alternative to paid converters. PDF, HEIC, video, and data tools plus finance and crypto calculators — no subscription, no watermark.",
     images: ["/myicon.png"],
   },
   robots: {

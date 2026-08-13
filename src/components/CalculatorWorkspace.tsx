@@ -4,10 +4,13 @@ import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import Link from "next/link";
 import type { Calculator } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
+import { getToolHref } from "@/lib/cryptoFormulas";
 import { getSmartAdvice } from "@/lib/smartAdvice";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
 import { ExpenseTracker } from "@/components/ExpenseTracker";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
+import { CryptoProWorkspace } from "@/components/crypto/CryptoProWorkspace";
+import { CRYPTO_CATEGORY } from "@/lib/cryptoFormulas";
 
 export function CalculatorWorkspace({
   calculator,
@@ -40,7 +43,7 @@ export function CalculatorWorkspace({
             {related.map((tool) => (
               <li key={tool.slug}>
                 <Link
-                  href={`/tools/${tool.slug}`}
+                  href={getToolHref(tool.slug)}
                   className="block rounded-xl border border-transparent px-3 py-2 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
                 >
                   {tool.title}
@@ -104,6 +107,33 @@ function StandardCalculatorWorkspace({
           <div className="space-y-6">
             {calculator.inputs.map((input) => {
               const value = values[input.id] ?? input.defaultValue;
+              if (input.inputType === "checkbox") {
+                const checked = value >= 0.5;
+                return (
+                  <div key={input.id}>
+                    <label
+                      htmlFor={input.id}
+                      className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3"
+                    >
+                      <span className="text-sm font-medium text-[var(--foreground)]">
+                        {input.label}
+                      </span>
+                      <input
+                        id={input.id}
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) =>
+                          setValues((prev) => ({
+                            ...prev,
+                            [input.id]: e.target.checked ? 1 : 0,
+                          }))
+                        }
+                        className="h-5 w-5 accent-[var(--accent)]"
+                      />
+                    </label>
+                  </div>
+                );
+              }
               return (
                 <div key={input.id}>
                   <div className="mb-2 flex items-center justify-between gap-3">
@@ -195,14 +225,19 @@ function StandardCalculatorWorkspace({
             )}
 
             <p className="mt-6 text-xs leading-relaxed text-[var(--muted)]">
-              Estimates update instantly in your browser. Figures are for
-              planning guidance and are not professional advice.
+              {calculator.category === "Crypto & Digital Assets"
+                ? "Results are for informational and educational purposes only and do not constitute financial, investment, or trading advice. Crypto markets are volatile—verify figures independently before making decisions."
+                : "Estimates update instantly in your browser. Figures are for planning guidance and are not professional advice."}
             </p>
           </div>
         </aside>
       </div>
 
       <SmartAdviceBox items={advice} />
+
+      {calculator.category === CRYPTO_CATEGORY ? (
+        <CryptoProWorkspace calculator={calculator} values={values} />
+      ) : null}
 
       <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
         <div className="mb-3 flex items-baseline justify-between gap-3">
@@ -215,7 +250,7 @@ function StandardCalculatorWorkspace({
           {related.map((tool) => (
             <li key={tool.slug}>
               <Link
-                href={`/tools/${tool.slug}`}
+                href={getToolHref(tool.slug)}
                 className="block rounded-xl border border-transparent px-3 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--border)] hover:bg-[var(--background)] hover:text-[var(--accent)]"
               >
                 {tool.title}

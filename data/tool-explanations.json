@@ -3354,5 +3354,868 @@
       "Data persists only in this browser’s localStorage—not across devices.",
       "Figures are for personal budgeting awareness, not formal accounting or tax records."
     ]
+  },
+  "jsonCsvConverter": {
+    "formula": "CSV ⇄ JSON(rows[])",
+    "summary": "CSV is treated as a table of rows. JSON → CSV expands an array of objects into columns from the union of keys. CSV → JSON maps each data row to an object using the header row as keys.",
+    "variables": [
+      {
+        "symbol": "rows[]",
+        "name": "Record array",
+        "description": "List of objects (JSON) or table rows (CSV)."
+      },
+      {
+        "symbol": "headers",
+        "name": "Column names",
+        "description": "Derived from object keys or the CSV header row."
+      },
+      {
+        "symbol": "cells",
+        "name": "Field values",
+        "description": "Values written into CSV cells or JSON properties."
+      }
+    ],
+    "notes": [
+      "Client-side only—files stay on your device.",
+      "Prefer flat objects for clean CSV columns."
+    ]
+  },
+  "xmlJsonConverter": {
+    "formula": "XML(DOM) ⇄ JSON({ tag, @attrs, #text })",
+    "summary": "XML is walked into a JSON tree. Attributes are stored as @name keys; mixed content uses #text. JSON → XML reverses the mapping into well-formed UTF-8 XML.",
+    "variables": [
+      {
+        "symbol": "tag",
+        "name": "Element name",
+        "description": "XML tag that becomes a JSON property (or vice versa)."
+      },
+      {
+        "symbol": "@attr",
+        "name": "Attribute",
+        "description": "XML attribute stored under an @-prefixed JSON key."
+      },
+      {
+        "symbol": "#text",
+        "name": "Text node",
+        "description": "Character data when an element has attributes or child elements."
+      }
+    ],
+    "notes": [
+      "Invalid XML surfaces a clear parse error before conversion.",
+      "Array-valued siblings become repeated XML elements."
+    ]
+  },
+  "yamlJsonConverter": {
+    "formula": "YAML ⇄ JSON(value)",
+    "summary": "YAML is loaded into a JavaScript value with js-yaml, then pretty-printed as JSON—or dumped back to indented YAML with stable formatting.",
+    "variables": [
+      {
+        "symbol": "value",
+        "name": "Document value",
+        "description": "The parsed YAML/JSON structure (object, array, or scalar)."
+      },
+      {
+        "symbol": "indent",
+        "name": "Indent width",
+        "description": "Two-space indentation used when emitting YAML."
+      },
+      {
+        "symbol": "keys",
+        "name": "Map keys",
+        "description": "Object keys preserved in original order when possible."
+      }
+    ],
+    "notes": [
+      "Keep secrets local—ideal for .env-adjacent configs that never leave the machine.",
+      "Large documents may take a moment to stringify."
+    ]
+  },
+  "csvTsvConverter": {
+    "formula": "join(rows, delimiter ∈ {',' , '\\t'})",
+    "summary": "Each line is parsed into cells with the source delimiter, then re-serialized with the target delimiter. Cell contents are unchanged.",
+    "variables": [
+      {
+        "symbol": "rows",
+        "name": "Row matrix",
+        "description": "Two-dimensional array of cell strings."
+      },
+      {
+        "symbol": "delimiter",
+        "name": "Separator",
+        "description": "Comma for CSV or tab for TSV."
+      },
+      {
+        "symbol": "cell",
+        "name": "Field value",
+        "description": "A single table cell, possibly quoted when needed."
+      }
+    ],
+    "notes": [
+      "Works entirely offline after the page loads.",
+      "Use UTF-8 exports for best cross-app compatibility."
+    ]
+  },
+  "htmlMarkdownConverter": {
+    "formula": "HTML ⇄ Markdown(AST)",
+    "summary": "HTML is reduced to Markdown via Turndown (ATX headings, fenced code). Markdown is rendered to HTML with marked under GFM defaults.",
+    "variables": [
+      {
+        "symbol": "html",
+        "name": "HTML source",
+        "description": "Tags and text to convert into Markdown."
+      },
+      {
+        "symbol": "md",
+        "name": "Markdown source",
+        "description": "Lightweight markup rendered to HTML."
+      },
+      {
+        "symbol": "AST",
+        "name": "Parse tree",
+        "description": "Intermediate structure used by the Markdown renderer."
+      }
+    ],
+    "notes": [
+      "Client-side libraries only—content never leaves the browser.",
+      "Prefer semantic HTML for cleaner Markdown."
+    ]
+  },
+  "base64TextConverter": {
+    "formula": "Base64(UTF-8(text)) ⇄ text",
+    "summary": "Encoding turns UTF-8 bytes into Base64. Decoding reverses the process with atob + TextDecoder after whitespace cleanup.",
+    "variables": [
+      {
+        "symbol": "text",
+        "name": "UTF-8 string",
+        "description": "Human-readable input or decoded output."
+      },
+      {
+        "symbol": "bytes",
+        "name": "Byte array",
+        "description": "UTF-8 representation used for Base64."
+      },
+      {
+        "symbol": "b64",
+        "name": "Base64 string",
+        "description": "ASCII-safe encoded form of the bytes."
+      }
+    ],
+    "notes": [
+      "Never paste production secrets into shared machines.",
+      "Padding errors surface as Invalid Base64 messages."
+    ]
+  },
+  "propertiesJsonConverter": {
+    "formula": "properties(key=value) ⇄ JSON({ key: value })",
+    "summary": "Each non-comment properties line splits on the first unescaped = or : into a JSON string map. Export writes key=value lines with escaping.",
+    "variables": [
+      {
+        "symbol": "key",
+        "name": "Property key",
+        "description": "Left-hand identifier in a .properties line."
+      },
+      {
+        "symbol": "value",
+        "name": "Property value",
+        "description": "Right-hand string stored in JSON or properties."
+      },
+      {
+        "symbol": "escape",
+        "name": "Escape sequences",
+        "description": "\\\\, \\n, \\t, and \\=/\\: handling for safe files."
+      }
+    ],
+    "notes": [
+      "Flat maps only—ideal for Spring and Android string tables.",
+      "Processing stays in the browser."
+    ]
+  },
+  "pngJpgConverter": {
+    "formula": "Canvas.encode(draw(image), mime ∈ {image/png, image/jpeg})",
+    "summary": "The source image is decoded, optionally resized onto a Canvas, then encoded with canvas.toBlob. JPG uses a quality factor; PNG preserves lossless pixels.",
+    "variables": [
+      {
+        "symbol": "image",
+        "name": "Source bitmap",
+        "description": "Decoded PNG or JPG pixels loaded via Image / createImageBitmap."
+      },
+      {
+        "symbol": "size",
+        "name": "Output size",
+        "description": "Width×height after resize mode (original, max, exact, or percent)."
+      },
+      {
+        "symbol": "quality",
+        "name": "JPEG quality",
+        "description": "0–1 compression factor passed to canvas.toBlob for JPG output."
+      }
+    ],
+    "notes": [
+      "Runs fully client-side—no server uploads.",
+      "Large images may take a moment to encode."
+    ]
+  },
+  "webpPngConverter": {
+    "formula": "Canvas.encode(draw(image), mime ∈ {image/png, image/webp})",
+    "summary": "Source pixels are drawn to Canvas at the chosen size, then exported with toBlob as PNG or WEBP.",
+    "variables": [
+      {
+        "symbol": "image",
+        "name": "Source bitmap",
+        "description": "Decoded WEBP or PNG frame."
+      },
+      {
+        "symbol": "quality",
+        "name": "WEBP quality",
+        "description": "Compression factor for PNG → WEBP."
+      },
+      {
+        "symbol": "preview",
+        "name": "Live preview",
+        "description": "Object URL of the encoded result shown beside the original."
+      }
+    ],
+    "notes": [
+      "Client-side only.",
+      "Use quality near 1.0 for near-lossless WEBP."
+    ]
+  },
+  "heicJpgConverter": {
+    "formula": "JPG = Canvas.encode(heic2any(HEIC))",
+    "summary": "HEIC bytes are decoded locally to a raster, drawn to Canvas with optional resize, then encoded as JPEG.",
+    "variables": [
+      {
+        "symbol": "HEIC",
+        "name": "Source container",
+        "description": "Apple HEIC/HEIF photo file."
+      },
+      {
+        "symbol": "raster",
+        "name": "Decoded bitmap",
+        "description": "Intermediate image produced by the local HEIC decoder."
+      },
+      {
+        "symbol": "quality",
+        "name": "JPEG quality",
+        "description": "Compression level for the final JPG."
+      }
+    ],
+    "notes": [
+      "Processing stays in the browser.",
+      "Very large HEIC files may need more memory."
+    ]
+  },
+  "svgPngConverter": {
+    "formula": "PNG = rasterize(SVG); SVG = wrap(PNG)",
+    "summary": "SVG → PNG draws the vector into Canvas. PNG → SVG writes an SVG document whose <image> href is a data-URI PNG.",
+    "variables": [
+      {
+        "symbol": "SVG",
+        "name": "Vector source",
+        "description": "Scalable markup loaded as an image."
+      },
+      {
+        "symbol": "PNG",
+        "name": "Raster output",
+        "description": "Pixel bitmap at the chosen size."
+      },
+      {
+        "symbol": "wrap",
+        "name": "SVG wrapper",
+        "description": "SVG shell embedding the PNG data URI."
+      }
+    ],
+    "notes": [
+      "Client-side Canvas rasterization.",
+      "Self-contained SVGs convert most reliably."
+    ]
+  },
+  "bmpPngConverter": {
+    "formula": "PNG ⇄ BMP24(Canvas pixels)",
+    "summary": "BMP is decoded to a bitmap, redrawn at the target size, then either PNG-encoded via toBlob or packed into a BITMAPINFOHEADER BMP.",
+    "variables": [
+      {
+        "symbol": "pixels",
+        "name": "RGBA buffer",
+        "description": "Canvas ImageData used for BMP packing."
+      },
+      {
+        "symbol": "rowSize",
+        "name": "Stride",
+        "description": "BMP rows padded to 4-byte boundaries."
+      },
+      {
+        "symbol": "bg",
+        "name": "Background",
+        "description": "Fill used when flattening transparency for BMP."
+      }
+    ],
+    "notes": [
+      "24-bit BMP export only.",
+      "Everything runs locally."
+    ]
+  },
+  "icoPngConverter": {
+    "formula": "ICO = pack(PNG@sizes[]); PNG = extract(maxFrame(ICO))",
+    "summary": "PNG → ICO scales the logo to each selected size and packs PNG payloads into an ICO. ICO → PNG reads the directory and extracts the largest image.",
+    "variables": [
+      {
+        "symbol": "sizes[]",
+        "name": "Favicon sizes",
+        "description": "Square dimensions included in the ICO."
+      },
+      {
+        "symbol": "frame",
+        "name": "Icon frame",
+        "description": "One resolution entry inside the ICO directory."
+      },
+      {
+        "symbol": "pack",
+        "name": "ICO container",
+        "description": "Header + directory + image payloads."
+      }
+    ],
+    "notes": [
+      "Favicon generation is fully client-side.",
+      "Prefer a square source logo for best results."
+    ]
+  },
+  "tiffJpgConverter": {
+    "formula": "JPG = Canvas.encode(UTIF.decode(TIFF)); TIFF = UTIF.encode(Canvas pixels)",
+    "summary": "TIFF bytes become RGBA through UTIF, then JPG via Canvas. JPG → TIFF draws to Canvas and encodes with UTIF.encodeImage.",
+    "variables": [
+      {
+        "symbol": "IFD",
+        "name": "TIFF directory",
+        "description": "Image file directory describing width, height, and strips."
+      },
+      {
+        "symbol": "RGBA",
+        "name": "Pixel buffer",
+        "description": "Decoded raster used for Canvas/JPG."
+      },
+      {
+        "symbol": "quality",
+        "name": "JPEG quality",
+        "description": "Compression for TIFF → JPG."
+      }
+    ],
+    "notes": [
+      "Client-side UTIF + Canvas.",
+      "Very large TIFFs need adequate memory."
+    ]
+  },
+  "pdfTextConverter": {
+    "formula": "text = ⋃ getTextContent(pageᵢ); PDF = jsPDF.paginate(text)",
+    "summary": "PDF → Text walks each page with PDF.js getTextContent. Text → PDF wraps lines with jsPDF and paginates to letter size.",
+    "variables": [
+      {
+        "symbol": "pageᵢ",
+        "name": "PDF page",
+        "description": "One page of the source document."
+      },
+      {
+        "symbol": "text",
+        "name": "Plain text",
+        "description": "Concatenated extractable strings."
+      },
+      {
+        "symbol": "progress",
+        "name": "Progress",
+        "description": "current/total pages shown in the UI bar."
+      }
+    ],
+    "notes": [
+      "Client-side only.",
+      "Encrypted PDFs may fail to open."
+    ]
+  },
+  "imagesPdfConverter": {
+    "formula": "PDF = embed(images[]); images[] = render(pageᵢ)",
+    "summary": "Images → PDF embeds each file as a full page. PDF → Images rasterizes pages with PDF.js and packages a ZIP.",
+    "variables": [
+      {
+        "symbol": "images[]",
+        "name": "Source images",
+        "description": "Ordered list of image files."
+      },
+      {
+        "symbol": "scale",
+        "name": "Render scale",
+        "description": "PDF.js viewport scale for sharper exports."
+      },
+      {
+        "symbol": "ZIP",
+        "name": "Archive",
+        "description": "Download container for extracted pages."
+      }
+    ],
+    "notes": [
+      "Higher scale = larger ZIP files.",
+      "Progress updates after each page."
+    ]
+  },
+  "htmlMarkdownPdfConverter": {
+    "formula": "PDF = jsPDF.paginate(html2canvas(HTML|marked(MD)))",
+    "summary": "Markdown is compiled to HTML, then html2canvas captures the layout and jsPDF paginates the bitmap across A4 pages.",
+    "variables": [
+      {
+        "symbol": "HTML",
+        "name": "Markup",
+        "description": "Source HTML or Markdown-rendered HTML."
+      },
+      {
+        "symbol": "canvas",
+        "name": "Raster capture",
+        "description": "Full-height bitmap of the document."
+      },
+      {
+        "symbol": "pages",
+        "name": "PDF pages",
+        "description": "A4 slices of the captured image."
+      }
+    ],
+    "notes": [
+      "Runs fully client-side.",
+      "Very long documents may take longer to rasterize."
+    ]
+  },
+  "pdfMergeSplit": {
+    "formula": "merged = concat(copyPages(pdfₖ)); split = zip(copyPages(rangeⱼ))",
+    "summary": "Merge copies all pages from each PDF into one document. Split exports each page or each range as its own PDF inside a ZIP.",
+    "variables": [
+      {
+        "symbol": "pdfₖ",
+        "name": "Source PDF",
+        "description": "One input file in the merge list."
+      },
+      {
+        "symbol": "rangeⱼ",
+        "name": "Page range",
+        "description": "Inclusive 1-based from–to selection."
+      },
+      {
+        "symbol": "ZIP",
+        "name": "Split archive",
+        "description": "Download package of resulting PDFs."
+      }
+    ],
+    "notes": [
+      "pdf-lib only—no uploads.",
+      "Progress updates after each file or page."
+    ]
+  },
+  "mp4Mp3Converter": {
+    "formula": "MP3 = FFmpeg(-vn -c:a libmp3lame, MP4); MP4 = FFmpeg(-c:a aac, MP3)",
+    "summary": "MP4 → MP3 strips video and encodes audio with LAME. MP3 → MP4 remuxes/encodes audio into an MP4/AAC container. Progress events drive the live percentage bar.",
+    "variables": [
+      {
+        "symbol": "WASM",
+        "name": "FFmpeg core",
+        "description": "WebAssembly module initialized before conversion."
+      },
+      {
+        "symbol": "progress",
+        "name": "Process %",
+        "description": "FFmpeg progress callback mapped to 0–100%."
+      },
+      {
+        "symbol": "bitrate",
+        "name": "Audio bitrate",
+        "description": "Default 192 kbps for MP3/AAC targets."
+      }
+    ],
+    "notes": [
+      "Keep clips reasonable for browser memory.",
+      "Engine loads once per session and is reused."
+    ]
+  },
+  "wavMp3Converter": {
+    "formula": "MP3 = lame(WAV); WAV = pcm_s16le(MP3)",
+    "summary": "WAV is encoded to MP3 with libmp3lame; MP3 is decoded to 16-bit PCM WAV. FFmpeg progress updates the UI percentage.",
+    "variables": [
+      {
+        "symbol": "PCM",
+        "name": "WAV samples",
+        "description": "Uncompressed audio sample buffer."
+      },
+      {
+        "symbol": "lame",
+        "name": "MP3 encoder",
+        "description": "libmp3lame inside the WASM build."
+      },
+      {
+        "symbol": "progress",
+        "name": "Process %",
+        "description": "Live conversion progress from FFmpeg."
+      }
+    ],
+    "notes": [
+      "Client-side only.",
+      "Very long lossless WAV files use more RAM."
+    ]
+  },
+  "movMp4Converter": {
+    "formula": "out = FFmpeg(-c:v libx264 -c:a aac, in)",
+    "summary": "MOV/MP4 are re-encoded with H.264/AAC inside FFmpeg.wasm. Progress callbacks feed the percentage bar.",
+    "variables": [
+      {
+        "symbol": "libx264",
+        "name": "Video encoder",
+        "description": "H.264 encoder used for browser-friendly output."
+      },
+      {
+        "symbol": "aac",
+        "name": "Audio encoder",
+        "description": "AAC track paired with the video."
+      },
+      {
+        "symbol": "crf",
+        "name": "Quality factor",
+        "description": "Constant rate factor biasing smaller/faster encodes."
+      }
+    ],
+    "notes": [
+      "Prefer shorter clips on low-memory devices.",
+      "WASM loads once per tab session."
+    ]
+  },
+  "webmMp4Converter": {
+    "formula": "MP4 ⇄ WebM via FFmpeg.wasm transcode",
+    "summary": "Containers are transcoded with FFmpeg.wasm. Load UI covers core/wasm download; process UI maps FFmpeg progress to a percentage bar.",
+    "variables": [
+      {
+        "symbol": "VP9",
+        "name": "WebM video",
+        "description": "libvpx-vp9 encoder path when targeting WebM."
+      },
+      {
+        "symbol": "H.264",
+        "name": "MP4 video",
+        "description": "libx264 path when targeting MP4."
+      },
+      {
+        "symbol": "progress",
+        "name": "Encode %",
+        "description": "Live percentage from FFmpeg progress events."
+      }
+    ],
+    "notes": [
+      "First load downloads the WASM core (~30MB+).",
+      "Subsequent conversions reuse the loaded engine."
+    ]
+  },
+  "oggFlacMp3Converter": {
+    "formula": "MP3 = libmp3lame(OGG|FLAC)",
+    "summary": "OGG/FLAC inputs are decoded and re-encoded to MP3 with libmp3lame inside FFmpeg.wasm, with live progress events.",
+    "variables": [
+      {
+        "symbol": "OGG",
+        "name": "Vorbis source",
+        "description": "Ogg container with Vorbis audio."
+      },
+      {
+        "symbol": "FLAC",
+        "name": "Lossless source",
+        "description": "Free Lossless Audio Codec input."
+      },
+      {
+        "symbol": "MP3",
+        "name": "Lossy output",
+        "description": "MPEG-1 Audio Layer III at ~192 kbps."
+      }
+    ],
+    "notes": [
+      "Client-side FFmpeg.wasm only.",
+      "Large FLAC files need adequate RAM."
+    ]
+  },
+  "cryptoProfit": {
+    "formula": "Net P&L = (Sell − sell fees) − (Buy + buy fees); ROI = Net P&L / Cost basis",
+    "summary": "Computes after-fee profit or loss on a crypto trade and the break-even exit price.",
+    "variables": [
+      {
+        "symbol": "P_b",
+        "name": "Buy price",
+        "description": "Entry price per unit."
+      },
+      {
+        "symbol": "P_s",
+        "name": "Sell price",
+        "description": "Exit price per unit."
+      },
+      {
+        "symbol": "Q",
+        "name": "Amount",
+        "description": "Coins or tokens traded."
+      },
+      {
+        "symbol": "f_b, f_s",
+        "name": "Fee rates",
+        "description": "Buy and sell fee percentages."
+      }
+    ],
+    "notes": [
+      "Informational only—not financial advice.",
+      "Does not model funding rates, slippage, or taxes."
+    ]
+  },
+  "cryptoDca": {
+    "formula": "Each period: tokens += PMT / price; price *= (1 + monthly growth)",
+    "summary": "Simulates dollar-cost averaging with a constant annualized growth assumption.",
+    "variables": [
+      {
+        "symbol": "PMT",
+        "name": "Monthly investment",
+        "description": "Fixed dollars invested each month."
+      },
+      {
+        "symbol": "n",
+        "name": "Months",
+        "description": "Number of DCA periods."
+      },
+      {
+        "symbol": "P_0",
+        "name": "Starting price",
+        "description": "Token price at first purchase."
+      },
+      {
+        "symbol": "g",
+        "name": "Annual growth",
+        "description": "Assumed yearly price change."
+      }
+    ],
+    "notes": [
+      "Smooth growth ≠ historical backtest.",
+      "Results are educational scenario estimates only."
+    ]
+  },
+  "cryptoMarketCap": {
+    "formula": "Market cap = circulating supply × price",
+    "summary": "Values a crypto asset from float and spot price.",
+    "variables": [
+      {
+        "symbol": "S_c",
+        "name": "Circulating supply",
+        "description": "Tokens currently in circulation."
+      },
+      {
+        "symbol": "P",
+        "name": "Price",
+        "description": "Market price per token."
+      }
+    ],
+    "notes": [
+      "Not financial advice. Liquidity and locked supply can distort useful market cap."
+    ]
+  },
+  "cryptoFdv": {
+    "formula": "FDV = max supply × price",
+    "summary": "Fully diluted valuation assuming today’s price on the entire supply.",
+    "variables": [
+      {
+        "symbol": "S_max",
+        "name": "Max supply",
+        "description": "Hard cap or fully diluted supply."
+      },
+      {
+        "symbol": "S_c",
+        "name": "Circulating supply",
+        "description": "Used to compare against FDV."
+      },
+      {
+        "symbol": "P",
+        "name": "Price",
+        "description": "Current token price."
+      }
+    ],
+    "notes": [
+      "Large FDV/circ gaps imply future dilution risk.",
+      "Educational estimates only."
+    ]
+  },
+  "cryptoTokenPrice": {
+    "formula": "Price = target valuation / supply",
+    "summary": "Back-solves implied token price from a market-cap or FDV target.",
+    "variables": [
+      {
+        "symbol": "V",
+        "name": "Target valuation",
+        "description": "Desired market cap or FDV."
+      },
+      {
+        "symbol": "S",
+        "name": "Supply base",
+        "description": "Circulating or max supply matching V."
+      }
+    ],
+    "notes": [
+      "Informational scenario tool—not an offering price recommendation."
+    ]
+  },
+  "cryptoTokenomics": {
+    "formula": "Circulating ≈ TGE + vested(t) + emissions × months (capped at total supply)",
+    "summary": "Projects unlocked float with cliff, linear vesting, and emissions.",
+    "variables": [
+      {
+        "symbol": "TGE",
+        "name": "TGE circulating",
+        "description": "Float at launch."
+      },
+      {
+        "symbol": "cliff",
+        "name": "Cliff months",
+        "description": "Delay before vesting starts."
+      },
+      {
+        "symbol": "vest",
+        "name": "Vesting months",
+        "description": "Linear unlock duration after cliff."
+      },
+      {
+        "symbol": "E",
+        "name": "Monthly emissions",
+        "description": "Ongoing release or mint rate."
+      }
+    ],
+    "notes": [
+      "Simplified schedule model—real unlock charts can be multi-tranche.",
+      "Not financial advice."
+    ]
+  },
+  "cryptoLiquidity": {
+    "formula": "x · y = k; Δy = y − k/(x + Δx_eff) with fee on Δx",
+    "summary": "Constant-product AMM spot price, LP share, swap output, and price impact.",
+    "variables": [
+      {
+        "symbol": "x, y",
+        "name": "Reserves",
+        "description": "Token and quote reserves in the pool."
+      },
+      {
+        "symbol": "k",
+        "name": "Invariant",
+        "description": "Product of reserves."
+      },
+      {
+        "symbol": "fee",
+        "name": "Pool fee",
+        "description": "Basis points charged on swap input."
+      }
+    ],
+    "notes": [
+      "Classic xy=k only—not concentrated liquidity.",
+      "Educational estimates; live pools differ."
+    ]
+  },
+  "cryptoStaking": {
+    "formula": "A = P (1 + r/n)^(n·t)",
+    "summary": "Compound staking growth across daily, weekly, monthly, or yearly schedules.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Principal",
+        "description": "Amount staked."
+      },
+      {
+        "symbol": "r",
+        "name": "APR",
+        "description": "Nominal annual reward rate."
+      },
+      {
+        "symbol": "n",
+        "name": "Compounds / year",
+        "description": "1, 12, 52, or 365."
+      },
+      {
+        "symbol": "t",
+        "name": "Years",
+        "description": "Staking duration."
+      }
+    ],
+    "notes": [
+      "APRs change; slashing and price risk apply.",
+      "Not financial advice."
+    ]
+  },
+  "cryptoRoi": {
+    "formula": "ROI = (Final − Initial)/Initial; CAGR = (Final/Initial)^(1/t) − 1",
+    "summary": "Total return and annualized performance over a holding period.",
+    "variables": [
+      {
+        "symbol": "V_0",
+        "name": "Initial value",
+        "description": "Starting position value."
+      },
+      {
+        "symbol": "V_t",
+        "name": "Final value",
+        "description": "Ending position value."
+      },
+      {
+        "symbol": "t",
+        "name": "Years",
+        "description": "Holding period in years (+ days)."
+      }
+    ],
+    "notes": [
+      "Use net-of-fee values for realism.",
+      "Informational only—not investment advice."
+    ]
+  },
+  "cryptoTokenLaunchCost": {
+    "formula": "Total = Σ line items × (1 + contingency%)",
+    "summary": "Sums deploy, development, liquidity, audit, marketing, and legal with a buffer.",
+    "variables": [
+      {
+        "symbol": "tier",
+        "name": "Chain tier",
+        "description": "Relative deploy cost profile."
+      },
+      {
+        "symbol": "L",
+        "name": "Liquidity",
+        "description": "Seed LP capital at launch."
+      },
+      {
+        "symbol": "A",
+        "name": "Audit",
+        "description": "Security review budget."
+      }
+    ],
+    "notes": [
+      "Planning defaults—not vendor quotes.",
+      "Not legal, financial, or launch advice."
+    ]
+  },
+  "bcUsedVehiclePst": {
+    "formula": "Taxable = max(Purchase, Black Book)    ·    PST = Taxable × Rate(tier, ZEV)",
+    "summary": "British Columbia private-sale used-vehicle PST (2026) is charged on the greater of purchase price and Canadian Black Book wholesale value. Zero-emission vehicles are 0%. Other vehicles use luxury tiers: 12% under $125,000, 15% from $125,000–$149,999, and 20% at $150,000+.",
+    "variables": [
+      {
+        "symbol": "P",
+        "name": "Purchase price",
+        "description": "Amount paid to the private seller, in CAD."
+      },
+      {
+        "symbol": "B",
+        "name": "Black Book wholesale",
+        "description": "Estimated Canadian Black Book wholesale value ICBC may use."
+      },
+      {
+        "symbol": "T",
+        "name": "Taxable value",
+        "description": "The greater of P and B."
+      },
+      {
+        "symbol": "r",
+        "name": "PST rate",
+        "description": "0% if ZEV; otherwise 12%, 15%, or 20% by luxury tier."
+      }
+    ],
+    "notes": [
+      "Planning estimate only—ICBC assesses the amount at vehicle transfer.",
+      "Confirm current ZEV eligibility and Black Book value with ICBC."
+    ]
   }
 }

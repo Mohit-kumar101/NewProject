@@ -3,28 +3,22 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Calculator } from "@/lib/types";
+import { toolMatchesQuery } from "@/lib/calculators";
+import { getToolHref } from "@/lib/cryptoFormulas";
 
 export function CommandSearch({ calculators }: { calculators: Calculator[] }) {
   const [query, setQuery] = useState("");
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.trim();
     if (!q) return [];
-    return calculators
-      .filter(
-        (c) =>
-          c.title.toLowerCase().includes(q) ||
-          c.description.toLowerCase().includes(q) ||
-          c.category.toLowerCase().includes(q) ||
-          c.slug.includes(q)
-      )
-      .slice(0, 8);
+    return calculators.filter((c) => toolMatchesQuery(c, q)).slice(0, 8);
   }, [calculators, query]);
 
   return (
     <div className="relative mx-auto w-full max-w-2xl">
       <label htmlFor="command-search" className="sr-only">
-        Search calculators
+        Search calculators and converters
       </label>
       <div className="command-bar group flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)]">
         <svg
@@ -48,7 +42,7 @@ export function CommandSearch({ calculators }: { calculators: Calculator[] }) {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search 50 calculators… try “mortgage”, “FIRE”, “tip”"
+          placeholder={`Search ${calculators.length} tools… try “mortgage”, “pdf”, “mp3”`}
           className="w-full bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
           autoComplete="off"
         />
@@ -61,14 +55,14 @@ export function CommandSearch({ calculators }: { calculators: Calculator[] }) {
         <div className="absolute inset-x-0 top-[calc(100%+8px)] z-40 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl">
           {results.length === 0 ? (
             <p className="px-4 py-6 text-center text-sm text-[var(--muted)]">
-              No calculators match “{query.trim()}”
+              No tools match “{query.trim()}”
             </p>
           ) : (
             <ul className="max-h-80 overflow-auto py-2">
               {results.map((calc) => (
                 <li key={calc.slug}>
                   <Link
-                    href={`/tools/${calc.slug}`}
+                    href={getToolHref(calc.slug)}
                     className="block px-4 py-3 transition hover:bg-[var(--background)]"
                     onClick={() => setQuery("")}
                   >

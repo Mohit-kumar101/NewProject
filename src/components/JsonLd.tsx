@@ -1,12 +1,20 @@
 import type { Calculator } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 import {
+  SEO_MODIFIERS,
+  getFormulaHeading,
+  getHowToHeading,
   getToolCanonicalUrl,
+  getToolMetricName,
   getToolPageDescription,
+  getToolPageH1,
+  getToolPageKeywords,
   getToolPageTitle,
+  isFileConverter,
 } from "@/lib/seo";
 
 function applicationCategory(category: string): string {
+  if (category.includes("Converter")) return "UtilitiesApplication";
   if (category.includes("Education") || category.includes("Statistics")) {
     return "EducationalApplication";
   }
@@ -18,7 +26,7 @@ function applicationCategory(category: string): string {
     category.includes("Cooking") ||
     category.includes("Media")
   ) {
-    return "HealthApplication";
+    return "LifestyleApplication";
   }
   return "FinanceApplication";
 }
@@ -26,24 +34,34 @@ function applicationCategory(category: string): string {
 export function JsonLd({ calculator }: { calculator: Calculator }) {
   const url = getToolCanonicalUrl(calculator);
   const name = getToolPageTitle(calculator);
+  const headline = getToolPageH1(calculator);
   const description = getToolPageDescription(calculator);
+  const metric = getToolMetricName(calculator);
+  const keywords = getToolPageKeywords(calculator).join(", ");
 
   const softwareApplication = {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "WebApplication"],
     name,
+    alternateName: calculator.title,
+    headline,
     applicationCategory: applicationCategory(calculator.category),
     applicationSubCategory: calculator.category,
     operatingSystem: "Any",
-    browserRequirements: "Requires JavaScript",
+    browserRequirements: "Requires JavaScript. Runs in modern browsers.",
     description,
     url,
     image: `${SITE_URL}/myicon.png`,
+    keywords,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isFamilyFriendly: true,
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      description: "Free online tool. No sign up. Instant calculation.",
     },
     author: {
       "@type": "Organization",
@@ -59,13 +77,35 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
         url: `${SITE_URL}/favicon-512.png`,
       },
     },
-    isAccessibleForFree: true,
-    featureList: calculator.seoContent.howToUse.slice(0, 5),
+    featureList: [
+      ...SEO_MODIFIERS,
+      ...calculator.seoContent.howToUse.slice(0, 5),
+    ],
+    additionalProperty: SEO_MODIFIERS.map((value) => ({
+      "@type": "PropertyValue",
+      name: value,
+      value: true,
+    })),
+    audience: {
+      "@type": "Audience",
+      audienceType: calculator.category,
+    },
+    potentialAction: {
+      "@type": "UseAction",
+      target: url,
+      name: isFileConverter(calculator)
+        ? `Convert ${metric} free online`
+        : `Calculate ${metric} free online`,
+    },
   };
 
   const faqPage = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    name: `${metric} Frequently Asked Questions`,
+    url,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
     mainEntity: calculator.seoContent.faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -73,6 +113,25 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
         "@type": "Answer",
         text: faq.answer,
       },
+    })),
+  };
+
+  const howTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: getHowToHeading(calculator),
+    description,
+    url,
+    totalTime: "PT2M",
+    tool: {
+      "@type": "HowToTool",
+      name: calculator.title,
+    },
+    step: calculator.seoContent.howToUse.map((text, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: `Step ${index + 1}`,
+      text,
     })),
   };
 
@@ -95,7 +154,7 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
       {
         "@type": "ListItem",
         position: 3,
-        name: calculator.title,
+        name: headline,
         item: url,
       },
     ],
@@ -104,9 +163,13 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
   const webPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name,
+    name: headline,
+    headline,
     description,
     url,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    keywords,
     isPartOf: {
       "@type": "WebSite",
       name: SITE_NAME,
@@ -114,7 +177,12 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
     },
     about: {
       "@type": "Thing",
-      name: calculator.title,
+      name: metric,
+      description: getFormulaHeading(calculator),
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2"],
     },
   };
 
@@ -129,6 +197,10 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }}
       />
       <script
         type="application/ld+json"

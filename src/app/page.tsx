@@ -8,7 +8,7 @@ export default function HomePage() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "Free online calculators for finance, education, math, HR, travel, and lifestyle.",
+      "The free alternative to paid converters and calculators. PDF, HEIC, video, and data tools plus finance and crypto utilities — private, in-browser, no paywall.",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

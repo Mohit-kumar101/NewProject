@@ -1,4 +1,5 @@
 import type { CalcResult } from "./types";
+import { runCryptoCalculation } from "./cryptoFormulas";
 
 type Inputs = Record<string, number>;
 
@@ -202,6 +203,24 @@ function debtPayoffSimulation(
   }
 
   return { months, interest, totalPaid };
+}
+
+const cad = (n: number): string => {
+  if (!Number.isFinite(n)) return "—";
+  return new Intl.NumberFormat("en-CA", {
+    style: "currency",
+    currency: "CAD",
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  }).format(n);
+};
+
+/** BC 2026 private-sale used-vehicle PST rate on taxable value. */
+function bcUsedVehiclePstRate(taxableValue: number, isZev: boolean): number {
+  if (isZev) return 0;
+  if (taxableValue < 125_000) return 0.12;
+  if (taxableValue < 150_000) return 0.15;
+  return 0.2;
 }
 
 function result(
@@ -2146,12 +2165,74 @@ export function runCalculation(
         },
       ]);
     }
+    case "bcUsedVehiclePst": {
+      const purchase = Math.max(0, inputs.purchasePrice ?? 0);
+      const blackBook = Math.max(0, inputs.blackBookValue ?? 0);
+      const isZev = (inputs.isZeroEmission ?? 0) >= 0.5;
+      const taxable = Math.max(purchase, blackBook);
+      const rate = bcUsedVehiclePstRate(taxable, isZev);
+      const pst = taxable * rate;
+      const basis =
+        purchase > blackBook
+          ? "Purchase price"
+          : blackBook > purchase
+            ? "Black Book wholesale"
+            : "Tied (same value)";
+      let tier = "Zero-emission — 0% PST";
+      if (!isZev) {
+        if (taxable < 125_000) tier = "Under $125,000 — 12% PST";
+        else if (taxable < 150_000) tier = "$125,000–$149,999 — 15% PST";
+        else tier = "$150,000 and over — 20% PST";
+      }
+      return result("PST Owed", cad(pst), [
+        { label: "Taxable Value", value: cad(taxable) },
+        { label: "PST Rate", value: `${(rate * 100).toFixed(0)}%` },
+        { label: "Luxury / ZEV Tier", value: tier },
+        { label: "Taxed On", value: basis },
+        { label: "Purchase Price", value: cad(purchase) },
+        { label: "Black Book Wholesale", value: cad(blackBook) },
+        {
+          label: "Zero-Emission Vehicle",
+          value: isZev ? "Yes — PST exempt" : "No",
+        },
+      ]);
+    }
 
     case "expenseTracker":
       return result("Balance", "Use tracker", [
         {
           label: "Note",
           value: "Interactive localStorage ledger — open the Expense Tracker UI",
+        },
+      ]);
+
+    case "jsonCsvConverter":
+    case "xmlJsonConverter":
+    case "yamlJsonConverter":
+    case "csvTsvConverter":
+    case "htmlMarkdownConverter":
+    case "base64TextConverter":
+    case "propertiesJsonConverter":
+    case "pngJpgConverter":
+    case "webpPngConverter":
+    case "heicJpgConverter":
+    case "svgPngConverter":
+    case "bmpPngConverter":
+    case "icoPngConverter":
+    case "tiffJpgConverter":
+    case "pdfTextConverter":
+    case "imagesPdfConverter":
+    case "htmlMarkdownPdfConverter":
+    case "pdfMergeSplit":
+    case "mp4Mp3Converter":
+    case "wavMp3Converter":
+    case "movMp4Converter":
+    case "webmMp4Converter":
+    case "oggFlacMp3Converter":
+      return result("Output", "Use converter", [
+        {
+          label: "Note",
+          value: "Interactive client-side file converter — open the tool workspace",
         },
       ]);
 
@@ -2195,9 +2276,12 @@ export function runCalculation(
       ]);
     }
 
-    default:
+    default: {
+      const crypto = runCryptoCalculation(formulaType, inputs);
+      if (crypto) return crypto;
       return result("Result", "—", [
         { label: "Status", value: "Unknown formula type" },
       ]);
+    }
   }
 }

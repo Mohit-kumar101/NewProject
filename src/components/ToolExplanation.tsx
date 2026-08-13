@@ -5,10 +5,14 @@ import type { ToolExplanationContent } from "@/lib/types";
 
 export function ToolExplanation({
   title,
+  heading,
+  example,
   content,
   defaultOpen = true,
 }: {
   title: string;
+  heading?: string;
+  example?: string;
   content: ToolExplanationContent;
   defaultOpen?: boolean;
 }) {
@@ -36,7 +40,7 @@ export function ToolExplanation({
               id="tool-explanation-heading"
               className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-[var(--foreground)] sm:text-2xl"
             >
-              How {title} Works
+              {heading ?? `How ${title} Works`}
             </h2>
           </div>
           <span
@@ -75,6 +79,12 @@ export function ToolExplanation({
           <p className="text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-base">
             {content.summary}
           </p>
+
+          {example ? (
+            <p className="mt-4 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-base">
+              {example}
+            </p>
+          ) : null}
 
           <h3 className="mt-6 text-sm font-semibold tracking-[0.12em] text-[var(--foreground)] uppercase">
             Variable definitions

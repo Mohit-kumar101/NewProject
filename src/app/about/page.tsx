@@ -5,7 +5,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: `Learn about ${SITE_NAME} — designed and built by Mohit to deliver fast, reliable, transparent online calculators and utilities.`,
+  description: `Learn about ${SITE_NAME} — the free alternative to paid PDF, video, and image converters, plus fast transparent calculators. Built by Mohit.`,
   alternates: { canonical: `${SITE_URL}/about` },
 };
 
@@ -14,14 +14,14 @@ export default function AboutPage() {
     <InfoPageShell
       eyebrow="Company"
       title="About CalculioHub"
-      description={`${SITE_NAME} was designed and built by Mohit to give developers, students, and professionals fast, reliable, and transparent online utility tools—without clutter or gated signups.`}
+      description={`${SITE_NAME} was designed and built by Mohit as the free alternative to paid converters and cluttered calculator sites — fast, private, and no gated signups.`}
     >
       <InfoSection title="Our mission">
         <p>
-          Most calculator sites bury useful tools under popups, opaque math, or
-          slow interfaces. {SITE_NAME} focuses on the opposite: clear inputs,
-          instant results, readable formulas, and a calm SaaS experience that
-          works in light and dark mode.
+          Paid converters and cluttered calculator sites bury useful work behind
+          subscriptions, watermarks, and uploads. {SITE_NAME} is the free
+          alternative: clear inputs, instant results, readable formulas, and
+          private in-browser tools that work in light and dark mode.
         </p>
         <p>
           Whether you are modeling a loan, checking a GPA, solving a scientific
@@ -60,18 +60,23 @@ export default function AboutPage() {
             modern layout, cyan-to-blue accents, and full dark/light support.
           </li>
           <li>
+            <span className="font-medium text-[var(--foreground)]">Free:</span>{" "}
+            no subscriptions, watermarks, or daily caps — a real alternative to
+            paid converters.
+          </li>
+          <li>
             <span className="font-medium text-[var(--foreground)]">Respect:</span>{" "}
-            no mandatory account to try core tools; privacy-conscious local
-            features where it matters.
+            no mandatory account; files stay in your browser.
           </li>
         </ul>
       </InfoSection>
 
       <InfoSection title="Who it’s for">
         <p>
-          Developers validating math quickly, students studying formulas,
-          freelancers planning rates, homeowners comparing loans, and anyone who
-          wants a dependable utility hub in one place.
+          Anyone leaving a paid PDF, video, or image converter — plus developers
+          checking math, students studying formulas, freelancers planning rates,
+          and homeowners comparing loans. One free hub instead of a stack of
+          subscriptions.
         </p>
       </InfoSection>
 

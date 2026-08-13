@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { calculators } from "@/lib/calculators";
+import { calculators, toolMatchesQuery } from "@/lib/calculators";
+import { getToolHref } from "@/lib/cryptoFormulas";
 
 export type ToolSearchFooterProps = {
   /** Full CalculioHub category name for topical clustering. */
@@ -11,28 +12,14 @@ export type ToolSearchFooterProps = {
   currentSlug: string;
 };
 
-type ToolCard = {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-};
-
 const DEFAULT_RELATED = 3;
 /** Cap search hits so the footer stays scannable while still filtering the full catalog. */
 const SEARCH_LIMIT = 12;
 
-function matchesQuery(tool: ToolCard, query: string) {
-  const q = query.trim().toLowerCase();
-  if (!q) return false;
-  const haystack =
-    `${tool.title} ${tool.description} ${tool.category} ${tool.slug}`.toLowerCase();
-  return q.split(/\s+/).every((token) => haystack.includes(token));
-}
-
 /**
  * Post-FAQ internal linking widget.
  * Default: 3 same-category tools · Search: live filter across the full catalog.
+ * Present on every tool page via ToolPageShell (including all file converters).
  */
 export function ToolSearchFooter({
   currentCategory,
@@ -40,16 +27,8 @@ export function ToolSearchFooter({
 }: ToolSearchFooterProps) {
   const [query, setQuery] = useState("");
 
-  const catalog = useMemo<ToolCard[]>(
-    () =>
-      calculators
-        .filter((tool) => tool.slug !== currentSlug)
-        .map((tool) => ({
-          slug: tool.slug,
-          title: tool.title,
-          description: tool.description,
-          category: tool.category,
-        })),
+  const catalog = useMemo(
+    () => calculators.filter((tool) => tool.slug !== currentSlug),
     [currentSlug]
   );
 
@@ -65,14 +44,14 @@ export function ToolSearchFooter({
     const q = query.trim();
     if (!q) return relatedInCategory;
     return catalog
-      .filter((tool) => matchesQuery(tool, q))
+      .filter((tool) => toolMatchesQuery(tool, q))
       .slice(0, SEARCH_LIMIT);
   }, [catalog, query, relatedInCategory]);
 
   const isSearching = query.trim().length > 0;
   const totalMatches = useMemo(() => {
     if (!isSearching) return relatedInCategory.length;
-    return catalog.filter((tool) => matchesQuery(tool, query)).length;
+    return catalog.filter((tool) => toolMatchesQuery(tool, query)).length;
   }, [catalog, isSearching, query, relatedInCategory.length]);
 
   return (
@@ -92,16 +71,16 @@ export function ToolSearchFooter({
             id="tool-search-footer-heading"
             className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-[var(--foreground)]"
           >
-            Explore More Calculators
+            Explore More Tools
           </h2>
           <p className="mt-2 text-sm text-[color-mix(in_srgb,var(--foreground)_75%,var(--muted))]">
             {isSearching
-              ? "Searching all CalculioHub tools for matching titles and keywords."
+              ? "Searching all CalculioHub calculators and file converters."
               : `Related tools in ${currentCategory} — strengthening topical internal links.`}
           </p>
 
           <label className="mt-5 block">
-            <span className="sr-only">Search other calculators</span>
+            <span className="sr-only">Search other tools</span>
             <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-3 transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.12)]">
               <svg
                 width="18"
@@ -129,7 +108,7 @@ export function ToolSearchFooter({
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search all calculators (e.g., scientific, nutrition, interest)..."
+                placeholder="Search tools (e.g. pdf, mp3, json, png, mortgage)…"
                 className="w-full bg-transparent text-sm text-[var(--foreground)] outline-none placeholder:text-[var(--muted)] sm:text-[15px]"
                 autoComplete="off"
                 spellCheck={false}
@@ -163,7 +142,7 @@ export function ToolSearchFooter({
           {filtered.length === 0 ? (
             <p className="mt-4 rounded-xl border border-dashed border-[var(--border)] px-4 py-10 text-center text-sm text-[var(--muted)]">
               {isSearching
-                ? `No tools match “${query.trim()}”. Try scientific, nutrition, or interest.`
+                ? `No tools match “${query.trim()}”. Try pdf, mp3, json, or mortgage.`
                 : "No other tools found in this category yet."}
             </p>
           ) : (
@@ -175,7 +154,7 @@ export function ToolSearchFooter({
               {filtered.map((tool, index) => (
                 <Link
                   key={tool.slug}
-                  href={`/tools/${tool.slug}`}
+                  href={getToolHref(tool.slug)}
                   className="result-card group rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_14px_30px_-20px_rgba(41,121,255,0.55)]"
                   style={{
                     animationDelay: `${Math.min(index, 6) * 35}ms`,

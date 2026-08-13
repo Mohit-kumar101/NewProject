@@ -7,6 +7,13 @@ export function ToolBreadcrumbs({
   toolTitle: string;
   category?: string;
 }) {
+  const categoryHref =
+    category === "Crypto & Digital Assets"
+      ? "/crypto"
+      : category
+        ? `/tools#${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
+        : "/tools";
+
   return (
     <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--muted)]">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -30,7 +37,7 @@ export function ToolBreadcrumbs({
             </li>
             <li className="max-w-[12rem] truncate sm:max-w-none">
               <Link
-                href={`/tools#${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                href={categoryHref}
                 className="transition hover:text-[var(--accent)]"
               >
                 {category}

@@ -9058,5 +9058,1802 @@
         }
       ]
     }
+  },
+  {
+    "slug": "json-csv-converter",
+    "title": "JSON ↔ CSV Converter",
+    "category": "Data & Code Converters",
+    "description": "Convert JSON arrays of objects to CSV and CSV tables back to JSON entirely in your browser.",
+    "inputs": [],
+    "formulaType": "jsonCsvConverter",
+    "seoTitle": "Free JSON to CSV Converter Online (CSV to JSON Too)",
+    "seoDescription": "Convert JSON arrays to CSV and CSV tables to JSON privately in your browser. Drag-and-drop files, preview output, and download instantly—no upload or signup.",
+    "seoKeywords": [
+      "json to csv converter",
+      "csv to json converter",
+      "json csv online",
+      "client side json to csv",
+      "papaparse converter",
+      "free json csv tool"
+    ],
+    "seoContent": {
+      "intro": "Convert between JSON and CSV without leaving your browser. Drop a file or paste text, choose a direction, and download the result—your data never leaves this device.",
+      "howToUse": [
+        "Choose JSON → CSV or CSV → JSON.",
+        "Drop a file into the dropzone or paste content into the input panel.",
+        "Click Convert to transform the data locally.",
+        "Preview the output, then Download or Copy the result.",
+        "Use Clear to reset both panels before the next file."
+      ],
+      "faqs": [
+        {
+          "question": "What JSON shape works best for CSV?",
+          "answer": "Use an array of flat objects (or a single object). Nested objects are stringified awkwardly in CSV—flatten first when possible."
+        },
+        {
+          "question": "Is my file uploaded?",
+          "answer": "No. Parsing and conversion run entirely in your browser with Papaparse and local JavaScript."
+        },
+        {
+          "question": "Does CSV need a header row?",
+          "answer": "Yes for CSV → JSON. The first row becomes object keys in the JSON array."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "xml-json-converter",
+    "title": "XML ↔ JSON Converter",
+    "category": "Data & Code Converters",
+    "description": "Convert XML documents to JSON and JSON structures back to XML with attribute mapping—all client-side.",
+    "inputs": [],
+    "formulaType": "xmlJsonConverter",
+    "seoTitle": "Free XML to JSON Converter (JSON to XML Online)",
+    "seoDescription": "Transform XML documents into JSON and JSON back into XML in your browser. Attributes map to @keys for predictable round-trips—private, fast, no server upload.",
+    "seoKeywords": [
+      "xml to json converter",
+      "json to xml converter",
+      "xml json online",
+      "browser xml parser",
+      "free xml to json tool"
+    ],
+    "seoContent": {
+      "intro": "Translate XML and JSON locally. Element attributes become @prefixed keys and character data uses #text so structure survives the round trip.",
+      "howToUse": [
+        "Select XML → JSON or JSON → XML.",
+        "Paste XML/JSON or drop a matching file.",
+        "Convert to generate the opposite format.",
+        "Download the output or copy it to your clipboard.",
+        "Validate nested tags or object keys if you see a parse error."
+      ],
+      "faqs": [
+        {
+          "question": "How are XML attributes represented in JSON?",
+          "answer": "Attributes become keys prefixed with @ (for example @id). Text content uses #text when siblings or attributes are also present."
+        },
+        {
+          "question": "Can I convert any JSON to XML?",
+          "answer": "Yes. A single top-level key becomes the root element; otherwise a root wrapper is added."
+        },
+        {
+          "question": "Does this call a server?",
+          "answer": "No. XML is parsed with the browser DOMParser and serialized locally."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "yaml-json-converter",
+    "title": "YAML ↔ JSON Converter",
+    "category": "Data & Code Converters",
+    "description": "Convert YAML configs to JSON and JSON payloads to YAML using a local js-yaml parser.",
+    "inputs": [],
+    "formulaType": "yamlJsonConverter",
+    "seoTitle": "Free YAML to JSON Converter (JSON to YAML Tool)",
+    "seoDescription": "Convert YAML configs to pretty JSON and JSON payloads to YAML with js-yaml—fully client-side. Ideal for CI files, manifests, and API samples without uploading secrets.",
+    "seoKeywords": [
+      "yaml to json converter",
+      "json to yaml converter",
+      "yaml json online",
+      "js-yaml converter",
+      "config file converter"
+    ],
+    "seoContent": {
+      "intro": "Move between YAML and JSON without uploading secrets. Paste a config or drop a .yaml/.json file and convert instantly on-device.",
+      "howToUse": [
+        "Pick YAML → JSON or JSON → YAML.",
+        "Drop a file or paste the source text.",
+        "Click Convert to run js-yaml locally.",
+        "Review indentation in the output panel.",
+        "Download the converted file for your project."
+      ],
+      "faqs": [
+        {
+          "question": "Which YAML features are supported?",
+          "answer": "Standard YAML 1.1 documents via js-yaml, including nested maps and lists. Exotic custom tags may not round-trip."
+        },
+        {
+          "question": "Will comments survive JSON → YAML?",
+          "answer": "JSON has no comments, so YAML comments are lost when converting YAML → JSON → YAML."
+        },
+        {
+          "question": "Is conversion private?",
+          "answer": "Yes. Everything runs in the browser; nothing is sent to CalculioHub servers."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "csv-tsv-converter",
+    "title": "CSV ↔ TSV Converter",
+    "category": "Data & Code Converters",
+    "description": "Switch spreadsheet exports between comma-separated and tab-separated formats in your browser.",
+    "inputs": [],
+    "formulaType": "csvTsvConverter",
+    "seoTitle": "Free CSV to TSV Converter (TSV to CSV Online)",
+    "seoDescription": "Switch spreadsheet exports between comma-separated CSV and tab-separated TSV in your browser. Preserve every cell while changing only the delimiter—no upload required.",
+    "seoKeywords": [
+      "csv to tsv converter",
+      "tsv to csv converter",
+      "delimiter converter",
+      "tab separated values",
+      "spreadsheet csv tsv"
+    ],
+    "seoContent": {
+      "intro": "Need tabs instead of commas—or the reverse? Convert CSV and TSV locally while keeping every cell intact.",
+      "howToUse": [
+        "Choose CSV → TSV or TSV → CSV.",
+        "Upload a spreadsheet export or paste delimited text.",
+        "Convert to swap the delimiter.",
+        "Download the result for Excel, Sheets, or scripts.",
+        "Clear the panels when you switch files."
+      ],
+      "faqs": [
+        {
+          "question": "Are quoted CSV fields handled?",
+          "answer": "Yes. Papaparse respects standard CSV quoting so commas inside quotes stay in a single cell."
+        },
+        {
+          "question": "What about empty lines?",
+          "answer": "Empty lines are preserved where possible so row alignment stays predictable."
+        },
+        {
+          "question": "Do I need a header row?",
+          "answer": "No. This tool only changes delimiters; headers are optional and pass through unchanged."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "html-markdown-converter",
+    "title": "HTML ↔ Markdown Converter",
+    "category": "Data & Code Converters",
+    "description": "Convert HTML snippets to Markdown and Markdown documents to HTML using Turndown and marked—client-side only.",
+    "inputs": [],
+    "formulaType": "htmlMarkdownConverter",
+    "seoTitle": "Free HTML to Markdown Converter (MD to HTML)",
+    "seoDescription": "Convert HTML snippets to Markdown and Markdown docs to HTML in your browser with Turndown and marked. GFM-friendly output for READMEs and CMS migrations—no upload.",
+    "seoKeywords": [
+      "html to markdown converter",
+      "markdown to html converter",
+      "md to html online",
+      "turndown html",
+      "gfm markdown converter"
+    ],
+    "seoContent": {
+      "intro": "Transform HTML and Markdown locally with Turndown and marked. Ideal for docs, READMEs, and CMS content migrations.",
+      "howToUse": [
+        "Select HTML → Markdown or Markdown → HTML.",
+        "Paste markup or drop an .html/.md file.",
+        "Convert to generate the other format.",
+        "Copy or download the output for your editor.",
+        "Re-run after edits—conversion is instant and private."
+      ],
+      "faqs": [
+        {
+          "question": "Is GitHub-flavored Markdown supported?",
+          "answer": "Markdown → HTML uses marked with GFM enabled for common constructs like tables and fenced code."
+        },
+        {
+          "question": "Will complex HTML round-trip perfectly?",
+          "answer": "Semantic content converts well; highly styled or script-heavy HTML may lose presentation details."
+        },
+        {
+          "question": "Are scripts executed?",
+          "answer": "No. Conversion is string-based; scripts in HTML are not run."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "base64-text-converter",
+    "title": "Base64 ↔ Text Converter",
+    "category": "Data & Code Converters",
+    "description": "Encode UTF-8 text to Base64 and decode Base64 back to text with the Web Encoding API.",
+    "inputs": [],
+    "formulaType": "base64TextConverter",
+    "seoTitle": "Free Base64 Encode & Decode Text Online",
+    "seoDescription": "Encode UTF-8 text to Base64 and decode Base64 strings back to text in your browser. Handles Unicode safely for tokens, snippets, and debugging—nothing is uploaded.",
+    "seoKeywords": [
+      "base64 encode online",
+      "base64 decode online",
+      "text to base64",
+      "base64 to text converter",
+      "utf-8 base64 tool"
+    ],
+    "seoContent": {
+      "intro": "Encode or decode Base64 text locally with proper UTF-8 handling—handy for tokens, data URLs, and debugging payloads.",
+      "howToUse": [
+        "Choose Text → Base64 or Base64 → Text.",
+        "Paste text or drop a plain-text file.",
+        "Convert to encode or decode instantly.",
+        "Copy the result or download it as a file.",
+        "Clear when switching between encode and decode."
+      ],
+      "faqs": [
+        {
+          "question": "Does this support Unicode?",
+          "answer": "Yes. Text is encoded with TextEncoder before Base64, so emoji and non-Latin scripts survive the round trip."
+        },
+        {
+          "question": "Can I decode binary files?",
+          "answer": "This tool targets text. For binary assets, use a dedicated binary Base64 workflow."
+        },
+        {
+          "question": "Is whitespace in Base64 OK?",
+          "answer": "Whitespace is stripped before decoding so wrapped Base64 still works."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "properties-json-converter",
+    "title": "Properties ↔ JSON Converter",
+    "category": "Data & Code Converters",
+    "description": "Convert Java .properties files to JSON objects and flat JSON maps back to .properties format.",
+    "inputs": [],
+    "formulaType": "propertiesJsonConverter",
+    "seoTitle": "Free Java .properties to JSON Converter Online",
+    "seoDescription": "Convert Java .properties files to JSON objects and flat JSON maps back to .properties. Built for Spring, Android, and i18n migrations—runs privately in your browser.",
+    "seoKeywords": [
+      "properties to json",
+      "json to properties",
+      "java properties converter",
+      ".properties file converter",
+      "spring config converter"
+    ],
+    "seoContent": {
+      "intro": "Migrate Java-style .properties configs to JSON (and back) without uploading. Comments starting with # or ! are ignored on import.",
+      "howToUse": [
+        "Select Properties → JSON or JSON → Properties.",
+        "Drop a .properties/.json file or paste the contents.",
+        "Convert to build the other format.",
+        "Download the result for your app or i18n bundle.",
+        "Keep JSON values flat—nested objects are rejected on export."
+      ],
+      "faqs": [
+        {
+          "question": "Are nested JSON objects supported?",
+          "answer": "JSON → Properties expects a flat object. Nesting must be flattened (for example app.name) first."
+        },
+        {
+          "question": "What about comments?",
+          "answer": "Lines starting with # or ! are skipped when reading .properties. A generator comment is added on export."
+        },
+        {
+          "question": "How are escapes handled?",
+          "answer": "Common escapes for =, :, \\, newlines, and tabs are applied so keys and values stay valid."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "png-jpg-converter",
+    "title": "PNG ↔ JPG Converter",
+    "category": "Image Converters",
+    "description": "Convert PNG images to JPG and JPG photos to PNG in your browser with live preview and optional resizing.",
+    "inputs": [],
+    "formulaType": "pngJpgConverter",
+    "seoTitle": "Free PNG to JPG Converter (JPG to PNG Online)",
+    "seoDescription": "Convert PNG images to JPG and JPG photos to PNG with Canvas—live preview, quality control, and resize options. Transparent pixels get a custom background fill. No upload.",
+    "seoKeywords": [
+      "png to jpg converter",
+      "jpg to png converter",
+      "png jpg online",
+      "image format converter",
+      "browser png to jpeg"
+    ],
+    "seoContent": {
+      "intro": "Flip between PNG and JPG entirely in your browser. Drop an image, tune quality or size, preview both sides, and download—nothing leaves this device.",
+      "howToUse": [
+        "Choose PNG → JPG or JPG → PNG.",
+        "Drop an image into the dropzone (or browse).",
+        "Optionally resize and set JPG quality / background fill.",
+        "Review the side-by-side preview, then click Convert if you change options.",
+        "Download the result or Clear to start over."
+      ],
+      "faqs": [
+        {
+          "question": "What happens to PNG transparency?",
+          "answer": "JPG has no alpha channel. Transparent pixels are filled with your chosen background color (default white)."
+        },
+        {
+          "question": "Is my photo uploaded?",
+          "answer": "No. Decoding and encoding run with the browser Canvas API on your device."
+        },
+        {
+          "question": "Can I resize while converting?",
+          "answer": "Yes. Use Original, Fit within max, Exact dimensions, or Scale % before converting."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "webp-png-converter",
+    "title": "WEBP ↔ PNG Converter",
+    "category": "Image Converters",
+    "description": "Convert WEBP images to PNG and PNG graphics to WEBP with browser Canvas encoding and instant preview.",
+    "inputs": [],
+    "formulaType": "webpPngConverter",
+    "seoTitle": "Free WEBP to PNG Converter (PNG to WEBP Online)",
+    "seoDescription": "Convert WEBP images to PNG and PNG graphics to WEBP in your browser. Instant side-by-side preview, quality slider, and resize—private Canvas conversion, no upload.",
+    "seoKeywords": [
+      "webp to png converter",
+      "png to webp converter",
+      "webp converter online",
+      "browser webp tool",
+      "lossless webp png"
+    ],
+    "seoContent": {
+      "intro": "Move between WEBP and PNG locally. Preview before and after, adjust size or WEBP quality, and download instantly.",
+      "howToUse": [
+        "Select WEBP → PNG or PNG → WEBP.",
+        "Drop a compatible image file.",
+        "Set resize and quality options as needed.",
+        "Confirm the result preview looks right.",
+        "Download the converted file."
+      ],
+      "faqs": [
+        {
+          "question": "Does every browser encode WEBP?",
+          "answer": "Modern Chromium, Firefox, and Safari support canvas WEBP encoding. If encoding fails, try updating your browser."
+        },
+        {
+          "question": "Is alpha preserved?",
+          "answer": "PNG retains transparency. WEBP can retain alpha when the browser encoder supports it."
+        },
+        {
+          "question": "Any upload?",
+          "answer": "None—conversion stays on your device."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "heic-jpg-converter",
+    "title": "HEIC/HEIF to JPG Converter",
+    "category": "Image Converters",
+    "description": "Convert iPhone HEIC/HEIF photos to JPG locally with preview, quality control, and optional resizing.",
+    "inputs": [],
+    "formulaType": "heicJpgConverter",
+    "seoTitle": "Free HEIC to JPG Converter in Browser (HEIF)",
+    "seoDescription": "Convert iPhone HEIC/HEIF photos to JPG locally with preview, quality, and resize. Decoded on-device then Canvas-encoded—share-ready JPEGs without cloud uploads.",
+    "seoKeywords": [
+      "heic to jpg converter",
+      "heif to jpg",
+      "iphone heic converter",
+      "heic converter browser",
+      "convert heic online private"
+    ],
+    "seoContent": {
+      "intro": "Turn iPhone HEIC/HEIF shots into JPG without uploading. Decode locally, tweak quality or size, preview, and download.",
+      "howToUse": [
+        "Drop a .heic or .heif photo.",
+        "Adjust JPG quality, background, and resize if needed.",
+        "Wait for the result preview after conversion.",
+        "Download the JPG for sharing or editing.",
+        "Clear before converting another photo."
+      ],
+      "faqs": [
+        {
+          "question": "Why not pure Canvas for HEIC?",
+          "answer": "Most browsers cannot decode HEIC natively. This tool uses heic2any in-browser, then Canvas for JPG output—still zero server uploads."
+        },
+        {
+          "question": "Can I convert HEIC to PNG?",
+          "answer": "This tool targets JPG for broad compatibility. Convert JPG → PNG with the PNG ↔ JPG tool if needed."
+        },
+        {
+          "question": "Are Live Photos supported?",
+          "answer": "Still frames convert; multi-image HEIC sequences use the primary frame."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "svg-png-converter",
+    "title": "SVG ↔ PNG Converter",
+    "category": "Image Converters",
+    "description": "Rasterize SVG to PNG or wrap PNG in SVG—client-side with preview and resize controls.",
+    "inputs": [],
+    "formulaType": "svgPngConverter",
+    "seoTitle": "Free SVG to PNG Converter (PNG to SVG Wrapper)",
+    "seoDescription": "Rasterize SVG artwork to PNG at any size, or embed a PNG inside an SVG wrapper. Live preview and resize controls—client-side only, no vector-tracing claims or uploads.",
+    "seoKeywords": [
+      "svg to png converter",
+      "png to svg converter",
+      "rasterize svg online",
+      "svg png browser",
+      "svg export png"
+    ],
+    "seoContent": {
+      "intro": "Rasterize SVG artwork to PNG at any size, or package a PNG inside an SVG wrapper for embedding—all on-device.",
+      "howToUse": [
+        "Choose SVG → PNG or PNG → SVG.",
+        "Drop your file and set resize options for raster output.",
+        "Preview the conversion instantly.",
+        "Download PNG for raster use or SVG for embedding.",
+        "Note: PNG → SVG does not vector-trace artwork."
+      ],
+      "faqs": [
+        {
+          "question": "Does PNG → SVG create real vectors?",
+          "answer": "No. It embeds the PNG as an image inside SVG (practical for wrappers). True tracing is out of scope."
+        },
+        {
+          "question": "Can I control PNG resolution?",
+          "answer": "Yes—use resize modes to set exact or max dimensions before rasterizing."
+        },
+        {
+          "question": "External SVG fonts/images?",
+          "answer": "Linked remote assets may be blocked by the browser; prefer self-contained SVGs."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "bmp-png-converter",
+    "title": "BMP ↔ PNG Converter",
+    "category": "Image Converters",
+    "description": "Convert classic BMP bitmaps to PNG and PNG images to 24-bit BMP with preview and resize.",
+    "inputs": [],
+    "formulaType": "bmpPngConverter",
+    "seoTitle": "Free BMP to PNG Converter (PNG to 24-bit BMP)",
+    "seoDescription": "Modernize BMP bitmaps to PNG or export PNG to 24-bit BMP for legacy apps. Instant preview, resize, and background fill—Canvas conversion stays on your device.",
+    "seoKeywords": [
+      "bmp to png converter",
+      "png to bmp converter",
+      "bitmap converter online",
+      "24-bit bmp export",
+      "bmp png tool"
+    ],
+    "seoContent": {
+      "intro": "Modernize BMP files to PNG or export PNG to 24-bit BMP for legacy apps—privately in the browser.",
+      "howToUse": [
+        "Select BMP → PNG or PNG → BMP.",
+        "Drop an image and optionally resize.",
+        "For PNG → BMP, pick a background fill for transparency.",
+        "Preview both sides, then download.",
+        "Clear when switching files."
+      ],
+      "faqs": [
+        {
+          "question": "What BMP format is exported?",
+          "answer": "Uncompressed 24-bit Windows BMP. Alpha is flattened onto the background color."
+        },
+        {
+          "question": "Will exotic BMP variants open?",
+          "answer": "Most standard BMPs decode via the browser Image API. Rare compressed BMPs may fail."
+        },
+        {
+          "question": "Is conversion private?",
+          "answer": "Yes—Canvas only, no uploads."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ico-png-converter",
+    "title": "ICO ↔ PNG Converter (Favicon)",
+    "category": "Image Converters",
+    "description": "Extract PNG frames from ICO favicons or build multi-size ICO favicons from PNG—client-side with preview.",
+    "inputs": [],
+    "formulaType": "icoPngConverter",
+    "seoTitle": "Free Favicon ICO Generator — PNG ↔ ICO Online",
+    "seoDescription": "Build multi-size favicon ICO packs from a PNG (16–256px) or extract the largest frame from an ICO as PNG. Preview included—entirely client-side, no upload required.",
+    "seoKeywords": [
+      "favicon generator",
+      "png to ico converter",
+      "ico to png converter",
+      "favicon ico maker",
+      "multi size ico"
+    ],
+    "seoContent": {
+      "intro": "Build favicon ICO packs from a PNG (16–256px sizes) or extract the largest frame from an existing ICO—all locally.",
+      "howToUse": [
+        "Choose ICO → PNG or PNG → ICO.",
+        "Drop your icon or logo.",
+        "For PNG → ICO, select favicon sizes to include.",
+        "Preview the result, then download the ICO or PNG.",
+        "Use Clear before starting a new icon."
+      ],
+      "faqs": [
+        {
+          "question": "Which sizes should I include?",
+          "answer": "16, 32, and 48 cover classic favicons. Add 64–256 for sharper desktop/shortcut icons."
+        },
+        {
+          "question": "How is ICO encoded?",
+          "answer": "Modern PNG-compressed ICO frames are packed into a single .ico container."
+        },
+        {
+          "question": "Can I extract every frame?",
+          "answer": "This tool exports the largest frame as PNG for quick reuse."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "tiff-jpg-converter",
+    "title": "TIFF ↔ JPG Converter",
+    "category": "Image Converters",
+    "description": "Convert TIFF scans to JPG and JPG photos to TIFF locally with preview, quality, and resize controls.",
+    "inputs": [],
+    "formulaType": "tiffJpgConverter",
+    "seoTitle": "Free TIFF to JPG Converter (JPG to TIFF Online)",
+    "seoDescription": "Convert TIFF scans to JPG for sharing, or archive JPGs as TIFF. UTIF decodes TIFF locally; Canvas handles encode/preview with quality and resize—zero server uploads.",
+    "seoKeywords": [
+      "tiff to jpg converter",
+      "jpg to tiff converter",
+      "tif converter online",
+      "tiff jpeg browser",
+      "scan tiff to jpg"
+    ],
+    "seoContent": {
+      "intro": "Open TIFF scans as JPG for sharing, or archive JPGs as TIFF—decoded and encoded on your device with live preview.",
+      "howToUse": [
+        "Select TIFF → JPG or JPG → TIFF.",
+        "Drop a .tif/.tiff or .jpg file.",
+        "Tune resize and JPG quality when relevant.",
+        "Check the preview, then download.",
+        "Clear before the next conversion."
+      ],
+      "faqs": [
+        {
+          "question": "Why a helper for TIFF?",
+          "answer": "Browsers rarely decode TIFF in <img>. UTIF runs locally to rasterize TIFF, then Canvas finishes the job—still zero uploads."
+        },
+        {
+          "question": "Multi-page TIFF?",
+          "answer": "The first page/frame is converted."
+        },
+        {
+          "question": "Lossless TIFF?",
+          "answer": "Exported TIFF stores RGBA from Canvas via UTIF.encodeImage."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pdf-text-converter",
+    "title": "PDF ↔ Text Converter",
+    "category": "Document Converters",
+    "description": "Extract plain text from PDFs or build multi-page PDFs from text—entirely in your browser with progress for large documents.",
+    "inputs": [],
+    "formulaType": "pdfTextConverter",
+    "seoTitle": "Free PDF to Text Extractor (Text to PDF Online)",
+    "seoDescription": "Extract selectable plain text from PDFs or build multi-page PDFs from notes. Page-by-page progress via PDF.js and jsPDF—private browser processing, no file upload.",
+    "seoKeywords": [
+      "pdf to text converter",
+      "text to pdf converter",
+      "pdf text extractor",
+      "plain text from pdf",
+      "jspdf text pdf"
+    ],
+    "seoContent": {
+      "intro": "Pull selectable text out of PDFs or turn notes into a clean multi-page PDF. Large files show a live progress bar while pages render client-side—nothing is uploaded.",
+      "howToUse": [
+        "Choose PDF → Text or Text → PDF.",
+        "Drop a PDF or paste/drop plain text.",
+        "Click Convert and watch the progress bar for multi-page jobs.",
+        "Preview extracted text when available.",
+        "Download the .txt or .pdf result."
+      ],
+      "faqs": [
+        {
+          "question": "Do scanned PDFs work?",
+          "answer": "Image-only scans have no text layer. You’ll see a clear message when nothing is extractable—OCR is not included."
+        },
+        {
+          "question": "Is my PDF uploaded?",
+          "answer": "No. PDF.js extracts text and jsPDF builds PDFs locally in the browser."
+        },
+        {
+          "question": "Why a progress bar?",
+          "answer": "Multi-page documents are processed page-by-page so the UI stays responsive on large files."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "images-pdf-converter",
+    "title": "Images ↔ PDF Converter",
+    "category": "Document Converters",
+    "description": "Combine images into a PDF or extract every PDF page as PNG/JPG images in a ZIP—with live progress.",
+    "inputs": [],
+    "formulaType": "imagesPdfConverter",
+    "seoTitle": "Free Images to PDF & PDF to Images Converter",
+    "seoDescription": "Combine images into a multi-page PDF with pdf-lib, or render every PDF page to PNG/JPG and download a ZIP. Live progress for large documents—nothing leaves your browser.",
+    "seoKeywords": [
+      "images to pdf converter",
+      "pdf to images converter",
+      "pdf to png zip",
+      "jpg to pdf online",
+      "extract pdf pages images"
+    ],
+    "seoContent": {
+      "intro": "Build a PDF from photos or export every PDF page as images. Rendering runs locally with a progress bar so multi-page jobs stay responsive.",
+      "howToUse": [
+        "Select Images → PDF or PDF → Images.",
+        "Drop one or more images, or a single PDF.",
+        "For PDF → Images, pick PNG/JPEG and render scale.",
+        "Convert and track progress page by page.",
+        "Download the PDF or ZIP of images."
+      ],
+      "faqs": [
+        {
+          "question": "Which image types can become a PDF?",
+          "answer": "PNG and JPEG embed natively via pdf-lib. Other rasters are converted through Canvas first."
+        },
+        {
+          "question": "How are pages exported?",
+          "answer": "Each page is rendered with PDF.js to a canvas, encoded, and packed into a ZIP."
+        },
+        {
+          "question": "Will this upload my files?",
+          "answer": "Never—conversion stays in the browser."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "html-markdown-pdf-converter",
+    "title": "HTML / Markdown to PDF",
+    "category": "Document Converters",
+    "description": "Turn HTML or Markdown into multi-page PDFs in your browser using marked, html2canvas, and jsPDF.",
+    "inputs": [],
+    "formulaType": "htmlMarkdownPdfConverter",
+    "seoTitle": "Free HTML to PDF & Markdown to PDF Converter",
+    "seoDescription": "Turn HTML or Markdown into paginated PDFs in your browser using marked, html2canvas, and jsPDF. Progress feedback for long docs—great for notes and drafts, no upload.",
+    "seoKeywords": [
+      "html to pdf converter",
+      "markdown to pdf converter",
+      "md to pdf online",
+      "html pdf browser",
+      "marked jspdf converter"
+    ],
+    "seoContent": {
+      "intro": "Paste HTML or Markdown (or drop a file) and export a paginated PDF. Content is rasterized and sliced across pages with progress updates.",
+      "howToUse": [
+        "Choose HTML → PDF or Markdown → PDF.",
+        "Paste content or drop an .html/.md file.",
+        "Click Convert and wait for the progress bar.",
+        "Download the generated PDF.",
+        "Clear before starting another document."
+      ],
+      "faqs": [
+        {
+          "question": "Is this print-quality vector PDF?",
+          "answer": "Pages are high-resolution raster slices via html2canvas + jsPDF—ideal for sharing, not editable text PDFs."
+        },
+        {
+          "question": "Does Markdown support GFM?",
+          "answer": "Yes—tables, fenced code, and common GFM features via marked."
+        },
+        {
+          "question": "External images?",
+          "answer": "Same-origin or CORS-enabled images render best; blocked remote assets may be missing."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pdf-merge-split",
+    "title": "PDF Merger & Splitter",
+    "category": "Document Converters",
+    "description": "Merge multiple PDFs into one or split a PDF into pages/ranges with progress bars and ZIP download for splits.",
+    "inputs": [],
+    "formulaType": "pdfMergeSplit",
+    "seoTitle": "Free PDF Merger & Splitter Online (Browser)",
+    "seoDescription": "Merge multiple PDFs in order or split by every page or custom ranges (e.g. 1-3, 5). pdf-lib runs locally with live progress; splits download as a ZIP—no cloud upload.",
+    "seoKeywords": [
+      "pdf merger online",
+      "pdf splitter online",
+      "merge pdf browser",
+      "split pdf by pages",
+      "pdf page range split"
+    ],
+    "seoContent": {
+      "intro": "Combine PDFs in order or split a document into every page or custom ranges. Large jobs report progress while pdf-lib copies pages locally.",
+      "howToUse": [
+        "Choose Merge PDFs or Split PDF.",
+        "Drop two or more PDFs to merge, or one PDF to split.",
+        "For splits, pick every page or enter ranges like 1-3, 5.",
+        "Convert and follow the progress bar.",
+        "Download merged.pdf or a ZIP of split files."
+      ],
+      "faqs": [
+        {
+          "question": "Does merge keep order?",
+          "answer": "Yes—files are appended in the order shown in the dropzone list."
+        },
+        {
+          "question": "What do ranges look like?",
+          "answer": "Use 1-3, 5, 8-10 (1-based, inclusive). Each range becomes its own PDF in the ZIP."
+        },
+        {
+          "question": "Password-protected PDFs?",
+          "answer": "Encrypted PDFs may not open. Remove protection first if conversion fails."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "mp4-mp3-converter",
+    "title": "MP4 ↔ MP3 Converter",
+    "category": "Audio & Video Converters",
+    "description": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4 container—locally with FFmpeg.wasm, WASM load UI, and live progress.",
+    "inputs": [],
+    "formulaType": "mp4Mp3Converter",
+    "seoTitle": "Free MP4 to MP3 Converter (MP3 to MP4 Online)",
+    "seoDescription": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4/AAC container with FFmpeg.wasm. Custom WebAssembly load UI plus live conversion progress—no upload.",
+    "seoKeywords": [
+      "mp4 to mp3 converter",
+      "mp3 to mp4 converter",
+      "extract audio from mp4",
+      "ffmpeg wasm mp3",
+      "browser mp4 mp3"
+    ],
+    "seoContent": {
+      "intro": "Pull audio out of MP4 files or package MP3 into MP4 entirely in your browser. The FFmpeg WebAssembly core shows a dedicated loading state, then a live percentage bar while it processes.",
+      "howToUse": [
+        "Wait for the FFmpeg.wasm engine to finish loading.",
+        "Choose MP4 → MP3 or MP3 → MP4.",
+        "Drop your media file into the dropzone.",
+        "Click Convert and watch the live progress bar.",
+        "Preview and download the result."
+      ],
+      "faqs": [
+        {
+          "question": "Is my video uploaded?",
+          "answer": "No. FFmpeg.wasm runs in your browser. Large files need enough device memory."
+        },
+        {
+          "question": "What is MP3 → MP4 output?",
+          "answer": "An audio-only MP4 (AAC) container—valid MP4 without a video track."
+        },
+        {
+          "question": "Why load WebAssembly first?",
+          "answer": "The FFmpeg core and .wasm binary download once, then conversions run offline on-page."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "wav-mp3-converter",
+    "title": "WAV ↔ MP3 Converter",
+    "category": "Audio & Video Converters",
+    "description": "Convert WAV to MP3 and MP3 to WAV in the browser with FFmpeg.wasm, initialization UI, and live progress.",
+    "inputs": [],
+    "formulaType": "wavMp3Converter",
+    "seoTitle": "Free WAV to MP3 Converter (MP3 to WAV Online)",
+    "seoDescription": "Compress WAV to 192 kbps MP3 or expand MP3 to 16-bit PCM WAV in your browser. FFmpeg.wasm shows initialization progress and a live encode percentage—fully private.",
+    "seoKeywords": [
+      "wav to mp3 converter",
+      "mp3 to wav converter",
+      "wav mp3 online",
+      "pcm wav export",
+      "ffmpeg wasm audio"
+    ],
+    "seoContent": {
+      "intro": "Compress WAV to MP3 or expand MP3 to PCM WAV without leaving the page. Watch WASM initialize, then track conversion percentage in real time.",
+      "howToUse": [
+        "Allow the WebAssembly core to reach Ready.",
+        "Select WAV → MP3 or MP3 → WAV.",
+        "Drop an audio file and click Convert.",
+        "Follow the live progress bar.",
+        "Preview with the audio player and download."
+      ],
+      "faqs": [
+        {
+          "question": "What WAV format is exported?",
+          "answer": "16-bit PCM WAV (pcm_s16le), widely compatible with editors."
+        },
+        {
+          "question": "MP3 bitrate?",
+          "answer": "192 kbps by default for a solid quality/size balance."
+        },
+        {
+          "question": "Any server involved?",
+          "answer": "No—encoding stays on your device."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "mov-mp4-converter",
+    "title": "MOV ↔ MP4 Converter",
+    "category": "Audio & Video Converters",
+    "description": "Convert QuickTime MOV to MP4 and MP4 to MOV with FFmpeg.wasm, WASM loading UI, and live progress.",
+    "inputs": [],
+    "formulaType": "movMp4Converter",
+    "seoTitle": "Free MOV to MP4 Converter (MP4 to MOV Online)",
+    "seoDescription": "Transcode QuickTime MOV to MP4 and MP4 to MOV locally with FFmpeg.wasm (H.264/AAC). Watch WASM core load, then track live encode progress—no cloud processing.",
+    "seoKeywords": [
+      "mov to mp4 converter",
+      "mp4 to mov converter",
+      "quicktime to mp4",
+      "ffmpeg wasm video",
+      "browser mov mp4"
+    ],
+    "seoContent": {
+      "intro": "Transcode between QuickTime MOV and MP4 locally. The tool shows WASM core download/init, then a live percentage bar during encoding.",
+      "howToUse": [
+        "Wait until FFmpeg.wasm reports ready.",
+        "Choose MOV → MP4 or MP4 → MOV.",
+        "Drop your video file.",
+        "Convert and monitor the progress bar.",
+        "Preview in the video player and download."
+      ],
+      "faqs": [
+        {
+          "question": "Which codecs are used?",
+          "answer": "H.264 video with AAC audio when re-encoding, optimized with an ultrafast preset for browser speed."
+        },
+        {
+          "question": "Why is conversion slow?",
+          "answer": "Video encode in WASM is CPU-heavy. Shorter clips finish faster; progress still updates live."
+        },
+        {
+          "question": "Private?",
+          "answer": "Yes—files never leave your browser."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "webm-mp4-converter",
+    "title": "WebM ↔ MP4 Converter",
+    "category": "Audio & Video Converters",
+    "description": "Convert WebM to MP4 and MP4 to WebM in-browser with FFmpeg.wasm, initialization progress, and live encode percentage.",
+    "inputs": [],
+    "formulaType": "webmMp4Converter",
+    "seoTitle": "Free WebM to MP4 Converter (MP4 to WebM Online)",
+    "seoDescription": "Convert WebM to MP4 and MP4 to WebM in your browser via FFmpeg.wasm. Dedicated WebAssembly loading state and live percentage bar—files never leave your device.",
+    "seoKeywords": [
+      "webm to mp4 converter",
+      "mp4 to webm converter",
+      "webm mp4 online",
+      "vp9 webm converter",
+      "ffmpeg wasm webm"
+    ],
+    "seoContent": {
+      "intro": "Move between WebM and MP4 without a server. After the WebAssembly core loads, FFmpeg reports live conversion progress as a percentage.",
+      "howToUse": [
+        "Let the WASM engine finish initializing.",
+        "Select WebM → MP4 or MP4 → WebM.",
+        "Drop a video file and convert.",
+        "Watch the live progress bar.",
+        "Preview and download the output."
+      ],
+      "faqs": [
+        {
+          "question": "WebM codecs?",
+          "answer": "MP4 → WebM targets VP9/Opus when available in the WASM build."
+        },
+        {
+          "question": "Can I convert long videos?",
+          "answer": "Yes, but browser memory and CPU limit practical length. Progress remains visible throughout."
+        },
+        {
+          "question": "Uploaded?",
+          "answer": "Never—processing is local."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ogg-flac-mp3-converter",
+    "title": "OGG / FLAC to MP3 Converter",
+    "category": "Audio & Video Converters",
+    "description": "Convert OGG or FLAC audio to MP3 in your browser with FFmpeg.wasm, WASM load UI, and live progress.",
+    "inputs": [],
+    "formulaType": "oggFlacMp3Converter",
+    "seoTitle": "Free OGG to MP3 & FLAC to MP3 Converter Online",
+    "seoDescription": "Convert Ogg Vorbis or lossless FLAC to shareable MP3 with FFmpeg.wasm. See WASM initialization and live encode progress—private audio conversion with no server upload.",
+    "seoKeywords": [
+      "ogg to mp3 converter",
+      "flac to mp3 converter",
+      "lossless to mp3",
+      "vorbis to mp3",
+      "ffmpeg wasm flac"
+    ],
+    "seoContent": {
+      "intro": "Turn OGG or lossless FLAC into shareable MP3 without uploading. The tool shows WASM core loading, then a live percentage while FFmpeg encodes.",
+      "howToUse": [
+        "Wait for FFmpeg.wasm to become ready.",
+        "Choose OGG → MP3 or FLAC → MP3.",
+        "Drop your audio file.",
+        "Convert and track the progress bar.",
+        "Preview with the audio player and download MP3."
+      ],
+      "faqs": [
+        {
+          "question": "Is FLAC conversion lossless to lossless?",
+          "answer": "No—MP3 is lossy. FLAC → MP3 compresses for compatibility; keep the FLAC master if you need lossless."
+        },
+        {
+          "question": "Bitrate?",
+          "answer": "192 kbps MP3 by default."
+        },
+        {
+          "question": "Private?",
+          "answer": "Yes. Encoding runs in WebAssembly on your device."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-profit-calculator",
+    "title": "Crypto Profit Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Calculate net crypto profit or loss and ROI after buy and sell trading fees. Model break-even sell price before you exit a position.",
+    "inputs": [
+      {
+        "id": "buyPrice",
+        "label": "Buy Price ($)",
+        "defaultValue": 42000,
+        "min": 0,
+        "max": 500000,
+        "step": 1
+      },
+      {
+        "id": "sellPrice",
+        "label": "Sell Price ($)",
+        "defaultValue": 48000,
+        "min": 0,
+        "max": 500000,
+        "step": 1
+      },
+      {
+        "id": "amount",
+        "label": "Amount (coins/tokens)",
+        "defaultValue": 0.5,
+        "min": 0,
+        "max": 10000,
+        "step": 0.01
+      },
+      {
+        "id": "buyFeePercent",
+        "label": "Buy Fee (%)",
+        "defaultValue": 0.1,
+        "min": 0,
+        "max": 5,
+        "step": 0.01
+      },
+      {
+        "id": "sellFeePercent",
+        "label": "Sell Fee (%)",
+        "defaultValue": 0.1,
+        "min": 0,
+        "max": 5,
+        "step": 0.01
+      }
+    ],
+    "formulaType": "cryptoProfit",
+    "seoTitle": "Crypto Profit Calculator — Net P&L & ROI After Fees",
+    "seoDescription": "Free crypto profit calculator with trading fees. Instantly see net profit/loss, ROI, total cost basis, and break-even sell price.",
+    "seoKeywords": [
+      "crypto profit calculator",
+      "bitcoin profit calculator",
+      "crypto ROI calculator",
+      "trading fee calculator",
+      "crypto P&L"
+    ],
+    "seoContent": {
+      "intro": "The Crypto Profit Calculator estimates net profit or loss on a trade after buy and sell fees. Enter entry price, exit price, position size, and fee rates to see ROI, cost basis, and the break-even sell price.",
+      "howToUse": [
+        "Enter the price you paid (or plan to pay) per coin or token.",
+        "Enter your expected or actual sell price.",
+        "Set the amount of coins/tokens in the position.",
+        "Add exchange or DEX fee percentages for buy and sell.",
+        "Review net P&L, ROI after fees, and break-even price instantly."
+      ],
+      "faqs": [
+        {
+          "question": "Do fees really change ROI that much?",
+          "answer": "On tight spreads or frequent trades, round-trip fees can erase gains. Always model both entry and exit fees before sizing a position."
+        },
+        {
+          "question": "What is break-even sell price?",
+          "answer": "It is the sell price needed so net proceeds equal your total cost basis (purchase plus buy fees), after accounting for the sell fee."
+        },
+        {
+          "question": "Does this include taxes?",
+          "answer": "No. Tax treatment varies by jurisdiction. Use this for trade math only, then consult a tax professional for reporting."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-dca-calculator",
+    "title": "Crypto DCA Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Project dollar-cost averaging returns for Bitcoin, Ethereum, or any token. Estimate tokens accumulated, average cost, and ROI under a growth assumption.",
+    "inputs": [
+      {
+        "id": "monthlyInvestment",
+        "label": "Monthly Investment ($)",
+        "defaultValue": 250,
+        "min": 0,
+        "max": 50000,
+        "step": 25
+      },
+      {
+        "id": "months",
+        "label": "Months of DCA",
+        "defaultValue": 24,
+        "min": 1,
+        "max": 120,
+        "step": 1
+      },
+      {
+        "id": "startingPrice",
+        "label": "Starting Token Price ($)",
+        "defaultValue": 40000,
+        "min": 0.000001,
+        "max": 500000,
+        "step": 1
+      },
+      {
+        "id": "annualGrowth",
+        "label": "Assumed Annual Growth (%)",
+        "defaultValue": 20,
+        "min": -50,
+        "max": 200,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoDca",
+    "seoTitle": "Crypto DCA Calculator — Dollar-Cost Averaging Returns",
+    "seoDescription": "Free crypto DCA calculator. Project tokens bought, average cost basis, portfolio value, and ROI for monthly Bitcoin or altcoin purchases.",
+    "seoKeywords": [
+      "crypto DCA calculator",
+      "bitcoin DCA calculator",
+      "dollar cost averaging crypto",
+      "DCA returns calculator"
+    ],
+    "seoContent": {
+      "intro": "The Crypto DCA Calculator models dollar-cost averaging: investing a fixed amount on a schedule. See how many tokens you accumulate, your average cost, and projected value under a constant growth assumption.",
+      "howToUse": [
+        "Set how much you invest each month.",
+        "Choose the number of months you will DCA.",
+        "Enter the starting token price at the first purchase.",
+        "Set an assumed annual growth rate (positive or negative).",
+        "Compare total invested vs projected portfolio value and ROI."
+      ],
+      "faqs": [
+        {
+          "question": "Is historical DCA the same as this projection?",
+          "answer": "This tool uses a smooth growth assumption. Historical DCA needs real price series; use this for planning scenarios, not backtests."
+        },
+        {
+          "question": "Why average cost matters?",
+          "answer": "DCA spreads purchases across prices so your average entry is less dependent on a single timing decision."
+        },
+        {
+          "question": "Can growth be negative?",
+          "answer": "Yes. Model bearish scenarios with negative annual growth to stress-test your plan."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-market-cap-calculator",
+    "title": "Crypto Market Cap Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Calculate cryptocurrency market capitalization from circulating supply and price. Optionally infer total market size from a dominance share.",
+    "inputs": [
+      {
+        "id": "circulatingSupply",
+        "label": "Circulating Supply",
+        "defaultValue": 19000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000
+      },
+      {
+        "id": "tokenPrice",
+        "label": "Token Price ($)",
+        "defaultValue": 65000,
+        "min": 0,
+        "max": 500000,
+        "step": 1
+      },
+      {
+        "id": "btcDominanceShare",
+        "label": "Asset Dominance of Total Cap (%)",
+        "defaultValue": 0,
+        "min": 0,
+        "max": 100,
+        "step": 0.1
+      }
+    ],
+    "formulaType": "cryptoMarketCap",
+    "seoTitle": "Crypto Market Cap Calculator",
+    "seoDescription": "Free crypto market cap calculator. Multiply circulating supply by price to get valuation, with optional dominance-based total market inference.",
+    "seoKeywords": [
+      "crypto market cap calculator",
+      "bitcoin market cap",
+      "token market capitalization",
+      "circulating supply calculator"
+    ],
+    "seoContent": {
+      "intro": "Market capitalization equals circulating supply times price. Use this calculator to size a coin’s current valuation and optionally back into total crypto market size from a dominance percentage.",
+      "howToUse": [
+        "Enter the circulating supply (not max supply).",
+        "Enter the current price per token.",
+        "Optionally set the asset’s share of total crypto market cap.",
+        "Read market cap in full dollars and compact notation."
+      ],
+      "faqs": [
+        {
+          "question": "Circulating vs max supply?",
+          "answer": "Circulating supply is coins available now. Max supply is the eventual hard cap—use the FDV calculator for fully diluted valuation."
+        },
+        {
+          "question": "Why can market cap mislead?",
+          "answer": "Thin liquidity, locked tokens, and wash volume can make cap look larger than what the market can actually absorb."
+        },
+        {
+          "question": "What does dominance share do?",
+          "answer": "If you know an asset is X% of total crypto market cap, the tool estimates the implied total market size."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-fdv-calculator",
+    "title": "Crypto FDV Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Calculate fully diluted valuation (FDV) from max supply and price. Compare FDV to circulating market cap and unlocked supply percentage.",
+    "inputs": [
+      {
+        "id": "maxSupply",
+        "label": "Max Supply",
+        "defaultValue": 21000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000
+      },
+      {
+        "id": "circulatingSupply",
+        "label": "Circulating Supply",
+        "defaultValue": 19000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000
+      },
+      {
+        "id": "tokenPrice",
+        "label": "Token Price ($)",
+        "defaultValue": 65000,
+        "min": 0,
+        "max": 500000,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoFdv",
+    "seoTitle": "Crypto FDV Calculator — Fully Diluted Valuation",
+    "seoDescription": "Free FDV calculator for crypto tokens. Compare fully diluted valuation to circulating market cap and see unlock dilution risk.",
+    "seoKeywords": [
+      "FDV calculator",
+      "fully diluted valuation crypto",
+      "token FDV",
+      "crypto dilution calculator"
+    ],
+    "seoContent": {
+      "intro": "Fully diluted valuation (FDV) multiplies max supply by current price. Comparing FDV to circulating market cap highlights how much valuation assumes future unlocks and emissions.",
+      "howToUse": [
+        "Enter the token’s maximum or total planned supply.",
+        "Enter today’s circulating supply.",
+        "Enter the current market price.",
+        "Compare FDV, circulating cap, dilution gap, and unlocked percentage."
+      ],
+      "faqs": [
+        {
+          "question": "Is a high FDV always bad?",
+          "answer": "Not always—but a large FDV/circ gap means future supply may pressure price unless demand grows with unlocks."
+        },
+        {
+          "question": "FDV vs market cap?",
+          "answer": "Market cap uses circulating supply; FDV uses max (or fully diluted) supply at today’s price."
+        },
+        {
+          "question": "What if there is no max supply?",
+          "answer": "Use a long-term projected supply or skip FDV and focus on inflation/emission schedules in the Tokenomics Calculator."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-token-price-calculator",
+    "title": "Crypto Token Price Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Reverse-engineer implied token price from a target market cap or FDV and a supply base. Useful for launch pricing and scenario planning.",
+    "inputs": [
+      {
+        "id": "targetValuation",
+        "label": "Target Market Cap / FDV ($)",
+        "defaultValue": 100000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000000
+      },
+      {
+        "id": "supplyBase",
+        "label": "Supply (circulating or max)",
+        "defaultValue": 1000000000,
+        "min": 1,
+        "max": 1000000000000,
+        "step": 1000000
+      },
+      {
+        "id": "valuationMode",
+        "label": "Mode (0 = Market Cap, 1 = FDV)",
+        "defaultValue": 0,
+        "min": 0,
+        "max": 1,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoTokenPrice",
+    "seoTitle": "Crypto Token Price Calculator — From Target Market Cap",
+    "seoDescription": "Free token price calculator. Back-solve price from a target market cap or FDV and supply for launches and valuation scenarios.",
+    "seoKeywords": [
+      "token price calculator",
+      "crypto valuation calculator",
+      "implied token price",
+      "market cap to price"
+    ],
+    "seoContent": {
+      "intro": "The Token Price Calculator reverse-engineers price from a target valuation and supply. Use circulating supply for market-cap scenarios or max supply for FDV targets.",
+      "howToUse": [
+        "Enter your target market cap or FDV in dollars.",
+        "Enter the supply base that matches that valuation type.",
+        "Set mode to 0 for market cap or 1 for FDV (label only).",
+        "Read the implied price and 0.5× / 2× sensitivity checks."
+      ],
+      "faqs": [
+        {
+          "question": "Which supply should I use?",
+          "answer": "Match the story: circulating supply with a market-cap target, or max supply with an FDV target."
+        },
+        {
+          "question": "Can this set a launch price?",
+          "answer": "It gives a math-implied price for a desired valuation. Real launch price also depends on liquidity depth and demand."
+        },
+        {
+          "question": "Why show 0.5× and 2×?",
+          "answer": "Quick sensitivity: if valuation doubles or halves at the same supply, price scales linearly."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-tokenomics-calculator",
+    "title": "Crypto Tokenomics Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Project token circulating supply over time with TGE unlocks, cliff vesting, linear vesting, and monthly emissions.",
+    "inputs": [
+      {
+        "id": "totalSupply",
+        "label": "Total / Max Supply",
+        "defaultValue": 1000000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000000
+      },
+      {
+        "id": "tgeCirculating",
+        "label": "Circulating at TGE",
+        "defaultValue": 100000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000000
+      },
+      {
+        "id": "vestedAllocation",
+        "label": "Team/Investor Vesting Allocation",
+        "defaultValue": 300000000,
+        "min": 0,
+        "max": 1000000000000,
+        "step": 1000000
+      },
+      {
+        "id": "cliffMonths",
+        "label": "Cliff (months)",
+        "defaultValue": 6,
+        "min": 0,
+        "max": 48,
+        "step": 1
+      },
+      {
+        "id": "vestingMonths",
+        "label": "Linear Vesting Duration (months)",
+        "defaultValue": 24,
+        "min": 1,
+        "max": 60,
+        "step": 1
+      },
+      {
+        "id": "monthlyEmission",
+        "label": "Monthly Emissions",
+        "defaultValue": 2000000,
+        "min": 0,
+        "max": 100000000,
+        "step": 100000
+      },
+      {
+        "id": "projectionMonths",
+        "label": "Projection Horizon (months)",
+        "defaultValue": 24,
+        "min": 0,
+        "max": 120,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoTokenomics",
+    "seoTitle": "Crypto Tokenomics Calculator — Vesting & Supply Expansion",
+    "seoDescription": "Free tokenomics calculator. Project circulating supply with TGE, cliffs, linear vesting, and emissions over any horizon.",
+    "seoKeywords": [
+      "tokenomics calculator",
+      "crypto vesting calculator",
+      "token unlock calculator",
+      "supply inflation calculator"
+    ],
+    "seoContent": {
+      "intro": "Model how circulating supply expands after launch. Combine TGE float, cliff + linear vesting for team/investors, and ongoing emissions to estimate unlocked supply at any month.",
+      "howToUse": [
+        "Enter total supply and circulating amount at token generation event (TGE).",
+        "Set the allocation that vests (team, investors, advisors).",
+        "Configure cliff months and linear vesting duration.",
+        "Add monthly emissions if the protocol mints or releases rewards.",
+        "Choose a projection horizon and review circulating vs locked supply."
+      ],
+      "faqs": [
+        {
+          "question": "What is a cliff?",
+          "answer": "A cliff is a waiting period before any of the vested allocation unlocks. After the cliff, linear vesting typically begins."
+        },
+        {
+          "question": "Are emissions the same as vesting?",
+          "answer": "No. Vesting unlocks pre-allocated tokens; emissions usually mint or release new tokens for staking, liquidity mining, or rewards."
+        },
+        {
+          "question": "Why track supply expansion?",
+          "answer": "Rising float can dilute price unless demand grows. Unlock calendars are core to crypto risk analysis."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-liquidity-calculator",
+    "title": "Crypto Liquidity Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Compute constant-product (x·y=k) pool metrics: spot price, LP share for a deposit, swap output, and price impact.",
+    "inputs": [
+      {
+        "id": "reserveToken",
+        "label": "Pool Reserve (Token)",
+        "defaultValue": 100000,
+        "min": 0.0001,
+        "max": 1000000000,
+        "step": 100
+      },
+      {
+        "id": "reserveQuote",
+        "label": "Pool Reserve (Quote $)",
+        "defaultValue": 200000,
+        "min": 0.0001,
+        "max": 1000000000,
+        "step": 100
+      },
+      {
+        "id": "lpDepositToken",
+        "label": "Your LP Deposit (Token)",
+        "defaultValue": 1000,
+        "min": 0,
+        "max": 10000000,
+        "step": 10
+      },
+      {
+        "id": "swapTokenIn",
+        "label": "Swap Amount In (Token)",
+        "defaultValue": 500,
+        "min": 0,
+        "max": 10000000,
+        "step": 10
+      },
+      {
+        "id": "poolFeeBps",
+        "label": "Pool Fee (basis points)",
+        "defaultValue": 30,
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoLiquidity",
+    "seoTitle": "Crypto Liquidity Calculator — DEX Pool Share & x·y=k",
+    "seoDescription": "Free DEX liquidity calculator for constant-product pools. Estimate spot price, LP share, swap output, and price impact.",
+    "seoKeywords": [
+      "crypto liquidity calculator",
+      "DEX pool calculator",
+      "xy=k calculator",
+      "AMM price impact",
+      "LP share calculator"
+    ],
+    "seoContent": {
+      "intro": "Constant-product AMMs keep x·y=k. This calculator shows spot price from reserves, your LP share for a proportional deposit, and estimated swap output with fee and price impact.",
+      "howToUse": [
+        "Enter token and quote reserves currently in the pool.",
+        "Set how many tokens you would deposit as LP (quote is matched at spot).",
+        "Enter a swap size to estimate output and price impact.",
+        "Set pool fee in basis points (30 = 0.30%)."
+      ],
+      "faqs": [
+        {
+          "question": "What is price impact?",
+          "answer": "The percentage difference between spot price and your execution price caused by moving along the bonding curve."
+        },
+        {
+          "question": "Is LP deposit always 50/50?",
+          "answer": "This model matches quote to your token deposit at the current spot ratio, which is the standard constant-product LP deposit pattern."
+        },
+        {
+          "question": "Does this cover concentrated liquidity?",
+          "answer": "No—this is classic x·y=k. Uniswap v3-style ranges need a different model."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-staking-calculator",
+    "title": "Crypto Staking Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Estimate compounding staking rewards with daily, weekly, monthly, or yearly compounding. Compare ending balances across intervals.",
+    "inputs": [
+      {
+        "id": "principal",
+        "label": "Staked Amount ($)",
+        "defaultValue": 10000,
+        "min": 0,
+        "max": 10000000,
+        "step": 100
+      },
+      {
+        "id": "aprPercent",
+        "label": "Staking APR (%)",
+        "defaultValue": 8,
+        "min": 0,
+        "max": 200,
+        "step": 0.1
+      },
+      {
+        "id": "years",
+        "label": "Staking Duration (years)",
+        "defaultValue": 3,
+        "min": 0,
+        "max": 30,
+        "step": 0.5
+      },
+      {
+        "id": "compoundFrequency",
+        "label": "Compound Frequency (1=Y, 2=M, 3=W, 4=D)",
+        "defaultValue": 4,
+        "min": 1,
+        "max": 4,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoStaking",
+    "seoTitle": "Crypto Staking Calculator — Compound Rewards",
+    "seoDescription": "Free crypto staking calculator with daily, weekly, monthly, and yearly compounding. Estimate rewards and ending balance from APR.",
+    "seoKeywords": [
+      "crypto staking calculator",
+      "staking rewards calculator",
+      "compound staking calculator",
+      "PoS yield calculator"
+    ],
+    "seoContent": {
+      "intro": "Estimate passive staking income with compound interest. Choose APR, duration, and compounding frequency, then compare daily vs weekly vs monthly vs yearly outcomes.",
+      "howToUse": [
+        "Enter the USD (or token) value you plan to stake.",
+        "Set the advertised staking APR.",
+        "Choose how many years you will keep staking.",
+        "Set compound frequency to 1, 12, 52, or 365.",
+        "Compare ending balances across all four compounding schedules."
+      ],
+      "faqs": [
+        {
+          "question": "Is APR the same as APY?",
+          "answer": "APR is the nominal rate; APY includes compounding. More frequent compounding raises effective APY at the same APR."
+        },
+        {
+          "question": "Are staking rewards guaranteed?",
+          "answer": "No. Rates change, validators can be slashed, and token price risk can dominate yield."
+        },
+        {
+          "question": "What if my protocol compounds irregularly?",
+          "answer": "Pick the closest schedule (daily/weekly/monthly/yearly) or average to a conservative frequency."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-roi-calculator",
+    "title": "Crypto ROI Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Measure percentage return and annualized CAGR for any crypto investment over years and days held.",
+    "inputs": [
+      {
+        "id": "initialValue",
+        "label": "Initial Value ($)",
+        "defaultValue": 5000,
+        "min": 0,
+        "max": 10000000,
+        "step": 100
+      },
+      {
+        "id": "finalValue",
+        "label": "Final Value ($)",
+        "defaultValue": 12500,
+        "min": 0,
+        "max": 10000000,
+        "step": 100
+      },
+      {
+        "id": "holdingYears",
+        "label": "Holding Period (years)",
+        "defaultValue": 2,
+        "min": 0,
+        "max": 30,
+        "step": 1
+      },
+      {
+        "id": "holdingDays",
+        "label": "Extra Days Held",
+        "defaultValue": 0,
+        "min": 0,
+        "max": 364,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoRoi",
+    "seoTitle": "Crypto ROI Calculator — Return & CAGR",
+    "seoDescription": "Free crypto ROI calculator. Compute total return and annualized CAGR for any holding period in years and days.",
+    "seoKeywords": [
+      "crypto ROI calculator",
+      "crypto CAGR calculator",
+      "bitcoin return calculator",
+      "annualized crypto return"
+    ],
+    "seoContent": {
+      "intro": "Measure how a position performed: total ROI from start to finish, plus annualized CAGR so you can compare trades held for different lengths of time.",
+      "howToUse": [
+        "Enter the value when you opened the position.",
+        "Enter the value now (or at exit).",
+        "Set whole years held, plus extra days if needed.",
+        "Compare total ROI with annualized CAGR."
+      ],
+      "faqs": [
+        {
+          "question": "Why use CAGR?",
+          "answer": "A 50% gain in one month is very different from 50% over three years. CAGR normalizes performance to an annual rate."
+        },
+        {
+          "question": "Does this include fees?",
+          "answer": "Use net values after fees (and after taxes if you want an after-tax view). Or run the Crypto Profit Calculator for fee-explicit P&L."
+        },
+        {
+          "question": "What if final value is zero?",
+          "answer": "ROI is −100%. CAGR is undefined for a zero ending value over a positive holding period."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "crypto-token-launch-cost-calculator",
+    "title": "Crypto Token Launch Cost Calculator",
+    "category": "Crypto & Digital Assets",
+    "description": "Estimate upfront token launch costs across blockchain deploy, smart contracts, liquidity, audits, marketing, and legal contingency.",
+    "inputs": [
+      {
+        "id": "blockchainTier",
+        "label": "Chain Cost Tier (1=L2, 2=Alt L1, 3=ETH)",
+        "defaultValue": 2,
+        "min": 1,
+        "max": 3,
+        "step": 1
+      },
+      {
+        "id": "deployCost",
+        "label": "Deploy / Gas Budget ($)",
+        "defaultValue": 500,
+        "min": 0,
+        "max": 50000,
+        "step": 50
+      },
+      {
+        "id": "contractDevCost",
+        "label": "Smart Contract Development ($)",
+        "defaultValue": 15000,
+        "min": 0,
+        "max": 500000,
+        "step": 1000
+      },
+      {
+        "id": "liquidityBudget",
+        "label": "Initial Liquidity ($)",
+        "defaultValue": 25000,
+        "min": 0,
+        "max": 2000000,
+        "step": 1000
+      },
+      {
+        "id": "auditCost",
+        "label": "Security Audit ($)",
+        "defaultValue": 20000,
+        "min": 0,
+        "max": 500000,
+        "step": 1000
+      },
+      {
+        "id": "marketingBudget",
+        "label": "Marketing / Launch Ops ($)",
+        "defaultValue": 10000,
+        "min": 0,
+        "max": 500000,
+        "step": 1000
+      },
+      {
+        "id": "legalMiscCost",
+        "label": "Legal & Misc ($)",
+        "defaultValue": 5000,
+        "min": 0,
+        "max": 200000,
+        "step": 500
+      },
+      {
+        "id": "contingencyPercent",
+        "label": "Contingency Buffer (%)",
+        "defaultValue": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1
+      }
+    ],
+    "formulaType": "cryptoTokenLaunchCost",
+    "seoTitle": "Crypto Token Launch Cost Calculator",
+    "seoDescription": "Estimate token launch budget: chain deploy, smart contracts, liquidity, audits, marketing, legal, and contingency for L2, alt L1, or Ethereum.",
+    "seoKeywords": [
+      "token launch cost calculator",
+      "crypto launch budget",
+      "smart contract audit cost",
+      "token liquidity budget"
+    ],
+    "seoContent": {
+      "intro": "Plan the upfront cash needed to launch a token: deployment/gas, contract work, seed liquidity, audits, go-to-market, and legal—with a contingency buffer by chain cost tier.",
+      "howToUse": [
+        "Pick a chain cost tier (1 = cheap L2, 2 = mid alt-L1, 3 = Ethereum-scale).",
+        "Adjust deploy/gas if you have a better estimate.",
+        "Enter development, liquidity, audit, marketing, and legal line items.",
+        "Set a contingency percentage for overruns.",
+        "Review the total estimated launch budget."
+      ],
+      "faqs": [
+        {
+          "question": "Are these real quotes?",
+          "answer": "No—they are planning defaults. Audit and development quotes vary widely by scope and firm."
+        },
+        {
+          "question": "Why is liquidity a “cost”?",
+          "answer": "LP capital is usually still your asset, but it is cash you must lock at launch and is part of the financial outlay to go live."
+        },
+        {
+          "question": "Does this include exchange listing fees?",
+          "answer": "Not explicitly—fold CEX listing or market-maker retainers into marketing or misc if needed."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "bc-used-vehicle-private-sale-pst-calculator",
+    "title": "BC Used Vehicle Private Sale PST Calculator",
+    "category": "Automotive, Travel & Transit",
+    "description": "Estimate British Columbia PST on a private-sale used vehicle using the higher of purchase price or Canadian Black Book wholesale value, including 2026 luxury tiers and zero-emission exemption.",
+    "inputs": [
+      {
+        "id": "purchasePrice",
+        "label": "Purchase Price ($ CAD)",
+        "defaultValue": 18500,
+        "min": 0,
+        "max": 500000,
+        "step": 100
+      },
+      {
+        "id": "blackBookValue",
+        "label": "Estimated Black Book Wholesale Value ($ CAD)",
+        "defaultValue": 16200,
+        "min": 0,
+        "max": 500000,
+        "step": 100
+      },
+      {
+        "id": "isZeroEmission",
+        "label": "Zero-Emission Vehicle (EV / ZEV)",
+        "defaultValue": 0,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "inputType": "checkbox"
+      }
+    ],
+    "formulaType": "bcUsedVehiclePst",
+    "seoH1": "BC Used Car Private Sale PST Calculator (Black Book Value)",
+    "seoTitle": "BC Used Car Private Sale PST Calculator (Black Book Value)",
+    "seoDescription": "Calculate BC private-sale used-car PST from the higher of price or Black Book. 2026 luxury tiers and ZEV exemption. Free, instant, no email required.",
+    "seoKeywords": [
+      "BC used car PST calculator",
+      "British Columbia private sale PST",
+      "ICBC used vehicle tax",
+      "Black Book wholesale PST BC",
+      "BC luxury vehicle PST",
+      "zero emission vehicle PST BC",
+      "used car private sale tax British Columbia"
+    ],
+    "seoContent": {
+      "intro": "ICBC collects provincial sales tax on most private-sale used vehicles in British Columbia using the higher of what you paid or Canadian Black Book wholesale value. Enter both figures, tick the box if it is a zero-emission vehicle, and see the 2026 PST owing instantly.",
+      "howToUse": [
+        "Enter the purchase price you agreed with the private seller (CAD).",
+        "Enter the estimated Canadian Black Book wholesale value for the same vehicle.",
+        "Check Zero-Emission Vehicle if the car qualifies as a ZEV (battery EV or eligible hydrogen vehicle).",
+        "Read PST owed — taxable value is the greater of price or Black Book, then the 12% / 15% / 20% luxury tier (or 0% for ZEVs).",
+        "Bring the same numbers to ICBC Transfer/Tax when you transfer the vehicle."
+      ],
+      "faqs": [
+        {
+          "question": "Does ICBC tax the purchase price or Black Book value?",
+          "answer": "For most private used-vehicle sales in B.C., PST is calculated on the greater of the purchase price and the Canadian Black Book wholesale value. A below-market handshake price does not reduce the tax base."
+        },
+        {
+          "question": "What are the BC 2026 used-vehicle PST rates?",
+          "answer": "Zero-emission vehicles are 0% PST. Other used vehicles pay 12% on taxable value under $125,000, 15% from $125,000 to $149,999, and 20% at $150,000 and over."
+        },
+        {
+          "question": "Do I still pay PST if I buy a used EV privately in BC?",
+          "answer": "Qualifying zero-emission vehicles are charged 0% PST on this private-sale used-vehicle tax. Confirm current ZEV eligibility with ICBC before you transfer."
+        },
+        {
+          "question": "Where do I get Black Book wholesale value?",
+          "answer": "Use Canadian Black Book (or the value ICBC quotes at transfer). This tool does not look up live Black Book data—enter the wholesale estimate you will use with ICBC."
+        },
+        {
+          "question": "Is this official ICBC tax advice?",
+          "answer": "No. It is a free planning calculator based on published B.C. private-sale used-vehicle PST rules. ICBC determines the amount owing at transfer."
+        }
+      ]
+    }
   }
 ]
