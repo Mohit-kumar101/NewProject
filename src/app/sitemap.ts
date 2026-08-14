@@ -4,21 +4,9 @@ import { CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
 import { PSEO_SLUGS, PSEO_TOOLS } from "@/lib/pseo/calculatorsData";
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [
-  {
-    url: SITE_URL,
-    changeFrequency: "weekly",
-    priority: 1,
-  },
-  {
-    url: `${SITE_URL}/tools`,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  },
-  {
-    url: `${SITE_URL}/crypto`,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  },
+  { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
+  { url: `${SITE_URL}/tools`, changeFrequency: "weekly", priority: 0.9 },
+  { url: `${SITE_URL}/crypto`, changeFrequency: "weekly", priority: 0.9 },
   {
     url: `${SITE_URL}/crypto/reports`,
     changeFrequency: "monthly",
@@ -29,26 +17,10 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
     changeFrequency: "monthly",
     priority: 0.85,
   },
-  {
-    url: `${SITE_URL}/about`,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  {
-    url: `${SITE_URL}/contact`,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  {
-    url: `${SITE_URL}/privacy`,
-    changeFrequency: "yearly",
-    priority: 0.5,
-  },
-  {
-    url: `${SITE_URL}/terms`,
-    changeFrequency: "yearly",
-    priority: 0.5,
-  },
+  { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.4 },
+  { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.4 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -74,14 +46,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }));
 
-  return [
-    ...STATIC_PAGES.map((page) => ({ ...page, lastModified: now })),
-    ...Object.keys(CRYPTO_SHORT_SLUGS).map((short) => ({
+  const cryptoPages: MetadataRoute.Sitemap = Object.keys(CRYPTO_SHORT_SLUGS).map(
+    (short) => ({
       url: `${SITE_URL}/crypto/${short}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.85,
-    })),
+    })
+  );
+
+  return [
+    ...STATIC_PAGES.map((page) => ({ ...page, lastModified: now })),
+    ...cryptoPages,
     ...pseoPages,
     ...catalogPages,
   ];

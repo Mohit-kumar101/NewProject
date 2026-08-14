@@ -1,14 +1,34 @@
 import type { Metadata } from "next";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 import type { PseoTool } from "./types";
+import {
+  DEFAULT_OG_IMAGE,
+  META_DESCRIPTION_MAX,
+  META_TITLE_MAX,
+  clampMetaText,
+  clampTitleSegment,
+} from "@/lib/pageMetadata";
+
+export function getPseoMetaTitle(tool: PseoTool): string {
+  return clampTitleSegment(tool.h1 || tool.targetKeyword);
+}
 
 export function buildPseoMetadata(tool: PseoTool): Metadata {
   const url = `${SITE_URL}/tools/${tool.slug}`;
-  const absoluteTitle = `${tool.seoTitle} | ${SITE_NAME}`;
+  const pageTitle = getPseoMetaTitle(tool);
+  const absoluteTitle = clampMetaText(
+    `${pageTitle} | ${SITE_NAME}`,
+    META_TITLE_MAX
+  );
+  const description = clampMetaText(tool.metaDescription, META_DESCRIPTION_MAX);
+  const image = {
+    ...DEFAULT_OG_IMAGE,
+    alt: `${tool.h1} on ${SITE_NAME}`,
+  };
 
   return {
-    title: tool.seoTitle,
-    description: tool.metaDescription,
+    title: pageTitle,
+    description,
     keywords: [
       tool.targetKeyword,
       "free online calculator",
@@ -21,25 +41,18 @@ export function buildPseoMetadata(tool: PseoTool): Metadata {
     alternates: { canonical: url },
     openGraph: {
       title: absoluteTitle,
-      description: tool.metaDescription,
+      description,
       url,
       type: "website",
       siteName: SITE_NAME,
       locale: "en_US",
-      images: [
-        {
-          url: "/myicon.png",
-          width: 1144,
-          height: 928,
-          alt: `${tool.h1} on ${SITE_NAME}`,
-        },
-      ],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: absoluteTitle,
-      description: tool.metaDescription,
-      images: ["/myicon.png"],
+      description,
+      images: [image.url],
     },
     robots: { index: true, follow: true },
   };

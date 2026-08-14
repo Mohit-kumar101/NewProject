@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { InfoPageShell, InfoSection } from "@/components/InfoPageShell";
 import { SITE_NAME, SITE_URL, SITE_SUPPORT_EMAIL } from "@/lib/calculators";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Terms of Service",
   description: `Terms of Service for ${SITE_NAME} — acceptable use, calculation disclaimers, and platform rules.`,
-  alternates: { canonical: `${SITE_URL}/terms` },
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

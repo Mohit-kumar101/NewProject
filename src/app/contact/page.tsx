@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { InfoPageShell, InfoSection } from "@/components/InfoPageShell";
-import { SITE_NAME, SITE_URL, SITE_SUPPORT_EMAIL } from "@/lib/calculators";
+import { SITE_NAME, SITE_SUPPORT_EMAIL } from "@/lib/calculators";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact Us",
   description: `Contact ${SITE_NAME} — send a message or email support for questions, feedback, and privacy requests.`,
-  alternates: { canonical: `${SITE_URL}/contact` },
-};
+  path: "/contact",
+  keywords: ["contact CalculioHub", "support", SITE_SUPPORT_EMAIL, SITE_NAME],
+});
 
 export default function ContactPage() {
   return (

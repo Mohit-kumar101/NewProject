@@ -1,5 +1,31 @@
 import { HomeExplorer } from "@/components/HomeExplorer";
+import type { Metadata } from "next";
 import { calculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { buildPageMetadata } from "@/lib/pageMetadata";
+
+const homeMeta = buildPageMetadata({
+  title: "Free Calculators & Converters",
+  description:
+    "Free PDF, HEIC, video, and data converters plus finance and crypto calculators. No subscription, no watermark — files stay in your browser.",
+  path: "/",
+  keywords: [
+    "free file converter",
+    "free calculator",
+    "PDF converter",
+    "HEIC to JPG",
+    "crypto calculator",
+    SITE_NAME,
+  ],
+  ogTitle: "CalculioHub — Free Calculators & Converters",
+});
+
+export const metadata: Metadata = {
+  ...homeMeta,
+  // Brand-first absolute title (skip "| CalculioHub" template).
+  title: {
+    absolute: "CalculioHub — Free Calculators & Converters",
+  },
+};
 
 export default function HomePage() {
   const websiteSchema = {
@@ -8,7 +34,7 @@ export default function HomePage() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "The free alternative to paid converters and calculators. PDF, HEIC, video, and data tools plus finance and crypto utilities — private, in-browser, no paywall.",
+      "Free PDF, HEIC, video, and data converters plus finance and crypto calculators. Private, in-browser, no paywall.",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

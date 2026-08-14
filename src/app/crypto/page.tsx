@@ -6,14 +6,13 @@ import {
   getCalculatorsByCategory,
 } from "@/lib/calculators";
 import { CRYPTO_CATEGORY, CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Crypto Calculators",
   description:
-    "Free crypto calculators for profit & ROI, DCA, market cap, FDV, token price, tokenomics, DEX liquidity, staking, and token launch costs. Instant browser-side results.",
-  alternates: {
-    canonical: `${SITE_URL}/crypto`,
-  },
+    "Free crypto calculators for profit, ROI, DCA, market cap, FDV, tokenomics, DEX liquidity, staking, and launch costs. Instant browser results.",
+  path: "/crypto",
   keywords: [
     "crypto calculators",
     "bitcoin calculator",
@@ -23,15 +22,7 @@ export const metadata: Metadata = {
     "staking calculator",
     "tokenomics calculator",
   ],
-  openGraph: {
-    title: `Crypto Calculators | ${SITE_NAME}`,
-    description:
-      "Profit, DCA, market cap, FDV, staking, liquidity, and launch-cost tools for digital assets—free and private in your browser.",
-    url: `${SITE_URL}/crypto`,
-    type: "website",
-    siteName: SITE_NAME,
-  },
-};
+});
 
 const shortByToolSlug = Object.fromEntries(
   Object.entries(CRYPTO_SHORT_SLUGS).map(([short, full]) => [full, short])

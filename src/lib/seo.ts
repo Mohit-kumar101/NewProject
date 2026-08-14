@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import type { Calculator } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import {
+  DEFAULT_OG_IMAGE,
+  META_DESCRIPTION_MAX,
+  META_TITLE_MAX,
+  clampMetaText,
+  clampTitleSegment,
+} from "@/lib/pageMetadata";
 import { CRYPTO_CATEGORY, CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
-
-const META_DESCRIPTION_MAX = 155;
 
 export const SEO_MODIFIERS = [
   "free online tool",
@@ -11,9 +16,6 @@ export const SEO_MODIFIERS = [
   "instant calculation",
   "formula & step-by-step example",
 ] as const;
-
-const TITLE_SUFFIX_CALCULATOR = "(Free Calculator & Formula)";
-const TITLE_SUFFIX_TOOL = "(Free Online Tool & Formula)";
 
 /** Short crypto path for a tools slug, if registered. */
 function cryptoPublicPath(toolSlug: string): string | null {
@@ -46,29 +48,11 @@ export function getToolMetricName(calculator: Calculator): string {
   return stripped || calculator.title;
 }
 
-function titleSuffix(calculator: Calculator): string {
-  return usesCalculatorTitleSuffix(calculator)
-    ? TITLE_SUFFIX_CALCULATOR
-    : TITLE_SUFFIX_TOOL;
-}
-
-function withRequiredTitleFormat(
-  name: string,
-  calculator: Calculator
-): string {
-  const suffix = titleSuffix(calculator);
-  const cleaned = name
-    .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
-    .replace(/^Free\s+/i, "")
-    .trim();
-  return `${cleaned} ${suffix}`;
-}
-
 /**
- * Curated long-tail titles (question / role-specific).
- * Values are the name portion only — the free-formula suffix is appended.
+ * Curated long-tail H1s (question / role-specific).
+ * Kept for on-page SEO; meta <title> uses the shorter getToolMetaTitle().
  */
-const LONG_TAIL_TITLES: Record<string, string> = {
+const LONG_TAIL_H1: Record<string, string> = {
   "scientific-calculator":
     "How to Solve Trig and Log Problems on a Scientific Calculator",
   "compound-interest-calculator":
@@ -148,35 +132,46 @@ const LONG_TAIL_DESCRIPTIONS: Record<string, string> = {
     "Calculate BC private-sale used-car PST from Black Book vs price. Free, instant, no email required.",
 };
 
-function defaultLongTailName(calculator: Calculator): string {
+function defaultLongTailH1(calculator: Calculator): string {
   const metric = getToolMetricName(calculator);
   if (isFileConverter(calculator)) {
-    return metric;
+    return `How to Convert ${metric} Free Online`;
   }
   if (/tracker/i.test(calculator.slug)) {
-    return `How to Track ${metric}`;
+    return `How to Track ${metric} Free Online`;
   }
-  return `How to Calculate ${metric}`;
+  return `How to Calculate ${metric} Free Online`;
 }
 
-/** Page title: "[Long-tail] (Free Calculator & Formula)". */
+/**
+ * Short meta title segment (≤45 chars) so full `<title>` with
+ * `| CalculioHub` stays under 60 characters.
+ */
+export function getToolMetaTitle(calculator: Calculator): string {
+  const preferred = (calculator.title || getToolMetricName(calculator))
+    .replace(/^Free\s+/i, "")
+    .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
+    .trim();
+  return clampTitleSegment(preferred);
+}
+
+/** @deprecated Prefer getToolMetaTitle for <title>; kept for callers expecting a page label. */
 export function getToolPageTitle(calculator: Calculator): string {
+  return getToolMetaTitle(calculator);
+}
+
+/** Visible H1 — long-tail for on-page SEO; may exceed 60 chars. */
+export function getToolPageH1(calculator: Calculator): string {
   if (calculator.seoH1) return calculator.seoH1;
-  const name =
-    LONG_TAIL_TITLES[calculator.slug] ||
+  return (
+    LONG_TAIL_H1[calculator.slug] ||
     (calculator.seoTitle
       ? calculator.seoTitle
           .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
           .replace(/^Free\s+/i, "")
           .trim()
-      : defaultLongTailName(calculator));
-  return withRequiredTitleFormat(name, calculator);
-}
-
-/** Visible H1 — same long-tail target as the title tag. */
-export function getToolPageH1(calculator: Calculator): string {
-  if (calculator.seoH1) return calculator.seoH1;
-  return getToolPageTitle(calculator);
+      : defaultLongTailH1(calculator))
+  );
 }
 
 export function getHowToHeading(calculator: Calculator): string {
@@ -196,18 +191,6 @@ export function getFormulaHeading(calculator: Calculator): string {
 
 export function getFaqHeading(): string {
   return "Frequently Asked Questions";
-}
-
-function clampMetaDescription(text: string, max = META_DESCRIPTION_MAX): string {
-  const normalized = text.replace(/\s+/g, " ").trim();
-  if (normalized.length <= max) return normalized;
-  const cut = normalized.slice(0, max - 1);
-  const lastSpace = cut.lastIndexOf(" ");
-  const base = (lastSpace > 90 ? cut.slice(0, lastSpace) : cut).replace(
-    /[.,;: ]+$/,
-    ""
-  );
-  return `${base}…`;
 }
 
 function ensureUtilityModifiers(text: string): string {
@@ -234,7 +217,7 @@ export function getToolPageDescription(calculator: Calculator): string {
   const curated = LONG_TAIL_DESCRIPTIONS[calculator.slug];
   const source =
     curated || calculator.seoDescription || defaultDescription(calculator);
-  return clampMetaDescription(ensureUtilityModifiers(source));
+  return clampMetaText(ensureUtilityModifiers(source), META_DESCRIPTION_MAX);
 }
 
 export function getToolPageKeywords(calculator: Calculator): string[] {
@@ -263,7 +246,7 @@ export function getToolPageKeywords(calculator: Calculator): string[] {
     return [...override, ...extras];
   }
 
-  return [calculator.title, getToolPageTitle(calculator), ...extras];
+  return [calculator.title, getToolPageH1(calculator), ...extras];
 }
 
 export function getToolCanonicalUrl(calculator: Calculator): string {
@@ -294,10 +277,17 @@ export function getPracticalExample(calculator: Calculator): string {
  * Root layout title template appends `| CalculioHub`.
  */
 export function buildToolMetadata(calculator: Calculator): Metadata {
-  const pageTitle = getToolPageTitle(calculator);
-  const absoluteTitle = `${pageTitle} | ${SITE_NAME}`;
+  const pageTitle = getToolMetaTitle(calculator);
+  const absoluteTitle = clampMetaText(
+    `${pageTitle} | ${SITE_NAME}`,
+    META_TITLE_MAX
+  );
   const description = getToolPageDescription(calculator);
   const url = getToolCanonicalUrl(calculator);
+  const image = {
+    ...DEFAULT_OG_IMAGE,
+    alt: `${calculator.title} on ${SITE_NAME}`,
+  };
 
   return {
     title: pageTitle,
@@ -311,20 +301,13 @@ export function buildToolMetadata(calculator: Calculator): Metadata {
       type: "website",
       siteName: SITE_NAME,
       locale: "en_US",
-      images: [
-        {
-          url: "/myicon.png",
-          width: 1144,
-          height: 928,
-          alt: `${calculator.title} on ${SITE_NAME}`,
-        },
-      ],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: absoluteTitle,
       description,
-      images: ["/myicon.png"],
+      images: [image.url],
     },
     robots: {
       index: true,

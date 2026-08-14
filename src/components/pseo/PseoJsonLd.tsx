@@ -1,19 +1,23 @@
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { getPseoMetaTitle } from "@/lib/pseo/metadata";
 import type { PseoTool } from "@/lib/pseo/types";
 
 export function PseoJsonLd({ tool }: { tool: PseoTool }) {
   const url = `${SITE_URL}/tools/${tool.slug}`;
+  const name = getPseoMetaTitle(tool);
 
   const softwareApplication = {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "WebApplication"],
-    name: tool.seoTitle,
-    alternateName: tool.h1,
+    name,
+    alternateName: [tool.h1, tool.targetKeyword].filter(
+      (value, index, arr) => value && arr.indexOf(value) === index
+    ),
     headline: tool.h1,
     applicationCategory: tool.schemaData.applicationCategory,
     applicationSubCategory: tool.category,
     operatingSystem: "Any",
-    browserRequirements: "Requires JavaScript",
+    browserRequirements: "Requires JavaScript. Runs in modern browsers.",
     description: tool.metaDescription,
     url,
     image: `${SITE_URL}/myicon.png`,
@@ -36,12 +40,59 @@ export function PseoJsonLd({ tool }: { tool: PseoTool }) {
       "@type": "Organization",
       name: SITE_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon-512.png`,
+        width: 512,
+        height: 512,
+      },
     },
     featureList: [
       "free online calculator",
       "no sign up",
       "instant calculation",
       "formula & step-by-step example",
+    ],
+  };
+
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: tool.h1,
+    headline: tool.h1,
+    description: tool.metaDescription,
+    url,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: `${SITE_URL}/tools`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tool.h1,
+        item: url,
+      },
     ],
   };
 
@@ -67,6 +118,14 @@ export function PseoJsonLd({ tool }: { tool: PseoTool }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(softwareApplication),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
       <script
         type="application/ld+json"

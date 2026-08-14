@@ -4,9 +4,12 @@ import Link from "next/link";
 export function Logo({
   size = "md",
   showText = true,
+  priority = false,
 }: {
   size?: "sm" | "md" | "lg";
   showText?: boolean;
+  /** Set true only for the LCP logo in the header/hero. */
+  priority?: boolean;
 }) {
   const dims = size === "lg" ? 48 : size === "sm" ? 28 : 36;
   const text =
@@ -15,14 +18,14 @@ export function Logo({
   return (
     <Link href="/" className="group inline-flex items-center gap-2.5">
       <Image
-        src="/myicon.png"
+        src="/favicon-192.png"
         alt="CalculioHub"
         width={dims}
         height={dims}
-        className="h-auto w-auto shrink-0 object-contain transition group-hover:scale-105"
+        className="shrink-0 rounded-lg object-contain transition group-hover:scale-105"
         style={{ width: dims, height: dims }}
-        priority
-        unoptimized
+        sizes={`${dims}px`}
+        priority={priority}
       />
       {showText && (
         <span

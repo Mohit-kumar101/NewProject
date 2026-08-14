@@ -8,23 +8,21 @@ import {
   getCalculatorsByCategory,
 } from "@/lib/calculators";
 import { getToolHref } from "@/lib/cryptoFormulas";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
-  title: "All Calculators & File Converters",
+export const metadata: Metadata = buildPageMetadata({
+  title: "All Calculators & Converters",
   description:
-    "Free alternative to paid converters. Browse every CalculioHub calculator and file converter—PDF, HEIC, video, JSON/CSV, finance, and crypto tools with no paywall.",
-  alternates: {
-    canonical: `${SITE_URL}/tools`,
-  },
-  openGraph: {
-    title: `All Calculators & File Converters | ${SITE_NAME}`,
-    description:
-      "The free alternative to paid PDF, video, and image converters — plus finance and crypto calculators. Every tool is free and private.",
-    url: `${SITE_URL}/tools`,
-    type: "website",
-    siteName: SITE_NAME,
-  },
-};
+    "Browse every CalculioHub calculator and file converter—PDF, HEIC, video, JSON/CSV, finance, and crypto tools with no paywall.",
+  path: "/tools",
+  keywords: [
+    "all calculators",
+    "file converters",
+    "free PDF converter",
+    "online tools",
+    SITE_NAME,
+  ],
+});
 
 function categoryId(category: string) {
   return category.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -34,7 +32,7 @@ export default function ToolsIndexPage() {
   const itemList = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `All Calculators & File Converters | ${SITE_NAME}`,
+    name: `All Calculators & Converters | ${SITE_NAME}`,
     description:
       "Directory of CalculioHub online calculators and private file converters with dedicated pages for each tool.",
     url: `${SITE_URL}/tools`,

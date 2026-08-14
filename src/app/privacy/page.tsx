@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { InfoPageShell, InfoSection } from "@/components/InfoPageShell";
 import { SITE_NAME, SITE_URL, SITE_SUPPORT_EMAIL } from "@/lib/calculators";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
   description: `Privacy Policy for ${SITE_NAME} — how we handle data, cookies, and advertising partners including Google.`,
-  alternates: { canonical: `${SITE_URL}/privacy` },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

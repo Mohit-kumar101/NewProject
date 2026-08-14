@@ -5,11 +5,11 @@ import {
   getFormulaHeading,
   getHowToHeading,
   getToolCanonicalUrl,
+  getToolMetaTitle,
   getToolMetricName,
   getToolPageDescription,
   getToolPageH1,
   getToolPageKeywords,
-  getToolPageTitle,
   isFileConverter,
 } from "@/lib/seo";
 
@@ -33,7 +33,7 @@ function applicationCategory(category: string): string {
 
 export function JsonLd({ calculator }: { calculator: Calculator }) {
   const url = getToolCanonicalUrl(calculator);
-  const name = getToolPageTitle(calculator);
+  const name = getToolMetaTitle(calculator);
   const headline = getToolPageH1(calculator);
   const description = getToolPageDescription(calculator);
   const metric = getToolMetricName(calculator);
@@ -43,7 +43,9 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "WebApplication"],
     name,
-    alternateName: calculator.title,
+    alternateName: [calculator.title, headline].filter(
+      (value, index, arr) => value && arr.indexOf(value) === index
+    ),
     headline,
     applicationCategory: applicationCategory(calculator.category),
     applicationSubCategory: calculator.category,

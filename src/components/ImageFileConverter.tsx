@@ -429,6 +429,8 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
               <img
                 src={sourcePreview}
                 alt="Original preview"
+                loading="lazy"
+                decoding="async"
                 className="max-h-[320px] max-w-full object-contain"
               />
             ) : (
@@ -465,6 +467,8 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
               <img
                 src={resultPreview}
                 alt="Converted preview"
+                loading="lazy"
+                decoding="async"
                 className="max-h-[320px] max-w-full object-contain"
               />
             ) : (

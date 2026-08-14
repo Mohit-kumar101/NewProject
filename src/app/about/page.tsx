@@ -2,16 +2,45 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InfoPageShell, InfoSection } from "@/components/InfoPageShell";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About Us",
-  description: `Learn about ${SITE_NAME} — the free alternative to paid PDF, video, and image converters, plus fast transparent calculators. Built by Mohit.`,
-  alternates: { canonical: `${SITE_URL}/about` },
-};
+  description: `Learn about ${SITE_NAME} — free PDF, video, and image converters plus transparent calculators. Built by Mohit.`,
+  path: "/about",
+  keywords: ["about CalculioHub", "free converters", "Mohit", SITE_NAME],
+});
 
 export default function AboutPage() {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: `About ${SITE_NAME}`,
+    description: `${SITE_NAME} is the free alternative to paid converters and calculators.`,
+    url: `${SITE_URL}/about`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntity: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      founder: {
+        "@type": "Person",
+        name: "Mohit",
+      },
+    },
+  };
+
   return (
-    <InfoPageShell
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      <InfoPageShell
       eyebrow="Company"
       title="About CalculioHub"
       description={`${SITE_NAME} was designed and built by Mohit as the free alternative to paid converters and cluttered calculator sites — fast, private, and no gated signups.`}
@@ -80,6 +109,40 @@ export default function AboutPage() {
         </p>
       </InfoSection>
 
+      <InfoSection title="Popular tools">
+        <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <Link
+              href="/tools/pdf-text-converter"
+              className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
+            >
+              PDF ↔ Text Converter
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/tools/heic-jpg-converter"
+              className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
+            >
+              HEIC to JPG Converter
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/tools/mp4-mp3-converter"
+              className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
+            >
+              MP4 ↔ MP3 Converter
+            </Link>
+          </li>
+          <li>
+            <Link href="/crypto" className="font-medium text-[var(--accent)] underline-offset-2 hover:underline">
+              Crypto Calculators
+            </Link>
+          </li>
+        </ul>
+      </InfoSection>
+
       <InfoSection title="Get in touch">
         <p>
           Feedback and ideas help shape what we build next. Visit the{" "}
@@ -100,5 +163,6 @@ export default function AboutPage() {
         </p>
       </InfoSection>
     </InfoPageShell>
+    </>
   );
 }

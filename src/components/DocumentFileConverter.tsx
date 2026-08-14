@@ -518,6 +518,8 @@ export function DocumentFileConverter({
                 <img
                   src={url}
                   alt={`Page ${index + 1}`}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-[3/4] w-full object-contain p-2"
                 />
               </div>

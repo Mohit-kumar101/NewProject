@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { SITE_NAME } from "@/lib/calculators";
 import { TokenCreatorWizard } from "@/components/crypto/TokenCreatorWizard";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Token Creator Wizard",
   description:
     "Free multi-step ERC-20 token creator for Base, Polygon, and Ethereum—ready for MetaMask via viem.",
-  alternates: { canonical: `${SITE_URL}/crypto/token-creator` },
-  openGraph: {
-    title: `Token Creator Wizard | ${SITE_NAME}`,
-    url: `${SITE_URL}/crypto/token-creator`,
-    siteName: SITE_NAME,
-  },
-};
+  path: "/crypto/token-creator",
+  keywords: ["ERC-20 creator", "token wizard", "Base", "Polygon", SITE_NAME],
+});
 
 export default function TokenCreatorPage() {
   return (
@@ -50,6 +47,46 @@ export default function TokenCreatorPage() {
       </header>
 
       <TokenCreatorWizard />
+
+      <section className="mt-14 max-w-3xl">
+        <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight">
+          Related crypto tools
+        </h2>
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          <li>
+            <Link
+              href="/crypto/token-launch-cost-calculator"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              Token Launch Cost Calculator →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto/tokenomics-calculator"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              Tokenomics Calculator →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto/reports"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              Tokenomics Report Studio →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              All crypto calculators →
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

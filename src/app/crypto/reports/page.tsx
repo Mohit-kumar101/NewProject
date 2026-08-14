@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { SITE_NAME } from "@/lib/calculators";
 import { TokenomicsReportStudio } from "@/components/crypto/TokenomicsReportStudio";
+import { buildPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Tokenomics Report Studio",
   description:
     "Free tokenomics charts and professional PDF reports with optional white-label branding—all in the browser.",
-  alternates: { canonical: `${SITE_URL}/crypto/reports` },
-  openGraph: {
-    title: `Tokenomics Report Studio | ${SITE_NAME}`,
-    url: `${SITE_URL}/crypto/reports`,
-    siteName: SITE_NAME,
-  },
-};
+  path: "/crypto/reports",
+  keywords: ["tokenomics report", "crypto PDF", "token charts", SITE_NAME],
+});
 
 export default function CryptoReportsPage() {
   return (
@@ -50,6 +47,46 @@ export default function CryptoReportsPage() {
       </header>
 
       <TokenomicsReportStudio />
+
+      <section className="mt-14 max-w-3xl">
+        <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight">
+          Related crypto tools
+        </h2>
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          <li>
+            <Link
+              href="/crypto/tokenomics-calculator"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              Tokenomics Calculator →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto/fdv-calculator"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              FDV Calculator →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto/token-creator"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              Token Creator Wizard →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/crypto"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              All crypto calculators →
+            </Link>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

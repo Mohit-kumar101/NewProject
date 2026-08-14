@@ -9,6 +9,17 @@ const LEGAL_LINKS = [
   { href: "/terms", label: "Terms of Service" },
 ] as const;
 
+const PRODUCT_LINKS = [
+  { href: "/tools", label: "All Tools" },
+  { href: "/crypto", label: "Crypto Calculators" },
+  { href: "/tools/scientific-calculator", label: "Scientific Calculator" },
+  { href: "/tools/pdf-text-converter", label: "PDF ↔ Text Converter" },
+  { href: "/tools/pdf-merge-split", label: "PDF Merge & Split" },
+  { href: "/tools/heic-jpg-converter", label: "HEIC to JPG" },
+  { href: "/tools/mp4-mp3-converter", label: "MP4 ↔ MP3 Converter" },
+  { href: "/tools/json-csv-converter", label: "JSON ↔ CSV Converter" },
+] as const;
+
 function categoryHref(category: string) {
   if (category === "Crypto & Digital Assets") return "/crypto";
   return `/#${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
@@ -58,43 +69,13 @@ export function Footer() {
             Product
           </h3>
           <ul className="space-y-2 text-sm text-[var(--muted)]">
-            <li>
-              <Link href="/tools" className="hover:text-[var(--accent)]">
-                All Tools
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tools/scientific-calculator"
-                className="hover:text-[var(--accent)]"
-              >
-                Scientific Calculator
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tools/pdf-text-converter"
-                className="hover:text-[var(--accent)]"
-              >
-                PDF ↔ Text Converter
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tools/mp4-mp3-converter"
-                className="hover:text-[var(--accent)]"
-              >
-                MP4 ↔ MP3 Converter
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tools/json-csv-converter"
-                className="hover:text-[var(--accent)]"
-              >
-                JSON ↔ CSV Converter
-              </Link>
-            </li>
+            {PRODUCT_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-[var(--accent)]">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
