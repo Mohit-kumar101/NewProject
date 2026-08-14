@@ -71,6 +71,58 @@ function onProcessProgress(progress: number, time: number) {
 }
 
 /**
+ * Fetch a remote asset into a blob URL, reading the Response body only once.
+ *
+ * Avoids @ffmpeg/util's toBlobURL(progress=true) path, which can call
+ * getReader() and then resp.arrayBuffer() on the same Response when
+ * Content-Length disagrees with bytes received (common on CDNs).
+ */
+async function fetchToBlobURL(
+  url: string,
+  mimeType: string,
+  onProgress?: (received: number, total: number) => void
+): Promise<string> {
+  const resp = await fetch(url);
+  if (!resp.ok) {
+    throw new Error(`Failed to download ${url} (${resp.status})`);
+  }
+
+  const contentLength = parseInt(resp.headers.get("Content-Length") || "0", 10);
+  const total = Number.isFinite(contentLength) && contentLength > 0 ? contentLength : 0;
+  const reader = resp.body?.getReader();
+
+  let buffer: ArrayBuffer;
+
+  if (!reader) {
+    // Body has no stream reader; consume once via arrayBuffer.
+    buffer = await resp.arrayBuffer();
+    onProgress?.(buffer.byteLength, buffer.byteLength);
+  } else {
+    const chunks: Uint8Array[] = [];
+    let received = 0;
+
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+      chunks.push(value);
+      received += value.length;
+      onProgress?.(received, total || received);
+    }
+
+    const data = new Uint8Array(received);
+    let offset = 0;
+    for (const chunk of chunks) {
+      data.set(chunk, offset);
+      offset += chunk.length;
+    }
+    buffer = data.buffer;
+  }
+
+  return URL.createObjectURL(new Blob([buffer], { type: mimeType }));
+}
+
+/**
  * Load (or reuse) the FFmpeg WASM engine. Safe to call repeatedly.
  */
 export async function ensureFfmpeg(): Promise<FFmpeg> {
@@ -79,10 +131,7 @@ export async function ensureFfmpeg(): Promise<FFmpeg> {
 
   loadPromise = (async () => {
     try {
-      const [{ FFmpeg }, { toBlobURL }] = await Promise.all([
-        import("@ffmpeg/ffmpeg"),
-        import("@ffmpeg/util"),
-      ]);
+      const { FFmpeg } = await import("@ffmpeg/ffmpeg");
 
       const ffmpeg = new FFmpeg();
       ffmpegInstance = ffmpeg;
@@ -98,11 +147,10 @@ export async function ensureFfmpeg(): Promise<FFmpeg> {
         error: undefined,
       });
 
-      const coreURL = await toBlobURL(
+      const coreURL = await fetchToBlobURL(
         `${CORE_BASE}/ffmpeg-core.js`,
         "text/javascript",
-        true,
-        ({ received, total }) => {
+        (received, total) => {
           if (!total) return;
           const pct = Math.round((received / total) * 40);
           emitLoad({
@@ -119,11 +167,10 @@ export async function ensureFfmpeg(): Promise<FFmpeg> {
         message: "Downloading WebAssembly module…",
       });
 
-      const wasmURL = await toBlobURL(
+      const wasmURL = await fetchToBlobURL(
         `${CORE_BASE}/ffmpeg-core.wasm`,
         "application/wasm",
-        true,
-        ({ received, total }) => {
+        (received, total) => {
           if (!total) return;
           const pct = 42 + Math.round((received / total) * 48);
           emitLoad({
