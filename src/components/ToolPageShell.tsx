@@ -7,16 +7,7 @@ import { SuggestionBox } from "@/components/SuggestionBox";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
 import { ToolExplanation } from "@/components/ToolExplanation";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
-import {
-  ToolRailRelated,
-  ToolRailSpotlight,
-} from "@/components/ads/ToolRailFillers";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
-import {
-  getSidebarRelatedTools,
-  getSidebarSpotlightTools,
-  isBcTaxCalculator,
-} from "@/lib/calculators";
 import {
   getFaqHeading,
   getFormulaHeading,
@@ -42,26 +33,9 @@ export function ToolPageShell({
 }) {
   const toolUrl = getToolCanonicalUrl(calculator);
   const explanation = getToolExplanation(calculator);
-  const relatedRail = getSidebarRelatedTools(calculator, 6);
-  const spotlight = getSidebarSpotlightTools(calculator, 5);
-  const bcTax = isBcTaxCalculator(calculator);
 
   return (
-    <ToolLayout
-      leftAd={
-        <ToolRailRelated
-          category={bcTax ? "BC Local Taxes" : calculator.category}
-          tools={relatedRail}
-        />
-      }
-      rightAd={
-        <ToolRailSpotlight
-          tools={spotlight}
-          kicker={bcTax ? "Also useful" : "Try next"}
-          heading={bcTax ? "Tax & housing" : "Popular calculators"}
-        />
-      }
-    >
+    <ToolLayout>
       <JsonLd calculator={calculator} />
 
       <ToolBreadcrumbs

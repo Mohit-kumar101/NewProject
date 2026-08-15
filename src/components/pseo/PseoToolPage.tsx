@@ -1,43 +1,14 @@
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
-import {
-  ToolRailRelated,
-  ToolRailSpotlight,
-} from "@/components/ads/ToolRailFillers";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
 import { CalculatorRenderer } from "@/components/pseo/CalculatorRenderer";
 import { PseoJsonLd } from "@/components/pseo/PseoJsonLd";
-import {
-  getCalculatorBySlug,
-  getSidebarRelatedTools,
-  getSidebarSpotlightTools,
-  isBcTaxCalculator,
-} from "@/lib/calculators";
 import type { PseoTool } from "@/lib/pseo/types";
 
 export function PseoToolPage({ tool }: { tool: PseoTool }) {
-  const calculator = getCalculatorBySlug(tool.slug);
-  const related = calculator ? getSidebarRelatedTools(calculator, 6) : [];
-  const spotlight = calculator ? getSidebarSpotlightTools(calculator, 5) : [];
-  const bcTax = isBcTaxCalculator({ slug: tool.slug, category: tool.category });
-
   return (
-    <ToolLayout
-      leftAd={
-        <ToolRailRelated
-          category={bcTax ? "BC Local Taxes" : tool.category}
-          tools={related}
-        />
-      }
-      rightAd={
-        <ToolRailSpotlight
-          tools={spotlight}
-          kicker={bcTax ? "Also useful" : "Try next"}
-          heading={bcTax ? "Tax & housing" : "Popular calculators"}
-        />
-      }
-    >
+    <ToolLayout>
       <PseoJsonLd tool={tool} />
 
       <ToolBreadcrumbs toolTitle={tool.h1} category={tool.category} />

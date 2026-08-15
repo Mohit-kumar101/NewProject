@@ -41,8 +41,9 @@ export default function TokenCreatorPage() {
           Token Creator Wizard
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-          Configure a standard ERC-20, pick a chain, and connect MetaMask. Live
-          bytecode deploy stays opt-in via environment flags.
+          Configure a standard ERC-20, download Remix-ready Solidity, and
+          optionally connect MetaMask. Live wallet deploy stays opt-in via
+          environment flags.
         </p>
       </header>
 

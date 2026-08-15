@@ -30,18 +30,63 @@ export function TokenomicsReportPanel({
         scale: 2,
         backgroundColor: "#ffffff",
         useCORS: true,
+        logging: false,
+        // Avoid lab()/oklch() paint issues from page chrome outside the card.
+        foreignObjectRendering: false,
       });
       const img = canvas.toDataURL("image/png");
       const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: "a4" });
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-      const w = canvas.width * ratio;
-      const h = canvas.height * ratio;
-      pdf.addImage(img, "PNG", (pageWidth - w) / 2, 24, w, h);
+      const margin = 24;
+      const usableWidth = pageWidth - margin * 2;
+      const usableHeight = pageHeight - margin * 2;
+      const ratio = Math.min(usableWidth / canvas.width, usableHeight / canvas.height);
+      let w = canvas.width * ratio;
+      let h = canvas.height * ratio;
+
+      // Multi-page when the report is taller than one A4 sheet.
+      if (h <= usableHeight) {
+        pdf.addImage(img, "PNG", (pageWidth - w) / 2, margin, w, h);
+      } else {
+        const pageCanvas = document.createElement("canvas");
+        const pageCtx = pageCanvas.getContext("2d");
+        if (!pageCtx) throw new Error("Canvas unavailable");
+        const sliceHeightPx = Math.floor((usableHeight / w) * canvas.width);
+        pageCanvas.width = canvas.width;
+        let offset = 0;
+        let page = 0;
+        while (offset < canvas.height) {
+          const slice = Math.min(sliceHeightPx, canvas.height - offset);
+          pageCanvas.height = slice;
+          pageCtx.clearRect(0, 0, pageCanvas.width, slice);
+          pageCtx.drawImage(
+            canvas,
+            0,
+            offset,
+            canvas.width,
+            slice,
+            0,
+            0,
+            canvas.width,
+            slice
+          );
+          const sliceImg = pageCanvas.toDataURL("image/png");
+          const sliceH = (slice / canvas.width) * w;
+          if (page > 0) pdf.addPage();
+          pdf.addImage(sliceImg, "PNG", (pageWidth - w) / 2, margin, w, sliceH);
+          offset += slice;
+          page += 1;
+        }
+      }
+
       pdf.save("tokenomics-report.pdf");
-    } catch {
-      setError("Could not generate PDF. Try again in a Chromium browser.");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Could not generate PDF.";
+      setError(
+        `${message} Try Chrome/Edge, disable extensions, or refresh and retry.`
+      );
     } finally {
       setBusy(false);
     }
@@ -97,7 +142,8 @@ export function TokenomicsReportPanel({
 
       <div
         ref={reportRef}
-        className="rounded-2xl border border-[var(--border)] bg-white p-8 text-[#0b1220]"
+        className="rounded-2xl border border-[#d7e0ea] bg-white p-8 text-[#0b1220]"
+        style={{ color: "#0b1220", backgroundColor: "#ffffff" }}
       >
         <div
           className="mb-6 h-1.5 w-24 rounded-full"
@@ -116,7 +162,10 @@ export function TokenomicsReportPanel({
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {Object.entries(inputs).map(([k, v]) => (
-            <div key={k} className="rounded-xl border border-[#d7e0ea] px-3 py-2 text-sm">
+            <div
+              key={k}
+              className="rounded-xl border border-[#d7e0ea] px-3 py-2 text-sm"
+            >
               <div className="text-xs opacity-60">{k}</div>
               <div className="font-semibold">{Number(v).toLocaleString()}</div>
             </div>
