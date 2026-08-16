@@ -2198,6 +2198,340 @@ export function runCalculation(
       ]);
     }
 
+    // ——— Expansion pack (3 ready examples) ———
+    case "paypalFee": {
+      const sale = Math.max(0, inputs.saleAmount ?? 0);
+      const pct = Math.max(0, inputs.percentFee ?? 0);
+      const fixed = Math.max(0, inputs.fixedFee ?? 0);
+      const fx = Math.max(0, inputs.fxPercent ?? 0);
+      const percentTotal = pct + fx;
+      const variableFee = (sale * percentTotal) / 100;
+      const totalFee = variableFee + fixed;
+      const net = sale - totalFee;
+      const effective = sale > 0 ? (totalFee / sale) * 100 : 0;
+      return result("Net Proceeds", currency(net), [
+        { label: "Total Fees", value: currency(totalFee) },
+        { label: "Variable Fees", value: currency(variableFee) },
+        { label: "Fixed Fee", value: currency(fixed) },
+        { label: "Effective Fee Rate", value: `${number(effective, 2)}%` },
+        {
+          label: "Rate Stack",
+          value: `${number(pct, 2)}% + ${number(fx, 2)}% FX + ${currency(fixed)}`,
+        },
+      ]);
+    }
+
+    case "bcStatHolidayPay": {
+      const avgDaily = Math.max(0, inputs.avgDailyWage ?? 0);
+      const hourly = Math.max(0, inputs.hourlyRate ?? 0);
+      const hours = Math.max(0, inputs.hoursWorked ?? 0);
+      const premium = Math.max(1, inputs.statPremium ?? 1.5);
+      const holidayPay = avgDaily;
+      const workedPremium = hourly * hours * premium;
+      const total = holidayPay + workedPremium;
+      return result("Total Stat Holiday Pay", cad(total), [
+        { label: "Holiday Pay (avg day)", value: cad(holidayPay) },
+        { label: "Worked Premium", value: cad(workedPremium) },
+        {
+          label: "Premium Rate",
+          value: currency(hourly * premium),
+        },
+        {
+          label: "Hours Worked",
+          value: number(hours, 1),
+        },
+        {
+          label: "Note",
+          value: "Planning estimate — confirm BC Employment Standards",
+        },
+      ]);
+    }
+
+    case "markup": {
+      const cost = Math.max(0, inputs.cost ?? 0);
+      const markupPct = Math.max(0, inputs.markupPercent ?? 0);
+      const price = cost * (1 + markupPct / 100);
+      const profit = price - cost;
+      const marginPct = price > 0 ? (profit / price) * 100 : 0;
+      return result("Selling Price", currency(price), [
+        { label: "Profit / Unit", value: currency(profit) },
+        { label: "Markup", value: `${number(markupPct, 1)}%` },
+        { label: "Implied Margin", value: `${number(marginPct, 1)}%` },
+        { label: "Cost", value: currency(cost) },
+      ]);
+    }
+
+    // ——— Long-tail hubs (5 ready examples) ———
+    case "warehouseOvertimePay": {
+      const rate = Math.max(0, inputs.hourlyRate ?? 0);
+      const regularH = Math.max(0, inputs.regularHours ?? 0);
+      const otH = Math.max(0, inputs.overtimeHours ?? 0);
+      const mult = Math.max(1, inputs.otMultiplier ?? 1.5);
+      const regular = rate * regularH;
+      const ot = rate * mult * otH;
+      return result("Total Weekly Pay", currency(regular + ot), [
+        { label: "Regular Pay", value: currency(regular) },
+        { label: "Overtime Pay", value: currency(ot) },
+        { label: "OT Hourly Rate", value: currency(rate * mult) },
+      ]);
+    }
+
+    case "carCommuteCostPerWorkday": {
+      const miles = Math.max(0, inputs.roundTripMiles ?? 0);
+      const mpg = Math.max(0.1, inputs.mpg ?? 1);
+      const gas = Math.max(0, inputs.gasPrice ?? 0);
+      const wear = Math.max(0, inputs.wearPerMile ?? 0);
+      const fuel = (miles / mpg) * gas;
+      const wearCost = miles * wear;
+      return result("Workday Cost", currency(fuel + wearCost), [
+        { label: "Fuel Cost", value: currency(fuel) },
+        { label: "Wear & Tear", value: currency(wearCost) },
+        { label: "Cost / Mile", value: currency(miles > 0 ? (fuel + wearCost) / miles : 0) },
+      ]);
+    }
+
+    case "airbnbCleaningCost": {
+      const hours = Math.max(0, inputs.cleanHours ?? 0);
+      const rate = Math.max(0, inputs.cleanerRate ?? 0);
+      const supplies = Math.max(0, inputs.supplies ?? 0);
+      const laundry = Math.max(0, inputs.laundry ?? 0);
+      const labor = hours * rate;
+      const total = labor + supplies + laundry;
+      return result("Cleaning Cost / Turnover", currency(total), [
+        { label: "Labor", value: currency(labor) },
+        { label: "Supplies", value: currency(supplies) },
+        { label: "Laundry / Linen", value: currency(laundry) },
+      ]);
+    }
+
+    case "groceryCostPerMeal": {
+      const spend = Math.max(0, inputs.groceryTotal ?? 0);
+      const meals = Math.max(1, inputs.mealsCovered ?? 1);
+      const people = Math.max(1, inputs.people ?? 1);
+      const perMeal = spend / meals;
+      const perPersonMeal = spend / (meals * people);
+      return result("Cost Per Meal", currency(perMeal), [
+        { label: "Per Person-Meal", value: currency(perPersonMeal) },
+        { label: "Meals Covered", value: number(meals, 0) },
+        { label: "Grocery Spend", value: currency(spend) },
+      ]);
+    }
+
+    case "evWinterChargingCost": {
+      const needed = Math.max(0, inputs.kwhNeeded ?? 0);
+      const rate = Math.max(0, inputs.ratePerKwh ?? 0);
+      const penalty = Math.max(0, inputs.winterPenaltyPct ?? 0);
+      const winterKwh = needed * (1 + penalty / 100);
+      const cost = winterKwh * rate;
+      return result("Winter Charge Cost", currency(cost), [
+        { label: "Winter kWh Drawn", value: number(winterKwh, 1) },
+        { label: "Base kWh Needed", value: number(needed, 1) },
+        { label: "Efficiency Loss", value: `${number(penalty, 0)}%` },
+      ]);
+    }
+
+    // ——— Intent-80 hubs (6 ready examples — first tool per category) ———
+    case "laundryCostPerLoad": {
+      const kwh = Math.max(0, inputs.kwhPerLoad ?? 0);
+      const rate = Math.max(0, inputs.ratePerKwh ?? 0);
+      const gal = Math.max(0, inputs.gallonsWater ?? 0);
+      const waterRate = Math.max(0, inputs.waterRatePerGal ?? 0);
+      const detergent = Math.max(0, inputs.detergentCost ?? 0);
+      const electric = kwh * rate;
+      const water = gal * waterRate;
+      const total = electric + water + detergent;
+      return result("Cost Per Load", currency(total), [
+        { label: "Electricity", value: currency(electric) },
+        { label: "Water + Sewer", value: currency(water) },
+        { label: "Detergent", value: currency(detergent) },
+      ]);
+    }
+
+    case "idlingFuelCost": {
+      const minutes = Math.max(0, inputs.idleMinutes ?? 0);
+      const gph = Math.max(0, inputs.gallonsPerHour ?? 0);
+      const gas = Math.max(0, inputs.gasPrice ?? 0);
+      const gallons = (minutes / 60) * gph;
+      const cost = gallons * gas;
+      return result("Idling Fuel Cost", currency(cost), [
+        { label: "Gallons Burned", value: number(gallons, 3) },
+        { label: "Idle Minutes", value: number(minutes, 0) },
+        { label: "Idle Rate", value: `${number(gph, 2)} gal/hr` },
+      ]);
+    }
+
+    case "shiftDifferentialPay": {
+      const base = Math.max(0, inputs.baseRate ?? 0);
+      const pct = Math.max(0, inputs.diffPercent ?? 0);
+      const flat = Math.max(0, inputs.flatAddOn ?? 0);
+      const hours = Math.max(0, inputs.hours ?? 0);
+      const premiumRate = base * (1 + pct / 100) + flat;
+      const pay = premiumRate * hours;
+      return result("Shift Pay", currency(pay), [
+        { label: "Premium Hourly Rate", value: currency(premiumRate) },
+        { label: "Differential %", value: `${number(pct, 1)}%` },
+        { label: "Flat Add-On", value: currency(flat) },
+        { label: "Hours", value: number(hours, 1) },
+      ]);
+    }
+
+    case "roommateRentSplitByRoomSize": {
+      const rent = Math.max(0, inputs.totalRent ?? 0);
+      const yours = Math.max(0, inputs.roomSqFt ?? 0);
+      const totalSq = Math.max(0.01, inputs.totalBedroomSqFt ?? 1);
+      const sharePct = (yours / totalSq) * 100;
+      const share = rent * (yours / totalSq);
+      return result("Your Rent Share", currency(share), [
+        { label: "Share of Bedrooms", value: `${number(sharePct, 1)}%` },
+        { label: "Your Bedroom", value: `${number(yours, 0)} sq ft` },
+        { label: "Total Rent", value: currency(rent) },
+      ]);
+    }
+
+    case "freelanceRateAfterPlatformFees": {
+      const gross = Math.max(0, inputs.grossRate ?? 0);
+      const fee = Math.max(0, inputs.feePercent ?? 0);
+      const hours = Math.max(0, inputs.hours ?? 0);
+      const netRate = gross * (1 - fee / 100);
+      const netProject = netRate * hours;
+      return result("Net Hourly Rate", currency(netRate), [
+        { label: "Net Project Proceeds", value: currency(netProject) },
+        { label: "Fees on Project", value: currency(gross * hours - netProject) },
+        { label: "Platform Fee", value: `${number(fee, 1)}%` },
+      ]);
+    }
+
+    case "mealPrepCostPerMeal": {
+      const grocery = Math.max(0, inputs.groceryCost ?? 0);
+      const packaging = Math.max(0, inputs.packagingCost ?? 0);
+      const meals = Math.max(1, inputs.meals ?? 1);
+      const total = grocery + packaging;
+      const perMeal = total / meals;
+      return result("Cost Per Meal", currency(perMeal), [
+        { label: "Batch Total Cost", value: currency(total) },
+        { label: "Meals Prepared", value: number(meals, 0) },
+        { label: "Packaging", value: currency(packaging) },
+      ]);
+    }
+
+    // ——— Niche-65 hubs (6 ready examples — first tool per category) ———
+    case "amazonFbaStorageFeeByBox": {
+      const l = Math.max(0, inputs.lengthIn ?? 0);
+      const w = Math.max(0, inputs.widthIn ?? 0);
+      const h = Math.max(0, inputs.heightIn ?? 0);
+      const boxes = Math.max(0, inputs.boxCount ?? 0);
+      const rate = Math.max(0, inputs.ratePerCuFt ?? 0);
+      const cuFtEach = (l * w * h) / 1728;
+      const cuFtTotal = cuFtEach * boxes;
+      const fee = cuFtTotal * rate;
+      return result("Monthly Storage Fee", currency(fee), [
+        { label: "Cu Ft / Box", value: number(cuFtEach, 2) },
+        { label: "Total Cu Ft", value: number(cuFtTotal, 2) },
+        { label: "Boxes", value: number(boxes, 0) },
+        { label: "Rate", value: `${currency(rate)}/cu ft` },
+      ]);
+    }
+
+    case "refrigeratorCostPerYear": {
+      const kwh = Math.max(0, inputs.kwhPerYear ?? 0);
+      const rate = Math.max(0, inputs.ratePerKwh ?? 0);
+      const annual = kwh * rate;
+      return result("Annual Cost", currency(annual), [
+        { label: "Monthly Avg", value: currency(annual / 12) },
+        { label: "kWh / Year", value: number(kwh, 0) },
+        { label: "Rate", value: `${currency(rate)}/kWh` },
+      ]);
+    }
+
+    case "dogFoodCostPerMonth": {
+      const bagPrice = Math.max(0, inputs.bagPrice ?? 0);
+      const bagLbs = Math.max(0.01, inputs.bagLbs ?? 1);
+      const cupsDay = Math.max(0, inputs.cupsPerDay ?? 0);
+      const cupsPerLb = Math.max(0.01, inputs.cupsPerLb ?? 1);
+      const costPerLb = bagPrice / bagLbs;
+      const lbsPerDay = cupsDay / cupsPerLb;
+      const monthly = costPerLb * lbsPerDay * 30;
+      return result("Monthly Food Cost", currency(monthly), [
+        { label: "Cost / lb", value: currency(costPerLb) },
+        { label: "lbs / Day", value: number(lbsPerDay, 2) },
+        { label: "Annualized", value: currency(monthly * 12) },
+      ]);
+    }
+
+    case "wfhElectricityCost": {
+      const watts = Math.max(0, inputs.deviceWatts ?? 0);
+      const hours = Math.max(0, inputs.hoursPerDay ?? 0);
+      const days = Math.max(0, inputs.workdaysPerMonth ?? 0);
+      const rate = Math.max(0, inputs.ratePerKwh ?? 0);
+      const kwhDay = (watts * hours) / 1000;
+      const monthly = kwhDay * days * rate;
+      return result("Monthly Electricity", currency(monthly), [
+        { label: "kWh / Workday", value: number(kwhDay, 3) },
+        { label: "Cost / Workday", value: currency(kwhDay * rate) },
+        { label: "Workdays", value: number(days, 0) },
+      ]);
+    }
+
+    case "houseCleaningJobPrice": {
+      const hours = Math.max(0, inputs.hours ?? 0);
+      const rate = Math.max(0, inputs.hourlyRate ?? 0);
+      const supplies = Math.max(0, inputs.supplies ?? 0);
+      const travel = Math.max(0, inputs.travel ?? 0);
+      const margin = Math.min(95, Math.max(0, inputs.marginPercent ?? 0));
+      const cost = hours * rate + supplies + travel;
+      const price = margin >= 100 ? cost : cost / (1 - margin / 100);
+      return result("Recommended Quote", currency(price), [
+        { label: "Job Cost", value: currency(cost) },
+        { label: "Labor", value: currency(hours * rate) },
+        { label: "Target Margin", value: `${number(margin, 0)}%` },
+        { label: "Profit at Quote", value: currency(price - cost) },
+      ]);
+    }
+
+    case "coffeeShopCostPerCup": {
+      const beans = Math.max(0, inputs.beanCostPerCup ?? 0);
+      const milk = Math.max(0, inputs.milkCost ?? 0);
+      const cup = Math.max(0, inputs.cupLid ?? 0);
+      const other = Math.max(0, inputs.other ?? 0);
+      const total = beans + milk + cup + other;
+      return result("Cost Per Cup", currency(total), [
+        { label: "Beans / Shot", value: currency(beans) },
+        { label: "Milk", value: currency(milk) },
+        { label: "Cup + Lid", value: currency(cup) },
+        { label: "Other", value: currency(other) },
+      ]);
+    }
+
+    /*
+     * TODO(expansion): remaining handlers in src/lib/expansion/tools.ts
+     * TODO(longtail-hub): remaining handlers in src/lib/hubs/longTailPack.ts
+     * TODO(intent-80): remaining 74 formulaTypes in src/lib/hubs/intent80Pack.ts
+     *
+     * TODO(niche-65): remaining 59 formulaTypes in src/lib/hubs/niche65Pack.ts
+     * Logistics: etsyShippingCostPerItem, shopifyPackagingCostPerOrder, boxDimensionalWeight,
+     *   shippingBoxCubicVolume, palletSpace, boxesFitOnPallet, palletWeightCapacity,
+     *   containerFillPercentage, truckLoadWeight, warehouseStorageCostPerPallet,
+     *   warehouseStorageCostPerCuFt, pickAndPackCostPerOrder, movingTruckCostPerRoom,
+     *   movingBoxQuantityByApartment, storageUnitCostPerSqFt, closetStorageCapacity
+     * Home specialty: freezerElectricityCostPerMonth, gamingPcMonitorElectricityCost,
+     *   bathroomExhaustFanCost, heatedBathroomFloorCost, heatedTowelRackCost,
+     *   aquariumFilterCost, aquariumHeaterCost, fishTankElectricityCost,
+     *   hotTubElectricityCostPerMonth, hotTubHeatingCost, poolPumpElectricityCost,
+     *   poolHeaterRunningCost
+     * Pets: costToFeedLargeDog, puppyFoodCostPerYear, catLitterCostPerMonth,
+     *   costPerCatLitterBoxCleaning, dogTreatCostPerMonth, petMedicationCostPerMonth,
+     *   aquariumFishFoodCost, fishTankWaterChangeCost, multiplePetMonthlyCost
+     * Remote: homeOfficeElectricityCost, laptopElectricityCostPerWorkday,
+     *   externalMonitorElectricityCost, wfhInternetCostPerWorkday,
+     *   homeOfficeTaxDeductionBySqFt, workingFromCafeCost, remoteWorkVsOfficeCost,
+     *   workFromHomeSavings, secondMonitorCostVsProductivity
+     * Trades: windowCleaningJobPrice, lawnMowingJobPrice, snowRemovalJobPrice,
+     *   pressureWashingJobPrice, junkRemovalJobPrice, handymanMinimumCharge,
+     *   painterJobQuote, mobileCarDetailingPrice, houseCleaningBreakEven
+     * Events: bakeryCostPerCupcake, weddingCostPerGuest, airbnbCostPerOccupiedNight,
+     *   airbnbCleaningCostPerBooking
+     */
+
     case "expenseTracker":
       return result("Balance", "Use tracker", [
         {

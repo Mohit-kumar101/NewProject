@@ -1,4 +1,6 @@
 import type { CalcResult } from "./types";
+import { categoryToSlug } from "@/lib/categoryPaths";
+import { getCategoryPathToolBySlug } from "@/lib/categoryPathTools";
 
 type Inputs = Record<string, number>;
 
@@ -475,5 +477,21 @@ export function getToolHref(slug: string): string {
   const short = Object.entries(CRYPTO_SHORT_SLUGS).find(
     ([, full]) => full === slug
   )?.[0];
-  return short ? `/crypto/${short}` : `/tools/${slug}`;
+  if (short) return `/crypto/${short}`;
+
+  const expansion = getCategoryPathToolBySlug(slug);
+  if (expansion?.useCategoryPath) {
+    return `/tools/${categoryToSlug(expansion.category)}/${expansion.slug}`;
+  }
+
+  return `/tools/${slug}`;
+}
+
+export function getToolModifierHref(slug: string, modifierSlug: string): string {
+  const base = getToolHref(slug);
+  const expansion = getCategoryPathToolBySlug(slug);
+  if (expansion?.useCategoryPath) {
+    return `${base}/${modifierSlug}`;
+  }
+  return `/tools/${slug}/for/${modifierSlug}`;
 }

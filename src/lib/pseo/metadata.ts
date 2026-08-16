@@ -8,8 +8,18 @@ import {
   clampMetaText,
   clampTitleSegment,
 } from "@/lib/pageMetadata";
+import { SEO_CONTENT_YEAR } from "@/lib/keywords";
 
 export function getPseoMetaTitle(tool: PseoTool): string {
+  const benefit = "Instant Results";
+  const actionDriven = `${tool.targetKeyword} Free ${benefit} (${SEO_CONTENT_YEAR})`;
+  if (actionDriven.length <= 45) {
+    return clampTitleSegment(actionDriven);
+  }
+  const compact = `${tool.targetKeyword} Free (${SEO_CONTENT_YEAR})`;
+  if (compact.length <= 45) {
+    return clampTitleSegment(compact);
+  }
   return clampTitleSegment(tool.h1 || tool.targetKeyword);
 }
 
@@ -20,7 +30,12 @@ export function buildPseoMetadata(tool: PseoTool): Metadata {
     `${pageTitle} | ${SITE_NAME}`,
     META_TITLE_MAX
   );
-  const description = clampMetaText(tool.metaDescription, META_DESCRIPTION_MAX);
+  const description = clampMetaText(
+    tool.metaDescription.includes("instant")
+      ? tool.metaDescription
+      : `${tool.metaDescription} Instant results, free online, no sign up.`,
+    META_DESCRIPTION_MAX
+  );
   const image = {
     ...DEFAULT_OG_IMAGE,
     alt: `${tool.h1} on ${SITE_NAME}`,
@@ -31,6 +46,7 @@ export function buildPseoMetadata(tool: PseoTool): Metadata {
     description,
     keywords: [
       tool.targetKeyword,
+      `how to calculate ${tool.targetKeyword}`,
       "free online calculator",
       "no sign up",
       "instant calculation",

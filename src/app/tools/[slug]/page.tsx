@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { CalculatorWorkspace } from "@/components/CalculatorWorkspace";
 import { ToolPageShell } from "@/components/ToolPageShell";
 import {
@@ -8,6 +8,8 @@ import {
   getRelatedCalculators,
 } from "@/lib/calculators";
 import { CUSTOM_TOOL_SLUGS } from "@/lib/customToolSlugs";
+import { getToolHref } from "@/lib/cryptoFormulas";
+import { CATEGORY_PATH_SLUGS } from "@/lib/categoryPathTools";
 import { getPseoToolBySlug } from "@/lib/pseo/calculatorsData";
 import { buildPseoMetadata } from "@/lib/pseo/metadata";
 import { PseoToolPage } from "@/components/pseo/PseoToolPage";
@@ -19,7 +21,11 @@ type PageProps = {
 
 export function generateStaticParams() {
   return calculators
-    .filter((calculator) => !CUSTOM_TOOL_SLUGS.has(calculator.slug))
+    .filter(
+      (calculator) =>
+        !CUSTOM_TOOL_SLUGS.has(calculator.slug) &&
+        !CATEGORY_PATH_SLUGS.has(calculator.slug)
+    )
     .map((calculator) => ({ slug: calculator.slug }));
 }
 
@@ -27,6 +33,10 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (CATEGORY_PATH_SLUGS.has(slug)) {
+    const calculator = getCalculatorBySlug(slug);
+    if (calculator) return buildToolMetadata(calculator);
+  }
   const pseo = getPseoToolBySlug(slug);
   if (pseo) return buildPseoMetadata(pseo);
   const calculator = getCalculatorBySlug(slug);
@@ -146,6 +156,11 @@ function NutritionGuide() {
 
 export default async function ToolPage({ params }: PageProps) {
   const { slug } = await params;
+
+  if (CATEGORY_PATH_SLUGS.has(slug)) {
+    permanentRedirect(getToolHref(slug));
+  }
+
   const pseo = getPseoToolBySlug(slug);
   if (pseo) return <PseoToolPage tool={pseo} />;
 
@@ -166,6 +181,7 @@ export default async function ToolPage({ params }: PageProps) {
   return (
     <ToolPageShell
       calculator={calculator}
+      related={related}
       workspace={
         <CalculatorWorkspace calculator={calculator} related={related} />
       }

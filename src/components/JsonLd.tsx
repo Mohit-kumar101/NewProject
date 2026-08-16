@@ -1,5 +1,9 @@
-import type { Calculator } from "@/lib/types";
+import type { Calculator, CalculatorFaq } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
+import {
+  resolveKeywordPack,
+  type KeywordVariation,
+} from "@/lib/keywords";
 import {
   SEO_MODIFIERS,
   getFormulaHeading,
@@ -10,6 +14,7 @@ import {
   getToolPageDescription,
   getToolPageH1,
   getToolPageKeywords,
+  getToolVariationCanonicalUrl,
   isFileConverter,
 } from "@/lib/seo";
 
@@ -31,19 +36,33 @@ function applicationCategory(category: string): string {
   return "FinanceApplication";
 }
 
-export function JsonLd({ calculator }: { calculator: Calculator }) {
-  const url = getToolCanonicalUrl(calculator);
-  const name = getToolMetaTitle(calculator);
-  const headline = getToolPageH1(calculator);
-  const description = getToolPageDescription(calculator);
+export function JsonLd({
+  calculator,
+  faqs,
+  variation,
+}: {
+  calculator: Calculator;
+  faqs?: CalculatorFaq[];
+  variation?: KeywordVariation;
+}) {
+  const pack = resolveKeywordPack(calculator);
+  const url = variation
+    ? getToolVariationCanonicalUrl(calculator, variation.slug)
+    : getToolCanonicalUrl(calculator);
+  const name = getToolMetaTitle(calculator, variation);
+  const headline = variation?.focus || getToolPageH1(calculator);
+  const description = getToolPageDescription(calculator, variation);
   const metric = getToolMetricName(calculator);
-  const keywords = getToolPageKeywords(calculator).join(", ");
+  const keywords = getToolPageKeywords(calculator, variation).join(", ");
+  const faqItems = faqs?.length
+    ? faqs
+    : [...calculator.seoContent.faqs, ...pack.faqs].slice(0, 8);
 
   const softwareApplication = {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "WebApplication"],
     name,
-    alternateName: [calculator.title, headline].filter(
+    alternateName: [calculator.title, headline, pack.primary].filter(
       (value, index, arr) => value && arr.indexOf(value) === index
     ),
     headline,
@@ -81,7 +100,8 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
     },
     featureList: [
       ...SEO_MODIFIERS,
-      ...calculator.seoContent.howToUse.slice(0, 5),
+      ...pack.features.slice(0, 4),
+      ...calculator.seoContent.howToUse.slice(0, 3),
     ],
     additionalProperty: SEO_MODIFIERS.map((value) => ({
       "@type": "PropertyValue",
@@ -108,7 +128,7 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
     url,
     inLanguage: "en-US",
     isAccessibleForFree: true,
-    mainEntity: calculator.seoContent.faqs.map((faq) => ({
+    mainEntity: faqItems.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -156,9 +176,19 @@ export function JsonLd({ calculator }: { calculator: Calculator }) {
       {
         "@type": "ListItem",
         position: 3,
-        name: headline,
-        item: url,
+        name: calculator.title,
+        item: getToolCanonicalUrl(calculator),
       },
+      ...(variation
+        ? [
+            {
+              "@type": "ListItem",
+              position: 4,
+              name: variation.focus,
+              item: url,
+            },
+          ]
+        : []),
     ],
   };
 

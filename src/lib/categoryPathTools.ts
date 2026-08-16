@@ -1,0 +1,70 @@
+/**
+ * Unified registry for `/tools/{category}/{slug}` pSEO tools
+ * (expansion + long-tail + intent-80 + niche-65 hubs).
+ */
+
+import type { Calculator, LongTailModifier } from "@/lib/types";
+import {
+  EXPANSION_READY_TOOLS,
+  EXPANSION_SLUGS,
+  EXPANSION_TOOLS,
+  getExpansionToolBySlug,
+  getRoutableLongTailModifiers,
+} from "@/lib/expansion/tools";
+import {
+  LONGTAIL_HUB_READY_TOOLS,
+  LONGTAIL_HUB_SLUGS,
+  LONGTAIL_HUB_TOOLS,
+  getLongtailHubToolBySlug,
+} from "@/lib/hubs/longTailPack";
+import {
+  INTENT80_READY_TOOLS,
+  INTENT80_SLUGS,
+  INTENT80_TOOLS,
+  getIntent80ToolBySlug,
+} from "@/lib/hubs/intent80Pack";
+import {
+  NICHE65_READY_TOOLS,
+  NICHE65_SLUGS,
+  NICHE65_TOOLS,
+  getNiche65ToolBySlug,
+} from "@/lib/hubs/niche65Pack";
+
+export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
+  ...EXPANSION_READY_TOOLS,
+  ...LONGTAIL_HUB_READY_TOOLS,
+  ...INTENT80_READY_TOOLS,
+  ...NICHE65_READY_TOOLS,
+];
+
+export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
+  ...EXPANSION_TOOLS,
+  ...LONGTAIL_HUB_TOOLS,
+  ...INTENT80_TOOLS,
+  ...NICHE65_TOOLS,
+];
+
+export const CATEGORY_PATH_SLUGS = new Set([
+  ...EXPANSION_SLUGS,
+  ...LONGTAIL_HUB_SLUGS,
+  ...INTENT80_SLUGS,
+  ...NICHE65_SLUGS,
+]);
+
+/** Prefer newer hub packs when slugs overlap. */
+export function getCategoryPathToolBySlug(
+  slug: string
+): Calculator | undefined {
+  return (
+    getNiche65ToolBySlug(slug) ??
+    getIntent80ToolBySlug(slug) ??
+    getLongtailHubToolBySlug(slug) ??
+    getExpansionToolBySlug(slug)
+  );
+}
+
+export function getCategoryPathModifiers(
+  tool: Calculator
+): LongTailModifier[] {
+  return getRoutableLongTailModifiers(tool);
+}

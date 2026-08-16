@@ -6,33 +6,73 @@ import {
   IMAGE_CONVERTER_SLUGS,
   MEDIA_CONVERTER_SLUGS,
 } from "@/lib/customToolSlugs";
+import { getKeywordPack } from "@/lib/keywords";
+import { EXPANSION_READY_TOOLS } from "@/lib/expansion/tools";
+import { LONGTAIL_HUB_READY_TOOLS } from "@/lib/hubs/longTailPack";
+import { INTENT80_READY_TOOLS } from "@/lib/hubs/intent80Pack";
+import { NICHE65_READY_TOOLS } from "@/lib/hubs/niche65Pack";
+import {
+  EXPANSION_CATEGORIES,
+  INTENT80_HUB_CATEGORIES,
+  LONGTAIL_HUB_CATEGORIES,
+  NICHE65_HUB_CATEGORIES,
+} from "@/lib/categoryPaths";
 import { pseoToolsAsCalculators } from "@/lib/pseo/calculatorsData";
 
 export const calculators: Calculator[] = [
   ...(calculatorsData as Calculator[]),
   ...pseoToolsAsCalculators(),
+  ...EXPANSION_READY_TOOLS,
+  ...LONGTAIL_HUB_READY_TOOLS,
+  ...INTENT80_READY_TOOLS,
+  ...NICHE65_READY_TOOLS,
 ];
 
 export const CATEGORIES = [
   "Loans & Debt Management",
   "Real Estate & Housing",
+  "Short-term Rental & Housing",
+  "Rent & Roommate Splits",
   "Investing & Wealth Building",
   "Crypto & Digital Assets",
   "Freelance & Self-Employment",
+  "Freelance & Micro-Business",
+  "Shift Work & Payroll",
+  "Payroll & Shift Work",
   "Everyday Utilities & Savings",
+  "Living Expenses",
+  "Home & Appliance Utilities",
+  "Home Utilities, Appliances & Specialty Amenities",
+  "Pet Care & Household Expenses",
+  "Remote Work & Home Office",
+  "Food & Meal Planning",
+  "Food & Catering Business",
+  "Events, Hospitality & Micro-Business",
   "Education, GPA & Academic",
   "Statistics, Probability & Advanced Math",
   "Legal, HR & Payroll Management",
   "HR & Ops",
+  "Canadian Taxes",
   "BC Local Taxes",
+  "E-commerce Fees",
+  "E-Commerce, Logistics & Storage",
   "Specialized Business",
+  "Local Services & Trade Pricing",
   "Automotive, Travel & Transit",
+  "Commute & Vehicle Costs",
   "Media, Photography, Cooking & Lifestyle",
   "Data & Code Converters",
   "Image Converters",
   "Document Converters",
   "Audio & Video Converters",
 ] as const;
+
+export {
+  EXPANSION_CATEGORIES,
+  LONGTAIL_HUB_CATEGORIES,
+  INTENT80_HUB_CATEGORIES,
+  NICHE65_HUB_CATEGORIES,
+};
 
 /** File-converter categories registered in the master directory. */
 export const CONVERTER_CATEGORIES = [
@@ -71,6 +111,15 @@ export function getToolSearchHaystack(tool: Calculator): string {
   const metric = tool.title
     .replace(/\s*(Calculator|Converter|Tracker|Generator)\s*$/i, "")
     .trim();
+  const pack = getKeywordPack(tool.slug);
+  const packTerms = pack
+    ? [
+        pack.primary,
+        ...(pack.longTails ?? []),
+        ...(pack.synonyms ?? []),
+        ...(pack.useCases ?? []),
+      ].join(" ")
+    : "";
   return [
     tool.title,
     tool.description,
@@ -81,6 +130,7 @@ export function getToolSearchHaystack(tool: Calculator): string {
     tool.seoDescription ?? "",
     tool.seoContent?.intro ?? "",
     keywords,
+    packTerms,
     tool.formulaType,
     `how to calculate ${metric}`,
     `how to convert ${metric}`,

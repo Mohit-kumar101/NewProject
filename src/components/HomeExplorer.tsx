@@ -41,6 +41,86 @@ const categoryMeta: Record<
     blurb: "Tips, discounts, fuel, habits, and emergency funds.",
     accent: "from-[#18FFFF] to-[#2979FF]",
   },
+  "Living Expenses": {
+    icon: "U",
+    blurb: "Electricity, water, solar, data usage, and download time.",
+    accent: "from-[#18FFFF] to-[#2979FF]",
+  },
+  "Shift Work & Payroll": {
+    icon: "W",
+    blurb: "Warehouse OT, night differentials, split shifts, and dual-job pay.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "Commute & Vehicle Costs": {
+    icon: "G",
+    blurb: "Commute fuel, idling, winter EV charging, and road-trip splits.",
+    accent: "from-[#18FFFF] to-[#1565C0]",
+  },
+  "Short-term Rental & Housing": {
+    icon: "A",
+    blurb: "Airbnb cleaning, occupancy break-even, deposits, and roommate splits.",
+    accent: "from-[#2979FF] to-[#00B8D4]",
+  },
+  "Food & Meal Planning": {
+    icon: "N",
+    blurb: "Grocery cost per meal, meal prep servings, coffee, and menu pricing.",
+    accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  "Home & Appliance Utilities": {
+    icon: "H",
+    blurb: "Laundry, dishwasher, shower, kettle, and seasonal lighting costs.",
+    accent: "from-[#00E5FF] to-[#1565C0]",
+  },
+  "Payroll & Shift Work": {
+    icon: "P",
+    blurb: "Shift differentials, night OT, dual jobs, and break-pay impacts.",
+    accent: "from-[#2979FF] to-[#00E5FF]",
+  },
+  "Rent & Roommate Splits": {
+    icon: "R",
+    blurb: "Room-size rent splits, private baths, utilities, and parking shares.",
+    accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  "Freelance & Micro-Business": {
+    icon: "F",
+    blurb: "Platform fees, retainers, scope creep, and income targets.",
+    accent: "from-[#18FFFF] to-[#1565C0]",
+  },
+  "Food & Catering Business": {
+    icon: "K",
+    blurb: "Meal prep pricing, catering per guest, and food-truck break-even.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "E-Commerce, Logistics & Storage": {
+    icon: "X",
+    blurb: "FBA storage, DIM weight, pallets, pick-and-pack, and moving boxes.",
+    accent: "from-[#2979FF] to-[#00B8D4]",
+  },
+  "Home Utilities, Appliances & Specialty Amenities": {
+    icon: "Z",
+    blurb: "Fridge, hot tub, pool pump, aquarium, and gaming-PC power costs.",
+    accent: "from-[#00E5FF] to-[#1565C0]",
+  },
+  "Pet Care & Household Expenses": {
+    icon: "Y",
+    blurb: "Dog food, litter, treats, meds, and multi-pet monthly budgets.",
+    accent: "from-[#18FFFF] to-[#2979FF]",
+  },
+  "Remote Work & Home Office": {
+    icon: "Q",
+    blurb: "WFH electricity, internet per day, home-office deduction, cafe costs.",
+    accent: "from-[#00B8D4] to-[#1565C0]",
+  },
+  "Local Services & Trade Pricing": {
+    icon: "J",
+    blurb: "Cleaning, lawn, snow, pressure wash, detailing, and handyman quotes.",
+    accent: "from-[#2979FF] to-[#00E5FF]",
+  },
+  "Events, Hospitality & Micro-Business": {
+    icon: "V",
+    blurb: "Coffee cost per cup, bakery, wedding per guest, and Airbnb nights.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
   "Education, GPA & Academic": {
     icon: "A",
     blurb: "GPA, exams, tuition planning, and study tools.",
@@ -65,6 +145,16 @@ const categoryMeta: Record<
     icon: "B",
     blurb: "British Columbia PST, property transfer tax, and stat pay.",
     accent: "from-[#2979FF] to-[#00B8D4]",
+  },
+  "Canadian Taxes": {
+    icon: "C",
+    blurb: "GST, HST, CPP, EI, and Canada-wide tax planning tools.",
+    accent: "from-[#2979FF] to-[#00E5FF]",
+  },
+  "E-commerce Fees": {
+    icon: "S",
+    blurb: "PayPal, Stripe, marketplace fees, markup, and margins.",
+    accent: "from-[#00B8D4] to-[#1565C0]",
   },
   "Specialized Business": {
     icon: "S",

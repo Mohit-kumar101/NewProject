@@ -146,6 +146,7 @@ function StandardCalculatorWorkspace({
                     <input
                       id={`${input.id}-number`}
                       type="number"
+                      inputMode="decimal"
                       min={input.min}
                       max={input.max}
                       step={input.step}

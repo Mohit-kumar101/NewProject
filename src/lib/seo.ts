@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Calculator } from "@/lib/types";
+import type { Calculator, LongTailModifier } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 import {
   DEFAULT_OG_IMAGE,
@@ -8,7 +8,18 @@ import {
   clampMetaText,
   clampTitleSegment,
 } from "@/lib/pageMetadata";
-import { CRYPTO_CATEGORY, CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
+import { CRYPTO_CATEGORY, CRYPTO_SHORT_SLUGS, getToolHref, getToolModifierHref } from "@/lib/cryptoFormulas";
+import {
+  SEO_CONTENT_YEAR,
+  getKeywordSearchTerms,
+  resolveKeywordPack,
+  type KeywordVariation,
+} from "@/lib/keywords";
+import {
+  buildVariantExplanation,
+  interpolateTemplate,
+} from "@/lib/expansion/tools";
+import { categoryToSlug } from "@/lib/categoryPaths";
 
 export const SEO_MODIFIERS = [
   "free online tool",
@@ -144,11 +155,37 @@ function defaultLongTailH1(calculator: Calculator): string {
 }
 
 /**
- * Short meta title segment (≤45 chars) so full `<title>` with
+ * Action-driven meta title segment (≤45 chars) so full `<title>` with
  * `| CalculioHub` stays under 60 characters.
+ * Pattern: "[Name] Free [Benefit] (2026)" when it fits.
  */
-export function getToolMetaTitle(calculator: Calculator): string {
-  const preferred = (calculator.title || getToolMetricName(calculator))
+export function getToolMetaTitle(
+  calculator: Calculator,
+  variation?: KeywordVariation
+): string {
+  const pack = resolveKeywordPack(calculator);
+  const metric = getToolMetricName(calculator);
+  const benefit = (variation?.benefit || pack.benefit)
+    .replace(/^Free\s+/i, "")
+    .trim();
+
+  if (variation?.focus) {
+    return clampTitleSegment(
+      `${variation.focus} Free (${SEO_CONTENT_YEAR})`
+    );
+  }
+
+  const actionDriven = `${metric} Free ${benefit} (${SEO_CONTENT_YEAR})`;
+  if (actionDriven.length <= 45) {
+    return clampTitleSegment(actionDriven);
+  }
+
+  const compact = `${metric} Free (${SEO_CONTENT_YEAR})`;
+  if (compact.length <= 45) {
+    return clampTitleSegment(compact);
+  }
+
+  const preferred = (calculator.title || metric)
     .replace(/^Free\s+/i, "")
     .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
     .trim();
@@ -212,17 +249,37 @@ function defaultDescription(calculator: Calculator): string {
   return `Calculate ${metric} instantly with the formula and a step-by-step example. Free online tool, no sign up required.`;
 }
 
-/** Meta description, 155 characters max, utility-first. */
-export function getToolPageDescription(calculator: Calculator): string {
+/** Meta description, 155 characters max, utility-first + long-tail intent. */
+export function getToolPageDescription(
+  calculator: Calculator,
+  variation?: KeywordVariation
+): string {
+  const pack = resolveKeywordPack(calculator);
+
+  if (variation) {
+    return clampMetaText(
+      ensureUtilityModifiers(
+        `${variation.intro} ${variation.benefit}. Instant results in your browser.`
+      ),
+      META_DESCRIPTION_MAX
+    );
+  }
+
   const curated = LONG_TAIL_DESCRIPTIONS[calculator.slug];
+  const fromPack = `Free ${pack.primary}. ${pack.benefit}. Instant results—no sign up. Updated ${SEO_CONTENT_YEAR}.`;
   const source =
-    curated || calculator.seoDescription || defaultDescription(calculator);
+    curated || calculator.seoDescription || fromPack || defaultDescription(calculator);
   return clampMetaText(ensureUtilityModifiers(source), META_DESCRIPTION_MAX);
 }
 
-export function getToolPageKeywords(calculator: Calculator): string[] {
+export function getToolPageKeywords(
+  calculator: Calculator,
+  variation?: KeywordVariation
+): string[] {
+  const pack = resolveKeywordPack(calculator);
   const metric = getToolMetricName(calculator);
   const override = calculator.seoKeywords;
+  const packTerms = getKeywordSearchTerms(pack, variation).slice(0, 6);
   const longTail = isFileConverter(calculator)
     ? [
         `how to convert ${metric.toLowerCase()}`,
@@ -239,6 +296,7 @@ export function getToolPageKeywords(calculator: Calculator): string[] {
     SITE_NAME,
     ...SEO_MODIFIERS,
     calculator.category,
+    ...packTerms,
     ...longTail,
   ];
 
@@ -253,6 +311,9 @@ export function getToolCanonicalUrl(calculator: Calculator): string {
   if (calculator.category === CRYPTO_CATEGORY) {
     const cryptoPath = cryptoPublicPath(calculator.slug);
     if (cryptoPath) return `${SITE_URL}${cryptoPath}`;
+  }
+  if (calculator.useCategoryPath) {
+    return `${SITE_URL}${getToolHref(calculator.slug)}`;
   }
   return `${SITE_URL}/tools/${calculator.slug}`;
 }
@@ -272,27 +333,93 @@ export function getPracticalExample(calculator: Calculator): string {
   return `Practical example: set ${bits.join(", ")}, then read the result instantly in your browser. Free online tool, no sign up.`;
 }
 
+export function getToolVariationCanonicalUrl(
+  calculator: Calculator,
+  variationSlug: string
+): string {
+  return `${SITE_URL}${getToolModifierHref(calculator.slug, variationSlug)}`;
+}
+
+/** Adapt a schema LongTailModifier into the KeywordVariation shape used by metadata helpers. */
+export function longTailModifierToVariation(
+  modifier: LongTailModifier
+): KeywordVariation {
+  return {
+    slug: modifier.slug,
+    focus: modifier.focusKeyword,
+    benefit: modifier.benefit ?? "Instant results",
+    intro: modifier.explanation,
+    route: modifier.route !== false,
+  };
+}
+
+export function buildModifierFaqs(
+  calculator: Calculator,
+  modifier?: LongTailModifier
+) {
+  const year = String(SEO_CONTENT_YEAR);
+  const focus = modifier?.focusKeyword ?? calculator.title;
+  const source = [
+    ...(modifier?.faqs ?? []),
+    ...calculator.seoContent.faqs,
+  ];
+
+  return source.map((faq) => ({
+    question: interpolateTemplate(faq.question, {
+      focusKeyword: focus,
+      year,
+      title: calculator.title,
+    }),
+    answer: interpolateTemplate(faq.answer, {
+      focusKeyword: focus,
+      year,
+      title: calculator.title,
+    }),
+  }));
+}
+
 /**
- * Build unique per-tool metadata.
+ * Build unique per-tool (or long-tail variation) metadata.
  * Root layout title template appends `| CalculioHub`.
  */
-export function buildToolMetadata(calculator: Calculator): Metadata {
-  const pageTitle = getToolMetaTitle(calculator);
+export function buildToolMetadata(
+  calculator: Calculator,
+  variation?: KeywordVariation,
+  modifier?: LongTailModifier
+): Metadata {
+  const resolvedVariation =
+    variation ?? (modifier ? longTailModifierToVariation(modifier) : undefined);
+  const pageTitle = getToolMetaTitle(calculator, resolvedVariation);
   const absoluteTitle = clampMetaText(
     `${pageTitle} | ${SITE_NAME}`,
     META_TITLE_MAX
   );
-  const description = getToolPageDescription(calculator);
-  const url = getToolCanonicalUrl(calculator);
+  const description = modifier
+    ? clampMetaText(
+        ensureUtilityModifiers(
+          `${buildVariantExplanation(calculator, modifier)} Instant results—no sign up.`
+        ),
+        META_DESCRIPTION_MAX
+      )
+    : getToolPageDescription(calculator, resolvedVariation);
+  const url = resolvedVariation
+    ? getToolVariationCanonicalUrl(calculator, resolvedVariation.slug)
+    : getToolCanonicalUrl(calculator);
   const image = {
     ...DEFAULT_OG_IMAGE,
     alt: `${calculator.title} on ${SITE_NAME}`,
   };
+  const modifierKeywords = modifier
+    ? [modifier.focusKeyword, categoryToSlug(calculator.category)]
+    : [];
 
   return {
     title: pageTitle,
     description,
-    keywords: getToolPageKeywords(calculator),
+    keywords: [
+      ...getToolPageKeywords(calculator, resolvedVariation),
+      ...modifierKeywords,
+    ],
     alternates: { canonical: url },
     openGraph: {
       title: absoluteTitle,

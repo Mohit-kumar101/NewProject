@@ -43,6 +43,7 @@ export default async function CryptoToolPage({ params }: PageProps) {
   return (
     <ToolPageShell
       calculator={calculator}
+      related={related}
       workspace={
         <CalculatorWorkspace calculator={calculator} related={related} />
       }

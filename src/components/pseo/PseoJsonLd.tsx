@@ -1,10 +1,18 @@
+import type { CalculatorFaq } from "@/lib/types";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { getPseoMetaTitle } from "@/lib/pseo/metadata";
 import type { PseoTool } from "@/lib/pseo/types";
 
-export function PseoJsonLd({ tool }: { tool: PseoTool }) {
+export function PseoJsonLd({
+  tool,
+  faqs,
+}: {
+  tool: PseoTool;
+  faqs?: CalculatorFaq[];
+}) {
   const url = `${SITE_URL}/tools/${tool.slug}`;
   const name = getPseoMetaTitle(tool);
+  const faqItems = faqs?.length ? faqs : tool.schemaData.faqs;
 
   const softwareApplication = {
     "@context": "https://schema.org",
@@ -101,7 +109,7 @@ export function PseoJsonLd({ tool }: { tool: PseoTool }) {
     "@type": "FAQPage",
     name: `${tool.h1} frequently asked questions`,
     url,
-    mainEntity: tool.schemaData.faqs.map((faq) => ({
+    mainEntity: faqItems.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {

@@ -1,6 +1,16 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, calculators } from "@/lib/calculators";
-import { CRYPTO_SHORT_SLUGS } from "@/lib/cryptoFormulas";
+import {
+  CRYPTO_SHORT_SLUGS,
+  getToolHref,
+  getToolModifierHref,
+} from "@/lib/cryptoFormulas";
+import { getAllKeywordPacks, getRoutableVariations } from "@/lib/keywords";
+import {
+  CATEGORY_PATH_READY_TOOLS,
+  CATEGORY_PATH_SLUGS,
+  getCategoryPathModifiers,
+} from "@/lib/categoryPathTools";
 import { PSEO_SLUGS, PSEO_TOOLS } from "@/lib/pseo/calculatorsData";
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [
@@ -37,14 +47,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const catalogPages: MetadataRoute.Sitemap = calculators
     .filter(
       (calculator) =>
-        !cryptoToolSlugs.has(calculator.slug) && !PSEO_SLUGS.has(calculator.slug)
+        !cryptoToolSlugs.has(calculator.slug) &&
+        !PSEO_SLUGS.has(calculator.slug) &&
+        !CATEGORY_PATH_SLUGS.has(calculator.slug)
     )
     .map((calculator) => ({
-      url: `${SITE_URL}/tools/${calculator.slug}`,
+      url: `${SITE_URL}${getToolHref(calculator.slug)}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     }));
+
+  const categoryPathPages: MetadataRoute.Sitemap =
+    CATEGORY_PATH_READY_TOOLS.flatMap((tool) => {
+      const base = {
+        url: `${SITE_URL}${getToolHref(tool.slug)}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      };
+      const modifiers = getCategoryPathModifiers(tool).map((modifier) => ({
+        url: `${SITE_URL}${getToolModifierHref(tool.slug, modifier.slug)}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      }));
+      return [base, ...modifiers];
+    });
 
   const cryptoPages: MetadataRoute.Sitemap = Object.keys(CRYPTO_SHORT_SLUGS).map(
     (short) => ({
@@ -55,10 +84,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  const keywordVariationPages: MetadataRoute.Sitemap = Object.keys(
+    getAllKeywordPacks()
+  ).flatMap((slug) =>
+    getRoutableVariations(slug).map((variation) => ({
+      url: `${SITE_URL}/tools/${slug}/for/${variation.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
+  );
+
   return [
     ...STATIC_PAGES.map((page) => ({ ...page, lastModified: now })),
     ...cryptoPages,
     ...pseoPages,
     ...catalogPages,
+    ...categoryPathPages,
+    ...keywordVariationPages,
   ];
 }
