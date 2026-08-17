@@ -121,6 +121,36 @@ const categoryMeta: Record<
     blurb: "Coffee cost per cup, bakery, wedding per guest, and Airbnb nights.",
     accent: "from-[#00E5FF] to-[#2979FF]",
   },
+  "Vehicle & Auto Affordability": {
+    icon: "C",
+    blurb: "Can I afford this car? Price and salary presets with the 20/4/10 rule.",
+    accent: "from-[#00E5FF] to-[#2979FF]",
+  },
+  "Housing & Rent Affordability": {
+    icon: "M",
+    blurb: "House prices, rent caps, and 28/36 DTI stress tests.",
+    accent: "from-[#2979FF] to-[#00B8D4]",
+  },
+  "Life Events & Family Affordability": {
+    icon: "W",
+    blurb: "Weddings, travel, babies, pets, and year-off planning.",
+    accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  "Tech, Electronics & Major Purchases": {
+    icon: "T",
+    blurb: "iPhones, laptops, PCs, TVs — cash-cushion purchase checks.",
+    accent: "from-[#18FFFF] to-[#1565C0]",
+  },
+  "Lifestyle & Personal Spending": {
+    icon: "L",
+    blurb: "Gyms, subscriptions, coffee, travel cadence, and work freedom.",
+    accent: "from-[#00E5FF] to-[#1565C0]",
+  },
+  "Financial Freedom & Debt": {
+    icon: "D",
+    blurb: "Payoff plans, savings rates, and the master Can I Afford This? tool.",
+    accent: "from-[#2979FF] to-[#00E5FF]",
+  },
   "Education, GPA & Academic": {
     icon: "A",
     blurb: "GPA, exams, tuition planning, and study tools.",

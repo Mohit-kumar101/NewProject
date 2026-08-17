@@ -1,0 +1,463 @@
+{
+  "_meta": {
+    "description": "Affordability Engine calculators config (pSEO). Add full page objects to pages[] with presets + ready:true; taxonomyTodos lists remaining intent slugs (do not route until ready).",
+    "routePattern": "/affordability/[category]/[slug]"
+  },
+  "categories": [
+    {
+      "id": "vehicle-auto",
+      "slug": "vehicle-auto",
+      "name": "Vehicle & Auto Affordability",
+      "description": "Car price targets, salary benchmarks, and new/used/EV/luxury variants using the 20/4/10 rule.",
+      "defaultRuleSet": "auto-20-4-10"
+    },
+    {
+      "id": "housing-rent",
+      "slug": "housing-rent",
+      "name": "Housing & Rent Affordability",
+      "description": "Home purchase prices, salary-based house targets, monthly rent caps, and move-out intent pages.",
+      "defaultRuleSet": "housing-28-36"
+    },
+    {
+      "id": "life-events-family",
+      "slug": "life-events-family",
+      "name": "Life Events & Family Affordability",
+      "description": "Weddings, honeymoons, vacations, babies, childcare, pets, and career pauses.",
+      "defaultRuleSet": "fifty-30-20"
+    },
+    {
+      "id": "tech-electronics",
+      "slug": "tech-electronics",
+      "name": "Tech, Electronics & Major Purchases",
+      "description": "iPhones, MacBooks, gaming PCs, TVs, cameras, and other big-ticket gadgets.",
+      "defaultRuleSet": "cash-cushion"
+    },
+    {
+      "id": "lifestyle-spending",
+      "slug": "lifestyle-spending",
+      "name": "Lifestyle & Personal Spending",
+      "description": "Gyms, subscriptions, coffee habits, travel cadence, and work-freedom goals.",
+      "defaultRuleSet": "fifty-30-20"
+    },
+    {
+      "id": "financial-freedom",
+      "slug": "financial-freedom",
+      "name": "Financial Freedom & Debt",
+      "description": "Debt payoff, savings rate, investing cadence, and the master Can I Afford This? calculator.",
+      "defaultRuleSet": "debt-payoff"
+    }
+  ],
+  "pages": [
+    {
+      "slug": "afford-25k-car",
+      "category": "vehicle-auto",
+      "ready": true,
+      "title": "Can I Afford a $25,000 Car?",
+      "seoTitle": "Can I Afford a $25,000 Car? Salary & Monthly Payment Breakdown",
+      "metaDescription": "Check if a $25,000 car fits your salary with the 20/4/10 rule. Instant payment, down payment, and transport-budget results—free, no sign up.",
+      "h1": "Can I Afford a $25,000 Car?",
+      "intentQuestion": "Can I afford a $25,000 car on my salary?",
+      "description": "Pre-filled $25,000 vehicle affordability check using the 20/4/10 auto rule.",
+      "engineMode": "vehicle",
+      "ruleSet": "auto-20-4-10",
+      "presets": {
+        "targetPrice": 25000,
+        "annualIncome": 75000,
+        "downPaymentPercent": 20,
+        "loanTermMonths": 48,
+        "annualRate": 6.5,
+        "monthlyDebts": 350
+      },
+      "inputs": [
+        { "id": "targetPrice", "label": "Car Price ($)", "min": 5000, "max": 150000, "step": 500 },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 20000, "max": 300000, "step": 1000 },
+        { "id": "downPaymentPercent", "label": "Down Payment (%)", "min": 0, "max": 80, "step": 1 },
+        { "id": "loanTermMonths", "label": "Loan Term (months)", "min": 24, "max": 84, "step": 12 },
+        { "id": "annualRate", "label": "APR (%)", "min": 0, "max": 25, "step": 0.1 },
+        { "id": "monthlyDebts", "label": "Other Monthly Debts ($)", "min": 0, "max": 5000, "step": 25 }
+      ],
+      "seoContent": {
+        "intro": "This page pre-loads a $25,000 car target with a 20% down payment and 48-month loan so you can instantly see whether the payment fits a 10% transportation budget on your salary.",
+        "howToUse": [
+          "Confirm or edit the $25,000 target price.",
+          "Enter your gross annual income.",
+          "Adjust down payment %, term, and APR if your quote differs.",
+          "Read the live verdict against the 20/4/10 rule."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford a $25,000 car on my salary?",
+            "answer": "Use the 20/4/10 rule: put about 20% down, keep the loan near 4 years, and aim for a payment at or below 10% of gross monthly income. This calculator applies that test to a $25,000 price instantly."
+          },
+          {
+            "question": "What salary do I need for a $25,000 car?",
+            "answer": "After a 20% down payment ($5,000), a typical 48-month loan at mid-single-digit APR often needs roughly $55k–$80k household income to stay near the 10% transport cap—adjust rate and insurance in the inputs for your quote."
+          },
+          {
+            "question": "Is the 20/4/10 rule required by lenders?",
+            "answer": "No. It is a consumer planning heuristic. Lenders use credit, DTI, and residual value rules. 20/4/10 is intentionally stricter than many approvals."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "afford-500k-house",
+      "category": "housing-rent",
+      "ready": true,
+      "title": "Can I Afford a $500,000 House?",
+      "seoTitle": "Can I Afford a $500,000 House? 28/36 DTI & Payment Breakdown",
+      "metaDescription": "See if a $500,000 home fits your income with the 28/36 DTI rule. Instant PITI estimate, free online, no sign up.",
+      "h1": "Can I Afford a $500,000 House?",
+      "intentQuestion": "Can I afford a $500,000 house?",
+      "description": "Pre-filled $500,000 home purchase check using 28/36 debt-to-income guidelines.",
+      "engineMode": "housing",
+      "ruleSet": "housing-28-36",
+      "presets": {
+        "targetPrice": 500000,
+        "annualIncome": 120000,
+        "downPaymentPercent": 20,
+        "loanTermYears": 30,
+        "annualRate": 6.75,
+        "monthlyDebts": 600,
+        "monthlyTaxesInsurance": 650
+      },
+      "inputs": [
+        { "id": "targetPrice", "label": "Home Price ($)", "min": 100000, "max": 2000000, "step": 5000 },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 30000, "max": 500000, "step": 1000 },
+        { "id": "downPaymentPercent", "label": "Down Payment (%)", "min": 0, "max": 60, "step": 1 },
+        { "id": "loanTermYears", "label": "Loan Term (years)", "min": 10, "max": 30, "step": 5 },
+        { "id": "annualRate", "label": "Mortgage APR (%)", "min": 1, "max": 12, "step": 0.05 },
+        { "id": "monthlyTaxesInsurance", "label": "Taxes & Insurance / Mo ($)", "min": 0, "max": 3000, "step": 25 },
+        { "id": "monthlyDebts", "label": "Other Monthly Debts ($)", "min": 0, "max": 8000, "step": 50 }
+      ],
+      "seoContent": {
+        "intro": "A $500,000 purchase price is pre-loaded with 20% down and a 30-year mortgage so you can stress-test the payment against the 28/36 DTI rule before you tour homes.",
+        "howToUse": [
+          "Keep or edit the $500,000 target price.",
+          "Enter household gross income and existing monthly debts.",
+          "Set taxes/insurance escrow for your ZIP.",
+          "Compare housing and total DTI caps in the live results."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford a $500,000 house?",
+            "answer": "Under the 28/36 rule, housing (PITI) should stay near 28% of gross income and all debts under 36%. This page models a $500,000 price with your income, rate, and down payment."
+          },
+          {
+            "question": "What income do I need for a $500k home?",
+            "answer": "With 20% down, a mid-6% rate, and typical taxes/insurance, many households need roughly $110k–$140k gross to stay near 28% housing DTI—run your exact numbers above."
+          },
+          {
+            "question": "Does 28/36 include utilities?",
+            "answer": "Standard DTI focuses on PITI and contractual debts, not utilities or groceries. Still budget those separately so the leftover is realistic."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "afford-30k-wedding",
+      "category": "life-events-family",
+      "ready": true,
+      "title": "Can I Afford a $30,000 Wedding?",
+      "seoTitle": "Can I Afford a $30,000 Wedding? Cash Cushion & Savings Plan",
+      "metaDescription": "Plan a $30,000 wedding without wrecking your emergency fund. 50/30/20 and cash-cushion check—free calculator, no sign up.",
+      "h1": "Can I Afford a $30,000 Wedding?",
+      "intentQuestion": "Can I afford a $30,000 wedding?",
+      "description": "Pre-filled $30,000 wedding cost check with cash cushion and savings timeline.",
+      "engineMode": "purchase",
+      "ruleSet": "fifty-30-20",
+      "presets": {
+        "targetPrice": 30000,
+        "annualIncome": 95000,
+        "cashOnHand": 18000,
+        "monthlyExpenses": 4200,
+        "monthlySavings": 900
+      },
+      "inputs": [
+        { "id": "targetPrice", "label": "Wedding Budget ($)", "min": 5000, "max": 150000, "step": 500 },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 25000, "max": 400000, "step": 1000 },
+        { "id": "cashOnHand", "label": "Cash Available Now ($)", "min": 0, "max": 200000, "step": 500 },
+        { "id": "monthlyExpenses", "label": "Essential Expenses / Mo ($)", "min": 1000, "max": 20000, "step": 50 },
+        { "id": "monthlySavings", "label": "Wedding Savings / Mo ($)", "min": 0, "max": 10000, "step": 50 }
+      ],
+      "seoContent": {
+        "intro": "Weddings are one-time lifestyle purchases. This engine checks whether a $30,000 celebration can be funded without wiping a 3-month expense cushion—and how long a savings plan would take.",
+        "howToUse": [
+          "Confirm the $30,000 wedding target.",
+          "Enter cash on hand and essential monthly expenses.",
+          "Set a realistic monthly savings contribution.",
+          "Review the cash-cushion and months-to-save results."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford a $30,000 wedding?",
+            "answer": "Yes if you can pay (or finish saving) without dropping below ~3 months of essential expenses, and the monthly savings fit inside a healthy wants allocation under 50/30/20."
+          },
+          {
+            "question": "Should I finance a wedding on credit cards?",
+            "answer": "Usually no. High-APR wedding debt often fails both the cash-cushion and debt-payoff tests. Prefer a shorter savings timeline or a smaller celebration."
+          },
+          {
+            "question": "How does 50/30/20 apply to weddings?",
+            "answer": "Treat contributions as wants (30%) or as a dedicated savings goal (20% bucket) until the date—not as needs unless you are covering mandatory deposits already owed."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "afford-iphone",
+      "category": "tech-electronics",
+      "ready": true,
+      "title": "Can I Afford a New iPhone?",
+      "seoTitle": "Can I Afford a New iPhone? Cash Cushion Purchase Check",
+      "metaDescription": "See if a new iPhone fits your cash cushion and 50/30/20 wants budget. Free instant check, no sign up.",
+      "h1": "Can I Afford a New iPhone?",
+      "intentQuestion": "Can I afford a new iPhone?",
+      "description": "Pre-filled flagship phone purchase (~$1,200) with emergency-fund protection check.",
+      "engineMode": "purchase",
+      "ruleSet": "cash-cushion",
+      "presets": {
+        "targetPrice": 1200,
+        "annualIncome": 70000,
+        "cashOnHand": 4500,
+        "monthlyExpenses": 2800,
+        "monthlySavings": 300
+      },
+      "inputs": [
+        { "id": "targetPrice", "label": "Device Price ($)", "min": 200, "max": 5000, "step": 50 },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 20000, "max": 300000, "step": 1000 },
+        { "id": "cashOnHand", "label": "Cash Available ($)", "min": 0, "max": 50000, "step": 50 },
+        { "id": "monthlyExpenses", "label": "Essential Expenses / Mo ($)", "min": 500, "max": 15000, "step": 50 },
+        { "id": "monthlySavings", "label": "Monthly Savings ($)", "min": 0, "max": 5000, "step": 25 }
+      ],
+      "seoContent": {
+        "intro": "Flagship phones feel small next to a house payment—but they still fail the cash-cushion test when the emergency fund is thin. This page starts at a typical ~$1,200 unlocked iPhone price.",
+        "howToUse": [
+          "Set the phone (or storage/config) price.",
+          "Enter cash on hand and monthly essentials.",
+          "See whether buying now protects a 3-month cushion.",
+          "Or read how many months of saving close the gap."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford a new iPhone?",
+            "answer": "If cash covers the price and you still keep ~3 months of expenses in reserve, yes. If not, save inside your 30% wants budget or choose a lower storage tier / certified refurbished model."
+          },
+          {
+            "question": "Is carrier financing a good idea?",
+            "answer": "0% financing can be fine if you already budget the payment as a want and keep your emergency fund intact. High-APR retail financing usually fails this engine’s cushion check."
+          },
+          {
+            "question": "What rule applies to gadgets?",
+            "answer": "Use a cash-cushion check plus 50/30/20 wants capacity—not mortgage-style DTI. Gadgets are discretionary purchases."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "afford-gym-membership",
+      "category": "lifestyle-spending",
+      "ready": true,
+      "title": "Can I Afford a Gym Membership?",
+      "seoTitle": "Can I Afford a Gym Membership? 50/30/20 Monthly Cost Check",
+      "metaDescription": "Check whether a gym membership fits your 30% wants budget. Instant 50/30/20 lifestyle calculator—free, no sign up.",
+      "h1": "Can I Afford a Gym Membership?",
+      "intentQuestion": "Can I afford a gym membership?",
+      "description": "Pre-filled ~$55/mo gym membership check against the 50/30/20 wants slice.",
+      "engineMode": "lifestyle",
+      "ruleSet": "fifty-30-20",
+      "presets": {
+        "monthlyCost": 55,
+        "annualIncome": 65000,
+        "otherMonthlyWants": 400
+      },
+      "inputs": [
+        { "id": "monthlyCost", "label": "Gym Cost / Mo ($)", "min": 10, "max": 500, "step": 5 },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 20000, "max": 300000, "step": 1000 },
+        { "id": "otherMonthlyWants", "label": "Other Wants / Mo ($)", "min": 0, "max": 5000, "step": 25 }
+      ],
+      "seoContent": {
+        "intro": "Subscriptions stack quietly. This page tests a typical gym dues amount against your 30% wants allocation after other discretionary spending.",
+        "howToUse": [
+          "Enter your monthly gym (or studio) price.",
+          "Add other wants: streaming, dining out, hobbies.",
+          "Compare the total to 30% of gross monthly income.",
+          "Adjust income or cut other wants if you are over the cap."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford a gym membership?",
+            "answer": "If gym dues plus your other wants stay inside ~30% of income (50/30/20), the membership is usually affordable. Annualize the cost to see the true yearly hit."
+          },
+          {
+            "question": "What about personal trainers?",
+            "answer": "Trainer sessions are still wants. Add them into Other Wants / Mo or raise Gym Cost to the all-in monthly wellness total."
+          },
+          {
+            "question": "Is gross or net income better for 50/30/20?",
+            "answer": "Purists use after-tax income. This tool uses gross for fast comparison with other CalculioHub affordability pages—tighten the cap if your tax rate is high."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "can-i-afford-this",
+      "category": "financial-freedom",
+      "ready": true,
+      "title": "Can I Afford This? — Master Calculator",
+      "seoTitle": "Can I Afford This? Master Affordability Calculator",
+      "metaDescription": "Interactive master calculator for any purchase or monthly cost. Cash cushion + 50/30/20 guidance—free, no sign up.",
+      "h1": "Can I Afford This? — Master Calculator",
+      "intentQuestion": "Can I afford this purchase or monthly cost?",
+      "description": "Blank-canvas affordability engine for custom one-time or recurring targets.",
+      "engineMode": "master",
+      "ruleSet": "custom",
+      "presets": {
+        "targetPrice": 1000,
+        "annualIncome": 75000,
+        "cashOnHand": 8000,
+        "monthlyExpenses": 3200,
+        "monthlySavings": 500,
+        "otherMonthlyWants": 350,
+        "isRecurring": 0
+      },
+      "inputs": [
+        { "id": "targetPrice", "label": "Target Price or Monthly Cost ($)", "min": 0, "max": 500000, "step": 25 },
+        { "id": "isRecurring", "label": "Treat as monthly recurring cost", "min": 0, "max": 1, "step": 1, "inputType": "checkbox" },
+        { "id": "annualIncome", "label": "Gross Annual Income ($)", "min": 15000, "max": 500000, "step": 1000 },
+        { "id": "cashOnHand", "label": "Cash on Hand ($)", "min": 0, "max": 500000, "step": 100 },
+        { "id": "monthlyExpenses", "label": "Essential Expenses / Mo ($)", "min": 500, "max": 25000, "step": 50 },
+        { "id": "monthlySavings", "label": "Monthly Savings Capacity ($)", "min": 0, "max": 20000, "step": 25 },
+        { "id": "otherMonthlyWants", "label": "Other Wants / Mo ($)", "min": 0, "max": 10000, "step": 25 }
+      ],
+      "seoContent": {
+        "intro": "The master affordability calculator accepts any target. Leave “recurring” off for one-time purchases (cash cushion + savings plan) or turn it on to test a monthly habit against 50/30/20 wants.",
+        "howToUse": [
+          "Enter the price (one-time) or monthly cost (recurring).",
+          "Toggle recurring if this is a subscription or lifestyle habit.",
+          "Fill income, cash, expenses, and other wants.",
+          "Read the verdict and adjust until the plan feels safe."
+        ],
+        "faqs": [
+          {
+            "question": "Can I afford this purchase or monthly cost?",
+            "answer": "For one-time buys, protect a 3-month expense cushion. For recurring costs, keep wants near 30% of income. This master tool runs both modes with the same Affordability Engine."
+          },
+          {
+            "question": "How is this different from the category pages?",
+            "answer": "Category pages pre-fill intent targets ($25k car, $500k house, iPhone, gym, wedding). This page is the blank interactive calculator for anything else."
+          },
+          {
+            "question": "Are these results a loan approval?",
+            "answer": "No. CalculioHub provides planning estimates only. Lenders use credit scores, verified income, and underwriting guidelines."
+          }
+        ]
+      }
+    }
+  ],
+  "taxonomyTodos": {
+    "vehicle-auto": [
+      { "slug": "can-i-afford-a-car", "label": "Can I Afford a Car? (Master Hub)", "status": "TODO" },
+      { "slug": "afford-20k-car", "label": "$20,000 Car", "status": "TODO" },
+      { "slug": "afford-30k-car", "label": "$30,000 Car", "status": "TODO" },
+      { "slug": "afford-35k-car", "label": "$35,000 Car", "status": "TODO" },
+      { "slug": "afford-40k-car", "label": "$40,000 Car", "status": "TODO" },
+      { "slug": "afford-50k-car", "label": "$50,000 Car", "status": "TODO" },
+      { "slug": "afford-60k-car", "label": "$60,000 Car", "status": "TODO" },
+      { "slug": "afford-70k-car", "label": "$70,000 Car", "status": "TODO" },
+      { "slug": "afford-100k-car", "label": "$100,000 Car", "status": "TODO" },
+      { "slug": "afford-car-on-40k-salary", "label": "$40,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-car-on-50k-salary", "label": "$50,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-car-on-60k-salary", "label": "$60,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-car-on-75k-salary", "label": "$75,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-car-on-100k-salary", "label": "$100,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-car-on-150k-salary", "label": "$150,000 Salary Benchmark", "status": "TODO" },
+      { "slug": "afford-new-car", "label": "New Car", "status": "TODO" },
+      { "slug": "afford-used-car", "label": "Used Car", "status": "TODO" },
+      { "slug": "afford-luxury-car", "label": "Luxury Car", "status": "TODO" },
+      { "slug": "afford-electric-vehicle", "label": "Electric Vehicle (EV)", "status": "TODO" }
+    ],
+    "housing-rent": [
+      { "slug": "afford-300k-house", "label": "$300,000 House", "status": "TODO" },
+      { "slug": "afford-400k-house", "label": "$400,000 House", "status": "TODO" },
+      { "slug": "afford-600k-house", "label": "$600,000 House", "status": "TODO" },
+      { "slug": "afford-700k-house", "label": "$700,000 House", "status": "TODO" },
+      { "slug": "afford-800k-house", "label": "$800,000 House", "status": "TODO" },
+      { "slug": "afford-1m-house", "label": "$1 Million House", "status": "TODO" },
+      { "slug": "afford-house-on-50k-salary", "label": "House on $50,000 Salary", "status": "TODO" },
+      { "slug": "afford-house-on-75k-salary", "label": "House on $75,000 Salary", "status": "TODO" },
+      { "slug": "afford-house-on-100k-salary", "label": "House on $100,000 Salary", "status": "TODO" },
+      { "slug": "afford-house-on-150k-salary", "label": "House on $150,000 Salary", "status": "TODO" },
+      { "slug": "afford-1500-rent", "label": "$1,500 Monthly Rent", "status": "TODO" },
+      { "slug": "afford-2000-rent", "label": "$2,000 Monthly Rent", "status": "TODO" },
+      { "slug": "afford-2500-rent", "label": "$2,500 Monthly Rent", "status": "TODO" },
+      { "slug": "afford-3000-rent", "label": "$3,000 Monthly Rent", "status": "TODO" },
+      { "slug": "can-i-afford-my-rent", "label": "Can I Afford My Rent", "status": "TODO" },
+      { "slug": "how-much-rent-can-i-afford", "label": "How Much Rent Can I Afford", "status": "TODO" },
+      { "slug": "can-i-afford-to-move-out", "label": "Move Out", "status": "TODO" },
+      { "slug": "can-i-afford-to-live-alone", "label": "Live Alone", "status": "TODO" }
+    ],
+    "life-events-family": [
+      { "slug": "can-i-afford-a-wedding", "label": "Can I Afford a Wedding", "status": "TODO" },
+      { "slug": "afford-20k-wedding", "label": "$20,000 Wedding", "status": "TODO" },
+      { "slug": "afford-50k-wedding", "label": "$50,000 Wedding", "status": "TODO" },
+      { "slug": "can-i-afford-to-get-married", "label": "Get Married", "status": "TODO" },
+      { "slug": "can-i-afford-a-honeymoon", "label": "Honeymoon", "status": "TODO" },
+      { "slug": "honeymoon-without-debt", "label": "Honeymoon Without Debt", "status": "TODO" },
+      { "slug": "afford-5k-vacation", "label": "$5,000 Vacation", "status": "TODO" },
+      { "slug": "afford-10k-vacation", "label": "$10,000 Vacation", "status": "TODO" },
+      { "slug": "afford-15k-vacation", "label": "$15,000 Vacation", "status": "TODO" },
+      { "slug": "can-i-afford-to-move-cities", "label": "Move to Another City", "status": "TODO" },
+      { "slug": "can-i-afford-to-move-countries", "label": "Move to Another Country", "status": "TODO" },
+      { "slug": "can-i-afford-a-baby", "label": "Have a Baby", "status": "TODO" },
+      { "slug": "can-i-afford-childcare", "label": "Childcare", "status": "TODO" },
+      { "slug": "can-i-afford-another-child", "label": "Have Another Child", "status": "TODO" },
+      { "slug": "can-i-afford-a-pet", "label": "Pet", "status": "TODO" },
+      { "slug": "can-i-afford-a-dog", "label": "Dog", "status": "TODO" },
+      { "slug": "can-i-afford-a-cat", "label": "Cat", "status": "TODO" },
+      { "slug": "can-i-afford-a-year-off", "label": "Year Off Work", "status": "TODO" }
+    ],
+    "tech-electronics": [
+      { "slug": "afford-new-iphone", "label": "New iPhone", "status": "TODO" },
+      { "slug": "afford-macbook", "label": "MacBook", "status": "TODO" },
+      { "slug": "afford-new-phone", "label": "New Phone", "status": "TODO" },
+      { "slug": "afford-new-laptop", "label": "New Laptop", "status": "TODO" },
+      { "slug": "afford-new-camera", "label": "New Camera", "status": "TODO" },
+      { "slug": "afford-new-watch", "label": "New Watch", "status": "TODO" },
+      { "slug": "afford-luxury-watch", "label": "Luxury Watch", "status": "TODO" },
+      { "slug": "afford-gaming-pc", "label": "Gaming PC", "status": "TODO" },
+      { "slug": "afford-2000-computer", "label": "$2,000 Computer", "status": "TODO" },
+      { "slug": "afford-3000-computer", "label": "$3,000 Computer", "status": "TODO" },
+      { "slug": "afford-5000-tv", "label": "$5,000 TV", "status": "TODO" },
+      { "slug": "afford-new-tv", "label": "New TV", "status": "TODO" },
+      { "slug": "afford-1000-purchase", "label": "$1,000 Purchase", "status": "TODO" }
+    ],
+    "lifestyle-spending": [
+      { "slug": "afford-personal-trainer", "label": "Personal Trainer", "status": "TODO" },
+      { "slug": "afford-500-monthly-subscription", "label": "$500 Monthly Subscription", "status": "TODO" },
+      { "slug": "afford-daily-coffee", "label": "Daily Coffee", "status": "TODO" },
+      { "slug": "afford-eating-out-weekly", "label": "Eat Out Every Week", "status": "TODO" },
+      { "slug": "afford-luxury-vacation", "label": "Luxury Vacation", "status": "TODO" },
+      { "slug": "afford-1000-vacation", "label": "$1,000 Vacation", "status": "TODO" },
+      { "slug": "afford-luxury-lifestyle", "label": "Luxury Lifestyle", "status": "TODO" },
+      { "slug": "afford-travel-every-month", "label": "Travel Every Month", "status": "TODO" },
+      { "slug": "can-i-afford-to-take-a-year-off", "label": "Take a Year Off", "status": "TODO" },
+      { "slug": "can-i-afford-to-work-less", "label": "Work Less", "status": "TODO" },
+      { "slug": "can-i-afford-to-quit-my-job", "label": "Quit My Job", "status": "TODO" },
+      { "slug": "can-i-afford-early-retirement", "label": "Early Retirement", "status": "TODO" },
+      { "slug": "can-i-afford-to-retire-at-50", "label": "Retire at 50", "status": "TODO" },
+      { "slug": "can-i-afford-to-retire-at-40", "label": "Retire at 40", "status": "TODO" }
+    ],
+    "financial-freedom": [
+      { "slug": "can-i-afford-to-pay-off-car", "label": "Pay Off Car", "status": "TODO" },
+      { "slug": "can-i-afford-to-pay-off-mortgage-early", "label": "Pay Off Mortgage Early", "status": "TODO" },
+      { "slug": "can-i-afford-to-pay-off-credit-card", "label": "Pay Off Credit Card", "status": "TODO" },
+      { "slug": "can-i-afford-a-personal-loan", "label": "Personal Loan", "status": "TODO" },
+      { "slug": "afford-10k-loan", "label": "$10,000 Loan", "status": "TODO" },
+      { "slug": "afford-20k-loan", "label": "$20,000 Loan", "status": "TODO" },
+      { "slug": "can-i-afford-to-invest-500-mo", "label": "Invest $500/Mo", "status": "TODO" },
+      { "slug": "can-i-afford-to-save-1000-mo", "label": "Save $1,000/Mo", "status": "TODO" },
+      { "slug": "can-i-afford-to-quit-second-job", "label": "Quit Second Job", "status": "TODO" }
+    ]
+  }
+}

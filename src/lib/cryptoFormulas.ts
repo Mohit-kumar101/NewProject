@@ -1,6 +1,10 @@
 import type { CalcResult } from "./types";
 import { categoryToSlug } from "@/lib/categoryPaths";
 import { getCategoryPathToolBySlug } from "@/lib/categoryPathTools";
+import {
+  getAffordabilityHref,
+  getAffordabilityPageBySlug,
+} from "@/lib/affordability/catalog";
 
 type Inputs = Record<string, number>;
 
@@ -478,6 +482,9 @@ export function getToolHref(slug: string): string {
     ([, full]) => full === slug
   )?.[0];
   if (short) return `/crypto/${short}`;
+
+  const afford = getAffordabilityPageBySlug(slug);
+  if (afford) return getAffordabilityHref(afford);
 
   const expansion = getCategoryPathToolBySlug(slug);
   if (expansion?.useCategoryPath) {

@@ -1,5 +1,9 @@
 import type { CalcResult } from "./types";
 import { runCryptoCalculation } from "./cryptoFormulas";
+import {
+  modeFromFormulaType,
+  runAffordabilityCalculation,
+} from "./formulas_affordability";
 
 type Inputs = Record<string, number>;
 
@@ -2611,6 +2615,9 @@ export function runCalculation(
     }
 
     default: {
+      if (modeFromFormulaType(formulaType)) {
+        return runAffordabilityCalculation(formulaType, inputs);
+      }
       const crypto = runCryptoCalculation(formulaType, inputs);
       if (crypto) return crypto;
       return result("Result", "—", [

@@ -44,7 +44,22 @@ export const NICHE65_HUB_CATEGORIES = [
   "Events, Hospitality & Micro-Business",
 ] as const;
 
+/**
+ * “Can I Afford…?” pSEO matrix hubs.
+ * Routes live under `/affordability/{category}/{slug}` (not `/tools/...`).
+ */
+export const AFFORDABILITY_HUB_CATEGORIES = [
+  "Vehicle & Auto Affordability",
+  "Housing & Rent Affordability",
+  "Life Events & Family Affordability",
+  "Tech, Electronics & Major Purchases",
+  "Lifestyle & Personal Spending",
+  "Financial Freedom & Debt",
+] as const;
+
 export type ExpansionCategory = (typeof EXPANSION_CATEGORIES)[number];
 export type LongtailHubCategory = (typeof LONGTAIL_HUB_CATEGORIES)[number];
 export type Intent80HubCategory = (typeof INTENT80_HUB_CATEGORIES)[number];
 export type Niche65HubCategory = (typeof NICHE65_HUB_CATEGORIES)[number];
+export type AffordabilityHubCategory =
+  (typeof AFFORDABILITY_HUB_CATEGORIES)[number];
