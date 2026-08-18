@@ -29,7 +29,8 @@ function applicationCategory(category: string): string {
   if (
     category.includes("Lifestyle") ||
     category.includes("Cooking") ||
-    category.includes("Media")
+    category.includes("Media") ||
+    category.includes("Health")
   ) {
     return "LifestyleApplication";
   }

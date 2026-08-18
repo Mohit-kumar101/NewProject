@@ -5,6 +5,7 @@ import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { AffordabilityEngine } from "@/components/affordability/AffordabilityEngine";
 import { AffordabilityJsonLd } from "@/components/affordability/AffordabilityJsonLd";
 import { AffordabilityRuleSection } from "@/components/affordability/AffordabilityRuleSection";
+import { AFFORDABILITY_DISPLAY_CATEGORY } from "@/lib/categoryPaths";
 import {
   getAffordabilityCategory,
   getAffordabilityCategoryHref,
@@ -21,11 +22,8 @@ export function AffordabilityPage({
 }) {
   const category = getAffordabilityCategory(page.category);
   const faqs = buildAffordabilityFaqs(page);
-  const siblings = getAffordabilityPages({ readyOnly: true }).filter(
-    (p) => p.category === page.category && p.slug !== page.slug
-  );
-  const crossCategory = getAffordabilityPages({ readyOnly: true }).filter(
-    (p) => p.category !== page.category
+  const relatedPages = getAffordabilityPages({ readyOnly: true }).filter(
+    (p) => p.slug !== page.slug
   );
 
   return (
@@ -106,13 +104,13 @@ export function AffordabilityPage({
         <FaqAccordion faqs={faqs} />
       </section>
 
-      {(siblings.length > 0 || crossCategory.length > 0) && (
+      {relatedPages.length > 0 && (
         <section className="mt-16 max-w-3xl space-y-4">
           <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight">
             Related affordability checks
           </h2>
           <ul className="grid gap-2 sm:grid-cols-2">
-            {[...siblings, ...crossCategory].slice(0, 6).map((related) => (
+            {relatedPages.slice(0, 6).map((related) => (
               <li key={related.slug}>
                 <Link
                   href={getAffordabilityHref(related)}
@@ -127,7 +125,7 @@ export function AffordabilityPage({
       )}
 
       <ToolSearchFooter
-        currentCategory={category?.name ?? "Affordability"}
+        currentCategory={AFFORDABILITY_DISPLAY_CATEGORY}
         currentSlug={page.slug}
       />
     </ToolLayout>

@@ -1,11 +1,14 @@
 /**
  * Affordability pSEO catalog — loads `data/affordability.config.json`.
  *
- * READY: 6 pages (1 per category hub).
+ * READY pages all appear under the single directory category
+ * `AFFORDABILITY_DISPLAY_CATEGORY` ("Can I Afford…?").
+ * Internal hubs still live under `/affordability/{hub}/{slug}`.
  * TODO: expand taxonomyTodos → full page configs with presets, then ready: true.
  */
 
 import configData from "../../../data/affordability.config.json";
+import { AFFORDABILITY_DISPLAY_CATEGORY } from "@/lib/categoryPaths";
 import {
   formulaTypeFromMode,
 } from "@/lib/formulas_affordability";
@@ -103,11 +106,10 @@ function toCalculatorInput(
 export function affordabilityPageToCalculator(
   page: AffordabilityPageConfig
 ): Calculator {
-  const categoryMeta = getAffordabilityCategory(page.category);
   return {
     slug: page.slug,
     title: page.title,
-    category: categoryMeta?.name ?? page.category,
+    category: AFFORDABILITY_DISPLAY_CATEGORY,
     description: page.description,
     inputs: page.inputs.map((input) => toCalculatorInput(page, input)),
     formulaType: formulaTypeFromMode(page.engineMode),

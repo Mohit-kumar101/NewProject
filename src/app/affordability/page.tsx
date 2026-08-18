@@ -48,56 +48,58 @@ export default function AffordabilityHubPage() {
           Can I Afford…?
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-lg">
-          One configurable engine powers high-intent affordability pages across
-          six category hubs. Each ready page ships with preset targets, dynamic
-          metadata, FAQ schema, and the matching rule of thumb.
+          One category, one engine. Check a car, house, wedding, gadget,
+          lifestyle cost, or custom purchase against your income—each page ships
+          with preset targets, live math, and the matching rule of thumb.
         </p>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {ready.length} live pages · {todoCount} taxonomy slugs marked TODO
+          {ready.length} live calculators · {todoCount} more coming soon
         </p>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-2">
-        {AFFORDABILITY_CATEGORIES.map((category) => {
-          const pages = ready.filter((p) => p.category === category.id);
-          return (
-            <Link
-              key={category.id}
-              href={getAffordabilityCategoryHref(category.slug)}
-              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:border-[var(--accent)]"
-            >
-              <h2 className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">
-                {category.name}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                {category.description}
-              </p>
-              <p className="mt-3 text-xs font-semibold tracking-[0.12em] text-[var(--accent)] uppercase">
-                {pages.length} live · rule {category.defaultRuleSet}
-              </p>
-            </Link>
-          );
-        })}
-      </section>
-
-      <section className="mt-14 max-w-3xl space-y-4">
+      <section className="max-w-3xl space-y-4">
         <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight">
-          Featured calculators
+          All calculators
         </h2>
         <ul className="grid gap-3">
           {ready.map((page) => (
             <li key={page.slug}>
               <Link
                 href={getAffordabilityHref(page)}
-                className="flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 transition hover:border-[var(--accent)] sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)]"
               >
-                <span className="font-medium">{page.title}</span>
-                <span className="font-mono text-[11px] text-[var(--muted)]">
-                  /affordability/{page.category}/{page.slug}
+                <span className="font-semibold">{page.title}</span>
+                <span className="text-sm text-[var(--muted)]">
+                  {page.description}
                 </span>
               </Link>
             </li>
           ))}
+        </ul>
+      </section>
+
+      <section className="mt-14 max-w-3xl space-y-4">
+        <h2 className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">
+          Browse by topic
+        </h2>
+        <p className="text-sm text-[var(--muted)]">
+          Same tools, grouped by the kind of purchase you are checking.
+        </p>
+        <ul className="flex flex-wrap gap-2">
+          {AFFORDABILITY_CATEGORIES.map((category) => {
+            const pages = ready.filter((p) => p.category === category.id);
+            return (
+              <li key={category.id}>
+                <Link
+                  href={getAffordabilityCategoryHref(category.slug)}
+                  className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                >
+                  {category.name}
+                  {pages.length > 0 ? ` · ${pages.length}` : ""}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </ToolLayout>

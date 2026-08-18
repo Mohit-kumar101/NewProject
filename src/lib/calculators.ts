@@ -12,9 +12,13 @@ import { LONGTAIL_HUB_READY_TOOLS } from "@/lib/hubs/longTailPack";
 import { INTENT80_READY_TOOLS } from "@/lib/hubs/intent80Pack";
 import { NICHE65_READY_TOOLS } from "@/lib/hubs/niche65Pack";
 import { AFFORDABILITY_READY_TOOLS } from "@/lib/affordability/catalog";
+import { HEALTH_READY_TOOLS } from "@/lib/hubs/healthPack";
 import {
+  AFFORDABILITY_DISPLAY_CATEGORY,
   AFFORDABILITY_HUB_CATEGORIES,
   EXPANSION_CATEGORIES,
+  HEALTH_DISPLAY_CATEGORY,
+  HEALTH_HUB_CATEGORIES,
   INTENT80_HUB_CATEGORIES,
   LONGTAIL_HUB_CATEGORIES,
   NICHE65_HUB_CATEGORIES,
@@ -29,6 +33,7 @@ export const calculators: Calculator[] = [
   ...INTENT80_READY_TOOLS,
   ...NICHE65_READY_TOOLS,
   ...AFFORDABILITY_READY_TOOLS,
+  ...HEALTH_READY_TOOLS,
 ];
 
 export const CATEGORIES = [
@@ -64,12 +69,8 @@ export const CATEGORIES = [
   "Automotive, Travel & Transit",
   "Commute & Vehicle Costs",
   "Media, Photography, Cooking & Lifestyle",
-  "Vehicle & Auto Affordability",
-  "Housing & Rent Affordability",
-  "Life Events & Family Affordability",
-  "Tech, Electronics & Major Purchases",
-  "Lifestyle & Personal Spending",
-  "Financial Freedom & Debt",
+  AFFORDABILITY_DISPLAY_CATEGORY,
+  HEALTH_DISPLAY_CATEGORY,
   "Data & Code Converters",
   "Image Converters",
   "Document Converters",
@@ -77,7 +78,10 @@ export const CATEGORIES = [
 ] as const;
 
 export {
+  AFFORDABILITY_DISPLAY_CATEGORY,
   AFFORDABILITY_HUB_CATEGORIES,
+  HEALTH_DISPLAY_CATEGORY,
+  HEALTH_HUB_CATEGORIES,
   EXPANSION_CATEGORIES,
   LONGTAIL_HUB_CATEGORIES,
   INTENT80_HUB_CATEGORIES,

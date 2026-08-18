@@ -45,16 +45,20 @@ export const NICHE65_HUB_CATEGORIES = [
 ] as const;
 
 /**
- * “Can I Afford…?” pSEO matrix hubs.
- * Routes live under `/affordability/{category}/{slug}` (not `/tools/...`).
+ * Single directory category for every “Can I Afford…?” tool.
+ * Internal pSEO hubs still live under `/affordability/{hub}/{slug}`.
  */
+export const AFFORDABILITY_DISPLAY_CATEGORY = "Can I Afford…?" as const;
+
 export const AFFORDABILITY_HUB_CATEGORIES = [
-  "Vehicle & Auto Affordability",
-  "Housing & Rent Affordability",
-  "Life Events & Family Affordability",
-  "Tech, Electronics & Major Purchases",
-  "Lifestyle & Personal Spending",
-  "Financial Freedom & Debt",
+  AFFORDABILITY_DISPLAY_CATEGORY,
+] as const;
+
+/** Single directory category for the 48-tool health calculator pack. */
+export const HEALTH_DISPLAY_CATEGORY = "Health, Fitness & Wellness" as const;
+
+export const HEALTH_HUB_CATEGORIES = [
+  HEALTH_DISPLAY_CATEGORY,
 ] as const;
 
 export type ExpansionCategory = (typeof EXPANSION_CATEGORIES)[number];
@@ -63,3 +67,4 @@ export type Intent80HubCategory = (typeof INTENT80_HUB_CATEGORIES)[number];
 export type Niche65HubCategory = (typeof NICHE65_HUB_CATEGORIES)[number];
 export type AffordabilityHubCategory =
   (typeof AFFORDABILITY_HUB_CATEGORIES)[number];
+export type HealthHubCategory = (typeof HEALTH_HUB_CATEGORIES)[number];

@@ -4,6 +4,7 @@ import {
   modeFromFormulaType,
   runAffordabilityCalculation,
 } from "./formulas_affordability";
+import { isHealthFormulaType, runHealthCalculation } from "./formulas_health";
 
 type Inputs = Record<string, number>;
 
@@ -2615,6 +2616,10 @@ export function runCalculation(
     }
 
     default: {
+      if (isHealthFormulaType(formulaType)) {
+        const health = runHealthCalculation(formulaType, inputs);
+        if (health) return health;
+      }
       if (modeFromFormulaType(formulaType)) {
         return runAffordabilityCalculation(formulaType, inputs);
       }
