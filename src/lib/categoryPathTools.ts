@@ -36,6 +36,12 @@ import {
   HEALTH_TOOLS,
   getHealthToolBySlug,
 } from "@/lib/hubs/healthPack";
+import {
+  NICHE50_READY_TOOLS,
+  NICHE50_SLUGS,
+  NICHE50_TOOLS,
+  getNiche50ToolBySlug,
+} from "@/lib/hubs/niche50Pack";
 
 export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...EXPANSION_READY_TOOLS,
@@ -43,6 +49,7 @@ export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...INTENT80_READY_TOOLS,
   ...NICHE65_READY_TOOLS,
   ...HEALTH_READY_TOOLS,
+  ...NICHE50_READY_TOOLS,
 ];
 
 export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
@@ -51,6 +58,7 @@ export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
   ...INTENT80_TOOLS,
   ...NICHE65_TOOLS,
   ...HEALTH_TOOLS,
+  ...NICHE50_TOOLS,
 ];
 
 export const CATEGORY_PATH_SLUGS = new Set([
@@ -59,6 +67,7 @@ export const CATEGORY_PATH_SLUGS = new Set([
   ...INTENT80_SLUGS,
   ...NICHE65_SLUGS,
   ...HEALTH_SLUGS,
+  ...NICHE50_SLUGS,
 ]);
 
 /** Prefer newer hub packs when slugs overlap. */
@@ -66,6 +75,7 @@ export function getCategoryPathToolBySlug(
   slug: string
 ): Calculator | undefined {
   return (
+    getNiche50ToolBySlug(slug) ??
     getHealthToolBySlug(slug) ??
     getNiche65ToolBySlug(slug) ??
     getIntent80ToolBySlug(slug) ??

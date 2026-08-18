@@ -5,6 +5,7 @@ import {
   runAffordabilityCalculation,
 } from "./formulas_affordability";
 import { isHealthFormulaType, runHealthCalculation } from "./formulas_health";
+import { isNiche50FormulaType, runNiche50Calculation } from "./formulas_niche50";
 
 type Inputs = Record<string, number>;
 
@@ -2616,6 +2617,10 @@ export function runCalculation(
     }
 
     default: {
+      if (isNiche50FormulaType(formulaType)) {
+        const niche50 = runNiche50Calculation(formulaType, inputs);
+        if (niche50) return niche50;
+      }
       if (isHealthFormulaType(formulaType)) {
         const health = runHealthCalculation(formulaType, inputs);
         if (health) return health;

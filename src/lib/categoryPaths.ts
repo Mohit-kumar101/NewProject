@@ -61,6 +61,21 @@ export const HEALTH_HUB_CATEGORIES = [
   HEALTH_DISPLAY_CATEGORY,
 ] as const;
 
+/** Hyper-niche 50-tool pack — five pSEO directory categories. */
+export const CRAFTERS_MAKERS_CATEGORY = "Crafters, Makers & DIY" as const;
+export const SPECIALIZED_PETS_CATEGORY = "Specialized Pets & Aquatics" as const;
+export const GIG_ECONOMY_CATEGORY = "Gig Economy & Content Creators" as const;
+export const HOMESTEADING_CATEGORY = "Homesteading & Micro-Gardening" as const;
+export const NICHE_EVENTS_CATEGORY = "Event Planning & Niche Hobbies" as const;
+
+export const NICHE50_HUB_CATEGORIES = [
+  CRAFTERS_MAKERS_CATEGORY,
+  SPECIALIZED_PETS_CATEGORY,
+  GIG_ECONOMY_CATEGORY,
+  HOMESTEADING_CATEGORY,
+  NICHE_EVENTS_CATEGORY,
+] as const;
+
 export type ExpansionCategory = (typeof EXPANSION_CATEGORIES)[number];
 export type LongtailHubCategory = (typeof LONGTAIL_HUB_CATEGORIES)[number];
 export type Intent80HubCategory = (typeof INTENT80_HUB_CATEGORIES)[number];
@@ -68,3 +83,4 @@ export type Niche65HubCategory = (typeof NICHE65_HUB_CATEGORIES)[number];
 export type AffordabilityHubCategory =
   (typeof AFFORDABILITY_HUB_CATEGORIES)[number];
 export type HealthHubCategory = (typeof HEALTH_HUB_CATEGORIES)[number];
+export type Niche50HubCategory = (typeof NICHE50_HUB_CATEGORIES)[number];

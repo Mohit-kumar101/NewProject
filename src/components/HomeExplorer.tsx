@@ -4,7 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Calculator } from "@/lib/types";
 import { CATEGORIES, toolMatchesQuery } from "@/lib/calculators";
-import { AFFORDABILITY_DISPLAY_CATEGORY, HEALTH_DISPLAY_CATEGORY } from "@/lib/categoryPaths";
+import {
+  AFFORDABILITY_DISPLAY_CATEGORY,
+  CRAFTERS_MAKERS_CATEGORY,
+  GIG_ECONOMY_CATEGORY,
+  HEALTH_DISPLAY_CATEGORY,
+  HOMESTEADING_CATEGORY,
+  NICHE_EVENTS_CATEGORY,
+  SPECIALIZED_PETS_CATEGORY,
+} from "@/lib/categoryPaths";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { Logo } from "@/components/Logo";
 
@@ -131,6 +139,31 @@ const categoryMeta: Record<
     icon: "H",
     blurb: "BMI, calories, pregnancy, training zones, hydration, sleep, and health cost tools.",
     accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  [CRAFTERS_MAKERS_CATEGORY]: {
+    icon: "C",
+    blurb: "Epoxy pours, soap lye, yarn yardage, vinyl pricing, leather yield, and sourdough hydration.",
+    accent: "from-[#FF6D00] to-[#FFAB00]",
+  },
+  [SPECIALIZED_PETS_CATEGORY]: {
+    icon: "P",
+    blurb: "Bearded dragon gradients, raw dog food ratios, pond pumps, dubia ROI, and exotic pet care.",
+    accent: "from-[#00C853] to-[#00B8D4]",
+  },
+  [GIG_ECONOMY_CATEGORY]: {
+    icon: "G",
+    blurb: "Twitch subs, Etsy shipping, food truck propane, vending ROI, and creator platform fees.",
+    accent: "from-[#7C4DFF] to-[#2979FF]",
+  },
+  [HOMESTEADING_CATEGORY]: {
+    icon: "M",
+    blurb: "Mel's mix, microgreens density, van solar, rainwater harvest, compost C:N, and mulch.",
+    accent: "from-[#558B2F] to-[#00C853]",
+  },
+  [NICHE_EVENTS_CATEGORY]: {
+    icon: "E",
+    blurb: "Wedding cake tiers, open bar alcohol, D&D XP budgets, homebrew priming, and telescope FOV.",
+    accent: "from-[#E91E63] to-[#7C4DFF]",
   },
   "Education, GPA & Academic": {
     icon: "A",
