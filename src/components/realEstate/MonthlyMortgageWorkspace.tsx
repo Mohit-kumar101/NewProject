@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
+import { StrategicInsightsPanel } from "@/components/strategic/StrategicInsightsPanel";
 import type { AdviceItem } from "@/lib/types";
 import type { Calculator } from "@/lib/types";
 import { getToolHref } from "@/lib/cryptoFormulas";
@@ -509,6 +510,21 @@ export function MonthlyMortgageWorkspace({
         </div>
         <AmortPeriodTable rows={amortRows} />
       </div>
+
+      <StrategicInsightsPanel
+        config={{
+          monthlyPayment: pitiEnabled ? monthlyPITI : monthlyPI,
+          comparePayment: pitiEnabled ? monthlyPI : undefined,
+          principal,
+          annualRate,
+          termMonths,
+          inflationNominal: principal,
+          inflationYears: termYears,
+          inflationLabel: "Equity built (principal repaid)",
+          defaultLiquidReserve: monthlyPITI * 3,
+          showPartner: true,
+        }}
+      />
 
       <SmartAdviceBox items={advice} />
       <LoanRelatedTools calculator={calculator} related={related} />

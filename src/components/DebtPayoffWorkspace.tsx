@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
+import { StrategicInsightsPanel } from "@/components/strategic/StrategicInsightsPanel";
 import { DebtActionPlaybook } from "@/components/DebtActionPlaybook";
 import { BalanceTrendChart } from "@/components/loans/BalanceTrendChart";
 import type { Calculator } from "@/lib/types";
@@ -326,6 +327,16 @@ export function DebtPayoffWorkspace({
   const scheduleValues =
     preferredResult?.schedule.map((s) => s.remainingBalance) ?? [];
 
+  const weightedApr = useMemo(() => {
+    const list = activeDebts(debts);
+    if (list.length === 0 || balanceTotal <= 0) return 0;
+    return (
+      list.reduce((sum, d) => sum + d.balance * d.apr, 0) / balanceTotal
+    );
+  }, [debts, balanceTotal]);
+
+  const planMonthly = minsTotal + extraPayment;
+
   return (
     <div className="space-y-6">
       <div className="grid gap-3 sm:grid-cols-3">
@@ -614,6 +625,24 @@ export function DebtPayoffWorkspace({
             )}
         </div>
       )}
+
+      <StrategicInsightsPanel
+        config={{
+          monthlyPayment: planMonthly,
+          comparePayment: minsTotal > 0 ? minsTotal : undefined,
+          principal: balanceTotal,
+          annualRate: weightedApr,
+          termMonths: Math.max(1, preferredResult?.months ?? 60),
+          inflationNominal: balanceTotal,
+          inflationYears: Math.max(
+            1,
+            Math.round((preferredResult?.months ?? 60) / 12)
+          ),
+          inflationLabel: "Debt cleared (nominal balance)",
+          defaultLiquidReserve: planMonthly * 3,
+          showPartner: true,
+        }}
+      />
 
       <SmartAdviceBox items={advice} />
 

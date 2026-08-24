@@ -5,6 +5,8 @@ import {
   runAffordabilityCalculation,
 } from "@/lib/formulas_affordability";
 import type { AffordabilityPageConfig } from "@/lib/affordability/types";
+import { StrategicInsightsPanel } from "@/components/strategic/StrategicInsightsPanel";
+import { buildAffordabilityInsightsConfig } from "@/lib/strategicInsights";
 
 function initialValues(page: AffordabilityPageConfig): Record<string, number> {
   const values: Record<string, number> = { ...page.presets };
@@ -33,6 +35,17 @@ export function AffordabilityEngine({
   const result = useMemo(
     () => runAffordabilityCalculation(page.engineMode, values),
     [page.engineMode, values]
+  );
+
+  const strategicConfig = useMemo(
+    () =>
+      buildAffordabilityInsightsConfig(
+        page.engineMode,
+        values,
+        result.primary.value,
+        result.secondary
+      ),
+    [page.engineMode, values, result.primary.value, result.secondary]
   );
 
   const update = (id: string, raw: string) => {
@@ -176,6 +189,10 @@ export function AffordabilityEngine({
           </div>
         </aside>
       </div>
+
+      {strategicConfig ? (
+        <StrategicInsightsPanel config={strategicConfig} />
+      ) : null}
     </div>
   );
 }
