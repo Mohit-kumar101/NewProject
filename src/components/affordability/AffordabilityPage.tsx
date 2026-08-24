@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
+import { ToolTermsGuide } from "@/components/ToolTermsGuide";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { AffordabilityEngine } from "@/components/affordability/AffordabilityEngine";
 import { AffordabilityJsonLd } from "@/components/affordability/AffordabilityJsonLd";
@@ -14,6 +15,43 @@ import {
 } from "@/lib/affordability/catalog";
 import { buildAffordabilityFaqs } from "@/lib/affordability/faqs";
 import type { AffordabilityPageConfig } from "@/lib/affordability/types";
+import type { ToolTermsGuideData } from "@/lib/toolExplanations";
+
+function affordabilityTermsGuide(
+  page: AffordabilityPageConfig
+): ToolTermsGuideData {
+  return {
+    summary: page.seoContent.intro,
+    formula: "Affordable = f(income, debts, down payment, rules)",
+    howItWorks: [
+      "Enter income, existing debts, and the purchase details you’re testing.",
+      "The engine applies common affordability rules (housing ratio, leftover cash, etc.).",
+      page.seoContent.intro,
+      "Results update instantly so you can stress-test “what if” scenarios.",
+    ],
+    inputTerms: [
+      {
+        name: "Income",
+        description:
+          "Money you earn that can support a payment. Higher stable income usually increases what looks affordable.",
+      },
+      {
+        name: "Existing debts",
+        description:
+          "Other monthly obligations (loans, cards). More debt leaves less room for a new payment.",
+      },
+      {
+        name: "Target price / cost",
+        description:
+          "The sticker price or annual cost you’re checking against your budget.",
+      },
+    ],
+    formulaTerms: [],
+    notes: [
+      "Affordability estimates are planning guides—not loan approval or financial advice.",
+    ],
+  };
+}
 
 export function AffordabilityPage({
   page,
@@ -25,9 +63,16 @@ export function AffordabilityPage({
   const relatedPages = getAffordabilityPages({ readyOnly: true }).filter(
     (p) => p.slug !== page.slug
   );
+  const termsPanel = (
+    <ToolTermsGuide
+      toolTitle={page.h1}
+      guide={affordabilityTermsGuide(page)}
+      compact
+    />
+  );
 
   return (
-    <ToolLayout>
+    <ToolLayout rightAd={termsPanel}>
       <AffordabilityJsonLd page={page} />
 
       <nav
@@ -83,6 +128,8 @@ export function AffordabilityPage({
       </header>
 
       <AffordabilityEngine page={page} />
+
+      <div className="mt-8 lg:hidden">{termsPanel}</div>
 
       <AffordabilityRuleSection ruleSet={page.ruleSet} />
 

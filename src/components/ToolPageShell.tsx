@@ -6,6 +6,7 @@ import { ReviewSection } from "@/components/ReviewSection";
 import { SuggestionBox } from "@/components/SuggestionBox";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
 import { ToolExplanation } from "@/components/ToolExplanation";
+import { ToolTermsGuide } from "@/components/ToolTermsGuide";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { LongTailKeywordContent } from "@/components/seo/LongTailKeywordContent";
 import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
@@ -31,7 +32,10 @@ import {
   getToolVariationCanonicalUrl,
   longTailModifierToVariation,
 } from "@/lib/seo";
-import { getToolExplanation } from "@/lib/toolExplanations";
+import {
+  buildToolTermsGuide,
+  getToolExplanation,
+} from "@/lib/toolExplanations";
 
 /**
  * Unified tool page template:
@@ -63,11 +67,20 @@ export function ToolPageShell({
     ? getToolVariationCanonicalUrl(calculator, resolvedVariation.slug)
     : getToolCanonicalUrl(calculator);
   const explanation = getToolExplanation(calculator);
+  const termsGuide = buildToolTermsGuide(calculator);
   const subtitle = buildLongTailSubtitle(calculator, pack, resolvedVariation);
   const contextualCopy = buildVariantExplanation(calculator, modifier);
+  const pageTitle =
+    modifier?.focusKeyword ||
+    resolvedVariation?.focus ||
+    calculator.title;
+
+  const termsPanel = (
+    <ToolTermsGuide toolTitle={pageTitle} guide={termsGuide} compact />
+  );
 
   return (
-    <ToolLayout>
+    <ToolLayout rightAd={termsPanel}>
       <JsonLd
         calculator={calculator}
         faqs={faqs}
@@ -75,11 +88,7 @@ export function ToolPageShell({
       />
 
       <ToolBreadcrumbs
-        toolTitle={
-          modifier?.focusKeyword ||
-          resolvedVariation?.focus ||
-          calculator.title
-        }
+        toolTitle={pageTitle}
         category={calculator.category}
       />
 
@@ -104,6 +113,9 @@ export function ToolPageShell({
       </header>
 
       <div className="min-w-0">{workspace}</div>
+
+      {/* Right-rail guide is desktop-only; show the same help on smaller screens. */}
+      <div className="mt-8 lg:hidden">{termsPanel}</div>
 
       {(calculator.seoContextTemplate ||
         calculator.explanationTemplate ||

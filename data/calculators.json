@@ -3,7 +3,7 @@
     "slug": "car-loan-payoff-calculator",
     "title": "Car Loan Payoff Calculator",
     "category": "Loans & Debt Management",
-    "description": "Estimate monthly payments and total interest for your auto loan. Plan an earlier payoff by adjusting rate, term, and extra payments.",
+    "description": "Interactive car loan studio with extra-payment what-ifs, amortization preview, and PDF export. See months and interest saved instantly\u2014no sign-up.",
     "inputs": [
       {
         "id": "principal",
@@ -68,7 +68,7 @@
     "slug": "personal-loan-calculator",
     "title": "Personal Loan Calculator",
     "category": "Loans & Debt Management",
-    "description": "Calculate monthly payments and total cost for unsecured personal loans. Compare terms quickly before you borrow.",
+    "description": "Compare two personal loan offers on payment and total cost, then stress-test extra payments. Export a PDF summary from your browser.",
     "inputs": [
       {
         "id": "principal",
@@ -111,7 +111,7 @@
         },
         {
           "question": "Is interest on personal loans tax-deductible?",
-          "answer": "In most cases, personal loan interest is not tax-deductible unless the funds are used for a qualified purpose—consult a tax professional."
+          "answer": "In most cases, personal loan interest is not tax-deductible unless the funds are used for a qualified purpose\u2014consult a tax professional."
         },
         {
           "question": "Fixed vs. variable rate: which is better?",
@@ -124,7 +124,7 @@
     "slug": "student-loan-payoff-calculator",
     "title": "Student Loan Payoff Calculator",
     "category": "Loans & Debt Management",
-    "description": "Model student loan repayment timelines with standard or extra payments. See how additional payments cut interest and accelerate freedom from debt.",
+    "description": "Student loan payoff studio with live extra-payment savings, balance chart, amortization preview, and downloadable plan summary.",
     "inputs": [
       {
         "id": "principal",
@@ -172,11 +172,11 @@
       "faqs": [
         {
           "question": "Should I pay student loans or invest first?",
-          "answer": "It depends on your interest rate, employer match opportunities, and risk tolerance—high-interest debt usually takes priority after an emergency fund."
+          "answer": "It depends on your interest rate, employer match opportunities, and risk tolerance\u2014high-interest debt usually takes priority after an emergency fund."
         },
         {
           "question": "Do extra payments reduce principal immediately?",
-          "answer": "Most servicers apply extra amounts to principal after the current interest due is covered—confirm with your lender."
+          "answer": "Most servicers apply extra amounts to principal after the current interest due is covered\u2014confirm with your lender."
         },
         {
           "question": "How does refinancing affect federal benefits?",
@@ -189,7 +189,7 @@
     "slug": "credit-card-minimum-payment-calculator",
     "title": "Credit Card Minimum Payment Calculator",
     "category": "Loans & Debt Management",
-    "description": "See how long minimum payments take to clear a credit card balance. Discover the true interest cost of paying only the minimum.",
+    "description": "Compare credit card minimum-only vs minimum+extra vs fixed payments. See the interest trap clearly and export your payoff plan.",
     "inputs": [
       {
         "id": "balance",
@@ -254,7 +254,7 @@
     "slug": "debt-snowball-strategy-calculator",
     "title": "Debt Snowball Strategy Calculator",
     "category": "Loans & Debt Management",
-    "description": "Simulate the debt snowball method by clearing smallest balances first. Track motivational wins and overall payoff time.",
+    "description": "Build a multi-debt payoff plan that clears smallest balances first. Compare snowball vs avalanche, tweak extra payments, and see interest vs motivation trade-offs instantly.",
     "inputs": [
       {
         "id": "debt1",
@@ -299,12 +299,12 @@
     ],
     "formulaType": "debtSnowball",
     "seoContent": {
-      "intro": "The debt snowball strategy focuses on paying off the smallest balance first while making minimums on the rest. This calculator estimates how quickly your payment “snowball” can wipe out stacked debts.",
+      "intro": "The debt snowball strategy focuses on paying off the smallest balance first while making minimums on the rest. This interactive calculator lets you add unlimited debts, slide extra payments, and compare snowball against avalanche side-by-side\u2014all in your browser with no sign-up.",
       "howToUse": [
-        "Enter up to three debt balances from smallest to largest.",
-        "Provide an approximate average interest rate across the debts.",
-        "Set the total monthly amount you can put toward debt.",
-        "Review estimated months to become debt-free and total paid."
+        "Add each debt with name, balance, APR, and minimum payment (or load sample data).",
+        "Use the extra monthly payment slider to model what-if scenarios.",
+        "Compare snowball vs avalanche for payoff time, interest, and first psychological win.",
+        "Your debt list autosaves in this browser so you can return anytime."
       ],
       "faqs": [
         {
@@ -313,7 +313,7 @@
         },
         {
           "question": "Do I still pay interest on other debts?",
-          "answer": "Yes—keep making at least the minimum payments on every remaining account."
+          "answer": "Yes\u2014keep making at least the minimum payments on every remaining account."
         },
         {
           "question": "Can I mix strategies?",
@@ -326,7 +326,7 @@
     "slug": "debt-avalanche-strategy-calculator",
     "title": "Debt Avalanche Strategy Calculator",
     "category": "Loans & Debt Management",
-    "description": "Model the debt avalanche approach that attacks highest-interest balances first. Minimize total interest while becoming debt-free.",
+    "description": "Attack highest-APR balances first with a multi-debt simulator. Compare avalanche vs snowball, adjust extra payments live, and see interest savings versus motivational wins.",
     "inputs": [
       {
         "id": "debt1",
@@ -387,12 +387,12 @@
     ],
     "formulaType": "debtAvalanche",
     "seoContent": {
-      "intro": "The debt avalanche method directs extra payments to the highest APR first, which typically minimizes interest. Use this calculator to estimate payoff time and interest saved versus minimum-only repayment.",
+      "intro": "The debt avalanche method directs extra payments to the highest APR first, which typically minimizes interest. Use this interactive calculator to manage multiple debts, slide extra payments, and see how avalanche compares to snowball for interest versus first-win timing\u2014no account required.",
       "howToUse": [
-        "List three debts with balances and their individual APRs.",
-        "Order is optional—the engine prioritizes by rate automatically.",
-        "Enter your total monthly debt repayment budget.",
-        "Review months to freedom and estimated interest cost."
+        "Add each debt with name, balance, APR, and minimum payment (or load sample data).",
+        "Use the extra monthly payment slider to see live savings versus minimums-only.",
+        "Review side-by-side avalanche vs snowball metrics and the clash report.",
+        "Your debt list autosaves in this browser for frictionless return visits."
       ],
       "faqs": [
         {
@@ -401,7 +401,7 @@
         },
         {
           "question": "What if rates are nearly identical?",
-          "answer": "When APRs are similar, snowball or avalanche often produce similar results—pick the approach you will follow."
+          "answer": "When APRs are similar, snowball or avalanche often produce similar results\u2014pick the approach you will follow."
         },
         {
           "question": "Should I include my mortgage?",
@@ -414,7 +414,7 @@
     "slug": "loan-refinance-savings-calculator",
     "title": "Loan Refinance Savings Calculator",
     "category": "Loans & Debt Management",
-    "description": "Compare your current loan with a refinance offer. Estimate monthly payment changes and lifetime interest savings.",
+    "description": "Refinance decision studio: current vs new payments, lifetime savings, and break-even timing with PDF export\u2014all client-side.",
     "inputs": [
       {
         "id": "balance",
@@ -481,7 +481,7 @@
         },
         {
           "question": "Can a longer new term hurt me?",
-          "answer": "Yes—stretching the term can lower the payment while increasing total interest paid."
+          "answer": "Yes\u2014stretching the term can lower the payment while increasing total interest paid."
         },
         {
           "question": "Are closing costs always required?",
@@ -494,7 +494,7 @@
     "slug": "home-equity-loan-calculator",
     "title": "Home Equity Loan Calculator",
     "category": "Loans & Debt Management",
-    "description": "Estimate payments on a fixed home equity loan using your available equity. Understand monthly cost before tapping home value.",
+    "description": "Home equity loan studio with available equity gauge, payment and interest estimates, amortization preview, and PDF summary.",
     "inputs": [
       {
         "id": "homeValue",
@@ -557,11 +557,11 @@
       "faqs": [
         {
           "question": "How much equity can I borrow?",
-          "answer": "Lenders typically cap combined LTV around 80–85%, though limits vary by credit, property, and market."
+          "answer": "Lenders typically cap combined LTV around 80\u201385%, though limits vary by credit, property, and market."
         },
         {
           "question": "Is home equity loan interest deductible?",
-          "answer": "Interest may be deductible if funds are used to buy, build, or substantially improve the home—verify with a tax advisor."
+          "answer": "Interest may be deductible if funds are used to buy, build, or substantially improve the home\u2014verify with a tax advisor."
         },
         {
           "question": "Loan vs. HELOC: what is the difference?",
@@ -574,7 +574,7 @@
     "slug": "bi-weekly-mortgage-payment-calculator",
     "title": "Bi-Weekly Mortgage Payment Calculator",
     "category": "Loans & Debt Management",
-    "description": "See how switching to bi-weekly mortgage payments accelerates payoff. Estimate interest savings from 26 half-payments per year.",
+    "description": "Compare monthly vs bi-weekly vs extra-monthly mortgage strategies. See interest and months saved, then download a summary.",
     "inputs": [
       {
         "id": "principal",
@@ -603,7 +603,7 @@
     ],
     "formulaType": "biWeeklyMortgage",
     "seoContent": {
-      "intro": "Bi-weekly mortgage payments split your monthly amount in half and pay every two weeks—resulting in one extra full payment each year. This calculator shows the potential interest savings and shorter payoff timeline.",
+      "intro": "Bi-weekly mortgage payments split your monthly amount in half and pay every two weeks\u2014resulting in one extra full payment each year. This calculator shows the potential interest savings and shorter payoff timeline.",
       "howToUse": [
         "Enter your outstanding mortgage principal.",
         "Input your mortgage interest rate.",
@@ -630,7 +630,7 @@
     "slug": "balloon-loan-payment-calculator",
     "title": "Balloon Loan Payment Calculator",
     "category": "Loans & Debt Management",
-    "description": "Calculate amortizing payments and the final balloon balance due at term end. Plan ahead for large lump-sum obligations.",
+    "description": "Balloon loan studio showing amortizing payment, interest before the lump sum, and the balloon due\u2014with schedule preview and PDF export.",
     "inputs": [
       {
         "id": "principal",
@@ -681,7 +681,7 @@
         },
         {
           "question": "Are balloon loans risky?",
-          "answer": "Yes—if refinancing markets tighten or rates rise, covering the balloon can become difficult."
+          "answer": "Yes\u2014if refinancing markets tighten or rates rise, covering the balloon can become difficult."
         },
         {
           "question": "Who uses balloon loans?",
@@ -741,7 +741,7 @@
       "faqs": [
         {
           "question": "Does this include taxes and insurance?",
-          "answer": "This estimate covers principal and interest only. Property taxes, insurance, and HOA fees are additional."
+          "answer": "Toggle “Include taxes & insurance (PITI)” to add estimated property tax and homeowners insurance to your monthly total. By default the headline shows principal and interest only."
         },
         {
           "question": "How does down payment size affect payment?",
@@ -829,7 +829,7 @@
       "faqs": [
         {
           "question": "Is buying always better long term?",
-          "answer": "Not always—high transaction costs, short ownership periods, or strong investment alternatives can favor renting."
+          "answer": "Not always\u2014high transaction costs, short ownership periods, or strong investment alternatives can favor renting."
         },
         {
           "question": "What costs does ownership add?",
@@ -909,11 +909,11 @@
       "faqs": [
         {
           "question": "What DTI do lenders prefer?",
-          "answer": "Many conventional programs look for total DTI near or below 36–43%, though guidelines vary."
+          "answer": "Many conventional programs look for total DTI near or below 36\u201343%, though guidelines vary."
         },
         {
           "question": "Should I buy at the maximum I qualify for?",
-          "answer": "Often no—leaving budget room for maintenance, savings, and lifestyle flexibility is wiser."
+          "answer": "Often no\u2014leaving budget room for maintenance, savings, and lifestyle flexibility is wiser."
         },
         {
           "question": "Does this include taxes and insurance?",
@@ -965,7 +965,7 @@
       "faqs": [
         {
           "question": "Is assessed value the same as market value?",
-          "answer": "Not always—many jurisdictions assess at a fraction of market value or update on a lag."
+          "answer": "Not always\u2014many jurisdictions assess at a fraction of market value or update on a lag."
         },
         {
           "question": "Can I appeal my assessment?",
@@ -973,7 +973,7 @@
         },
         {
           "question": "Do new buyers face tax resets?",
-          "answer": "In some regions, ownership transfers can reassess value and raise taxes—check local rules."
+          "answer": "In some regions, ownership transfers can reassess value and raise taxes\u2014check local rules."
         }
       ]
     }
@@ -1029,7 +1029,7 @@
       "faqs": [
         {
           "question": "What vacancy rate should I assume?",
-          "answer": "Many investors use 5–8% as a baseline, adjusting for local demand and unit type."
+          "answer": "Many investors use 5\u20138% as a baseline, adjusting for local demand and unit type."
         },
         {
           "question": "Which expenses are operating costs?",
@@ -1067,16 +1067,16 @@
     ],
     "formulaType": "capRate",
     "seoContent": {
-      "intro": "Cap rate expresses a property’s unlevered yield as NOI divided by value. Investors use it to compare deals across markets without factoring financing.",
+      "intro": "Cap rate expresses a property\u2019s unlevered yield as NOI divided by value. Investors use it to compare deals across markets without factoring financing.",
       "howToUse": [
-        "Enter the property’s annual net operating income.",
+        "Enter the property\u2019s annual net operating income.",
         "Input the purchase price or current market value.",
         "Review the resulting capitalization rate percentage."
       ],
       "faqs": [
         {
           "question": "What is a good cap rate?",
-          "answer": "It depends on market risk, property type, and growth expectations—higher caps often imply higher perceived risk."
+          "answer": "It depends on market risk, property type, and growth expectations\u2014higher caps often imply higher perceived risk."
         },
         {
           "question": "Does cap rate include mortgage payments?",
@@ -1183,11 +1183,11 @@
         },
         {
           "question": "Should I renovate purely for ROI?",
-          "answer": "Personal enjoyment and safety matter too—ROI is one input, not the only one."
+          "answer": "Personal enjoyment and safety matter too\u2014ROI is one input, not the only one."
         },
         {
           "question": "Do over-improvements hurt?",
-          "answer": "Yes—upgrading far beyond neighborhood norms can limit recoverable value."
+          "answer": "Yes\u2014upgrading far beyond neighborhood norms can limit recoverable value."
         }
       ]
     }
@@ -1247,11 +1247,11 @@
         },
         {
           "question": "Is 20% always required?",
-          "answer": "No—many loans allow lower down payments, though PMI or higher rates may apply."
+          "answer": "No\u2014many loans allow lower down payments, though PMI or higher rates may apply."
         },
         {
           "question": "Should I pause investing to save faster?",
-          "answer": "Balance depends on timelines, employer matches, and risk—don’t automatically abandon retirement contributions."
+          "answer": "Balance depends on timelines, employer matches, and risk\u2014don\u2019t automatically abandon retirement contributions."
         }
       ]
     }
@@ -1300,7 +1300,7 @@
       "intro": "Closing costs and transfer taxes can add thousands beyond your down payment. This estimator helps you prepare a realistic cash-to-close figure before finalizing a purchase.",
       "howToUse": [
         "Enter the property purchase price.",
-        "Set your region’s land transfer or stamp tax rate.",
+        "Set your region\u2019s land transfer or stamp tax rate.",
         "Estimate other closing costs as a percentage of price.",
         "Subtract any credits and review total cash needed at closing."
       ],
@@ -1311,7 +1311,7 @@
         },
         {
           "question": "Do buyers always pay transfer tax?",
-          "answer": "Responsibility varies by region and negotiation—sometimes costs are split or credited."
+          "answer": "Responsibility varies by region and negotiation\u2014sometimes costs are split or credited."
         },
         {
           "question": "Can closing costs be rolled into the loan?",
@@ -1392,11 +1392,11 @@
         },
         {
           "question": "How does compound frequency work?",
-          "answer": "Frequency is how many times per year interest is applied (1 = annual, 12 = monthly, 365 ≈ daily). Higher frequency slightly increases growth at the same nominal rate."
+          "answer": "Frequency is how many times per year interest is applied (1 = annual, 12 = monthly, 365 \u2248 daily). Higher frequency slightly increases growth at the same nominal rate."
         },
         {
           "question": "Are returns guaranteed?",
-          "answer": "No—market returns vary. Use conservative assumptions for planning."
+          "answer": "No\u2014market returns vary. Use conservative assumptions for planning."
         }
       ]
     }
@@ -1460,7 +1460,7 @@
       "faqs": [
         {
           "question": "What is the 4% rule?",
-          "answer": "It suggests withdrawing about 4% of a diversified portfolio in year one, then adjusting for inflation—useful as a starting heuristic, not a guarantee."
+          "answer": "It suggests withdrawing about 4% of a diversified portfolio in year one, then adjusting for inflation\u2014useful as a starting heuristic, not a guarantee."
         },
         {
           "question": "How do I lower my FIRE number?",
@@ -1540,7 +1540,7 @@
       "faqs": [
         {
           "question": "What income replacement rate is common?",
-          "answer": "Many planners use 70–80% of pre-retirement income as a starting point, then customize."
+          "answer": "Many planners use 70\u201380% of pre-retirement income as a starting point, then customize."
         },
         {
           "question": "How do Social Security benefits factor in?",
@@ -1612,15 +1612,15 @@
       "faqs": [
         {
           "question": "Should I always capture the full match?",
-          "answer": "Yes—employer match is typically an immediate, high-return component of compensation."
+          "answer": "Yes\u2014employer match is typically an immediate, high-return component of compensation."
         },
         {
           "question": "Traditional vs Roth contributions?",
-          "answer": "Traditional lowers taxable income now; Roth grows tax-free for qualified withdrawals—tax bracket expectations guide the choice."
+          "answer": "Traditional lowers taxable income now; Roth grows tax-free for qualified withdrawals\u2014tax bracket expectations guide the choice."
         },
         {
           "question": "What contribution limits apply?",
-          "answer": "Limits change yearly and differ by account type—confirm current IRS or CRA maximums."
+          "answer": "Limits change yearly and differ by account type\u2014confirm current IRS or CRA maximums."
         }
       ]
     }
@@ -1692,7 +1692,7 @@
         },
         {
           "question": "Do high yields always mean better results?",
-          "answer": "Not necessarily—unsustainably high yields can signal risk or stagnant price growth."
+          "answer": "Not necessarily\u2014unsustainably high yields can signal risk or stagnant price growth."
         }
       ]
     }
@@ -1701,7 +1701,7 @@
     "slug": "inflation-purchasing-power-calculator",
     "title": "Inflation Purchasing Power Calculator",
     "category": "Investing & Wealth Building",
-    "description": "See how inflation erodes the real value of money over time. Convert today’s dollars into future purchasing power.",
+    "description": "See how inflation erodes the real value of money over time. Convert today\u2019s dollars into future purchasing power.",
     "inputs": [
       {
         "id": "amount",
@@ -1730,7 +1730,7 @@
     ],
     "formulaType": "inflationPurchasingPower",
     "seoContent": {
-      "intro": "Inflation quietly reduces what each dollar can buy. This calculator shows the future purchasing power of a present sum—or equivalently, how much more you would need to maintain today’s lifestyle.",
+      "intro": "Inflation quietly reduces what each dollar can buy. This calculator shows the future purchasing power of a present sum\u2014or equivalently, how much more you would need to maintain today\u2019s lifestyle.",
       "howToUse": [
         "Enter the dollar amount you want to evaluate.",
         "Set an assumed average annual inflation rate.",
@@ -1740,7 +1740,7 @@
       "faqs": [
         {
           "question": "What inflation rate should I use?",
-          "answer": "Long-run averages near 2–3% are common planning anchors, but personal inflation can differ."
+          "answer": "Long-run averages near 2\u20133% are common planning anchors, but personal inflation can differ."
         },
         {
           "question": "How do I protect purchasing power?",
@@ -1819,7 +1819,7 @@
       "faqs": [
         {
           "question": "Should I use market value for assets?",
-          "answer": "Yes—use realistic current market values rather than purchase prices for an accurate snapshot."
+          "answer": "Yes\u2014use realistic current market values rather than purchase prices for an accurate snapshot."
         },
         {
           "question": "How often should I track net worth?",
@@ -1870,7 +1870,7 @@
         },
         {
           "question": "Can I use it for inflation?",
-          "answer": "Yes—dividing 72 by inflation roughly estimates years for prices to double."
+          "answer": "Yes\u2014dividing 72 by inflation roughly estimates years for prices to double."
         },
         {
           "question": "What about Rule of 69 or 70?",
@@ -1934,7 +1934,7 @@
         },
         {
           "question": "Does DCA eliminate risk?",
-          "answer": "No—it manages entry-timing risk but market risk remains."
+          "answer": "No\u2014it manages entry-timing risk but market risk remains."
         },
         {
           "question": "What assets fit DCA well?",
@@ -2006,7 +2006,7 @@
         },
         {
           "question": "Is a higher fee ever justified?",
-          "answer": "Possibly if advice materially improves behavior or planning outcomes—but measure the cost explicitly."
+          "answer": "Possibly if advice materially improves behavior or planning outcomes\u2014but measure the cost explicitly."
         },
         {
           "question": "How do I reduce fees?",
@@ -2138,11 +2138,11 @@
       "faqs": [
         {
           "question": "What is an effective tax rate?",
-          "answer": "It is total tax paid divided by taxable income—often lower than your top marginal bracket."
+          "answer": "It is total tax paid divided by taxable income\u2014often lower than your top marginal bracket."
         },
         {
           "question": "Are pre-tax deductions helpful?",
-          "answer": "Yes—retirement and some benefits reduce taxable income while building future security."
+          "answer": "Yes\u2014retirement and some benefits reduce taxable income while building future security."
         },
         {
           "question": "Does this replace a payroll calculator?",
@@ -2185,7 +2185,7 @@
       "faqs": [
         {
           "question": "Is SE tax the same as income tax?",
-          "answer": "No—self-employment tax covers social insurance; income tax is separate."
+          "answer": "No\u2014self-employment tax covers social insurance; income tax is separate."
         },
         {
           "question": "Why is only 92.35% of profit taxed for SE?",
@@ -2193,7 +2193,7 @@
         },
         {
           "question": "Should I make quarterly payments?",
-          "answer": "Usually yes if you expect to owe tax above withholding thresholds—penalties can apply otherwise."
+          "answer": "Usually yes if you expect to owe tax above withholding thresholds\u2014penalties can apply otherwise."
         }
       ]
     }
@@ -2240,11 +2240,11 @@
       "faqs": [
         {
           "question": "Should freelancers use 2,080 hours?",
-          "answer": "Often no—billable hours are usually lower after admin, sales, and time off."
+          "answer": "Often no\u2014billable hours are usually lower after admin, sales, and time off."
         },
         {
           "question": "Do benefits change the comparison?",
-          "answer": "Yes—salaried roles may include health coverage, paid leave, and retirement matches worth thousands."
+          "answer": "Yes\u2014salaried roles may include health coverage, paid leave, and retirement matches worth thousands."
         },
         {
           "question": "Is overtime included?",
@@ -2304,11 +2304,11 @@
       "faqs": [
         {
           "question": "What is time-and-a-half?",
-          "answer": "It means overtime hours are paid at 1.5× your regular hourly rate."
+          "answer": "It means overtime hours are paid at 1.5\u00d7 your regular hourly rate."
         },
         {
           "question": "Who is eligible for overtime?",
-          "answer": "Eligibility depends on local labor law and exemption status—verify with your jurisdiction."
+          "answer": "Eligibility depends on local labor law and exemption status\u2014verify with your jurisdiction."
         },
         {
           "question": "Do bonuses affect overtime?",
@@ -2355,7 +2355,7 @@
         },
         {
           "question": "Should I negotiate percentage or dollars?",
-          "answer": "Either works—focus on market data and the absolute lifestyle impact of the increase."
+          "answer": "Either works\u2014focus on market data and the absolute lifestyle impact of the increase."
         },
         {
           "question": "How do raises relate to inflation?",
@@ -2469,7 +2469,7 @@
     ],
     "formulaType": "sideHustleProfit",
     "seoContent": {
-      "intro": "Side hustles only create wealth when revenue exceeds true costs—including taxes and your time. This calculator estimates net profit and effective hourly earnings.",
+      "intro": "Side hustles only create wealth when revenue exceeds true costs\u2014including taxes and your time. This calculator estimates net profit and effective hourly earnings.",
       "howToUse": [
         "Enter average monthly revenue from the hustle.",
         "Add monthly expenses required to operate.",
@@ -2483,7 +2483,7 @@
         },
         {
           "question": "Do I need to pay self-employment tax?",
-          "answer": "Often yes above de minimis thresholds—confirm with a tax professional."
+          "answer": "Often yes above de minimis thresholds\u2014confirm with a tax professional."
         },
         {
           "question": "When should I quit a side hustle?",
@@ -2535,11 +2535,11 @@
       "faqs": [
         {
           "question": "What utilization rate is healthy?",
-          "answer": "Many practices target roughly 50–70% billable utilization depending on role and overhead."
+          "answer": "Many practices target roughly 50\u201370% billable utilization depending on role and overhead."
         },
         {
           "question": "Should discovery calls be billable?",
-          "answer": "Policy varies—some include them in project fees rather than hourly billing."
+          "answer": "Policy varies\u2014some include them in project fees rather than hourly billing."
         },
         {
           "question": "How do retainers affect tracking?",
@@ -2595,7 +2595,7 @@
         },
         {
           "question": "Is housing weighted heavily?",
-          "answer": "Usually yes—shelter costs dominate many urban cost-of-living differences."
+          "answer": "Usually yes\u2014shelter costs dominate many urban cost-of-living differences."
         },
         {
           "question": "Should remote workers negotiate COL?",
@@ -2640,7 +2640,7 @@
       "intro": "An emergency fund protects you from job loss, medical bills, and surprise repairs without new debt. This calculator sets a target based on essential expenses and shows your remaining gap.",
       "howToUse": [
         "Enter essential monthly living expenses.",
-        "Choose how many months of coverage you want (commonly 3–6+).",
+        "Choose how many months of coverage you want (commonly 3\u20136+).",
         "Add what you have already saved.",
         "Review target amount and remaining savings gap."
       ],
@@ -2655,7 +2655,7 @@
         },
         {
           "question": "What counts as an emergency?",
-          "answer": "Unexpected necessary expenses or income interruptions—not discretionary purchases."
+          "answer": "Unexpected necessary expenses or income interruptions\u2014not discretionary purchases."
         }
       ]
     }
@@ -2710,7 +2710,7 @@
       ],
       "faqs": [
         {
-          "question": "What if I can’t afford the monthly amount?",
+          "question": "What if I can\u2019t afford the monthly amount?",
           "answer": "Extend the timeline, reduce the goal, or find ways to increase income/cut spending."
         },
         {
@@ -2719,7 +2719,7 @@
         },
         {
           "question": "Can I automate this?",
-          "answer": "Yes—automatic transfers on payday dramatically improve completion rates."
+          "answer": "Yes\u2014automatic transfers on payday dramatically improve completion rates."
         }
       ]
     }
@@ -2765,7 +2765,7 @@
     ],
     "formulaType": "latteFactor",
     "seoContent": {
-      "intro": "The “latte factor” highlights how routine micro-spending adds up—and what that cash could become if invested instead. Use this calculator to quantify habit costs without judgment.",
+      "intro": "The \u201clatte factor\u201d highlights how routine micro-spending adds up\u2014and what that cash could become if invested instead. Use this calculator to quantify habit costs without judgment.",
       "howToUse": [
         "Enter the typical daily cost of the habit.",
         "Set how many days per week you repeat it.",
@@ -2775,7 +2775,7 @@
       "faqs": [
         {
           "question": "Is the latte factor about never spending on coffee?",
-          "answer": "No—it is a mindfulness tool for aligning small recurring expenses with your priorities."
+          "answer": "No\u2014it is a mindfulness tool for aligning small recurring expenses with your priorities."
         },
         {
           "question": "What habits matter most?",
@@ -2838,7 +2838,7 @@
           "answer": "For fairness, itemize individually; this tool assumes an even split."
         },
         {
-          "question": "Is 18–20% standard?",
+          "question": "Is 18\u201320% standard?",
           "answer": "In many regions yes for sit-down service, but local norms differ."
         }
       ]
@@ -2887,14 +2887,14 @@
       "faqs": [
         {
           "question": "Do multiple discounts stack multiplicatively?",
-          "answer": "Usually each discount applies sequentially to the reduced price—not as a simple sum of percentages."
+          "answer": "Usually each discount applies sequentially to the reduced price\u2014not as a simple sum of percentages."
         },
         {
           "question": "Is tax applied before or after discounts?",
           "answer": "Sales tax is typically calculated on the discounted price."
         },
         {
-          "question": "Are ‘% off’ and coupon codes combined?",
+          "question": "Are \u2018% off\u2019 and coupon codes combined?",
           "answer": "It depends on store policy; some exclude certain brands or already-reduced items."
         }
       ]
@@ -2943,8 +2943,8 @@
     "seoContent": {
       "intro": "Bigger packages are not always better deals. Compare unit prices to identify which option delivers more value for every ounce, count, or liter.",
       "howToUse": [
-        "Enter Product A’s price and quantity of units.",
-        "Enter Product B’s price and units using the same unit type.",
+        "Enter Product A\u2019s price and quantity of units.",
+        "Enter Product B\u2019s price and units using the same unit type.",
         "Review price-per-unit for each and see which wins."
       ],
       "faqs": [
@@ -2954,7 +2954,7 @@
         },
         {
           "question": "Should quality differences matter?",
-          "answer": "Yes—unit price is only one factor alongside quality, waste, and storage."
+          "answer": "Yes\u2014unit price is only one factor alongside quality, waste, and storage."
         },
         {
           "question": "Why do warehouse clubs look cheaper?",
@@ -2999,7 +2999,7 @@
       "intro": "Trip budgets should include fuel, not just hotels and food. This calculator estimates gallons needed and total fuel cost from distance, efficiency, and pump prices.",
       "howToUse": [
         "Enter total trip distance in miles.",
-        "Input your vehicle’s expected miles per gallon.",
+        "Input your vehicle\u2019s expected miles per gallon.",
         "Set the fuel price per gallon.",
         "Review gallons required and total fuel cost."
       ],
@@ -3010,7 +3010,7 @@
         },
         {
           "question": "Does speed affect fuel cost?",
-          "answer": "Yes—higher speeds and aggressive driving typically reduce efficiency."
+          "answer": "Yes\u2014higher speeds and aggressive driving typically reduce efficiency."
         },
         {
           "question": "Can I use kilometers and liters?",
@@ -3068,7 +3068,7 @@
     ],
     "formulaType": "subscriptionAggregator",
     "seoContent": {
-      "intro": "Subscriptions quietly stack until they rival a major bill. Aggregate your recurring memberships to see monthly and annual totals—and decide what still deserves a spot.",
+      "intro": "Subscriptions quietly stack until they rival a major bill. Aggregate your recurring memberships to see monthly and annual totals\u2014and decide what still deserves a spot.",
       "howToUse": [
         "Enter up to five monthly subscription prices.",
         "Leave unused slots at zero if you have fewer than five.",
@@ -3081,11 +3081,11 @@
         },
         {
           "question": "Annual plans vs monthly?",
-          "answer": "Annual plans can be cheaper per month but increase upfront commitment—confirm you will use the service."
+          "answer": "Annual plans can be cheaper per month but increase upfront commitment\u2014confirm you will use the service."
         },
         {
           "question": "What savings target is realistic?",
-          "answer": "Many households can cut 10–30% of subscription spend by canceling low-usage services."
+          "answer": "Many households can cut 10\u201330% of subscription spend by canceling low-usage services."
         }
       ]
     }
@@ -3123,7 +3123,7 @@
     ],
     "formulaType": "simpleInterest",
     "seoContent": {
-      "intro": "Simple interest grows in a straight line: principal × rate × time. Use this calculator for straightforward interest estimates that do not compound.",
+      "intro": "Simple interest grows in a straight line: principal \u00d7 rate \u00d7 time. Use this calculator for straightforward interest estimates that do not compound.",
       "howToUse": [
         "Enter the principal amount.",
         "Set the annual interest rate percentage.",
@@ -3141,7 +3141,7 @@
         },
         {
           "question": "Can time be a fraction of a year?",
-          "answer": "Yes—use decimals such as 0.5 for six months."
+          "answer": "Yes\u2014use decimals such as 0.5 for six months."
         }
       ]
     }
@@ -3188,7 +3188,7 @@
         },
         {
           "question": "What if the original value is zero?",
-          "answer": "Percentage change is undefined when starting from zero—use absolute difference instead."
+          "answer": "Percentage change is undefined when starting from zero\u2014use absolute difference instead."
         }
       ]
     }
@@ -3237,17 +3237,17 @@
       "intro": "Your cumulative GPA blends prior and current-term performance weighted by credit hours. This calculator updates your overall GPA after each semester.",
       "howToUse": [
         "Enter your previous cumulative GPA and earned credits.",
-        "Add this term’s GPA and credit hours.",
+        "Add this term\u2019s GPA and credit hours.",
         "Review the updated cumulative GPA instantly."
       ],
       "faqs": [
         {
           "question": "Is this a 4.0 scale?",
-          "answer": "Yes—use grade points on a standard 4.0 scale unless your school uses a different system."
+          "answer": "Yes\u2014use grade points on a standard 4.0 scale unless your school uses a different system."
         },
         {
           "question": "Do failed courses count?",
-          "answer": "Usually yes for attempted credits—confirm with your registrar’s policy."
+          "answer": "Usually yes for attempted credits\u2014confirm with your registrar\u2019s policy."
         },
         {
           "question": "Can I project future GPA?",
@@ -3289,7 +3289,7 @@
     ],
     "formulaType": "finalExamNeeded",
     "seoContent": {
-      "intro": "Knowing the exact score you need on a final removes guesswork. Enter your current average, target grade, and the exam’s weight to see the required result.",
+      "intro": "Knowing the exact score you need on a final removes guesswork. Enter your current average, target grade, and the exam\u2019s weight to see the required result.",
       "howToUse": [
         "Enter your current course percentage.",
         "Set the overall grade you want after the final.",
@@ -3298,11 +3298,11 @@
       "faqs": [
         {
           "question": "What if the required score is over 100%?",
-          "answer": "The target may be unreachable at that weight—adjust expectations or confirm extra credit options."
+          "answer": "The target may be unreachable at that weight\u2014adjust expectations or confirm extra credit options."
         },
         {
           "question": "Does this include curved finals?",
-          "answer": "No—curves and drops change outcomes; treat this as a pre-curve estimate."
+          "answer": "No\u2014curves and drops change outcomes; treat this as a pre-curve estimate."
         },
         {
           "question": "Should I use percentage or letter grades?",
@@ -3385,7 +3385,7 @@
         },
         {
           "question": "Is this the same as GPA?",
-          "answer": "No—this is a single-course percentage average, not a GPA."
+          "answer": "No\u2014this is a single-course percentage average, not a GPA."
         }
       ]
     }
@@ -3418,7 +3418,7 @@
       "intro": "Percentiles help interpret raw test scores against national distributions. Select SAT or ACT and enter your composite to approximate percentile rank.",
       "howToUse": [
         "Choose 1 for SAT or 2 for ACT.",
-        "Enter your composite score (SAT 400–1600 or ACT 1–36).",
+        "Enter your composite score (SAT 400\u20131600 or ACT 1\u201336).",
         "Review the estimated percentile."
       ],
       "faqs": [
@@ -3432,7 +3432,7 @@
         },
         {
           "question": "What is a competitive percentile?",
-          "answer": "It depends on target schools—research each college’s middle 50% ranges."
+          "answer": "It depends on target schools\u2014research each college\u2019s middle 50% ranges."
         }
       ]
     }
@@ -3480,7 +3480,7 @@
     "seoContent": {
       "intro": "College costs rise faster than many budgets expect. This planner estimates total net cost over multiple years after aid and tuition inflation.",
       "howToUse": [
-        "Enter today’s annual all-in cost estimate.",
+        "Enter today\u2019s annual all-in cost estimate.",
         "Set years of attendance and expected inflation.",
         "Subtract annual aid, then review total net cost."
       ],
@@ -3491,7 +3491,7 @@
         },
         {
           "question": "Does aid stay constant?",
-          "answer": "Not always—recalculate if scholarships are one-year or merit-renewable."
+          "answer": "Not always\u2014recalculate if scholarships are one-year or merit-renewable."
         },
         {
           "question": "Is room and board inflated too?",
@@ -3596,12 +3596,12 @@
       ],
       "faqs": [
         {
-          "question": "Is 2–3 hours per credit standard?",
+          "question": "Is 2\u20133 hours per credit standard?",
           "answer": "It is a common guideline, but STEM or writing-heavy courses may need more."
         },
         {
           "question": "Should exams weeks differ?",
-          "answer": "Yes—increase allocation before midterms and finals."
+          "answer": "Yes\u2014increase allocation before midterms and finals."
         },
         {
           "question": "What if available hours are too low?",
@@ -3644,11 +3644,11 @@
       "faqs": [
         {
           "question": "What is an average adult WPM?",
-          "answer": "Around 200–250 WPM for non-technical prose is common."
+          "answer": "Around 200\u2013250 WPM for non-technical prose is common."
         },
         {
           "question": "Do dense textbooks take longer?",
-          "answer": "Yes—lower WPM for technical or unfamiliar material."
+          "answer": "Yes\u2014lower WPM for technical or unfamiliar material."
         },
         {
           "question": "Should I include note-taking?",
@@ -3695,7 +3695,7 @@
         },
         {
           "question": "Do images reduce word count?",
-          "answer": "Yes—pages with figures hold fewer words."
+          "answer": "Yes\u2014pages with figures hold fewer words."
         },
         {
           "question": "Single-spaced estimates?",
@@ -3750,11 +3750,11 @@
         },
         {
           "question": "Should tiny awards be ignored?",
-          "answer": "Not if they take almost no time—high probability micro-awards can still pay well."
+          "answer": "Not if they take almost no time\u2014high probability micro-awards can still pay well."
         },
         {
           "question": "Is expected value guaranteed?",
-          "answer": "No—it is a planning metric for prioritization."
+          "answer": "No\u2014it is a planning metric for prioritization."
         }
       ]
     }
@@ -3763,7 +3763,7 @@
     "slug": "ap-exam-score-calculator",
     "title": "AP Exam Score Calculator",
     "category": "Education, GPA & Academic",
-    "description": "Estimate AP exam composite conversion to a 1–5 score. Gauge readiness before test day.",
+    "description": "Estimate AP exam composite conversion to a 1\u20135 score. Gauge readiness before test day.",
     "inputs": [
       {
         "id": "mcCorrect",
@@ -3800,7 +3800,7 @@
     ],
     "formulaType": "apExamScore",
     "seoContent": {
-      "intro": "AP scoring combines multiple-choice and free-response performance into a composite that maps to 1–5. This estimator approximates your likely AP score band.",
+      "intro": "AP scoring combines multiple-choice and free-response performance into a composite that maps to 1\u20135. This estimator approximates your likely AP score band.",
       "howToUse": [
         "Enter multiple-choice corrects and total questions.",
         "Estimate free-response percentage performance.",
@@ -3809,11 +3809,11 @@
       "faqs": [
         {
           "question": "Are cut scores identical every year?",
-          "answer": "No—College Board scales composites annually; treat results as estimates."
+          "answer": "No\u2014College Board scales composites annually; treat results as estimates."
         },
         {
           "question": "Do all AP subjects use the same weights?",
-          "answer": "Weights vary by subject—adjust inputs to match your exam."
+          "answer": "Weights vary by subject\u2014adjust inputs to match your exam."
         },
         {
           "question": "What score earns credit?",
@@ -3856,7 +3856,7 @@
       "faqs": [
         {
           "question": "Is rank 1 the highest?",
-          "answer": "Yes—rank 1 is typically the top student."
+          "answer": "Yes\u2014rank 1 is typically the top student."
         },
         {
           "question": "Do ties affect rank?",
@@ -3893,8 +3893,8 @@
       ],
       "faqs": [
         {
-          "question": "Is A- always 90–92?",
-          "answer": "Cutoffs vary by institution—verify against your syllabus."
+          "question": "Is A- always 90\u201392?",
+          "answer": "Cutoffs vary by institution\u2014verify against your syllabus."
         },
         {
           "question": "Does this use plus/minus?",
@@ -3902,7 +3902,7 @@
         },
         {
           "question": "Can I convert letter to percent?",
-          "answer": "Use the midpoint of your school’s published range for reverse estimates."
+          "answer": "Use the midpoint of your school\u2019s published range for reverse estimates."
         }
       ]
     }
@@ -4004,7 +4004,7 @@
       "faqs": [
         {
           "question": "Should I include field trips?",
-          "answer": "Yes—put travel and admissions under activities."
+          "answer": "Yes\u2014put travel and admissions under activities."
         },
         {
           "question": "Do shared materials lower per-student cost?",
@@ -4012,7 +4012,7 @@
         },
         {
           "question": "Are there tax considerations?",
-          "answer": "Rules vary by location—consult a tax professional for deductions."
+          "answer": "Rules vary by location\u2014consult a tax professional for deductions."
         }
       ]
     }
@@ -4059,7 +4059,7 @@
       "faqs": [
         {
           "question": "Does this include room and board?",
-          "answer": "No—it focuses on personal dorm expenses beyond housing contracts."
+          "answer": "No\u2014it focuses on personal dorm expenses beyond housing contracts."
         },
         {
           "question": "What setup items matter most?",
@@ -4067,7 +4067,7 @@
         },
         {
           "question": "Can roommates split costs?",
-          "answer": "Yes—divide shared item totals before entering setup cost."
+          "answer": "Yes\u2014divide shared item totals before entering setup cost."
         }
       ]
     }
@@ -4114,11 +4114,11 @@
       "faqs": [
         {
           "question": "Do international editions resell well?",
-          "answer": "Often less than domestic editions—check demand first."
+          "answer": "Often less than domestic editions\u2014check demand first."
         },
         {
           "question": "Are access codes refundable?",
-          "answer": "Usually no—codes can make resale value near zero."
+          "answer": "Usually no\u2014codes can make resale value near zero."
         },
         {
           "question": "When is renting better?",
@@ -4177,7 +4177,7 @@
       "faqs": [
         {
           "question": "Should I include undergrad loans too?",
-          "answer": "For total debt planning, yes—combine balances or run separate scenarios."
+          "answer": "For total debt planning, yes\u2014combine balances or run separate scenarios."
         },
         {
           "question": "Do fellowships change this?",
@@ -4185,7 +4185,7 @@
         },
         {
           "question": "What about loan forgiveness?",
-          "answer": "Public service or institutional programs may alter payoff strategy—verify eligibility."
+          "answer": "Public service or institutional programs may alter payoff strategy\u2014verify eligibility."
         }
       ]
     }
@@ -4236,7 +4236,7 @@
         },
         {
           "question": "Should I pad the estimate?",
-          "answer": "Yes—add buffer for difficult modules or life interruptions."
+          "answer": "Yes\u2014add buffer for difficult modules or life interruptions."
         },
         {
           "question": "Can I model faster completion?",
@@ -4279,7 +4279,7 @@
       "faqs": [
         {
           "question": "Do excused absences count?",
-          "answer": "Policies vary—follow your syllabus for excused vs unexcused rules."
+          "answer": "Policies vary\u2014follow your syllabus for excused vs unexcused rules."
         },
         {
           "question": "Should I use term totals or to-date totals?",
@@ -4300,30 +4300,30 @@
     "inputs": [],
     "formulaType": "scientificCalculator",
     "seoContent": {
-      "intro": "The CalculioHub Scientific Calculator is a full-featured browser calculator for algebra, trigonometry, and exponential work. Build expressions with parentheses, switch between degrees and radians, store values in memory, and revisit earlier results from your session history—all without installing an app.",
+      "intro": "The CalculioHub Scientific Calculator is a full-featured browser calculator for algebra, trigonometry, and exponential work. Build expressions with parentheses, switch between degrees and radians, store values in memory, and revisit earlier results from your session history\u2014all without installing an app.",
       "howToUse": [
-        "Enter numbers with the keypad or your keyboard, then add operators (+, −, ×, ÷) to build an expression.",
-        "Use scientific keys for sin, cos, tan, logs, powers, roots, π, e, and factorial. Toggle Inv for inverse trig functions.",
-        "Switch Degrees ° vs Radians before evaluating trig expressions so angle units match your problem.",
+        "Enter numbers with the keypad or your keyboard, then add operators (+, \u2212, \u00d7, \u00f7) to build an expression.",
+        "Use scientific keys for sin, cos, tan, logs, powers, roots, \u03c0, e, and factorial. Toggle Inv for inverse trig functions.",
+        "Switch Degrees \u00b0 vs Radians before evaluating trig expressions so angle units match your problem.",
         "Press = or Enter to compute. Open History to reuse a previous result instantly.",
-        "Use MC, MR, M+, M−, and MS to clear, recall, add, subtract, or store values in calculator memory."
+        "Use MC, MR, M+, M\u2212, and MS to clear, recall, add, subtract, or store values in calculator memory."
       ],
       "faqs": [
         {
           "question": "How do I use scientific calculator functions on CalculioHub?",
-          "answer": "Tap a function key such as sin, ln, or √ to insert it into the expression, complete any required parentheses, then press =. The dual display shows your live expression on top and the evaluated result below."
+          "answer": "Tap a function key such as sin, ln, or \u221a to insert it into the expression, complete any required parentheses, then press =. The dual display shows your live expression on top and the evaluated result below."
         },
         {
           "question": "What is the difference between degrees and radians?",
-          "answer": "Degrees and radians are two units for measuring angles. A full circle is 360° or 2π radians. Use Degrees ° for everyday geometry problems written in degrees, and Radians for calculus or physics formulas that assume radian measure."
+          "answer": "Degrees and radians are two units for measuring angles. A full circle is 360\u00b0 or 2\u03c0 radians. Use Degrees \u00b0 for everyday geometry problems written in degrees, and Radians for calculus or physics formulas that assume radian measure."
         },
         {
           "question": "How do logarithmic formulas work in this calculator?",
-          "answer": "Use ln for the natural logarithm (base e) and log for common logarithm (base 10). Exponential counterparts are eˣ and 10ˣ. Remember that logarithms are only defined for positive real numbers."
+          "answer": "Use ln for the natural logarithm (base e) and log for common logarithm (base 10). Exponential counterparts are e\u02e3 and 10\u02e3. Remember that logarithms are only defined for positive real numbers."
         },
         {
           "question": "Does the calculator follow PEMDAS / BODMAS order of operations?",
-          "answer": "Yes. Parentheses are evaluated first, then exponents/roots, then multiplication and division (including modulo), then addition and subtraction—left to right within the same precedence."
+          "answer": "Yes. Parentheses are evaluated first, then exponents/roots, then multiplication and division (including modulo), then addition and subtraction\u2014left to right within the same precedence."
         },
         {
           "question": "What happens if I divide by zero or enter an invalid expression?",
@@ -4381,16 +4381,16 @@
       ],
       "faqs": [
         {
-          "question": "Why divide by n−1 for samples?",
-          "answer": "Bessel’s correction reduces bias when estimating population variance from a sample."
+          "question": "Why divide by n\u22121 for samples?",
+          "answer": "Bessel\u2019s correction reduces bias when estimating population variance from a sample."
         },
         {
           "question": "What is sum of squares?",
-          "answer": "Each value squared, then summed—used in computational variance formulas."
+          "answer": "Each value squared, then summed\u2014used in computational variance formulas."
         },
         {
           "question": "Can this handle negative values?",
-          "answer": "Yes—the mean and squared deviations handle signed data."
+          "answer": "Yes\u2014the mean and squared deviations handle signed data."
         }
       ]
     }
@@ -4500,7 +4500,7 @@
       "faqs": [
         {
           "question": "When should I use t instead of z?",
-          "answer": "Use t for smaller samples or when sigma is unknown—z is an approximation."
+          "answer": "Use t for smaller samples or when sigma is unknown\u2014z is an approximation."
         },
         {
           "question": "What does 95% confidence mean?",
@@ -4508,7 +4508,7 @@
         },
         {
           "question": "Can SD be zero?",
-          "answer": "Only if all values are identical—then the interval collapses to the mean."
+          "answer": "Only if all values are identical\u2014then the interval collapses to the mean."
         }
       ]
     }
@@ -4529,7 +4529,7 @@
       },
       {
         "id": "mean",
-        "label": "Mean (μ)",
+        "label": "Mean (\u03bc)",
         "defaultValue": 70,
         "min": -1000,
         "max": 10000,
@@ -4537,7 +4537,7 @@
       },
       {
         "id": "sd",
-        "label": "Standard Deviation (σ)",
+        "label": "Standard Deviation (\u03c3)",
         "defaultValue": 10,
         "min": 0.01,
         "max": 1000,
@@ -4563,7 +4563,7 @@
         },
         {
           "question": "Can SD be negative?",
-          "answer": "No—standard deviation must be positive."
+          "answer": "No\u2014standard deviation must be positive."
         }
       ]
     }
@@ -4596,7 +4596,7 @@
       "intro": "Permutations count ordered arrangements; combinations count unordered selections. Enter n and r to compute both fundamental counting values.",
       "howToUse": [
         "Enter total items n.",
-        "Enter items chosen r (r ≤ n).",
+        "Enter items chosen r (r \u2264 n).",
         "Review permutations and combinations."
       ],
       "faqs": [
@@ -4610,7 +4610,7 @@
         },
         {
           "question": "What if r > n?",
-          "answer": "Both values are undefined/zero in standard counting—keep r ≤ n."
+          "answer": "Both values are undefined/zero in standard counting\u2014keep r \u2264 n."
         }
       ]
     }
@@ -4619,7 +4619,7 @@
     "slug": "pythagorean-theorem-calculator",
     "title": "Pythagorean Theorem Calculator",
     "category": "Statistics, Probability & Advanced Math",
-    "description": "Solve right-triangle sides with a² + b² = c². Find hypotenuse or a missing leg instantly.",
+    "description": "Solve right-triangle sides with a\u00b2 + b\u00b2 = c\u00b2. Find hypotenuse or a missing leg instantly.",
     "inputs": [
       {
         "id": "a",
@@ -4665,7 +4665,7 @@
       "faqs": [
         {
           "question": "Does this work for non-right triangles?",
-          "answer": "No—use law of cosines/sines for oblique triangles."
+          "answer": "No\u2014use law of cosines/sines for oblique triangles."
         },
         {
           "question": "Can sides be zero?",
@@ -4682,7 +4682,7 @@
     "slug": "quadratic-equation-solver-calculator",
     "title": "Quadratic Equation Solver Calculator",
     "category": "Statistics, Probability & Advanced Math",
-    "description": "Solve ax² + bx + c = 0 for real roots. Inspect discriminant and root values instantly.",
+    "description": "Solve ax\u00b2 + bx + c = 0 for real roots. Inspect discriminant and root values instantly.",
     "inputs": [
       {
         "id": "a",
@@ -4737,7 +4737,7 @@
     "slug": "matrix-multiplication-calculator",
     "title": "Matrix Multiplication Calculator",
     "category": "Statistics, Probability & Advanced Math",
-    "description": "Multiply two 2×2 matrices and view the resulting matrix entries. Practice linear algebra fundamentals quickly.",
+    "description": "Multiply two 2\u00d72 matrices and view the resulting matrix entries. Practice linear algebra fundamentals quickly.",
     "inputs": [
       {
         "id": "a11",
@@ -4806,7 +4806,7 @@
     ],
     "formulaType": "matrixMultiply2x2",
     "seoContent": {
-      "intro": "Matrix multiplication combines rows of A with columns of B. This 2×2 calculator returns each entry of the product matrix for fast verification.",
+      "intro": "Matrix multiplication combines rows of A with columns of B. This 2\u00d72 calculator returns each entry of the product matrix for fast verification.",
       "howToUse": [
         "Enter all four entries of matrix A.",
         "Enter all four entries of matrix B.",
@@ -4815,15 +4815,15 @@
       "faqs": [
         {
           "question": "Is AB the same as BA?",
-          "answer": "Not generally—matrix multiplication is not commutative."
+          "answer": "Not generally\u2014matrix multiplication is not commutative."
         },
         {
-          "question": "Why only 2×2?",
+          "question": "Why only 2\u00d72?",
           "answer": "It covers the most common homework case with a simple interface."
         },
         {
           "question": "What are dimensions requirements?",
-          "answer": "A’s columns must match B’s rows—here both are 2×2."
+          "answer": "A\u2019s columns must match B\u2019s rows\u2014here both are 2\u00d72."
         }
       ]
     }
@@ -4870,7 +4870,7 @@
         },
         {
           "question": "Can negatives be converted?",
-          "answer": "Yes—signs carry into the decimal result."
+          "answer": "Yes\u2014signs carry into the decimal result."
         }
       ]
     }
@@ -4909,11 +4909,11 @@
       "faqs": [
         {
           "question": "How are GCD and LCM related?",
-          "answer": "For positives, GCD(a,b) × LCM(a,b) = a × b."
+          "answer": "For positives, GCD(a,b) \u00d7 LCM(a,b) = a \u00d7 b."
         },
         {
           "question": "Does order matter?",
-          "answer": "No—GCD and LCM are symmetric."
+          "answer": "No\u2014GCD and LCM are symmetric."
         },
         {
           "question": "What about more than two numbers?",
@@ -4976,7 +4976,7 @@
         },
         {
           "question": "Can rate be negative?",
-          "answer": "Yes—negative rates model exponential decay."
+          "answer": "Yes\u2014negative rates model exponential decay."
         },
         {
           "question": "What base is the log?",
@@ -5090,7 +5090,7 @@
       "faqs": [
         {
           "question": "What does independent mean?",
-          "answer": "Knowing one event occurred does not change the other event’s probability."
+          "answer": "Knowing one event occurred does not change the other event\u2019s probability."
         },
         {
           "question": "What does mutually exclusive mean?",
@@ -5098,7 +5098,7 @@
         },
         {
           "question": "Can probabilities exceed 100%?",
-          "answer": "Valid single-event inputs stay within 0–100%."
+          "answer": "Valid single-event inputs stay within 0\u2013100%."
         }
       ]
     }
@@ -5157,7 +5157,7 @@
         },
         {
           "question": "Can min exceed max?",
-          "answer": "No—swap values if entered incorrectly."
+          "answer": "No\u2014swap values if entered incorrectly."
         },
         {
           "question": "Does mean equal median?",
@@ -5212,7 +5212,7 @@
         },
         {
           "question": "Is MOE the only poll error?",
-          "answer": "No—bias, wording, and nonresponse also matter."
+          "answer": "No\u2014bias, wording, and nonresponse also matter."
         },
         {
           "question": "What z for 99% confidence?",
@@ -5317,7 +5317,7 @@
     ],
     "formulaType": "correlationCoefficient",
     "seoContent": {
-      "intro": "Pearson’s correlation standardizes covariance by the product of standard deviations. Enter those summaries to estimate r between two variables.",
+      "intro": "Pearson\u2019s correlation standardizes covariance by the product of standard deviations. Enter those summaries to estimate r between two variables.",
       "howToUse": [
         "Enter covariance of X and Y.",
         "Enter standard deviations of X and Y.",
@@ -5326,11 +5326,11 @@
       "faqs": [
         {
           "question": "What range can r take?",
-          "answer": "From −1 to +1 for real-valued Pearson correlation."
+          "answer": "From \u22121 to +1 for real-valued Pearson correlation."
         },
         {
           "question": "Does correlation imply causation?",
-          "answer": "No—association is not causal proof."
+          "answer": "No\u2014association is not causal proof."
         },
         {
           "question": "What if SD is zero?",
@@ -5385,11 +5385,11 @@
         },
         {
           "question": "Is 0! defined?",
-          "answer": "Yes—by convention 0! = 1."
+          "answer": "Yes\u2014by convention 0! = 1."
         },
         {
           "question": "Can exponents be negative?",
-          "answer": "Yes—results become reciprocal powers of the base."
+          "answer": "Yes\u2014results become reciprocal powers of the base."
         }
       ]
     }
@@ -5421,18 +5421,18 @@
     "seoContent": {
       "intro": "Polygon geometry formulas unlock angle sums and areas for regular shapes. Enter side count and side length to compute key measurements.",
       "howToUse": [
-        "Enter the number of sides (n ≥ 3).",
+        "Enter the number of sides (n \u2265 3).",
         "Enter each side length for a regular polygon.",
         "Review interior angle sum and area."
       ],
       "faqs": [
         {
           "question": "What is interior angle sum?",
-          "answer": "(n − 2) × 180° for a simple polygon."
+          "answer": "(n \u2212 2) \u00d7 180\u00b0 for a simple polygon."
         },
         {
           "question": "Does area assume a regular polygon?",
-          "answer": "Yes—equal sides and angles are assumed."
+          "answer": "Yes\u2014equal sides and angles are assumed."
         },
         {
           "question": "Can I use this for irregular polygons?",
@@ -5458,7 +5458,7 @@
     ],
     "formulaType": "circleGeometry",
     "seoContent": {
-      "intro": "Circle measurements depend on radius through π. Calculate diameter, circumference, and area from a single radius input.",
+      "intro": "Circle measurements depend on radius through \u03c0. Calculate diameter, circumference, and area from a single radius input.",
       "howToUse": [
         "Enter the circle radius.",
         "Review diameter, circumference, and area."
@@ -5466,15 +5466,15 @@
       "faqs": [
         {
           "question": "What if I only know diameter?",
-          "answer": "Radius is half the diameter—enter that value."
+          "answer": "Radius is half the diameter\u2014enter that value."
         },
         {
-          "question": "Which π value is used?",
-          "answer": "JavaScript’s Math.PI high-precision constant."
+          "question": "Which \u03c0 value is used?",
+          "answer": "JavaScript\u2019s Math.PI high-precision constant."
         },
         {
           "question": "Are units squared for area?",
-          "answer": "Yes—area uses squared units of the radius."
+          "answer": "Yes\u2014area uses squared units of the radius."
         }
       ]
     }
@@ -5521,7 +5521,7 @@
       "faqs": [
         {
           "question": "Is severance legally required?",
-          "answer": "In many jurisdictions it is not automatic—terms depend on contracts and local law."
+          "answer": "In many jurisdictions it is not automatic\u2014terms depend on contracts and local law."
         },
         {
           "question": "Are benefits included?",
@@ -5529,7 +5529,7 @@
         },
         {
           "question": "Is severance taxable?",
-          "answer": "Usually yes as ordinary income—confirm with a tax advisor."
+          "answer": "Usually yes as ordinary income\u2014confirm with a tax advisor."
         }
       ]
     }
@@ -5576,11 +5576,11 @@
       "faqs": [
         {
           "question": "What is a typical accrual rate?",
-          "answer": "It varies widely—annual PTO hours divided by yearly work hours is a common derivation."
+          "answer": "It varies widely\u2014annual PTO hours divided by yearly work hours is a common derivation."
         },
         {
           "question": "Do overtime hours accrue PTO?",
-          "answer": "Policy-specific—check your handbook."
+          "answer": "Policy-specific\u2014check your handbook."
         },
         {
           "question": "What about caps?",
@@ -5635,11 +5635,11 @@
         },
         {
           "question": "Does intermittent leave count?",
-          "answer": "Yes—used increments reduce remaining entitlement."
+          "answer": "Yes\u2014used increments reduce remaining entitlement."
         },
         {
           "question": "Is this legal advice?",
-          "answer": "No—it is an estimate; HR/legal counsel should confirm eligibility."
+          "answer": "No\u2014it is an estimate; HR/legal counsel should confirm eligibility."
         }
       ]
     }
@@ -5677,7 +5677,7 @@
     ],
     "formulaType": "workersComp",
     "seoContent": {
-      "intro": "Workers’ compensation temporary disability benefits often replace a portion of average weekly wages. Estimate weekly and total benefits for planning conversations.",
+      "intro": "Workers\u2019 compensation temporary disability benefits often replace a portion of average weekly wages. Estimate weekly and total benefits for planning conversations.",
       "howToUse": [
         "Enter average weekly wage.",
         "Set the wage replacement percentage used in your jurisdiction.",
@@ -5686,11 +5686,11 @@
       "faqs": [
         {
           "question": "Are caps applied?",
-          "answer": "Many states cap weekly benefits—this tool does not apply local maximums."
+          "answer": "Many states cap weekly benefits\u2014this tool does not apply local maximums."
         },
         {
           "question": "Is this an official claim amount?",
-          "answer": "No—claims administrators determine final benefits."
+          "answer": "No\u2014claims administrators determine final benefits."
         },
         {
           "question": "Do medical costs count here?",
@@ -5737,7 +5737,7 @@
         },
         {
           "question": "Monthly vs annual?",
-          "answer": "Be consistent—annualize carefully if comparing periods."
+          "answer": "Be consistent\u2014annualize carefully if comparing periods."
         },
         {
           "question": "What is a good rate?",
@@ -5796,7 +5796,7 @@
         },
         {
           "question": "Does this include employee withholding?",
-          "answer": "No—this focuses on employer cost."
+          "answer": "No\u2014this focuses on employer cost."
         }
       ]
     }
@@ -5855,11 +5855,11 @@
         },
         {
           "question": "Is classification only about cost?",
-          "answer": "No—legal classification tests matter more than price."
+          "answer": "No\u2014legal classification tests matter more than price."
         },
         {
           "question": "Which is cheaper?",
-          "answer": "It depends on hours, benefits, and rate—compare scenarios."
+          "answer": "It depends on hours, benefits, and rate\u2014compare scenarios."
         }
       ]
     }
@@ -5906,7 +5906,7 @@
       "faqs": [
         {
           "question": "Is this legally binding guidance?",
-          "answer": "No—it is a planning heuristic, not legal advice."
+          "answer": "No\u2014it is a planning heuristic, not legal advice."
         },
         {
           "question": "Are non-competes enforceable?",
@@ -5969,7 +5969,7 @@
         },
         {
           "question": "Is this legal advice?",
-          "answer": "No—attorneys and courts determine actual damages."
+          "answer": "No\u2014attorneys and courts determine actual damages."
         }
       ]
     }
@@ -6009,22 +6009,22 @@
     "seoContent": {
       "intro": "Salary level is one factor in overtime exemption analysis. Compare compensation with a threshold and estimate potential overtime exposure if nonexempt.",
       "howToUse": [
-        "Enter the employee’s annual salary.",
+        "Enter the employee\u2019s annual salary.",
         "Set the applicable exemption salary threshold.",
         "Add typical weekly hours to estimate OT exposure if nonexempt."
       ],
       "faqs": [
         {
           "question": "Is salary alone enough for exemption?",
-          "answer": "No—duties tests and local laws also matter."
+          "answer": "No\u2014duties tests and local laws also matter."
         },
         {
           "question": "Do thresholds change?",
-          "answer": "Yes—update the threshold input when regulations change."
+          "answer": "Yes\u2014update the threshold input when regulations change."
         },
         {
           "question": "Is this a compliance determination?",
-          "answer": "No—consult employment counsel/HR compliance experts."
+          "answer": "No\u2014consult employment counsel/HR compliance experts."
         }
       ]
     }
@@ -6067,7 +6067,7 @@
         },
         {
           "question": "What counts as recordable?",
-          "answer": "OSHA defines specific injury/illness criteria—follow official guidance."
+          "answer": "OSHA defines specific injury/illness criteria\u2014follow official guidance."
         },
         {
           "question": "Can rates be compared across industries?",
@@ -6135,7 +6135,7 @@
     "seoContent": {
       "intro": "Structured scorecards reduce inconsistent hiring judgments. Weight skills, culture fit, and potential to produce a single comparable candidate score.",
       "howToUse": [
-        "Score each criterion on a 1–10 scale.",
+        "Score each criterion on a 1\u201310 scale.",
         "Assign percentage weights that reflect role priorities.",
         "Review the weighted total score."
       ],
@@ -6190,7 +6190,7 @@
     "seoContent": {
       "intro": "Employee NPS summarizes how likely staff are to recommend their workplace. Compute eNPS from promoter, passive, and detractor counts.",
       "howToUse": [
-        "Enter promoter count (usually 9–10 ratings).",
+        "Enter promoter count (usually 9\u201310 ratings).",
         "Enter passive and detractor counts.",
         "Review eNPS and response totals."
       ],
@@ -6303,7 +6303,7 @@
         },
         {
           "question": "Do withdrawn roles count?",
-          "answer": "Typically no—measure completed fills unless tracking separately."
+          "answer": "Typically no\u2014measure completed fills unless tracking separately."
         },
         {
           "question": "Why does it matter?",
@@ -6405,7 +6405,7 @@
         },
         {
           "question": "Are there payout caps?",
-          "answer": "Many plans cap upside—adjust attainment if capped."
+          "answer": "Many plans cap upside\u2014adjust attainment if capped."
         },
         {
           "question": "Is bonus guaranteed?",
@@ -6464,7 +6464,7 @@
       "faqs": [
         {
           "question": "Are relocation benefits taxable?",
-          "answer": "Often partly taxable—check payroll treatment."
+          "answer": "Often partly taxable\u2014check payroll treatment."
         },
         {
           "question": "What receipts are needed?",
@@ -6535,7 +6535,7 @@
         },
         {
           "question": "Are lodging rates separate?",
-          "answer": "Frequently yes—lodging may use a different daily cap."
+          "answer": "Frequently yes\u2014lodging may use a different daily cap."
         }
       ]
     }
@@ -6631,7 +6631,7 @@
       "intro": "Fuel is one of the largest variable costs on a road trip. Estimate gallons required and total gas spend before you leave.",
       "howToUse": [
         "Enter total trip miles.",
-        "Set your vehicle’s expected MPG.",
+        "Set your vehicle\u2019s expected MPG.",
         "Add fuel price and review total cost."
       ],
       "faqs": [
@@ -6641,7 +6641,7 @@
         },
         {
           "question": "Do mountains change MPG?",
-          "answer": "Yes—terrain, speed, and cargo can lower efficiency."
+          "answer": "Yes\u2014terrain, speed, and cargo can lower efficiency."
         },
         {
           "question": "Can I split costs among passengers?",
@@ -6692,11 +6692,11 @@
       "faqs": [
         {
           "question": "Are public DC fast chargers more expensive?",
-          "answer": "Often yes—rates can exceed residential electricity."
+          "answer": "Often yes\u2014rates can exceed residential electricity."
         },
         {
           "question": "Does this include idle fees?",
-          "answer": "No—add idle or session fees separately if applicable."
+          "answer": "No\u2014add idle or session fees separately if applicable."
         },
         {
           "question": "What about charging losses?",
@@ -6771,11 +6771,11 @@
       "faqs": [
         {
           "question": "Does buying include residual value?",
-          "answer": "This cash-out comparison ignores resale equity—adjust mentally for ownership value."
+          "answer": "This cash-out comparison ignores resale equity\u2014adjust mentally for ownership value."
         },
         {
           "question": "Are mileage penalties included?",
-          "answer": "No—add expected lease overage fees if relevant."
+          "answer": "No\u2014add expected lease overage fees if relevant."
         },
         {
           "question": "Which is better?",
@@ -6885,7 +6885,7 @@
         },
         {
           "question": "Do rates vary by time?",
-          "answer": "Yes—use an average peak rate for budgeting."
+          "answer": "Yes\u2014use an average peak rate for budgeting."
         },
         {
           "question": "Are transponder discounts included?",
@@ -6960,7 +6960,7 @@
         },
         {
           "question": "Should coverage limits match?",
-          "answer": "Yes—compare equivalent liability and protection levels."
+          "answer": "Yes\u2014compare equivalent liability and protection levels."
         }
       ]
     }
@@ -6969,7 +6969,7 @@
     "slug": "flight-carbon-footprint-calculator",
     "title": "Flight Carbon Footprint Calculator",
     "category": "Automotive, Travel & Transit",
-    "description": "Estimate flight CO₂ emissions from distance and passengers. Understand travel climate impact roughly.",
+    "description": "Estimate flight CO\u2082 emissions from distance and passengers. Understand travel climate impact roughly.",
     "inputs": [
       {
         "id": "miles",
@@ -6989,7 +6989,7 @@
       },
       {
         "id": "kgPerMile",
-        "label": "kg CO₂ per Passenger-Mile",
+        "label": "kg CO\u2082 per Passenger-Mile",
         "defaultValue": 0.24,
         "min": 0.05,
         "max": 1,
@@ -7002,20 +7002,20 @@
       "howToUse": [
         "Enter flight distance in miles.",
         "Set number of passengers in your party.",
-        "Adjust emissions factor if desired and review total CO₂."
+        "Adjust emissions factor if desired and review total CO\u2082."
       ],
       "faqs": [
         {
           "question": "Is this airline-specific?",
-          "answer": "No—it is a simplified factor-based estimate."
+          "answer": "No\u2014it is a simplified factor-based estimate."
         },
         {
           "question": "Do layovers count?",
-          "answer": "Sum each segment’s distance for better accuracy."
+          "answer": "Sum each segment\u2019s distance for better accuracy."
         },
         {
           "question": "What about radiative forcing?",
-          "answer": "Some methods uplift aviation CO₂; this uses a direct factor."
+          "answer": "Some methods uplift aviation CO\u2082; this uses a direct factor."
         }
       ]
     }
@@ -7129,7 +7129,7 @@
         },
         {
           "question": "Do ATM fees matter?",
-          "answer": "Yes—pad your budget for fees and poorer cash rates."
+          "answer": "Yes\u2014pad your budget for fees and poorer cash rates."
         },
         {
           "question": "Should I convert everything at once?",
@@ -7188,7 +7188,7 @@
       "faqs": [
         {
           "question": "Do credit cards waive fees?",
-          "answer": "Some airline cards waive a bag for the cardholder and companions—adjust fees to zero if so."
+          "answer": "Some airline cards waive a bag for the cardholder and companions\u2014adjust fees to zero if so."
         },
         {
           "question": "Are carry-ons included?",
@@ -7196,7 +7196,7 @@
         },
         {
           "question": "Do overweight fees apply?",
-          "answer": "Yes separately—keep bags under weight limits."
+          "answer": "Yes separately\u2014keep bags under weight limits."
         }
       ]
     }
@@ -7251,15 +7251,15 @@
       "faqs": [
         {
           "question": "Are fines the same everywhere?",
-          "answer": "No—local statutes and zones (school/construction) change amounts."
+          "answer": "No\u2014local statutes and zones (school/construction) change amounts."
         },
         {
           "question": "Does this include insurance impact?",
-          "answer": "No—premium increases can exceed the ticket itself."
+          "answer": "No\u2014premium increases can exceed the ticket itself."
         },
         {
           "question": "Is this legal advice?",
-          "answer": "No—verify with official citations and counsel if needed."
+          "answer": "No\u2014verify with official citations and counsel if needed."
         }
       ]
     }
@@ -7425,7 +7425,7 @@
     "seoContent": {
       "intro": "Overloading a tow vehicle is unsafe and can void warranties. Compare trailer and cargo weight against rated tow capacity to see remaining margin.",
       "howToUse": [
-        "Enter your vehicle’s max tow rating.",
+        "Enter your vehicle\u2019s max tow rating.",
         "Add trailer weight and cargo/passenger load.",
         "Review remaining capacity and utilization."
       ],
@@ -7440,7 +7440,7 @@
         },
         {
           "question": "Do hills change capacity?",
-          "answer": "Ratings assume specified conditions—terrain still affects performance."
+          "answer": "Ratings assume specified conditions\u2014terrain still affects performance."
         }
       ]
     }
@@ -7633,11 +7633,11 @@
         },
         {
           "question": "Should depreciation count?",
-          "answer": "Yes for true profit—add it under other expenses."
+          "answer": "Yes for true profit\u2014add it under other expenses."
         },
         {
           "question": "Is this before taxes?",
-          "answer": "Yes—set aside money for self-employment taxes."
+          "answer": "Yes\u2014set aside money for self-employment taxes."
         }
       ]
     }
@@ -7684,7 +7684,7 @@
       "faqs": [
         {
           "question": "Do transfers count as extra rides?",
-          "answer": "Follow local fare rules—count each charged ride."
+          "answer": "Follow local fare rules\u2014count each charged ride."
         },
         {
           "question": "What about employer pre-tax benefits?",
@@ -7747,7 +7747,7 @@
       "faqs": [
         {
           "question": "Are airport surcharges large?",
-          "answer": "They can be—include them in the tax/fee percentage."
+          "answer": "They can be\u2014include them in the tax/fee percentage."
         },
         {
           "question": "Do I need rental insurance?",
@@ -7806,11 +7806,11 @@
         },
         {
           "question": "Do light and melatonin help?",
-          "answer": "Behavioral strategies can help—this tool only estimates duration."
+          "answer": "Behavioral strategies can help\u2014this tool only estimates duration."
         },
         {
           "question": "Is recovery the same for everyone?",
-          "answer": "No—age, sleep debt, and flexibility vary widely."
+          "answer": "No\u2014age, sleep debt, and flexibility vary widely."
         }
       ]
     }
@@ -7865,7 +7865,7 @@
       },
       {
         "id": "activityMultiplier",
-        "label": "Activity Multiplier (1.2 sedentary → 1.9 very active)",
+        "label": "Activity Multiplier (1.2 sedentary \u2192 1.9 very active)",
         "defaultValue": 1.55,
         "min": 1.2,
         "max": 1.9,
@@ -7882,7 +7882,7 @@
     ],
     "formulaType": "aiNutrition",
     "seoContent": {
-      "intro": "The AI Nutrition & Calorie Calculator turns body stats and lifestyle into actionable daily targets. It estimates basal metabolic rate, total daily energy expenditure, goal calories, and a practical protein-forward macro split—ideal for meal planning and fitness tracking.",
+      "intro": "The AI Nutrition & Calorie Calculator turns body stats and lifestyle into actionable daily targets. It estimates basal metabolic rate, total daily energy expenditure, goal calories, and a practical protein-forward macro split\u2014ideal for meal planning and fitness tracking.",
       "howToUse": [
         "Set sex to 0 for female or 1 for male.",
         "Enter age, weight in kilograms, and height in centimeters.",
@@ -7893,7 +7893,7 @@
       "faqs": [
         {
           "question": "What formula does this calorie calculator use?",
-          "answer": "Basal metabolic rate is estimated with the Mifflin–St Jeor equation, then multiplied by your activity factor to approximate TDEE. Goal calories apply your chosen surplus or deficit."
+          "answer": "Basal metabolic rate is estimated with the Mifflin\u2013St Jeor equation, then multiplied by your activity factor to approximate TDEE. Goal calories apply your chosen surplus or deficit."
         },
         {
           "question": "What do activity multipliers mean?",
@@ -7945,7 +7945,7 @@
     "seoContent": {
       "intro": "Recipe scaling keeps ingredient ratios intact when changing serving counts. Enter original and desired servings to resize any single ingredient amount.",
       "howToUse": [
-        "Enter the recipe’s original serving count.",
+        "Enter the recipe\u2019s original serving count.",
         "Set how many servings you want.",
         "Enter an ingredient amount and review the scaled quantity."
       ],
@@ -7956,7 +7956,7 @@
         },
         {
           "question": "What about baking yeast?",
-          "answer": "Yeast and leaveners can be sensitive—scale carefully and watch rise times."
+          "answer": "Yeast and leaveners can be sensitive\u2014scale carefully and watch rise times."
         },
         {
           "question": "Can I scale by percentage?",
@@ -8023,11 +8023,11 @@
       "faqs": [
         {
           "question": "Does this work for round pans?",
-          "answer": "Convert round pans using πr² area before comparing."
+          "answer": "Convert round pans using \u03c0r\u00b2 area before comparing."
         },
         {
           "question": "Will bake time stay the same?",
-          "answer": "No—deeper or shallower batter changes time and temperature needs."
+          "answer": "No\u2014deeper or shallower batter changes time and temperature needs."
         },
         {
           "question": "What if the new pan overflows?",
@@ -8077,7 +8077,7 @@
     ],
     "formulaType": "coffeeBrewRatio",
     "seoContent": {
-      "intro": "Brew ratio controls extraction strength more reliably than scoops. Compute water needed for a coffee dose—or coffee needed for a target water yield.",
+      "intro": "Brew ratio controls extraction strength more reliably than scoops. Compute water needed for a coffee dose\u2014or coffee needed for a target water yield.",
       "howToUse": [
         "Set your preferred brew ratio (e.g., 16).",
         "Choose mode 1 to calculate water from coffee dose.",
@@ -8090,11 +8090,11 @@
         },
         {
           "question": "Grams or milliliters for water?",
-          "answer": "For water, grams ≈ milliliters."
+          "answer": "For water, grams \u2248 milliliters."
         },
         {
           "question": "Does grind size matter?",
-          "answer": "Yes—ratio is only one variable alongside grind and time."
+          "answer": "Yes\u2014ratio is only one variable alongside grind and time."
         }
       ]
     }
@@ -8141,11 +8141,11 @@
       "faqs": [
         {
           "question": "Is time alone safe enough?",
-          "answer": "No—always verify doneness with an internal thermometer."
+          "answer": "No\u2014always verify doneness with an internal thermometer."
         },
         {
           "question": "Do bone-in cuts differ?",
-          "answer": "Yes—bone-in and stuffed roasts often need more time."
+          "answer": "Yes\u2014bone-in and stuffed roasts often need more time."
         },
         {
           "question": "What about altitude?",
@@ -8306,11 +8306,11 @@
       "faqs": [
         {
           "question": "What interval for clouds?",
-          "answer": "Often a few seconds—test locally for motion speed."
+          "answer": "Often a few seconds\u2014test locally for motion speed."
         },
         {
           "question": "Does battery life matter?",
-          "answer": "Yes—long intervals still need power and storage planning."
+          "answer": "Yes\u2014long intervals still need power and storage planning."
         },
         {
           "question": "Can I change FPS later?",
@@ -8352,7 +8352,7 @@
     ],
     "formulaType": "videoBitrateSize",
     "seoContent": {
-      "intro": "Bitrate × time determines approximate media file size. Estimate gigabytes needed for a clip including audio overhead.",
+      "intro": "Bitrate \u00d7 time determines approximate media file size. Estimate gigabytes needed for a clip including audio overhead.",
       "howToUse": [
         "Enter video bitrate in Mbps.",
         "Set duration in minutes.",
@@ -8365,7 +8365,7 @@
         },
         {
           "question": "What bitrate for 4K?",
-          "answer": "It depends on codec and motion—often tens of Mbps or more."
+          "answer": "It depends on codec and motion\u2014often tens of Mbps or more."
         },
         {
           "question": "Does audio matter?",
@@ -8412,7 +8412,7 @@
         },
         {
           "question": "Do temperature changes matter?",
-          "answer": "Yes—speed of sound rises with temperature."
+          "answer": "Yes\u2014speed of sound rises with temperature."
         },
         {
           "question": "How does this help mixing rooms?",
@@ -8449,13 +8449,13 @@
       "intro": "Lighting design often starts with target illuminance over area. Multiply square footage by foot-candles to estimate required lumens.",
       "howToUse": [
         "Enter room area in square feet.",
-        "Set a target foot-candle level for the room’s use.",
+        "Set a target foot-candle level for the room\u2019s use.",
         "Review estimated lumen requirement."
       ],
       "faqs": [
         {
           "question": "What foot-candles for living rooms?",
-          "answer": "Often around 10–30 depending on task lighting needs."
+          "answer": "Often around 10\u201330 depending on task lighting needs."
         },
         {
           "question": "Are fixture losses included?",
@@ -8510,11 +8510,11 @@
       "faqs": [
         {
           "question": "Should I water on a fixed calendar only?",
-          "answer": "Prefer soil checks—calculators guide, plants confirm."
+          "answer": "Prefer soil checks\u2014calculators guide, plants confirm."
         },
         {
           "question": "Do seasons change factors?",
-          "answer": "Yes—reduce watering in dormant seasons for many species."
+          "answer": "Yes\u2014reduce watering in dormant seasons for many species."
         },
         {
           "question": "What about succulents?",
@@ -8564,11 +8564,11 @@
       "faqs": [
         {
           "question": "Should I use internal dimensions?",
-          "answer": "Yes—glass thickness can reduce true water volume."
+          "answer": "Yes\u2014glass thickness can reduce true water volume."
         },
         {
-          "question": "Do substrate and décor reduce volume?",
-          "answer": "Yes—usable water volume is lower than nominal."
+          "question": "Do substrate and d\u00e9cor reduce volume?",
+          "answer": "Yes\u2014usable water volume is lower than nominal."
         },
         {
           "question": "Is this for cylinders?",
@@ -8610,7 +8610,7 @@
     ],
     "formulaType": "paintCoverage",
     "seoContent": {
-      "intro": "Paint purchases are easier when coverage is calculated up front. Estimate gallons from area, coats, and the product’s rated square feet per gallon.",
+      "intro": "Paint purchases are easier when coverage is calculated up front. Estimate gallons from area, coats, and the product\u2019s rated square feet per gallon.",
       "howToUse": [
         "Enter total paintable wall area.",
         "Set number of coats.",
@@ -8619,11 +8619,11 @@
       "faqs": [
         {
           "question": "Should I subtract windows?",
-          "answer": "Yes for accuracy—exclude openings from wall area."
+          "answer": "Yes for accuracy\u2014exclude openings from wall area."
         },
         {
           "question": "Do textured walls need more paint?",
-          "answer": "Often yes—reduce effective coverage."
+          "answer": "Often yes\u2014reduce effective coverage."
         },
         {
           "question": "Primer coat counting?",
@@ -8678,7 +8678,7 @@
         },
         {
           "question": "Do dye lots matter?",
-          "answer": "Yes—buy enough from one lot when possible."
+          "answer": "Yes\u2014buy enough from one lot when possible."
         },
         {
           "question": "What about peel-and-stick?",
@@ -8721,7 +8721,7 @@
       "faqs": [
         {
           "question": "How much waste is typical?",
-          "answer": "Often 5–15% depending on layout and diagonal installs."
+          "answer": "Often 5\u201315% depending on layout and diagonal installs."
         },
         {
           "question": "Should closets be included?",
@@ -8784,7 +8784,7 @@
       "faqs": [
         {
           "question": "Are cubic-feet assumptions exact?",
-          "answer": "They are planning averages—large furniture can dominate."
+          "answer": "They are planning averages\u2014large furniture can dominate."
         },
         {
           "question": "Should I reserve larger?",
@@ -8839,7 +8839,7 @@
       "faqs": [
         {
           "question": "Should every person get the same amount?",
-          "answer": "Not necessarily—use this as an average ceiling."
+          "answer": "Not necessarily\u2014use this as an average ceiling."
         },
         {
           "question": "Do group gifts count?",
@@ -8897,12 +8897,12 @@
           "answer": "Use your confirmed RSVP count plus a small buffer if desired."
         },
         {
-          "question": "Do kids’ tables differ?",
-          "answer": "Yes—adjust seats per table for those layouts."
+          "question": "Do kids\u2019 tables differ?",
+          "answer": "Yes\u2014adjust seats per table for those layouts."
         },
         {
           "question": "What about dance floor space?",
-          "answer": "Table count affects floor plan—coordinate with your venue."
+          "answer": "Table count affects floor plan\u2014coordinate with your venue."
         }
       ]
     }
@@ -8942,14 +8942,14 @@
     "seoContent": {
       "intro": "Portion control depends on calorie needs and food density. Estimate daily cups from bodyweight calorie guidelines and label calories per cup.",
       "howToUse": [
-        "Enter your pet’s weight.",
+        "Enter your pet\u2019s weight.",
         "Set calorie needs per pound (vet guidance preferred).",
         "Enter food calories per cup and review daily portion."
       ],
       "faqs": [
         {
           "question": "Is this a veterinary prescription?",
-          "answer": "No—use vet advice for medical or weight-loss diets."
+          "answer": "No\u2014use vet advice for medical or weight-loss diets."
         },
         {
           "question": "Do puppies differ?",
@@ -8957,7 +8957,7 @@
         },
         {
           "question": "Treats count too?",
-          "answer": "Yes—include treats in daily calorie totals."
+          "answer": "Yes\u2014include treats in daily calorie totals."
         }
       ]
     }
@@ -9004,11 +9004,11 @@
       "faqs": [
         {
           "question": "Is bubble rate universal?",
-          "answer": "No—diffuser efficiency and sealing change effective concentration."
+          "answer": "No\u2014diffuser efficiency and sealing change effective concentration."
         },
         {
           "question": "Can too much CO2 harm fish?",
-          "answer": "Yes—monitor animals and use detectors/drop checkers."
+          "answer": "Yes\u2014monitor animals and use detectors/drop checkers."
         },
         {
           "question": "Should CO2 run at night?",
@@ -9025,7 +9025,7 @@
     "inputs": [],
     "formulaType": "expenseTracker",
     "seoTitle": "Free Personal Expense Tracker",
-    "seoDescription": "Track income and expenses privately in your browser. Log transactions, filter by category, and see live balance totals—no account or server required.",
+    "seoDescription": "Track income and expenses privately in your browser. Log transactions, filter by category, and see live balance totals\u2014no account or server required.",
     "seoKeywords": [
       "expense tracker",
       "personal expense tracker",
@@ -9041,7 +9041,7 @@
         "Enter a title, amount, type (income or expense), category, and date.",
         "Click Add Transaction to save it to your local browser storage.",
         "Use search and type filters to find entries in the ledger.",
-        "Delete any row you no longer need—changes sync to localStorage instantly."
+        "Delete any row you no longer need\u2014changes sync to localStorage instantly."
       ],
       "faqs": [
         {
@@ -9054,20 +9054,20 @@
         },
         {
           "question": "What categories should I use?",
-          "answer": "Use the built-in categories (Food, Transport, Housing, Utilities, Salary, Freelance, Shopping, Health, Entertainment, Other) or treat “Other” as a catch-all for custom labeling in the title field."
+          "answer": "Use the built-in categories (Food, Transport, Housing, Utilities, Salary, Freelance, Shopping, Health, Entertainment, Other) or treat \u201cOther\u201d as a catch-all for custom labeling in the title field."
         }
       ]
     }
   },
   {
     "slug": "json-csv-converter",
-    "title": "JSON ↔ CSV Converter",
+    "title": "JSON \u2194 CSV Converter",
     "category": "Data & Code Converters",
     "description": "Convert JSON arrays of objects to CSV and CSV tables back to JSON entirely in your browser.",
     "inputs": [],
     "formulaType": "jsonCsvConverter",
     "seoTitle": "Free JSON to CSV Converter Online (CSV to JSON Too)",
-    "seoDescription": "Convert JSON arrays to CSV and CSV tables to JSON privately in your browser. Drag-and-drop files, preview output, and download instantly—no upload or signup.",
+    "seoDescription": "Convert JSON arrays to CSV and CSV tables to JSON privately in your browser. Drag-and-drop files, preview output, and download instantly\u2014no upload or signup.",
     "seoKeywords": [
       "json to csv converter",
       "csv to json converter",
@@ -9077,9 +9077,9 @@
       "free json csv tool"
     ],
     "seoContent": {
-      "intro": "Convert between JSON and CSV without leaving your browser. Drop a file or paste text, choose a direction, and download the result—your data never leaves this device.",
+      "intro": "Convert between JSON and CSV without leaving your browser. Drop a file or paste text, choose a direction, and download the result\u2014your data never leaves this device.",
       "howToUse": [
-        "Choose JSON → CSV or CSV → JSON.",
+        "Choose JSON \u2192 CSV or CSV \u2192 JSON.",
         "Drop a file into the dropzone or paste content into the input panel.",
         "Click Convert to transform the data locally.",
         "Preview the output, then Download or Copy the result.",
@@ -9088,7 +9088,7 @@
       "faqs": [
         {
           "question": "What JSON shape works best for CSV?",
-          "answer": "Use an array of flat objects (or a single object). Nested objects are stringified awkwardly in CSV—flatten first when possible."
+          "answer": "Use an array of flat objects (or a single object). Nested objects are stringified awkwardly in CSV\u2014flatten first when possible."
         },
         {
           "question": "Is my file uploaded?",
@@ -9096,20 +9096,20 @@
         },
         {
           "question": "Does CSV need a header row?",
-          "answer": "Yes for CSV → JSON. The first row becomes object keys in the JSON array."
+          "answer": "Yes for CSV \u2192 JSON. The first row becomes object keys in the JSON array."
         }
       ]
     }
   },
   {
     "slug": "xml-json-converter",
-    "title": "XML ↔ JSON Converter",
+    "title": "XML \u2194 JSON Converter",
     "category": "Data & Code Converters",
-    "description": "Convert XML documents to JSON and JSON structures back to XML with attribute mapping—all client-side.",
+    "description": "Convert XML documents to JSON and JSON structures back to XML with attribute mapping\u2014all client-side.",
     "inputs": [],
     "formulaType": "xmlJsonConverter",
     "seoTitle": "Free XML to JSON Converter (JSON to XML Online)",
-    "seoDescription": "Transform XML documents into JSON and JSON back into XML in your browser. Attributes map to @keys for predictable round-trips—private, fast, no server upload.",
+    "seoDescription": "Transform XML documents into JSON and JSON back into XML in your browser. Attributes map to @keys for predictable round-trips\u2014private, fast, no server upload.",
     "seoKeywords": [
       "xml to json converter",
       "json to xml converter",
@@ -9120,7 +9120,7 @@
     "seoContent": {
       "intro": "Translate XML and JSON locally. Element attributes become @prefixed keys and character data uses #text so structure survives the round trip.",
       "howToUse": [
-        "Select XML → JSON or JSON → XML.",
+        "Select XML \u2192 JSON or JSON \u2192 XML.",
         "Paste XML/JSON or drop a matching file.",
         "Convert to generate the opposite format.",
         "Download the output or copy it to your clipboard.",
@@ -9144,13 +9144,13 @@
   },
   {
     "slug": "yaml-json-converter",
-    "title": "YAML ↔ JSON Converter",
+    "title": "YAML \u2194 JSON Converter",
     "category": "Data & Code Converters",
     "description": "Convert YAML configs to JSON and JSON payloads to YAML using a local js-yaml parser.",
     "inputs": [],
     "formulaType": "yamlJsonConverter",
     "seoTitle": "Free YAML to JSON Converter (JSON to YAML Tool)",
-    "seoDescription": "Convert YAML configs to pretty JSON and JSON payloads to YAML with js-yaml—fully client-side. Ideal for CI files, manifests, and API samples without uploading secrets.",
+    "seoDescription": "Convert YAML configs to pretty JSON and JSON payloads to YAML with js-yaml\u2014fully client-side. Ideal for CI files, manifests, and API samples without uploading secrets.",
     "seoKeywords": [
       "yaml to json converter",
       "json to yaml converter",
@@ -9161,7 +9161,7 @@
     "seoContent": {
       "intro": "Move between YAML and JSON without uploading secrets. Paste a config or drop a .yaml/.json file and convert instantly on-device.",
       "howToUse": [
-        "Pick YAML → JSON or JSON → YAML.",
+        "Pick YAML \u2192 JSON or JSON \u2192 YAML.",
         "Drop a file or paste the source text.",
         "Click Convert to run js-yaml locally.",
         "Review indentation in the output panel.",
@@ -9173,8 +9173,8 @@
           "answer": "Standard YAML 1.1 documents via js-yaml, including nested maps and lists. Exotic custom tags may not round-trip."
         },
         {
-          "question": "Will comments survive JSON → YAML?",
-          "answer": "JSON has no comments, so YAML comments are lost when converting YAML → JSON → YAML."
+          "question": "Will comments survive JSON \u2192 YAML?",
+          "answer": "JSON has no comments, so YAML comments are lost when converting YAML \u2192 JSON \u2192 YAML."
         },
         {
           "question": "Is conversion private?",
@@ -9185,13 +9185,13 @@
   },
   {
     "slug": "csv-tsv-converter",
-    "title": "CSV ↔ TSV Converter",
+    "title": "CSV \u2194 TSV Converter",
     "category": "Data & Code Converters",
     "description": "Switch spreadsheet exports between comma-separated and tab-separated formats in your browser.",
     "inputs": [],
     "formulaType": "csvTsvConverter",
     "seoTitle": "Free CSV to TSV Converter (TSV to CSV Online)",
-    "seoDescription": "Switch spreadsheet exports between comma-separated CSV and tab-separated TSV in your browser. Preserve every cell while changing only the delimiter—no upload required.",
+    "seoDescription": "Switch spreadsheet exports between comma-separated CSV and tab-separated TSV in your browser. Preserve every cell while changing only the delimiter\u2014no upload required.",
     "seoKeywords": [
       "csv to tsv converter",
       "tsv to csv converter",
@@ -9200,9 +9200,9 @@
       "spreadsheet csv tsv"
     ],
     "seoContent": {
-      "intro": "Need tabs instead of commas—or the reverse? Convert CSV and TSV locally while keeping every cell intact.",
+      "intro": "Need tabs instead of commas\u2014or the reverse? Convert CSV and TSV locally while keeping every cell intact.",
       "howToUse": [
-        "Choose CSV → TSV or TSV → CSV.",
+        "Choose CSV \u2192 TSV or TSV \u2192 CSV.",
         "Upload a spreadsheet export or paste delimited text.",
         "Convert to swap the delimiter.",
         "Download the result for Excel, Sheets, or scripts.",
@@ -9226,13 +9226,13 @@
   },
   {
     "slug": "html-markdown-converter",
-    "title": "HTML ↔ Markdown Converter",
+    "title": "HTML \u2194 Markdown Converter",
     "category": "Data & Code Converters",
-    "description": "Convert HTML snippets to Markdown and Markdown documents to HTML using Turndown and marked—client-side only.",
+    "description": "Convert HTML snippets to Markdown and Markdown documents to HTML using Turndown and marked\u2014client-side only.",
     "inputs": [],
     "formulaType": "htmlMarkdownConverter",
     "seoTitle": "Free HTML to Markdown Converter (MD to HTML)",
-    "seoDescription": "Convert HTML snippets to Markdown and Markdown docs to HTML in your browser with Turndown and marked. GFM-friendly output for READMEs and CMS migrations—no upload.",
+    "seoDescription": "Convert HTML snippets to Markdown and Markdown docs to HTML in your browser with Turndown and marked. GFM-friendly output for READMEs and CMS migrations\u2014no upload.",
     "seoKeywords": [
       "html to markdown converter",
       "markdown to html converter",
@@ -9243,16 +9243,16 @@
     "seoContent": {
       "intro": "Transform HTML and Markdown locally with Turndown and marked. Ideal for docs, READMEs, and CMS content migrations.",
       "howToUse": [
-        "Select HTML → Markdown or Markdown → HTML.",
+        "Select HTML \u2192 Markdown or Markdown \u2192 HTML.",
         "Paste markup or drop an .html/.md file.",
         "Convert to generate the other format.",
         "Copy or download the output for your editor.",
-        "Re-run after edits—conversion is instant and private."
+        "Re-run after edits\u2014conversion is instant and private."
       ],
       "faqs": [
         {
           "question": "Is GitHub-flavored Markdown supported?",
-          "answer": "Markdown → HTML uses marked with GFM enabled for common constructs like tables and fenced code."
+          "answer": "Markdown \u2192 HTML uses marked with GFM enabled for common constructs like tables and fenced code."
         },
         {
           "question": "Will complex HTML round-trip perfectly?",
@@ -9267,13 +9267,13 @@
   },
   {
     "slug": "base64-text-converter",
-    "title": "Base64 ↔ Text Converter",
+    "title": "Base64 \u2194 Text Converter",
     "category": "Data & Code Converters",
     "description": "Encode UTF-8 text to Base64 and decode Base64 back to text with the Web Encoding API.",
     "inputs": [],
     "formulaType": "base64TextConverter",
     "seoTitle": "Free Base64 Encode & Decode Text Online",
-    "seoDescription": "Encode UTF-8 text to Base64 and decode Base64 strings back to text in your browser. Handles Unicode safely for tokens, snippets, and debugging—nothing is uploaded.",
+    "seoDescription": "Encode UTF-8 text to Base64 and decode Base64 strings back to text in your browser. Handles Unicode safely for tokens, snippets, and debugging\u2014nothing is uploaded.",
     "seoKeywords": [
       "base64 encode online",
       "base64 decode online",
@@ -9282,9 +9282,9 @@
       "utf-8 base64 tool"
     ],
     "seoContent": {
-      "intro": "Encode or decode Base64 text locally with proper UTF-8 handling—handy for tokens, data URLs, and debugging payloads.",
+      "intro": "Encode or decode Base64 text locally with proper UTF-8 handling\u2014handy for tokens, data URLs, and debugging payloads.",
       "howToUse": [
-        "Choose Text → Base64 or Base64 → Text.",
+        "Choose Text \u2192 Base64 or Base64 \u2192 Text.",
         "Paste text or drop a plain-text file.",
         "Convert to encode or decode instantly.",
         "Copy the result or download it as a file.",
@@ -9308,13 +9308,13 @@
   },
   {
     "slug": "properties-json-converter",
-    "title": "Properties ↔ JSON Converter",
+    "title": "Properties \u2194 JSON Converter",
     "category": "Data & Code Converters",
     "description": "Convert Java .properties files to JSON objects and flat JSON maps back to .properties format.",
     "inputs": [],
     "formulaType": "propertiesJsonConverter",
     "seoTitle": "Free Java .properties to JSON Converter Online",
-    "seoDescription": "Convert Java .properties files to JSON objects and flat JSON maps back to .properties. Built for Spring, Android, and i18n migrations—runs privately in your browser.",
+    "seoDescription": "Convert Java .properties files to JSON objects and flat JSON maps back to .properties. Built for Spring, Android, and i18n migrations\u2014runs privately in your browser.",
     "seoKeywords": [
       "properties to json",
       "json to properties",
@@ -9325,16 +9325,16 @@
     "seoContent": {
       "intro": "Migrate Java-style .properties configs to JSON (and back) without uploading. Comments starting with # or ! are ignored on import.",
       "howToUse": [
-        "Select Properties → JSON or JSON → Properties.",
+        "Select Properties \u2192 JSON or JSON \u2192 Properties.",
         "Drop a .properties/.json file or paste the contents.",
         "Convert to build the other format.",
         "Download the result for your app or i18n bundle.",
-        "Keep JSON values flat—nested objects are rejected on export."
+        "Keep JSON values flat\u2014nested objects are rejected on export."
       ],
       "faqs": [
         {
           "question": "Are nested JSON objects supported?",
-          "answer": "JSON → Properties expects a flat object. Nesting must be flattened (for example app.name) first."
+          "answer": "JSON \u2192 Properties expects a flat object. Nesting must be flattened (for example app.name) first."
         },
         {
           "question": "What about comments?",
@@ -9349,13 +9349,13 @@
   },
   {
     "slug": "png-jpg-converter",
-    "title": "PNG ↔ JPG Converter",
+    "title": "PNG \u2194 JPG Converter",
     "category": "Image Converters",
     "description": "Convert PNG images to JPG and JPG photos to PNG in your browser with live preview and optional resizing.",
     "inputs": [],
     "formulaType": "pngJpgConverter",
     "seoTitle": "Free PNG to JPG Converter (JPG to PNG Online)",
-    "seoDescription": "Convert PNG images to JPG and JPG photos to PNG with Canvas—live preview, quality control, and resize options. Transparent pixels get a custom background fill. No upload.",
+    "seoDescription": "Convert PNG images to JPG and JPG photos to PNG with Canvas\u2014live preview, quality control, and resize options. Transparent pixels get a custom background fill. No upload.",
     "seoKeywords": [
       "png to jpg converter",
       "jpg to png converter",
@@ -9364,9 +9364,9 @@
       "browser png to jpeg"
     ],
     "seoContent": {
-      "intro": "Flip between PNG and JPG entirely in your browser. Drop an image, tune quality or size, preview both sides, and download—nothing leaves this device.",
+      "intro": "Flip between PNG and JPG entirely in your browser. Drop an image, tune quality or size, preview both sides, and download\u2014nothing leaves this device.",
       "howToUse": [
-        "Choose PNG → JPG or JPG → PNG.",
+        "Choose PNG \u2192 JPG or JPG \u2192 PNG.",
         "Drop an image into the dropzone (or browse).",
         "Optionally resize and set JPG quality / background fill.",
         "Review the side-by-side preview, then click Convert if you change options.",
@@ -9390,13 +9390,13 @@
   },
   {
     "slug": "webp-png-converter",
-    "title": "WEBP ↔ PNG Converter",
+    "title": "WEBP \u2194 PNG Converter",
     "category": "Image Converters",
     "description": "Convert WEBP images to PNG and PNG graphics to WEBP with browser Canvas encoding and instant preview.",
     "inputs": [],
     "formulaType": "webpPngConverter",
     "seoTitle": "Free WEBP to PNG Converter (PNG to WEBP Online)",
-    "seoDescription": "Convert WEBP images to PNG and PNG graphics to WEBP in your browser. Instant side-by-side preview, quality slider, and resize—private Canvas conversion, no upload.",
+    "seoDescription": "Convert WEBP images to PNG and PNG graphics to WEBP in your browser. Instant side-by-side preview, quality slider, and resize\u2014private Canvas conversion, no upload.",
     "seoKeywords": [
       "webp to png converter",
       "png to webp converter",
@@ -9407,7 +9407,7 @@
     "seoContent": {
       "intro": "Move between WEBP and PNG locally. Preview before and after, adjust size or WEBP quality, and download instantly.",
       "howToUse": [
-        "Select WEBP → PNG or PNG → WEBP.",
+        "Select WEBP \u2192 PNG or PNG \u2192 WEBP.",
         "Drop a compatible image file.",
         "Set resize and quality options as needed.",
         "Confirm the result preview looks right.",
@@ -9424,7 +9424,7 @@
         },
         {
           "question": "Any upload?",
-          "answer": "None—conversion stays on your device."
+          "answer": "None\u2014conversion stays on your device."
         }
       ]
     }
@@ -9437,7 +9437,7 @@
     "inputs": [],
     "formulaType": "heicJpgConverter",
     "seoTitle": "Free HEIC to JPG Converter in Browser (HEIF)",
-    "seoDescription": "Convert iPhone HEIC/HEIF photos to JPG locally with preview, quality, and resize. Decoded on-device then Canvas-encoded—share-ready JPEGs without cloud uploads.",
+    "seoDescription": "Convert iPhone HEIC/HEIF photos to JPG locally with preview, quality, and resize. Decoded on-device then Canvas-encoded\u2014share-ready JPEGs without cloud uploads.",
     "seoKeywords": [
       "heic to jpg converter",
       "heif to jpg",
@@ -9457,11 +9457,11 @@
       "faqs": [
         {
           "question": "Why not pure Canvas for HEIC?",
-          "answer": "Most browsers cannot decode HEIC natively. This tool uses heic2any in-browser, then Canvas for JPG output—still zero server uploads."
+          "answer": "Most browsers cannot decode HEIC natively. This tool uses heic2any in-browser, then Canvas for JPG output\u2014still zero server uploads."
         },
         {
           "question": "Can I convert HEIC to PNG?",
-          "answer": "This tool targets JPG for broad compatibility. Convert JPG → PNG with the PNG ↔ JPG tool if needed."
+          "answer": "This tool targets JPG for broad compatibility. Convert JPG \u2192 PNG with the PNG \u2194 JPG tool if needed."
         },
         {
           "question": "Are Live Photos supported?",
@@ -9472,13 +9472,13 @@
   },
   {
     "slug": "svg-png-converter",
-    "title": "SVG ↔ PNG Converter",
+    "title": "SVG \u2194 PNG Converter",
     "category": "Image Converters",
-    "description": "Rasterize SVG to PNG or wrap PNG in SVG—client-side with preview and resize controls.",
+    "description": "Rasterize SVG to PNG or wrap PNG in SVG\u2014client-side with preview and resize controls.",
     "inputs": [],
     "formulaType": "svgPngConverter",
     "seoTitle": "Free SVG to PNG Converter (PNG to SVG Wrapper)",
-    "seoDescription": "Rasterize SVG artwork to PNG at any size, or embed a PNG inside an SVG wrapper. Live preview and resize controls—client-side only, no vector-tracing claims or uploads.",
+    "seoDescription": "Rasterize SVG artwork to PNG at any size, or embed a PNG inside an SVG wrapper. Live preview and resize controls\u2014client-side only, no vector-tracing claims or uploads.",
     "seoKeywords": [
       "svg to png converter",
       "png to svg converter",
@@ -9487,22 +9487,22 @@
       "svg export png"
     ],
     "seoContent": {
-      "intro": "Rasterize SVG artwork to PNG at any size, or package a PNG inside an SVG wrapper for embedding—all on-device.",
+      "intro": "Rasterize SVG artwork to PNG at any size, or package a PNG inside an SVG wrapper for embedding\u2014all on-device.",
       "howToUse": [
-        "Choose SVG → PNG or PNG → SVG.",
+        "Choose SVG \u2192 PNG or PNG \u2192 SVG.",
         "Drop your file and set resize options for raster output.",
         "Preview the conversion instantly.",
         "Download PNG for raster use or SVG for embedding.",
-        "Note: PNG → SVG does not vector-trace artwork."
+        "Note: PNG \u2192 SVG does not vector-trace artwork."
       ],
       "faqs": [
         {
-          "question": "Does PNG → SVG create real vectors?",
+          "question": "Does PNG \u2192 SVG create real vectors?",
           "answer": "No. It embeds the PNG as an image inside SVG (practical for wrappers). True tracing is out of scope."
         },
         {
           "question": "Can I control PNG resolution?",
-          "answer": "Yes—use resize modes to set exact or max dimensions before rasterizing."
+          "answer": "Yes\u2014use resize modes to set exact or max dimensions before rasterizing."
         },
         {
           "question": "External SVG fonts/images?",
@@ -9513,13 +9513,13 @@
   },
   {
     "slug": "bmp-png-converter",
-    "title": "BMP ↔ PNG Converter",
+    "title": "BMP \u2194 PNG Converter",
     "category": "Image Converters",
     "description": "Convert classic BMP bitmaps to PNG and PNG images to 24-bit BMP with preview and resize.",
     "inputs": [],
     "formulaType": "bmpPngConverter",
     "seoTitle": "Free BMP to PNG Converter (PNG to 24-bit BMP)",
-    "seoDescription": "Modernize BMP bitmaps to PNG or export PNG to 24-bit BMP for legacy apps. Instant preview, resize, and background fill—Canvas conversion stays on your device.",
+    "seoDescription": "Modernize BMP bitmaps to PNG or export PNG to 24-bit BMP for legacy apps. Instant preview, resize, and background fill\u2014Canvas conversion stays on your device.",
     "seoKeywords": [
       "bmp to png converter",
       "png to bmp converter",
@@ -9528,11 +9528,11 @@
       "bmp png tool"
     ],
     "seoContent": {
-      "intro": "Modernize BMP files to PNG or export PNG to 24-bit BMP for legacy apps—privately in the browser.",
+      "intro": "Modernize BMP files to PNG or export PNG to 24-bit BMP for legacy apps\u2014privately in the browser.",
       "howToUse": [
-        "Select BMP → PNG or PNG → BMP.",
+        "Select BMP \u2192 PNG or PNG \u2192 BMP.",
         "Drop an image and optionally resize.",
-        "For PNG → BMP, pick a background fill for transparency.",
+        "For PNG \u2192 BMP, pick a background fill for transparency.",
         "Preview both sides, then download.",
         "Clear when switching files."
       ],
@@ -9547,20 +9547,20 @@
         },
         {
           "question": "Is conversion private?",
-          "answer": "Yes—Canvas only, no uploads."
+          "answer": "Yes\u2014Canvas only, no uploads."
         }
       ]
     }
   },
   {
     "slug": "ico-png-converter",
-    "title": "ICO ↔ PNG Converter (Favicon)",
+    "title": "ICO \u2194 PNG Converter (Favicon)",
     "category": "Image Converters",
-    "description": "Extract PNG frames from ICO favicons or build multi-size ICO favicons from PNG—client-side with preview.",
+    "description": "Extract PNG frames from ICO favicons or build multi-size ICO favicons from PNG\u2014client-side with preview.",
     "inputs": [],
     "formulaType": "icoPngConverter",
-    "seoTitle": "Free Favicon ICO Generator — PNG ↔ ICO Online",
-    "seoDescription": "Build multi-size favicon ICO packs from a PNG (16–256px) or extract the largest frame from an ICO as PNG. Preview included—entirely client-side, no upload required.",
+    "seoTitle": "Free Favicon ICO Generator \u2014 PNG \u2194 ICO Online",
+    "seoDescription": "Build multi-size favicon ICO packs from a PNG (16\u2013256px) or extract the largest frame from an ICO as PNG. Preview included\u2014entirely client-side, no upload required.",
     "seoKeywords": [
       "favicon generator",
       "png to ico converter",
@@ -9569,18 +9569,18 @@
       "multi size ico"
     ],
     "seoContent": {
-      "intro": "Build favicon ICO packs from a PNG (16–256px sizes) or extract the largest frame from an existing ICO—all locally.",
+      "intro": "Build favicon ICO packs from a PNG (16\u2013256px sizes) or extract the largest frame from an existing ICO\u2014all locally.",
       "howToUse": [
-        "Choose ICO → PNG or PNG → ICO.",
+        "Choose ICO \u2192 PNG or PNG \u2192 ICO.",
         "Drop your icon or logo.",
-        "For PNG → ICO, select favicon sizes to include.",
+        "For PNG \u2192 ICO, select favicon sizes to include.",
         "Preview the result, then download the ICO or PNG.",
         "Use Clear before starting a new icon."
       ],
       "faqs": [
         {
           "question": "Which sizes should I include?",
-          "answer": "16, 32, and 48 cover classic favicons. Add 64–256 for sharper desktop/shortcut icons."
+          "answer": "16, 32, and 48 cover classic favicons. Add 64\u2013256 for sharper desktop/shortcut icons."
         },
         {
           "question": "How is ICO encoded?",
@@ -9595,13 +9595,13 @@
   },
   {
     "slug": "tiff-jpg-converter",
-    "title": "TIFF ↔ JPG Converter",
+    "title": "TIFF \u2194 JPG Converter",
     "category": "Image Converters",
     "description": "Convert TIFF scans to JPG and JPG photos to TIFF locally with preview, quality, and resize controls.",
     "inputs": [],
     "formulaType": "tiffJpgConverter",
     "seoTitle": "Free TIFF to JPG Converter (JPG to TIFF Online)",
-    "seoDescription": "Convert TIFF scans to JPG for sharing, or archive JPGs as TIFF. UTIF decodes TIFF locally; Canvas handles encode/preview with quality and resize—zero server uploads.",
+    "seoDescription": "Convert TIFF scans to JPG for sharing, or archive JPGs as TIFF. UTIF decodes TIFF locally; Canvas handles encode/preview with quality and resize\u2014zero server uploads.",
     "seoKeywords": [
       "tiff to jpg converter",
       "jpg to tiff converter",
@@ -9610,9 +9610,9 @@
       "scan tiff to jpg"
     ],
     "seoContent": {
-      "intro": "Open TIFF scans as JPG for sharing, or archive JPGs as TIFF—decoded and encoded on your device with live preview.",
+      "intro": "Open TIFF scans as JPG for sharing, or archive JPGs as TIFF\u2014decoded and encoded on your device with live preview.",
       "howToUse": [
-        "Select TIFF → JPG or JPG → TIFF.",
+        "Select TIFF \u2192 JPG or JPG \u2192 TIFF.",
         "Drop a .tif/.tiff or .jpg file.",
         "Tune resize and JPG quality when relevant.",
         "Check the preview, then download.",
@@ -9621,7 +9621,7 @@
       "faqs": [
         {
           "question": "Why a helper for TIFF?",
-          "answer": "Browsers rarely decode TIFF in <img>. UTIF runs locally to rasterize TIFF, then Canvas finishes the job—still zero uploads."
+          "answer": "Browsers rarely decode TIFF in <img>. UTIF runs locally to rasterize TIFF, then Canvas finishes the job\u2014still zero uploads."
         },
         {
           "question": "Multi-page TIFF?",
@@ -9636,13 +9636,13 @@
   },
   {
     "slug": "pdf-text-converter",
-    "title": "PDF ↔ Text Converter",
+    "title": "PDF \u2194 Text Converter",
     "category": "Document Converters",
-    "description": "Extract plain text from PDFs or build multi-page PDFs from text—entirely in your browser with progress for large documents.",
+    "description": "Extract plain text from PDFs or build multi-page PDFs from text\u2014entirely in your browser with progress for large documents.",
     "inputs": [],
     "formulaType": "pdfTextConverter",
     "seoTitle": "Free PDF to Text Extractor (Text to PDF Online)",
-    "seoDescription": "Extract selectable plain text from PDFs or build multi-page PDFs from notes. Page-by-page progress via PDF.js and jsPDF—private browser processing, no file upload.",
+    "seoDescription": "Extract selectable plain text from PDFs or build multi-page PDFs from notes. Page-by-page progress via PDF.js and jsPDF\u2014private browser processing, no file upload.",
     "seoKeywords": [
       "pdf to text converter",
       "text to pdf converter",
@@ -9651,9 +9651,9 @@
       "jspdf text pdf"
     ],
     "seoContent": {
-      "intro": "Pull selectable text out of PDFs or turn notes into a clean multi-page PDF. Large files show a live progress bar while pages render client-side—nothing is uploaded.",
+      "intro": "Pull selectable text out of PDFs or turn notes into a clean multi-page PDF. Large files show a live progress bar while pages render client-side\u2014nothing is uploaded.",
       "howToUse": [
-        "Choose PDF → Text or Text → PDF.",
+        "Choose PDF \u2192 Text or Text \u2192 PDF.",
         "Drop a PDF or paste/drop plain text.",
         "Click Convert and watch the progress bar for multi-page jobs.",
         "Preview extracted text when available.",
@@ -9662,7 +9662,7 @@
       "faqs": [
         {
           "question": "Do scanned PDFs work?",
-          "answer": "Image-only scans have no text layer. You’ll see a clear message when nothing is extractable—OCR is not included."
+          "answer": "Image-only scans have no text layer. You\u2019ll see a clear message when nothing is extractable\u2014OCR is not included."
         },
         {
           "question": "Is my PDF uploaded?",
@@ -9677,13 +9677,13 @@
   },
   {
     "slug": "images-pdf-converter",
-    "title": "Images ↔ PDF Converter",
+    "title": "Images \u2194 PDF Converter",
     "category": "Document Converters",
-    "description": "Combine images into a PDF or extract every PDF page as PNG/JPG images in a ZIP—with live progress.",
+    "description": "Combine images into a PDF or extract every PDF page as PNG/JPG images in a ZIP\u2014with live progress.",
     "inputs": [],
     "formulaType": "imagesPdfConverter",
     "seoTitle": "Free Images to PDF & PDF to Images Converter",
-    "seoDescription": "Combine images into a multi-page PDF with pdf-lib, or render every PDF page to PNG/JPG and download a ZIP. Live progress for large documents—nothing leaves your browser.",
+    "seoDescription": "Combine images into a multi-page PDF with pdf-lib, or render every PDF page to PNG/JPG and download a ZIP. Live progress for large documents\u2014nothing leaves your browser.",
     "seoKeywords": [
       "images to pdf converter",
       "pdf to images converter",
@@ -9694,9 +9694,9 @@
     "seoContent": {
       "intro": "Build a PDF from photos or export every PDF page as images. Rendering runs locally with a progress bar so multi-page jobs stay responsive.",
       "howToUse": [
-        "Select Images → PDF or PDF → Images.",
+        "Select Images \u2192 PDF or PDF \u2192 Images.",
         "Drop one or more images, or a single PDF.",
-        "For PDF → Images, pick PNG/JPEG and render scale.",
+        "For PDF \u2192 Images, pick PNG/JPEG and render scale.",
         "Convert and track progress page by page.",
         "Download the PDF or ZIP of images."
       ],
@@ -9711,7 +9711,7 @@
         },
         {
           "question": "Will this upload my files?",
-          "answer": "Never—conversion stays in the browser."
+          "answer": "Never\u2014conversion stays in the browser."
         }
       ]
     }
@@ -9724,7 +9724,7 @@
     "inputs": [],
     "formulaType": "htmlMarkdownPdfConverter",
     "seoTitle": "Free HTML to PDF & Markdown to PDF Converter",
-    "seoDescription": "Turn HTML or Markdown into paginated PDFs in your browser using marked, html2canvas, and jsPDF. Progress feedback for long docs—great for notes and drafts, no upload.",
+    "seoDescription": "Turn HTML or Markdown into paginated PDFs in your browser using marked, html2canvas, and jsPDF. Progress feedback for long docs\u2014great for notes and drafts, no upload.",
     "seoKeywords": [
       "html to pdf converter",
       "markdown to pdf converter",
@@ -9735,7 +9735,7 @@
     "seoContent": {
       "intro": "Paste HTML or Markdown (or drop a file) and export a paginated PDF. Content is rasterized and sliced across pages with progress updates.",
       "howToUse": [
-        "Choose HTML → PDF or Markdown → PDF.",
+        "Choose HTML \u2192 PDF or Markdown \u2192 PDF.",
         "Paste content or drop an .html/.md file.",
         "Click Convert and wait for the progress bar.",
         "Download the generated PDF.",
@@ -9744,11 +9744,11 @@
       "faqs": [
         {
           "question": "Is this print-quality vector PDF?",
-          "answer": "Pages are high-resolution raster slices via html2canvas + jsPDF—ideal for sharing, not editable text PDFs."
+          "answer": "Pages are high-resolution raster slices via html2canvas + jsPDF\u2014ideal for sharing, not editable text PDFs."
         },
         {
           "question": "Does Markdown support GFM?",
-          "answer": "Yes—tables, fenced code, and common GFM features via marked."
+          "answer": "Yes\u2014tables, fenced code, and common GFM features via marked."
         },
         {
           "question": "External images?",
@@ -9765,7 +9765,7 @@
     "inputs": [],
     "formulaType": "pdfMergeSplit",
     "seoTitle": "Free PDF Merger & Splitter Online (Browser)",
-    "seoDescription": "Merge multiple PDFs in order or split by every page or custom ranges (e.g. 1-3, 5). pdf-lib runs locally with live progress; splits download as a ZIP—no cloud upload.",
+    "seoDescription": "Merge multiple PDFs in order or split by every page or custom ranges (e.g. 1-3, 5). pdf-lib runs locally with live progress; splits download as a ZIP\u2014no cloud upload.",
     "seoKeywords": [
       "pdf merger online",
       "pdf splitter online",
@@ -9785,7 +9785,7 @@
       "faqs": [
         {
           "question": "Does merge keep order?",
-          "answer": "Yes—files are appended in the order shown in the dropzone list."
+          "answer": "Yes\u2014files are appended in the order shown in the dropzone list."
         },
         {
           "question": "What do ranges look like?",
@@ -9800,13 +9800,13 @@
   },
   {
     "slug": "mp4-mp3-converter",
-    "title": "MP4 ↔ MP3 Converter",
+    "title": "MP4 \u2194 MP3 Converter",
     "category": "Audio & Video Converters",
-    "description": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4 container—locally with FFmpeg.wasm, WASM load UI, and live progress.",
+    "description": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4 container\u2014locally with FFmpeg.wasm, WASM load UI, and live progress.",
     "inputs": [],
     "formulaType": "mp4Mp3Converter",
     "seoTitle": "Free MP4 to MP3 Converter (MP3 to MP4 Online)",
-    "seoDescription": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4/AAC container with FFmpeg.wasm. Custom WebAssembly load UI plus live conversion progress—no upload.",
+    "seoDescription": "Extract MP3 audio from MP4 video or wrap MP3 into an MP4/AAC container with FFmpeg.wasm. Custom WebAssembly load UI plus live conversion progress\u2014no upload.",
     "seoKeywords": [
       "mp4 to mp3 converter",
       "mp3 to mp4 converter",
@@ -9818,7 +9818,7 @@
       "intro": "Pull audio out of MP4 files or package MP3 into MP4 entirely in your browser. The FFmpeg WebAssembly core shows a dedicated loading state, then a live percentage bar while it processes.",
       "howToUse": [
         "Wait for the FFmpeg.wasm engine to finish loading.",
-        "Choose MP4 → MP3 or MP3 → MP4.",
+        "Choose MP4 \u2192 MP3 or MP3 \u2192 MP4.",
         "Drop your media file into the dropzone.",
         "Click Convert and watch the live progress bar.",
         "Preview and download the result."
@@ -9829,8 +9829,8 @@
           "answer": "No. FFmpeg.wasm runs in your browser. Large files need enough device memory."
         },
         {
-          "question": "What is MP3 → MP4 output?",
-          "answer": "An audio-only MP4 (AAC) container—valid MP4 without a video track."
+          "question": "What is MP3 \u2192 MP4 output?",
+          "answer": "An audio-only MP4 (AAC) container\u2014valid MP4 without a video track."
         },
         {
           "question": "Why load WebAssembly first?",
@@ -9841,13 +9841,13 @@
   },
   {
     "slug": "wav-mp3-converter",
-    "title": "WAV ↔ MP3 Converter",
+    "title": "WAV \u2194 MP3 Converter",
     "category": "Audio & Video Converters",
     "description": "Convert WAV to MP3 and MP3 to WAV in the browser with FFmpeg.wasm, initialization UI, and live progress.",
     "inputs": [],
     "formulaType": "wavMp3Converter",
     "seoTitle": "Free WAV to MP3 Converter (MP3 to WAV Online)",
-    "seoDescription": "Compress WAV to 192 kbps MP3 or expand MP3 to 16-bit PCM WAV in your browser. FFmpeg.wasm shows initialization progress and a live encode percentage—fully private.",
+    "seoDescription": "Compress WAV to 192 kbps MP3 or expand MP3 to 16-bit PCM WAV in your browser. FFmpeg.wasm shows initialization progress and a live encode percentage\u2014fully private.",
     "seoKeywords": [
       "wav to mp3 converter",
       "mp3 to wav converter",
@@ -9859,7 +9859,7 @@
       "intro": "Compress WAV to MP3 or expand MP3 to PCM WAV without leaving the page. Watch WASM initialize, then track conversion percentage in real time.",
       "howToUse": [
         "Allow the WebAssembly core to reach Ready.",
-        "Select WAV → MP3 or MP3 → WAV.",
+        "Select WAV \u2192 MP3 or MP3 \u2192 WAV.",
         "Drop an audio file and click Convert.",
         "Follow the live progress bar.",
         "Preview with the audio player and download."
@@ -9875,20 +9875,20 @@
         },
         {
           "question": "Any server involved?",
-          "answer": "No—encoding stays on your device."
+          "answer": "No\u2014encoding stays on your device."
         }
       ]
     }
   },
   {
     "slug": "mov-mp4-converter",
-    "title": "MOV ↔ MP4 Converter",
+    "title": "MOV \u2194 MP4 Converter",
     "category": "Audio & Video Converters",
     "description": "Convert QuickTime MOV to MP4 and MP4 to MOV with FFmpeg.wasm, WASM loading UI, and live progress.",
     "inputs": [],
     "formulaType": "movMp4Converter",
     "seoTitle": "Free MOV to MP4 Converter (MP4 to MOV Online)",
-    "seoDescription": "Transcode QuickTime MOV to MP4 and MP4 to MOV locally with FFmpeg.wasm (H.264/AAC). Watch WASM core load, then track live encode progress—no cloud processing.",
+    "seoDescription": "Transcode QuickTime MOV to MP4 and MP4 to MOV locally with FFmpeg.wasm (H.264/AAC). Watch WASM core load, then track live encode progress\u2014no cloud processing.",
     "seoKeywords": [
       "mov to mp4 converter",
       "mp4 to mov converter",
@@ -9900,7 +9900,7 @@
       "intro": "Transcode between QuickTime MOV and MP4 locally. The tool shows WASM core download/init, then a live percentage bar during encoding.",
       "howToUse": [
         "Wait until FFmpeg.wasm reports ready.",
-        "Choose MOV → MP4 or MP4 → MOV.",
+        "Choose MOV \u2192 MP4 or MP4 \u2192 MOV.",
         "Drop your video file.",
         "Convert and monitor the progress bar.",
         "Preview in the video player and download."
@@ -9916,20 +9916,20 @@
         },
         {
           "question": "Private?",
-          "answer": "Yes—files never leave your browser."
+          "answer": "Yes\u2014files never leave your browser."
         }
       ]
     }
   },
   {
     "slug": "webm-mp4-converter",
-    "title": "WebM ↔ MP4 Converter",
+    "title": "WebM \u2194 MP4 Converter",
     "category": "Audio & Video Converters",
     "description": "Convert WebM to MP4 and MP4 to WebM in-browser with FFmpeg.wasm, initialization progress, and live encode percentage.",
     "inputs": [],
     "formulaType": "webmMp4Converter",
     "seoTitle": "Free WebM to MP4 Converter (MP4 to WebM Online)",
-    "seoDescription": "Convert WebM to MP4 and MP4 to WebM in your browser via FFmpeg.wasm. Dedicated WebAssembly loading state and live percentage bar—files never leave your device.",
+    "seoDescription": "Convert WebM to MP4 and MP4 to WebM in your browser via FFmpeg.wasm. Dedicated WebAssembly loading state and live percentage bar\u2014files never leave your device.",
     "seoKeywords": [
       "webm to mp4 converter",
       "mp4 to webm converter",
@@ -9941,7 +9941,7 @@
       "intro": "Move between WebM and MP4 without a server. After the WebAssembly core loads, FFmpeg reports live conversion progress as a percentage.",
       "howToUse": [
         "Let the WASM engine finish initializing.",
-        "Select WebM → MP4 or MP4 → WebM.",
+        "Select WebM \u2192 MP4 or MP4 \u2192 WebM.",
         "Drop a video file and convert.",
         "Watch the live progress bar.",
         "Preview and download the output."
@@ -9949,7 +9949,7 @@
       "faqs": [
         {
           "question": "WebM codecs?",
-          "answer": "MP4 → WebM targets VP9/Opus when available in the WASM build."
+          "answer": "MP4 \u2192 WebM targets VP9/Opus when available in the WASM build."
         },
         {
           "question": "Can I convert long videos?",
@@ -9957,7 +9957,7 @@
         },
         {
           "question": "Uploaded?",
-          "answer": "Never—processing is local."
+          "answer": "Never\u2014processing is local."
         }
       ]
     }
@@ -9970,7 +9970,7 @@
     "inputs": [],
     "formulaType": "oggFlacMp3Converter",
     "seoTitle": "Free OGG to MP3 & FLAC to MP3 Converter Online",
-    "seoDescription": "Convert Ogg Vorbis or lossless FLAC to shareable MP3 with FFmpeg.wasm. See WASM initialization and live encode progress—private audio conversion with no server upload.",
+    "seoDescription": "Convert Ogg Vorbis or lossless FLAC to shareable MP3 with FFmpeg.wasm. See WASM initialization and live encode progress\u2014private audio conversion with no server upload.",
     "seoKeywords": [
       "ogg to mp3 converter",
       "flac to mp3 converter",
@@ -9982,7 +9982,7 @@
       "intro": "Turn OGG or lossless FLAC into shareable MP3 without uploading. The tool shows WASM core loading, then a live percentage while FFmpeg encodes.",
       "howToUse": [
         "Wait for FFmpeg.wasm to become ready.",
-        "Choose OGG → MP3 or FLAC → MP3.",
+        "Choose OGG \u2192 MP3 or FLAC \u2192 MP3.",
         "Drop your audio file.",
         "Convert and track the progress bar.",
         "Preview with the audio player and download MP3."
@@ -9990,7 +9990,7 @@
       "faqs": [
         {
           "question": "Is FLAC conversion lossless to lossless?",
-          "answer": "No—MP3 is lossy. FLAC → MP3 compresses for compatibility; keep the FLAC master if you need lossless."
+          "answer": "No\u2014MP3 is lossy. FLAC \u2192 MP3 compresses for compatibility; keep the FLAC master if you need lossless."
         },
         {
           "question": "Bitrate?",
@@ -10051,7 +10051,7 @@
       }
     ],
     "formulaType": "cryptoProfit",
-    "seoTitle": "Crypto Profit Calculator — Net P&L & ROI After Fees",
+    "seoTitle": "Crypto Profit Calculator \u2014 Net P&L & ROI After Fees",
     "seoDescription": "Free crypto profit calculator with trading fees. Instantly see net profit/loss, ROI, total cost basis, and break-even sell price.",
     "seoKeywords": [
       "crypto profit calculator",
@@ -10111,7 +10111,7 @@
         "id": "startingPrice",
         "label": "Starting Token Price ($)",
         "defaultValue": 40000,
-        "min": 0.000001,
+        "min": 1e-06,
         "max": 500000,
         "step": 1
       },
@@ -10125,7 +10125,7 @@
       }
     ],
     "formulaType": "cryptoDca",
-    "seoTitle": "Crypto DCA Calculator — Dollar-Cost Averaging Returns",
+    "seoTitle": "Crypto DCA Calculator \u2014 Dollar-Cost Averaging Returns",
     "seoDescription": "Free crypto DCA calculator. Project tokens bought, average cost basis, portfolio value, and ROI for monthly Bitcoin or altcoin purchases.",
     "seoKeywords": [
       "crypto DCA calculator",
@@ -10199,17 +10199,17 @@
       "circulating supply calculator"
     ],
     "seoContent": {
-      "intro": "Market capitalization equals circulating supply times price. Use this calculator to size a coin’s current valuation and optionally back into total crypto market size from a dominance percentage.",
+      "intro": "Market capitalization equals circulating supply times price. Use this calculator to size a coin\u2019s current valuation and optionally back into total crypto market size from a dominance percentage.",
       "howToUse": [
         "Enter the circulating supply (not max supply).",
         "Enter the current price per token.",
-        "Optionally set the asset’s share of total crypto market cap.",
+        "Optionally set the asset\u2019s share of total crypto market cap.",
         "Read market cap in full dollars and compact notation."
       ],
       "faqs": [
         {
           "question": "Circulating vs max supply?",
-          "answer": "Circulating supply is coins available now. Max supply is the eventual hard cap—use the FDV calculator for fully diluted valuation."
+          "answer": "Circulating supply is coins available now. Max supply is the eventual hard cap\u2014use the FDV calculator for fully diluted valuation."
         },
         {
           "question": "Why can market cap mislead?",
@@ -10254,7 +10254,7 @@
       }
     ],
     "formulaType": "cryptoFdv",
-    "seoTitle": "Crypto FDV Calculator — Fully Diluted Valuation",
+    "seoTitle": "Crypto FDV Calculator \u2014 Fully Diluted Valuation",
     "seoDescription": "Free FDV calculator for crypto tokens. Compare fully diluted valuation to circulating market cap and see unlock dilution risk.",
     "seoKeywords": [
       "FDV calculator",
@@ -10265,19 +10265,19 @@
     "seoContent": {
       "intro": "Fully diluted valuation (FDV) multiplies max supply by current price. Comparing FDV to circulating market cap highlights how much valuation assumes future unlocks and emissions.",
       "howToUse": [
-        "Enter the token’s maximum or total planned supply.",
-        "Enter today’s circulating supply.",
+        "Enter the token\u2019s maximum or total planned supply.",
+        "Enter today\u2019s circulating supply.",
         "Enter the current market price.",
         "Compare FDV, circulating cap, dilution gap, and unlocked percentage."
       ],
       "faqs": [
         {
           "question": "Is a high FDV always bad?",
-          "answer": "Not always—but a large FDV/circ gap means future supply may pressure price unless demand grows with unlocks."
+          "answer": "Not always\u2014but a large FDV/circ gap means future supply may pressure price unless demand grows with unlocks."
         },
         {
           "question": "FDV vs market cap?",
-          "answer": "Market cap uses circulating supply; FDV uses max (or fully diluted) supply at today’s price."
+          "answer": "Market cap uses circulating supply; FDV uses max (or fully diluted) supply at today\u2019s price."
         },
         {
           "question": "What if there is no max supply?",
@@ -10318,7 +10318,7 @@
       }
     ],
     "formulaType": "cryptoTokenPrice",
-    "seoTitle": "Crypto Token Price Calculator — From Target Market Cap",
+    "seoTitle": "Crypto Token Price Calculator \u2014 From Target Market Cap",
     "seoDescription": "Free token price calculator. Back-solve price from a target market cap or FDV and supply for launches and valuation scenarios.",
     "seoKeywords": [
       "token price calculator",
@@ -10332,7 +10332,7 @@
         "Enter your target market cap or FDV in dollars.",
         "Enter the supply base that matches that valuation type.",
         "Set mode to 0 for market cap or 1 for FDV (label only).",
-        "Read the implied price and 0.5× / 2× sensitivity checks."
+        "Read the implied price and 0.5\u00d7 / 2\u00d7 sensitivity checks."
       ],
       "faqs": [
         {
@@ -10344,7 +10344,7 @@
           "answer": "It gives a math-implied price for a desired valuation. Real launch price also depends on liquidity depth and demand."
         },
         {
-          "question": "Why show 0.5× and 2×?",
+          "question": "Why show 0.5\u00d7 and 2\u00d7?",
           "answer": "Quick sensitivity: if valuation doubles or halves at the same supply, price scales linearly."
         }
       ]
@@ -10414,7 +10414,7 @@
       }
     ],
     "formulaType": "cryptoTokenomics",
-    "seoTitle": "Crypto Tokenomics Calculator — Vesting & Supply Expansion",
+    "seoTitle": "Crypto Tokenomics Calculator \u2014 Vesting & Supply Expansion",
     "seoDescription": "Free tokenomics calculator. Project circulating supply with TGE, cliffs, linear vesting, and emissions over any horizon.",
     "seoKeywords": [
       "tokenomics calculator",
@@ -10451,7 +10451,7 @@
     "slug": "crypto-liquidity-calculator",
     "title": "Crypto Liquidity Calculator",
     "category": "Crypto & Digital Assets",
-    "description": "Compute constant-product (x·y=k) pool metrics: spot price, LP share for a deposit, swap output, and price impact.",
+    "description": "Compute constant-product (x\u00b7y=k) pool metrics: spot price, LP share for a deposit, swap output, and price impact.",
     "inputs": [
       {
         "id": "reserveToken",
@@ -10495,7 +10495,7 @@
       }
     ],
     "formulaType": "cryptoLiquidity",
-    "seoTitle": "Crypto Liquidity Calculator — DEX Pool Share & x·y=k",
+    "seoTitle": "Crypto Liquidity Calculator \u2014 DEX Pool Share & x\u00b7y=k",
     "seoDescription": "Free DEX liquidity calculator for constant-product pools. Estimate spot price, LP share, swap output, and price impact.",
     "seoKeywords": [
       "crypto liquidity calculator",
@@ -10505,7 +10505,7 @@
       "LP share calculator"
     ],
     "seoContent": {
-      "intro": "Constant-product AMMs keep x·y=k. This calculator shows spot price from reserves, your LP share for a proportional deposit, and estimated swap output with fee and price impact.",
+      "intro": "Constant-product AMMs keep x\u00b7y=k. This calculator shows spot price from reserves, your LP share for a proportional deposit, and estimated swap output with fee and price impact.",
       "howToUse": [
         "Enter token and quote reserves currently in the pool.",
         "Set how many tokens you would deposit as LP (quote is matched at spot).",
@@ -10523,7 +10523,7 @@
         },
         {
           "question": "Does this cover concentrated liquidity?",
-          "answer": "No—this is classic x·y=k. Uniswap v3-style ranges need a different model."
+          "answer": "No\u2014this is classic x\u00b7y=k. Uniswap v3-style ranges need a different model."
         }
       ]
     }
@@ -10568,7 +10568,7 @@
       }
     ],
     "formulaType": "cryptoStaking",
-    "seoTitle": "Crypto Staking Calculator — Compound Rewards",
+    "seoTitle": "Crypto Staking Calculator \u2014 Compound Rewards",
     "seoDescription": "Free crypto staking calculator with daily, weekly, monthly, and yearly compounding. Estimate rewards and ending balance from APR.",
     "seoKeywords": [
       "crypto staking calculator",
@@ -10641,7 +10641,7 @@
       }
     ],
     "formulaType": "cryptoRoi",
-    "seoTitle": "Crypto ROI Calculator — Return & CAGR",
+    "seoTitle": "Crypto ROI Calculator \u2014 Return & CAGR",
     "seoDescription": "Free crypto ROI calculator. Compute total return and annualized CAGR for any holding period in years and days.",
     "seoKeywords": [
       "crypto ROI calculator",
@@ -10668,7 +10668,7 @@
         },
         {
           "question": "What if final value is zero?",
-          "answer": "ROI is −100%. CAGR is undefined for a zero ending value over a positive holding period."
+          "answer": "ROI is \u2212100%. CAGR is undefined for a zero ending value over a positive holding period."
         }
       ]
     }
@@ -10754,7 +10754,7 @@
       "token liquidity budget"
     ],
     "seoContent": {
-      "intro": "Plan the upfront cash needed to launch a token: deployment/gas, contract work, seed liquidity, audits, go-to-market, and legal—with a contingency buffer by chain cost tier.",
+      "intro": "Plan the upfront cash needed to launch a token: deployment/gas, contract work, seed liquidity, audits, go-to-market, and legal\u2014with a contingency buffer by chain cost tier.",
       "howToUse": [
         "Pick a chain cost tier (1 = cheap L2, 2 = mid alt-L1, 3 = Ethereum-scale).",
         "Adjust deploy/gas if you have a better estimate.",
@@ -10765,15 +10765,15 @@
       "faqs": [
         {
           "question": "Are these real quotes?",
-          "answer": "No—they are planning defaults. Audit and development quotes vary widely by scope and firm."
+          "answer": "No\u2014they are planning defaults. Audit and development quotes vary widely by scope and firm."
         },
         {
-          "question": "Why is liquidity a “cost”?",
+          "question": "Why is liquidity a \u201ccost\u201d?",
           "answer": "LP capital is usually still your asset, but it is cash you must lock at launch and is part of the financial outlay to go live."
         },
         {
           "question": "Does this include exchange listing fees?",
-          "answer": "Not explicitly—fold CEX listing or market-maker retainers into marketing or misc if needed."
+          "answer": "Not explicitly\u2014fold CEX listing or market-maker retainers into marketing or misc if needed."
         }
       ]
     }
@@ -10829,7 +10829,7 @@
         "Enter the purchase price you agreed with the private seller (CAD).",
         "Enter the estimated Canadian Black Book wholesale value for the same vehicle.",
         "Check Zero-Emission Vehicle if the car qualifies as a ZEV (battery EV or eligible hydrogen vehicle).",
-        "Read PST owed — taxable value is the greater of price or Black Book, then the 12% / 15% / 20% luxury tier (or 0% for ZEVs).",
+        "Read PST owed \u2014 taxable value is the greater of price or Black Book, then the 12% / 15% / 20% luxury tier (or 0% for ZEVs).",
         "Bring the same numbers to ICBC Transfer/Tax when you transfer the vehicle."
       ],
       "faqs": [
@@ -10847,7 +10847,7 @@
         },
         {
           "question": "Where do I get Black Book wholesale value?",
-          "answer": "Use Canadian Black Book (or the value ICBC quotes at transfer). This tool does not look up live Black Book data—enter the wholesale estimate you will use with ICBC."
+          "answer": "Use Canadian Black Book (or the value ICBC quotes at transfer). This tool does not look up live Black Book data\u2014enter the wholesale estimate you will use with ICBC."
         },
         {
           "question": "Is this official ICBC tax advice?",

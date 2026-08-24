@@ -1,6 +1,7 @@
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ToolBreadcrumbs } from "@/components/ToolBreadcrumbs";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
+import { ToolTermsGuide } from "@/components/ToolTermsGuide";
 import { LongTailKeywordContent } from "@/components/seo/LongTailKeywordContent";
 import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
@@ -15,7 +16,34 @@ import {
   mergeToolFaqs,
   resolveKeywordPack,
 } from "@/lib/keywords";
+import { buildToolTermsGuide } from "@/lib/toolExplanations";
+import type { ToolTermsGuideData } from "@/lib/toolExplanations";
 import type { PseoTool } from "@/lib/pseo/types";
+
+function pseoTermsGuide(tool: PseoTool): ToolTermsGuideData {
+  return {
+    summary: tool.whatIsIt,
+    formula: tool.formula,
+    howItWorks: [
+      "Enter the values that match your scenario.",
+      `The tool applies: ${tool.formula}`,
+      tool.whatIsIt,
+      "Results update in your browser for instant planning.",
+    ],
+    inputTerms: [],
+    formulaTerms: [
+      {
+        name: "Why it matters",
+        description: tool.whyItMatters,
+      },
+      {
+        name: "Real-world example",
+        description: tool.realWorldExample,
+      },
+    ],
+    notes: ["Estimates are for planning guidance only—not professional advice."],
+  };
+}
 
 export function PseoToolPage({ tool }: { tool: PseoTool }) {
   const calculator = getCalculatorBySlug(tool.slug);
@@ -42,8 +70,15 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
     ? buildLongTailSubtitle(calculator, pack)
     : `${tool.targetKeyword} — free online, instant results, no sign up.`;
 
+  const termsGuide = calculator
+    ? buildToolTermsGuide(calculator)
+    : pseoTermsGuide(tool);
+  const termsPanel = (
+    <ToolTermsGuide toolTitle={tool.h1} guide={termsGuide} compact />
+  );
+
   return (
-    <ToolLayout>
+    <ToolLayout rightAd={termsPanel}>
       <PseoJsonLd tool={tool} faqs={faqs} />
 
       <ToolBreadcrumbs toolTitle={tool.h1} category={tool.category} />
@@ -66,6 +101,7 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
 
       <CalculatorRenderer id={tool.id} />
 
+      <div className="mt-8 lg:hidden">{termsPanel}</div>
       {calculator ? (
         <LongTailKeywordContent calculator={calculator} pack={pack} />
       ) : null}

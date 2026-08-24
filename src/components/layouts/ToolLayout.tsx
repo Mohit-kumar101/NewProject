@@ -11,8 +11,8 @@ type ToolLayoutProps = {
 
 /**
  * Ad-ready three-column shell for dedicated tool pages.
- * Desktop: left rail (250px) | constrained center (max 800px) | right rail (250px)
- * Mobile/tablet: single centered column (rails hidden)
+ * Desktop: left rail | center tool | right “Terms & how it works” (or ads)
+ * Mobile/tablet: single centered column (rails move / hide as needed)
  */
 export function ToolLayout({
   children,
@@ -24,17 +24,21 @@ export function ToolLayout({
     <div
       className={`w-full overflow-x-hidden px-4 py-8 sm:px-6 sm:py-10 ${className}`}
     >
-      <div className="mx-auto grid w-full max-w-[1340px] grid-cols-1 justify-center gap-6 lg:grid-cols-[250px_minmax(0,800px)_250px]">
+      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 justify-center gap-6 lg:grid-cols-[200px_minmax(0,820px)_300px]">
         <div className="hidden min-w-0 lg:block">
-          <AdBannerSlot side="left">{leftAd}</AdBannerSlot>
+          <AdBannerSlot side="left" label="Left sidebar">
+            {leftAd}
+          </AdBannerSlot>
         </div>
 
-        <div className="mx-auto w-full min-w-0 max-w-[800px] lg:max-w-none">
+        <div className="mx-auto w-full min-w-0 max-w-[820px] lg:max-w-none">
           {children}
         </div>
 
         <div className="hidden min-w-0 lg:block">
-          <AdBannerSlot side="right">{rightAd}</AdBannerSlot>
+          <AdBannerSlot side="right" label="Terms and how this tool works">
+            {rightAd}
+          </AdBannerSlot>
         </div>
       </div>
     </div>

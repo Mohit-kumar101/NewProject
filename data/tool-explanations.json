@@ -106,31 +106,63 @@
     ]
   },
   "debtSnowball": {
-    "formula": "Attack smallest balance first; roll freed payment into next debt",
-    "summary": "Pays minimums on all debts, then directs surplus to the smallest balance for quick psychological wins.",
+    "formula": "Attack smallest balance first; roll freed minimums + extra into the next target",
+    "summary": "Interactive multi-debt simulator: pay minimums on all accounts, then direct surplus to the smallest balance. Compare side-by-side with avalanche and model extra payments live.",
     "variables": [
       {
-        "symbol": "Budget",
-        "name": "Monthly budget",
-        "description": "Total cash available for all debts."
+        "symbol": "Balanceᵢ",
+        "name": "Debt balance",
+        "description": "Current amount owed on each account."
+      },
+      {
+        "symbol": "APRᵢ",
+        "name": "Annual percentage rate",
+        "description": "Interest rate used for monthly accrual (APR ÷ 12)."
+      },
+      {
+        "symbol": "Minᵢ",
+        "name": "Minimum payment",
+        "description": "Contractual monthly minimum; rolls into the focus debt when paid off."
+      },
+      {
+        "symbol": "Extra",
+        "name": "Extra monthly payment",
+        "description": "Additional cash beyond all minimums."
       }
     ],
     "notes": [
-      "Compare with avalanche (highest APR first) for interest minimization."
+      "Compare with avalanche (highest APR first) for interest minimization.",
+      "Debt list persists in localStorage—no account required."
     ]
   },
   "debtAvalanche": {
-    "formula": "Attack highest APR first; roll freed payment into next debt",
-    "summary": "Mathematically minimizes interest by prioritizing the costliest debt while paying minimums on the rest.",
+    "formula": "Attack highest APR first; roll freed minimums + extra into the next target",
+    "summary": "Interactive multi-debt simulator: pay minimums on all accounts, then direct surplus to the highest APR. Compare side-by-side with snowball and model extra payments live.",
     "variables": [
       {
-        "symbol": "Budget",
-        "name": "Monthly budget",
-        "description": "Total cash available for all debts."
+        "symbol": "Balanceᵢ",
+        "name": "Debt balance",
+        "description": "Current amount owed on each account."
+      },
+      {
+        "symbol": "APRᵢ",
+        "name": "Annual percentage rate",
+        "description": "Interest rate used for monthly accrual (APR ÷ 12)."
+      },
+      {
+        "symbol": "Minᵢ",
+        "name": "Minimum payment",
+        "description": "Contractual monthly minimum; rolls into the focus debt when paid off."
+      },
+      {
+        "symbol": "Extra",
+        "name": "Extra monthly payment",
+        "description": "Additional cash beyond all minimums."
       }
     ],
     "notes": [
-      "Usually cheaper than snowball when rates differ widely."
+      "Usually cheaper than snowball when rates differ widely.",
+      "Debt list persists in localStorage—no account required."
     ]
   },
   "loanRefinance": {
@@ -215,18 +247,23 @@
     ]
   },
   "monthlyMortgage": {
-    "formula": "M = P · r(1+r)^n / ((1+r)^n − 1)",
-    "summary": "Classic fixed-rate mortgage principal-and-interest payment.",
+    "formula": "PITI = P&I + (tax/12) + (insurance/12); P&I = P · r(1+r)^n / ((1+r)^n − 1)",
+    "summary": "Fixed-rate mortgage payment with optional PITI breakdown (taxes & insurance), extra-payment what-ifs, and first vs last-year amortization ratios.",
     "variables": [
       {
-        "symbol": "M",
-        "name": "Monthly payment",
-        "description": "Fixed installment covering interest and principal."
+        "symbol": "P&I",
+        "name": "Principal & interest",
+        "description": "The loan payment covering principal and interest only."
+      },
+      {
+        "symbol": "PITI",
+        "name": "Full monthly housing payment",
+        "description": "P&I plus monthly escrow for property tax and homeowners insurance."
       },
       {
         "symbol": "P",
-        "name": "Principal",
-        "description": "Amount borrowed or remaining balance."
+        "name": "Loan amount",
+        "description": "Home price minus down payment."
       },
       {
         "symbol": "r",
@@ -240,7 +277,8 @@
       }
     ],
     "notes": [
-      "Extra payments reduce n and total interest when the tool supports them."
+      "Toggle PITI to budget taxes and insurance alongside P&I.",
+      "Extra payments reduce payoff time and total interest."
     ]
   },
   "rentVsBuy": {

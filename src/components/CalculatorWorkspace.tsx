@@ -8,6 +8,12 @@ import { getToolHref } from "@/lib/cryptoFormulas";
 import { getSmartAdvice } from "@/lib/smartAdvice";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
 import { ExpenseTracker } from "@/components/ExpenseTracker";
+import { DebtPayoffWorkspace } from "@/components/DebtPayoffWorkspace";
+import {
+  LoansCategoryWorkspace,
+  isLoansDebtCategoryFormula,
+} from "@/components/LoansCategoryWorkspace";
+import { MonthlyMortgageWorkspace } from "@/components/realEstate/MonthlyMortgageWorkspace";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
 import { CryptoProWorkspace } from "@/components/crypto/CryptoProWorkspace";
 import { CRYPTO_CATEGORY } from "@/lib/cryptoFormulas";
@@ -21,6 +27,10 @@ export function CalculatorWorkspace({
 }) {
   const isScientific = calculator.formulaType === "scientificCalculator";
   const isExpenseTracker = calculator.formulaType === "expenseTracker";
+  const isDebtPayoff =
+    calculator.formulaType === "debtSnowball" ||
+    calculator.formulaType === "debtAvalanche";
+  const isLoansCategory = isLoansDebtCategoryFormula(calculator.formulaType);
 
   const [values, setValues] = useState<Record<string, number>>(() =>
     Object.fromEntries(
@@ -58,6 +68,30 @@ export function CalculatorWorkspace({
 
   if (isExpenseTracker) {
     return <ExpenseTracker />;
+  }
+
+  if (isDebtPayoff) {
+    return (
+      <DebtPayoffWorkspace
+        calculator={calculator}
+        related={related}
+        preferredStrategy={
+          calculator.formulaType === "debtAvalanche" ? "avalanche" : "snowball"
+        }
+      />
+    );
+  }
+
+  if (isLoansCategory) {
+    return (
+      <LoansCategoryWorkspace calculator={calculator} related={related} />
+    );
+  }
+
+  if (calculator.formulaType === "monthlyMortgage") {
+    return (
+      <MonthlyMortgageWorkspace calculator={calculator} related={related} />
+    );
   }
 
   return (
