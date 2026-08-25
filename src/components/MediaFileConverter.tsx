@@ -224,7 +224,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
 
   return (
     <div className="space-y-5">
-      <ConverterPrivacyRecent toolSlug={slug} />
+      <ConverterPrivacyRecent toolSlug={slug} engine="ffmpeg" engineReady={engineReady} />
       <WasmLoadingCard state={loadState} />
 
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">

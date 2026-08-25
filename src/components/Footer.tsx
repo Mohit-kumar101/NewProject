@@ -11,7 +11,9 @@ const LEGAL_LINKS = [
 
 const PRODUCT_LINKS = [
   { href: "/tools", label: "All Tools" },
+  { href: "/workflows", label: "Workflows" },
   { href: "/crypto", label: "Crypto Calculators" },
+  { href: "/workflows/buy-a-home", label: "Buy a Home Guide" },
   { href: "/tools/scientific-calculator", label: "Scientific Calculator" },
   { href: "/tools/pdf-text-converter", label: "PDF ↔ Text Converter" },
   { href: "/tools/pdf-merge-split", label: "PDF Merge & Split" },

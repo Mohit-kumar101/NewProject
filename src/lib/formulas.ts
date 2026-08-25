@@ -2420,6 +2420,88 @@ export function runCalculation(
       ]);
     }
 
+    case "dryerCostPerLoad": {
+      const kwh = Math.max(0, inputs.kwhPerLoad ?? 0);
+      const rate = Math.max(0, inputs.ratePerKwh ?? 0);
+      const loads = Math.max(0, inputs.loadsPerWeek ?? 0);
+      const perLoad = kwh * rate;
+      return result("Cost Per Load", currency(perLoad), [
+        { label: "Weekly Cost", value: currency(perLoad * loads) },
+        { label: "Energy / Load", value: `${number(kwh, 2)} kWh` },
+        { label: "Loads / Week", value: number(loads, 0) },
+      ]);
+    }
+
+    case "driveThruIdlingCost": {
+      const minutes = Math.max(0, inputs.idleMinutes ?? 0);
+      const gph = Math.max(0, inputs.gallonsPerHour ?? 0);
+      const gas = Math.max(0, inputs.gasPrice ?? 0);
+      const trips = Math.max(0, inputs.tripsPerWeek ?? 0);
+      const gallons = (minutes / 60) * gph;
+      const cost = gallons * gas;
+      return result("Cost Per Stop", currency(cost), [
+        { label: "Weekly Cost", value: currency(cost * trips) },
+        { label: "Gallons / Stop", value: number(gallons, 3) },
+        { label: "Trips / Week", value: number(trips, 0) },
+      ]);
+    }
+
+    case "twelveHourShiftPay": {
+      const base = Math.max(0, inputs.baseRate ?? 0);
+      const pct = Math.max(0, inputs.diffPercent ?? 0);
+      const flat = Math.max(0, inputs.flatAddOn ?? 0);
+      const hours = Math.max(0, inputs.hours ?? 12);
+      const premiumRate = base * (1 + pct / 100) + flat;
+      const pay = premiumRate * hours;
+      return result("Shift Pay", currency(pay), [
+        { label: "Premium Hourly Rate", value: currency(premiumRate) },
+        { label: "Hours", value: number(hours, 1) },
+        { label: "Differential %", value: `${number(pct, 1)}%` },
+      ]);
+    }
+
+    case "masterBedroomFairRent": {
+      const rent = Math.max(0, inputs.totalRent ?? 0);
+      const yours = Math.max(0, inputs.roomSqFt ?? 0);
+      const totalSq = Math.max(0.01, inputs.totalBedroomSqFt ?? 1);
+      const premium = Math.max(0, inputs.premiumPercent ?? 0);
+      const baseShare = rent * (yours / totalSq);
+      const fair = baseShare * (1 + premium / 100);
+      return result("Master Fair Rent", currency(fair), [
+        { label: "Size-Based Share", value: currency(baseShare) },
+        { label: "Premium Added", value: currency(fair - baseShare) },
+        { label: "Share of Bedrooms", value: `${number((yours / totalSq) * 100, 1)}%` },
+      ]);
+    }
+
+    case "mealPrepSellingPrice": {
+      const grocery = Math.max(0, inputs.groceryCost ?? 0);
+      const packaging = Math.max(0, inputs.packagingCost ?? 0);
+      const meals = Math.max(1, inputs.meals ?? 1);
+      const margin = Math.min(99, Math.max(0, inputs.marginPercent ?? 0));
+      const costPerMeal = (grocery + packaging) / meals;
+      const denom = 1 - margin / 100;
+      const sell = denom > 0.01 ? costPerMeal / denom : costPerMeal;
+      return result("Sell Price / Meal", currency(sell), [
+        { label: "Cost Per Meal", value: currency(costPerMeal) },
+        { label: "Margin / Meal", value: currency(sell - costPerMeal) },
+        { label: "Target Margin", value: `${number(margin, 0)}%` },
+      ]);
+    }
+
+    case "recipeCostPerServing": {
+      const batch = Math.max(0, inputs.batchCost ?? 0);
+      const servings = Math.max(1, inputs.servings ?? 1);
+      const waste = Math.max(0, inputs.wastePercent ?? 0);
+      const adjusted = batch * (1 + waste / 100);
+      const perServing = adjusted / servings;
+      return result("Cost Per Serving", currency(perServing), [
+        { label: "Adjusted Batch Cost", value: currency(adjusted) },
+        { label: "Servings", value: number(servings, 0) },
+        { label: "Waste / Trim", value: `${number(waste, 0)}%` },
+      ]);
+    }
+
     // ——— Niche-65 hubs (6 ready examples — first tool per category) ———
     case "amazonFbaStorageFeeByBox": {
       const l = Math.max(0, inputs.lengthIn ?? 0);

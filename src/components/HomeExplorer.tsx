@@ -346,6 +346,17 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                       )
                     )}
                   </ul>
+                  <p className="mx-auto mt-6 max-w-lg text-sm text-[var(--muted)]">
+                    Or start a guided journey:{" "}
+                    <Link
+                      href="/workflows"
+                      className="font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      Workflows
+                    </Link>{" "}
+                    for buying a home, killing debt, freelancing, and private
+                    converts.
+                  </p>
                 </>
               )}
 

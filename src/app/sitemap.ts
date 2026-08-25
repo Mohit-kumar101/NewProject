@@ -16,6 +16,11 @@ import { PSEO_SLUGS, PSEO_TOOLS } from "@/lib/pseo/calculatorsData";
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
   { url: `${SITE_URL}/tools`, changeFrequency: "weekly", priority: 0.9 },
+  { url: `${SITE_URL}/workflows`, changeFrequency: "weekly", priority: 0.88 },
+  { url: `${SITE_URL}/workflows/buy-a-home`, changeFrequency: "monthly", priority: 0.85 },
+  { url: `${SITE_URL}/workflows/kill-debt`, changeFrequency: "monthly", priority: 0.85 },
+  { url: `${SITE_URL}/workflows/go-freelance`, changeFrequency: "monthly", priority: 0.85 },
+  { url: `${SITE_URL}/workflows/convert-safely`, changeFrequency: "monthly", priority: 0.85 },
   { url: `${SITE_URL}/affordability`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/crypto`, changeFrequency: "weekly", priority: 0.9 },
   {

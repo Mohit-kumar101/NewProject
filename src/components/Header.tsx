@@ -5,6 +5,7 @@ import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
+  { href: "/workflows", label: "Workflows" },
   { href: "/crypto", label: "Crypto" },
   { href: "/tools", label: "All Tools" },
   { href: "/about", label: "About" },

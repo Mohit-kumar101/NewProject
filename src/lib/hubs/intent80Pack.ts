@@ -1,12 +1,12 @@
 /**
  * Intent-80 pSEO hub pack (80 tools across 6 categories).
  *
- * READY (6 — first tool per category):
- *   laundryCostPerLoad, idlingFuelCost, shiftDifferentialPay,
- *   roommateRentSplitByRoomSize, freelanceRateAfterPlatformFees,
- *   mealPrepCostPerMeal
+ * READY (12): first tool per category + six high-intent clones
+ *   laundry, dryer, idling, drive-thru, shift differential, 12h shift,
+ *   roommate split, master bedroom, freelance fees, meal prep cost,
+ *   meal sell price, recipe cost per serving
  *
- * TODO: remaining 74 — expand stub configs + formulas.ts handlers, then ready: true
+ * TODO: remaining stubs — expand configs + formulas.ts handlers, then ready: true
  */
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
@@ -450,7 +450,371 @@ const mealPrepCostPerMeal: Calculator = {
   },
 };
 
-/** Compact stub defs for the remaining 74 tools (TODO: full configs + formulas). */
+
+/** ——— 7. Dryer Cost Per Load — Home & Appliance Utilities ——— */
+const dryerCostPerLoad: Calculator = {
+  slug: "dryer-cost-per-load-calculator",
+  title: "Dryer Cost Per Load Calculator",
+  category: "Home & Appliance Utilities",
+  description:
+    "Estimate electricity cost for a dryer cycle from kWh per load and your utility rate.",
+  formulaType: "dryerCostPerLoad",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("kwhPerLoad", "Dryer Energy (kWh/load)", 2.5, 0.2, 8, 0.1),
+    input("ratePerKwh", "Electricity Rate ($/kWh)", 0.14, 0.05, 0.8, 0.01),
+    input("loadsPerWeek", "Loads Per Week", 4, 0, 21, 1),
+  ],
+  formulaSummary:
+    "Cost/load = kWh × $/kWh; weekly = cost/load × loads/week.",
+  realWorldExample:
+    "2.5 kWh at $0.14 ≈ $0.35 per load. Four loads/week ≈ $1.40.",
+  seoContextTemplate:
+    "Looking for “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+  explanationTemplate:
+    "{{variantExplanation}} Free {{title}} for “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "electric-dryer",
+      "electric dryer cost per load calculator",
+      "Electric dryers draw multiple kWh per cycle. Pair your Energy Guide figure with the local rate to see whether air-drying a few loads is worth it.",
+      {
+        benefit: "Price each dryer cycle",
+        faqs: [
+          {
+            question:
+              "How do I calculate electric dryer cost per load in {{year}}?",
+            answer:
+              "Multiply kWh per load by your electricity rate. Multiply by weekly loads for a weekly estimate.",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Dryer heat is often the expensive half of laundry. Price each cycle before you run half-empty loads.",
+    howToUse: [
+      "Enter dryer kWh per load from the Energy Guide or a meter.",
+      "Set your electricity rate.",
+      "Optionally enter loads per week.",
+      "Read cost per load and weekly cost.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate dryer cost per load?",
+        answer:
+          "Multiply kWh per load by your $/kWh rate. That is your electricity cost for one dryer cycle.",
+      },
+    ],
+  },
+};
+
+/** ——— 8. Drive-Thru Idling Cost — Commute & Vehicle Costs ——— */
+const driveThruIdlingCost: Calculator = {
+  slug: "drive-thru-idling-cost-calculator",
+  title: "Drive-Thru Idling Cost Calculator",
+  category: "Commute & Vehicle Costs",
+  description:
+    "Estimate fuel burned waiting in drive-thru lines from minutes, idle GPH, and gas price.",
+  formulaType: "driveThruIdlingCost",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("idleMinutes", "Wait Time (minutes)", 8, 1, 60, 1),
+    input("gallonsPerHour", "Idle Fuel Use (gal/hr)", 0.4, 0.1, 2, 0.05),
+    input("gasPrice", "Gas Price ($/gal)", 3.89, 1, 10, 0.01),
+    input("tripsPerWeek", "Drive-Thrus Per Week", 5, 0, 21, 1),
+  ],
+  formulaSummary:
+    "Gallons = (minutes ÷ 60) × gal/hr; cost = gallons × gas; weekly = cost × trips.",
+  realWorldExample:
+    "8 minutes at 0.4 gal/hr uses ~0.053 gal. At $3.89 that stop costs about $0.21; five times/week ≈ $1.04.",
+  seoContextTemplate:
+    "{{title}} for “{{focusKeyword}}”: {{formulaSummary}} Example: {{example}} Updated {{year}}.",
+  explanationTemplate:
+    "{{variantExplanation}} Free {{title}} — “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "weekly",
+      "drive thru idling cost calculator weekly",
+      "Stack typical wait minutes and trips per week to see how often coffee runs quietly burn fuel.",
+      {
+        benefit: "Weekly drive-thru fuel waste",
+        faqs: [
+          {
+            question:
+              "How do I calculate weekly drive-thru idling cost in {{year}}?",
+            answer:
+              "Estimate minutes per stop, convert to hours, multiply by idle gallons per hour and gas price, then multiply by trips per week.",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Drive-thru waits feel free until you price the idle gallons. Estimate what each line actually costs.",
+    howToUse: [
+      "Enter typical minutes in line.",
+      "Set idle fuel use in gallons per hour.",
+      "Enter gas price and trips per week.",
+      "Read cost per stop and weekly total.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate drive-thru idling cost?",
+        answer:
+          "Convert wait minutes to hours, multiply by idle gal/hr, then by gas price. Multiply by weekly trips for a habit cost.",
+      },
+    ],
+  },
+};
+
+/** ——— 9. 12-Hour Shift Pay — Payroll & Shift Work ——— */
+const twelveHourShiftPay: Calculator = {
+  slug: "twelve-hour-shift-pay-calculator",
+  title: "12-Hour Shift Pay Calculator",
+  category: "Payroll & Shift Work",
+  description:
+    "Estimate gross pay for a 12-hour shift with optional differential percent or flat add-on.",
+  formulaType: "twelveHourShiftPay",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("baseRate", "Base Hourly Rate ($)", 28, 10, 100, 0.25),
+    input("diffPercent", "Differential (%)", 10, 0, 50, 0.5),
+    input("flatAddOn", "Flat Add-On ($/hr)", 0, 0, 20, 0.25),
+    input("hours", "Shift Hours", 12, 8, 16, 0.5),
+  ],
+  formulaSummary:
+    "Premium rate = base × (1 + diff%/100) + flat; shift pay = premium × hours (default 12).",
+  realWorldExample:
+    "$28/hr with 10% differential → $30.80/hr. A 12-hour shift pays $369.60 (before taxes).",
+  seoContextTemplate:
+    "Searching “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+  explanationTemplate:
+    "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "night",
+      "12 hour night shift pay calculator",
+      "Long night shifts often stack a differential on base. Enter percent and/or flat add-on to mirror your contract.",
+      {
+        benefit: "Price a 12-hour night",
+        faqs: [
+          {
+            question: "How do I calculate 12-hour night shift pay in {{year}}?",
+            answer:
+              "Apply the differential to base rate, add any flat $/hr, then multiply by 12 (or your rostered hours).",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Twelve-hour shifts change your effective rate when differentials apply. Model a full tour before you pick nights.",
+    howToUse: [
+      "Enter base hourly rate.",
+      "Set differential % and/or flat add-on.",
+      "Confirm hours (default 12).",
+      "Read premium rate and total shift pay.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate 12-hour shift pay?",
+        answer:
+          "Effective rate = base × (1 + differential%) + flat add-on. Multiply by hours for gross shift pay.",
+      },
+    ],
+  },
+};
+
+/** ——— 10. Master Bedroom Fair Rent — Rent & Roommate Splits ——— */
+const masterBedroomFairRent: Calculator = {
+  slug: "master-bedroom-fair-rent-calculator",
+  title: "Master Bedroom Fair Rent Calculator",
+  category: "Rent & Roommate Splits",
+  description:
+    "Split rent by room size, then add a master-bedroom premium for en-suite or larger space.",
+  formulaType: "masterBedroomFairRent",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("totalRent", "Total Monthly Rent ($)", 2400, 500, 10000, 50),
+    input("roomSqFt", "Master Bedroom (sq ft)", 180, 50, 600, 5),
+    input("totalBedroomSqFt", "All Bedrooms (sq ft)", 400, 100, 2000, 10),
+    input("premiumPercent", "Master Premium (%)", 10, 0, 40, 1),
+  ],
+  formulaSummary:
+    "Base share = rent × (master sq ft ÷ total bedroom sq ft); fair rent = base × (1 + premium%).",
+  realWorldExample:
+    "$2,400 rent, 180/400 sq ft base share $1,080 + 10% premium → $1,188 for the master.",
+  seoContextTemplate:
+    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+  explanationTemplate:
+    "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "ensuite",
+      "master bedroom ensuite fair rent calculator",
+      "An en-suite bath often justifies a premium on top of size-weighted share. Adjust the premium % until everyone agrees it feels fair.",
+      {
+        benefit: "Price ensuite premium",
+        faqs: [
+          {
+            question:
+              "How do I calculate master bedroom fair rent with ensuite in {{year}}?",
+            answer:
+              "Split rent by bedroom square footage, then multiply the master share by (1 + premium%) for bath or closet upgrades.",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Masters with baths or walk-ins should pay more — but how much? Size-weight first, then add a clear premium.",
+    howToUse: [
+      "Enter total rent and bedroom square footages.",
+      "Set a master premium percentage.",
+      "Read size-based share and premium-adjusted rent.",
+      "Adjust premium until roommates agree.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate master bedroom fair rent?",
+        answer:
+          "Allocate rent by bedroom sq ft, then multiply the master’s share by (1 + premium%) for extras like a private bath.",
+      },
+    ],
+  },
+};
+
+/** ——— 11. Meal Prep Selling Price — Food & Catering Business ——— */
+const mealPrepSellingPrice: Calculator = {
+  slug: "meal-prep-selling-price-calculator",
+  title: "Meal Prep Selling Price Calculator",
+  category: "Food & Catering Business",
+  description:
+    "Set a meal prep sell price from batch cost, portions, and target margin.",
+  formulaType: "mealPrepSellingPrice",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("groceryCost", "Ingredient Cost ($)", 60, 5, 500, 1),
+    input("packagingCost", "Packaging ($)", 8, 0, 100, 0.5),
+    input("meals", "Meals Prepared", 12, 1, 100, 1),
+    input("marginPercent", "Target Margin (%)", 40, 0, 80, 1),
+  ],
+  formulaSummary:
+    "Cost/meal = (grocery + packaging) ÷ meals; sell price = cost ÷ (1 − margin%/100).",
+  realWorldExample:
+    "$68 batch / 12 meals = $5.67 cost. 40% margin → sell at about $9.44.",
+  seoContextTemplate:
+    "{{title}} for “{{focusKeyword}}”: {{formulaSummary}} Example: {{example}} Planning tool for {{year}}.",
+  explanationTemplate:
+    "{{variantExplanation}} Free {{title}} — “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "wholesale",
+      "meal prep wholesale selling price calculator",
+      "Use a lower margin for wholesale and a higher one for direct-to-customer meal prep boxes.",
+      {
+        benefit: "Price for margin",
+        faqs: [
+          {
+            question:
+              "How do I calculate meal prep selling price with margin in {{year}}?",
+            answer:
+              "Divide batch cost by portions for cost per meal, then divide by (1 − margin%) to get the sell price that hits your target.",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Cost per meal is only half the story. Back into a sell price that actually leaves margin.",
+    howToUse: [
+      "Enter ingredient and packaging costs.",
+      "Set meals prepared and target margin %.",
+      "Read cost per meal and suggested sell price.",
+      "Adjust margin for wholesale vs DTC.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate meal prep selling price?",
+        answer:
+          "Cost per meal = batch cost ÷ portions. Sell price = cost ÷ (1 − margin%). Confirm local food regs and delivery fees separately.",
+      },
+    ],
+  },
+};
+
+/** ——— 12. Recipe Cost Per Serving — Food & Catering Business ——— */
+const recipeCostPerServing: Calculator = {
+  slug: "recipe-cost-per-serving-calculator",
+  title: "Recipe Cost Per Serving Calculator",
+  category: "Food & Catering Business",
+  description:
+    "Divide a recipe’s ingredient batch cost by the number of servings for cost per plate.",
+  formulaType: "recipeCostPerServing",
+  useCategoryPath: true,
+  ready: true,
+  inputs: [
+    input("batchCost", "Ingredient Batch Cost ($)", 24, 1, 500, 0.5),
+    input("servings", "Servings Yielded", 6, 1, 100, 1),
+    input("wastePercent", "Waste / Trim (%)", 5, 0, 40, 1),
+  ],
+  formulaSummary:
+    "Adjusted cost = batch × (1 + waste%/100); cost/serving = adjusted ÷ servings.",
+  realWorldExample:
+    "$24 batch with 5% waste → $25.20. Six servings ≈ $4.20 each.",
+  seoContextTemplate:
+    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+  explanationTemplate:
+    "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
+  longTailModifiers: [
+    modifier(
+      "restaurant",
+      "restaurant recipe cost per serving calculator",
+      "Include trim waste so menu pricing reflects what you actually buy, not the plated weight alone.",
+      {
+        benefit: "Plate cost with waste",
+        faqs: [
+          {
+            question:
+              "How do I calculate restaurant recipe cost per serving in {{year}}?",
+            answer:
+              "Inflate ingredient cost by waste %, then divide by servings yielded from the batch.",
+          },
+        ],
+      }
+    ),
+  ],
+  seoContent: {
+    intro:
+      "Know the true cost of a plated serving — including trim waste — before you set a menu price.",
+    howToUse: [
+      "Enter total ingredient cost for the recipe batch.",
+      "Set servings yielded.",
+      "Add waste/trim percent if needed.",
+      "Read cost per serving.",
+    ],
+    faqs: [
+      {
+        question: "How do I calculate recipe cost per serving?",
+        answer:
+          "Multiply batch cost by (1 + waste%), then divide by the number of servings the recipe yields.",
+      },
+    ],
+  },
+};
+
+/** Compact stub defs for the remaining tools (TODO: full configs + formulas). */
 const STUB_DEFS: Array<{
   slug: string;
   title: string;
@@ -460,7 +824,6 @@ const STUB_DEFS: Array<{
   description: string;
 }> = [
   // Home & Appliance Utilities (19 remaining)
-  ["dryer-cost-per-load-calculator", "Dryer Cost Per Load Calculator", "Home & Appliance Utilities", "dryerCostPerLoad", "dryer cost per load calculator", "Estimate dryer electricity cost per load."],
   ["dishwasher-cost-per-cycle-calculator", "Dishwasher Cost Per Cycle Calculator", "Home & Appliance Utilities", "dishwasherCostPerCycle", "dishwasher cost per cycle calculator", "Estimate dishwasher energy and water cost per cycle."],
   ["hand-washing-vs-dishwasher-cost-calculator", "Hand Washing vs Dishwasher Cost Calculator", "Home & Appliance Utilities", "handWashVsDishwasherCost", "hand washing vs dishwasher cost calculator", "Compare hand-washing water/energy vs dishwasher cycles."],
   ["shower-cost-per-minute-calculator", "Shower Cost Per Minute Calculator", "Home & Appliance Utilities", "showerCostPerMinute", "shower cost per minute calculator", "Estimate water and heat cost per minute of showering."],
@@ -482,7 +845,6 @@ const STUB_DEFS: Array<{
 
   // Commute & Vehicle Costs (14 remaining; idling ready)
   ["remote-start-fuel-cost-calculator", "Remote Start Fuel Cost Calculator", "Commute & Vehicle Costs", "remoteStartFuelCost", "remote start fuel cost calculator", "Estimate fuel used during remote start warm-ups."],
-  ["drive-thru-idling-cost-calculator", "Drive-Thru Idling Cost Calculator", "Commute & Vehicle Costs", "driveThruIdlingCost", "drive thru idling cost calculator", "Estimate fuel cost waiting in drive-thru lines."],
   ["winter-warm-up-fuel-cost-calculator", "Winter Warm-Up Fuel Cost Calculator", "Commute & Vehicle Costs", "winterWarmUpFuelCost", "winter warm up fuel cost calculator", "Estimate winter warm-up idling fuel cost."],
   ["traffic-jam-fuel-cost-calculator", "Traffic Jam Fuel Cost Calculator", "Commute & Vehicle Costs", "trafficJamFuelCost", "traffic jam fuel cost calculator", "Estimate fuel burned sitting in traffic."],
   ["car-ac-fuel-cost-calculator", "Car AC Fuel Cost Calculator", "Commute & Vehicle Costs", "carAcFuelCost", "car AC fuel cost calculator", "Estimate extra fuel cost from running AC."],
@@ -505,7 +867,6 @@ const STUB_DEFS: Array<{
   ["paid-vs-unpaid-break-pay-calculator", "Paid vs Unpaid Break Pay Calculator", "Payroll & Shift Work", "paidVsUnpaidBreakPay", "paid vs unpaid break pay calculator", "Compare paid and unpaid break policies."],
   ["overtime-after-shift-differential-calculator", "Overtime After Shift Differential Calculator", "Payroll & Shift Work", "overtimeAfterShiftDifferential", "overtime after shift differential calculator", "Apply OT on top of differential rates."],
   ["four-on-four-off-salary-calculator", "4-on-4-off Salary Calculator", "Payroll & Shift Work", "fourOnFourOffSalary", "4 on 4 off salary calculator", "Project pay on a 4-on-4-off roster."],
-  ["twelve-hour-shift-pay-calculator", "12-Hour Shift Pay Calculator", "Payroll & Shift Work", "twelveHourShiftPay", "12 hour shift pay calculator", "Estimate pay for 12-hour shifts."],
   ["rotating-shift-income-calculator", "Rotating Shift Income Calculator", "Payroll & Shift Work", "rotatingShiftIncome", "rotating shift income calculator", "Average income across rotating shift patterns."],
   ["missed-shift-pay-loss-calculator", "Missed Shift Pay Loss Calculator", "Payroll & Shift Work", "missedShiftPayLoss", "missed shift pay loss calculator", "Estimate wages lost from a missed shift."],
   ["calling-in-sick-pay-loss-calculator", "Calling in Sick Pay Loss Calculator", "Payroll & Shift Work", "callingInSickPayLoss", "calling in sick pay loss calculator", "Estimate unpaid sick-day wage loss."],
@@ -513,7 +874,6 @@ const STUB_DEFS: Array<{
   ["raise-vs-overtime-income-calculator", "Raise vs Overtime Income Calculator", "Payroll & Shift Work", "raiseVsOvertimeIncome", "raise vs overtime income calculator", "Compare a raise against working more OT."],
 
   // Rent & Roommate Splits (9 remaining)
-  ["master-bedroom-fair-rent-calculator", "Master Bedroom Fair Rent Calculator", "Rent & Roommate Splits", "masterBedroomFairRent", "master bedroom fair rent calculator", "Price a master bedroom premium fairly."],
   ["room-with-private-bathroom-rent-calculator", "Room With Private Bathroom Rent Calculator", "Rent & Roommate Splits", "roomPrivateBathroomRent", "room with private bathroom rent calculator", "Adjust rent for a private bath."],
   ["roommate-rent-split-different-closets-calculator", "Roommate Rent Split With Different Closets Calculator", "Rent & Roommate Splits", "roommateRentDifferentClosets", "roommate rent split different closets calculator", "Factor closet size into rent share."],
   ["roommate-rent-split-extra-person-calculator", "Roommate Rent Split With Extra Person Calculator", "Rent & Roommate Splits", "roommateRentExtraPerson", "roommate rent split extra person calculator", "Recalculate shares when someone moves in."],
@@ -535,11 +895,9 @@ const STUB_DEFS: Array<{
   ["freelancer-vacation-cost-calculator", "Freelancer Vacation Cost Calculator", "Freelance & Micro-Business", "freelancerVacationCost", "freelancer vacation cost calculator", "Estimate income lost during unpaid vacation."],
 
   // Food & Catering Business (9 remaining)
-  ["meal-prep-selling-price-calculator", "Meal Prep Selling Price Calculator", "Food & Catering Business", "mealPrepSellingPrice", "meal prep selling price calculator", "Set meal prep sell price from cost and margin."],
   ["meal-prep-delivery-profit-calculator", "Meal Prep Delivery Profit Calculator", "Food & Catering Business", "mealPrepDeliveryProfit", "meal prep delivery profit calculator", "Profit after delivery fees per meal."],
   ["food-packaging-cost-per-order-calculator", "Food Packaging Cost Per Order Calculator", "Food & Catering Business", "foodPackagingCostPerOrder", "food packaging cost per order calculator", "Packaging cost allocated per order."],
   ["restaurant-portion-cost-calculator", "Restaurant Portion Cost Calculator", "Food & Catering Business", "restaurantPortionCost", "restaurant portion cost calculator", "Food cost for a plated portion."],
-  ["recipe-cost-per-serving-calculator", "Recipe Cost Per Serving Calculator", "Food & Catering Business", "recipeCostPerServing", "recipe cost per serving calculator", "Recipe batch cost divided by servings."],
   ["food-delivery-break-even-calculator", "Food Delivery Break-Even Calculator", "Food & Catering Business", "foodDeliveryBreakEven", "food delivery break-even calculator", "Orders needed to cover delivery overhead."],
   ["catering-cost-per-guest-calculator", "Catering Cost Per Guest Calculator", "Food & Catering Business", "cateringCostPerGuest", "catering cost per guest calculator", "Per-guest cost for a catering event."],
   ["catering-profit-per-event-calculator", "Catering Profit Per Event Calculator", "Food & Catering Business", "cateringProfitPerEvent", "catering profit per event calculator", "Event revenue minus catering costs."],
@@ -571,6 +929,12 @@ export const INTENT80_TOOLS: Calculator[] = [
   roommateRentByRoomSize,
   freelanceRateAfterFees,
   mealPrepCostPerMeal,
+  dryerCostPerLoad,
+  driveThruIdlingCost,
+  twelveHourShiftPay,
+  masterBedroomFairRent,
+  mealPrepSellingPrice,
+  recipeCostPerServing,
   ...intent80Stubs,
 ];
 

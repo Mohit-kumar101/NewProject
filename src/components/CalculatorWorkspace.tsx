@@ -20,6 +20,7 @@ import { CRYPTO_CATEGORY } from "@/lib/cryptoFormulas";
 import { InvestingEnhancements } from "@/components/investing/InvestingEnhancements";
 import { isInvestingCalculator } from "@/lib/investingEnhancements";
 import { ToolMemoryBar } from "@/components/shared/ToolMemoryBar";
+import { ScenarioComparePanel } from "@/components/shared/ScenarioComparePanel";
 import { FreelanceEnhancements } from "@/components/freelance/FreelanceEnhancements";
 import { UtilitiesEnhancements } from "@/components/utilities/UtilitiesEnhancements";
 import { RealEstateEnhancements } from "@/components/realEstate/RealEstateEnhancements";
@@ -305,6 +306,8 @@ function StandardCalculatorWorkspace({
       </div>
 
       <SmartAdviceBox items={advice} />
+
+      <ScenarioComparePanel calculator={calculator} values={values} />
 
       {calculator.category === CRYPTO_CATEGORY ? (
         <CryptoProWorkspace calculator={calculator} values={values} />
