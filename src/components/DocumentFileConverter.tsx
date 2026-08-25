@@ -28,6 +28,10 @@ import {
   revokeObjectUrl,
   triggerDownload,
 } from "@/lib/converter-utils";
+import {
+  ConverterPrivacyRecent,
+  recordConverterJob,
+} from "@/components/converters/ConverterPrivacyRecent";
 
 const MAX_SIZE = 40 * 1024 * 1024;
 
@@ -219,6 +223,11 @@ export function DocumentFileConverter({
             throw new DocumentConvertError("Unknown conversion mode.");
         }
         storeResult(next);
+        recordConverterJob(
+          slug,
+          files[0]?.name ?? next.filename ?? "Document conversion",
+          directionId
+        );
         setProgress({
           phase: "Done",
           current: next.pageCount ?? 1,
@@ -319,6 +328,7 @@ export function DocumentFileConverter({
 
   return (
     <div className="space-y-5">
+      <ConverterPrivacyRecent toolSlug={slug} />
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>

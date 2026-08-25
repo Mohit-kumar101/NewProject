@@ -19,6 +19,10 @@ import {
   revokeObjectUrl,
   triggerDownload,
 } from "@/lib/converter-utils";
+import {
+  ConverterPrivacyRecent,
+  recordConverterJob,
+} from "@/components/converters/ConverterPrivacyRecent";
 
 const MAX_SIZE = 25 * 1024 * 1024;
 
@@ -111,6 +115,11 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
           extension: result.extension,
           mimeType: result.mimeType,
         });
+        recordConverterJob(
+          slug,
+          nextFile.name,
+          dir.label ?? dir.id
+        );
       } catch (err) {
         setResultBlob(null);
         setResultUrl(null);
@@ -205,6 +214,7 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
 
   return (
     <div className="space-y-5">
+      <ConverterPrivacyRecent toolSlug={slug} />
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>

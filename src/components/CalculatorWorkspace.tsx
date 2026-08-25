@@ -17,6 +17,34 @@ import { MonthlyMortgageWorkspace } from "@/components/realEstate/MonthlyMortgag
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
 import { CryptoProWorkspace } from "@/components/crypto/CryptoProWorkspace";
 import { CRYPTO_CATEGORY } from "@/lib/cryptoFormulas";
+import { InvestingEnhancements } from "@/components/investing/InvestingEnhancements";
+import { isInvestingCalculator } from "@/lib/investingEnhancements";
+import { ToolMemoryBar } from "@/components/shared/ToolMemoryBar";
+import { FreelanceEnhancements } from "@/components/freelance/FreelanceEnhancements";
+import { UtilitiesEnhancements } from "@/components/utilities/UtilitiesEnhancements";
+import { RealEstateEnhancements } from "@/components/realEstate/RealEstateEnhancements";
+import { TaxEnhancements } from "@/components/tax/TaxEnhancements";
+import {
+  AFFORDABILITY_DISPLAY_CATEGORY,
+  HEALTH_DISPLAY_CATEGORY,
+} from "@/lib/categoryPaths";
+import {
+  HealthEnhancements,
+  ProgressSnapshotsPanel,
+} from "@/components/health/HealthEnhancements";
+
+function usesStickyMemory(calculator: Calculator): boolean {
+  return (
+    isInvestingCalculator(calculator) ||
+    calculator.category === "Freelance & Self-Employment" ||
+    calculator.category === "Everyday Utilities & Savings" ||
+    calculator.category === "Real Estate & Housing" ||
+    calculator.category === "Canadian Taxes" ||
+    calculator.category === "BC Local Taxes" ||
+    calculator.category === HEALTH_DISPLAY_CATEGORY ||
+    calculator.category === AFFORDABILITY_DISPLAY_CATEGORY
+  );
+}
 
 export function CalculatorWorkspace({
   calculator,
@@ -135,6 +163,14 @@ function StandardCalculatorWorkspace({
 
   return (
     <div className="space-y-6">
+      {usesStickyMemory(calculator) ? (
+        <ToolMemoryBar
+          slug={calculator.slug}
+          values={values}
+          onRestore={(next) => setValues((prev) => ({ ...prev, ...next }))}
+        />
+      ) : null}
+
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
           <h2 className="mb-5 text-lg font-semibold">Inputs</h2>
@@ -272,6 +308,69 @@ function StandardCalculatorWorkspace({
 
       {calculator.category === CRYPTO_CATEGORY ? (
         <CryptoProWorkspace calculator={calculator} values={values} />
+      ) : null}
+
+      {/* Additive Investing enhancements — base form & formulas unchanged */}
+      {isInvestingCalculator(calculator) ? (
+        <InvestingEnhancements
+          calculator={calculator}
+          values={values}
+          result={result}
+          onApplyWhatIf={setValues}
+        />
+      ) : null}
+
+      {calculator.category === "Freelance & Self-Employment" ? (
+        <FreelanceEnhancements
+          calculator={calculator}
+          values={values}
+          result={result}
+          onApplyRate={(patch) =>
+            setValues((prev) => ({ ...prev, ...patch }))
+          }
+        />
+      ) : null}
+
+      {calculator.category === "Everyday Utilities & Savings" &&
+      calculator.formulaType !== "expenseTracker" ? (
+        <UtilitiesEnhancements
+          calculator={calculator}
+          values={values}
+          result={result}
+        />
+      ) : null}
+
+      {calculator.category === "Real Estate & Housing" ? (
+        <RealEstateEnhancements
+          calculator={calculator}
+          values={values}
+          result={result}
+          onLoadScenario={(next) =>
+            setValues((prev) => ({ ...prev, ...next }))
+          }
+        />
+      ) : null}
+
+      {calculator.category === "Canadian Taxes" ||
+      calculator.category === "BC Local Taxes" ? (
+        <TaxEnhancements
+          calculator={calculator}
+          values={values}
+          result={result}
+        />
+      ) : null}
+
+      {calculator.category === HEALTH_DISPLAY_CATEGORY ? (
+        <HealthEnhancements calculator={calculator} result={result} />
+      ) : null}
+
+      {calculator.category === AFFORDABILITY_DISPLAY_CATEGORY ? (
+        <ProgressSnapshotsPanel
+          slug={calculator.slug}
+          result={result}
+          title="Affordability check-ins"
+          disclaimer="Snapshots stay on this device. Recalculate when rates or income change. Not lending approval or financial advice."
+        />
       ) : null}
 
       <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">

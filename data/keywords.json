@@ -926,6 +926,14 @@
       {
         "question": "Is this compound interest calculator free and private?",
         "answer": "Yes. It runs in your browser with no sign up. Figures are planning estimates, not personalized financial advice."
+      },
+      {
+        "question": "What is a good annual return assumption for compound interest?",
+        "answer": "Many long-term plans stress-test 5–8% nominal for diversified portfolios. Use the what-if return slider to compare conservative and optimistic cases—higher rates shrink timelines but raise shortfall risk."
+      },
+      {
+        "question": "How do investment fees affect compound growth?",
+        "answer": "Fees reduce your effective return every year, which compounds into large dollar gaps. Pair this tool with the fee impact calculator to see MER drag on the same contribution plan."
       }
     ],
     "variations": [
@@ -984,6 +992,14 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "What is a FIRE number and how do you calculate it?",
+        "answer": "A common FIRE number is annual expenses divided by a withdrawal rate (often 3–4%). Example: $40,000 spending at 4% implies a $1,000,000 portfolio. This calculator estimates years to reach that target from your savings and return assumptions."
+      },
+      {
+        "question": "Is the 4% rule safe for early retirement?",
+        "answer": "The 4% rule is a planning heuristic from historical US market data, not a guarantee—especially for retirements lasting 40+ years. Stress-test 3–3.5% withdrawal rates in the what-if workspace for a more conservative FIRE date."
       }
     ]
   },
@@ -1026,6 +1042,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "How much do I need to retire comfortably?",
+        "answer": "Start from desired annual income, subtract other income (pensions, Social Security), then divide the gap by a withdrawal rate. This tool turns that into a portfolio target and required monthly savings."
       }
     ]
   },
@@ -1068,6 +1088,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "How does an employer 401(k) match affect growth?",
+        "answer": "Employer match is effectively free contribution rate on top of your own deferrals. Model employee contribution plus match here, then check fee drag so match gains are not eroded by high MERs."
       }
     ]
   },
@@ -1110,6 +1134,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "Do reinvested dividends beat price growth alone?",
+        "answer": "DRIP reinvests dividends into more shares, so compounding works on a larger share count. Results still depend on yield, dividend growth, and price return—taxes can reduce real-world DRIP benefits in taxable accounts."
       }
     ]
   },
@@ -1152,6 +1180,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "Why adjust investment projections for inflation?",
+        "answer": "Nominal balances overstate future lifestyle capacity. A portfolio that looks large in 20 years may buy far less after inflation—use inflation-realist views alongside growth tools when planning retirement spending."
       }
     ]
   },
@@ -1194,6 +1226,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "How often should I update my net worth?",
+        "answer": "Monthly or quarterly is enough for most households. Track assets minus liabilities to see progress toward FIRE or debt-free goals without obsessing over daily market noise."
       }
     ]
   },
@@ -1236,6 +1272,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "How accurate is the Rule of 72 for doubling time?",
+        "answer": "Years to double ≈ 72 ÷ annual return % is a fast approximation for moderate rates. It ignores contributions, taxes, and fees—use compound interest and fee tools for fuller plans."
       }
     ]
   },
@@ -1278,6 +1318,10 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "Is dollar-cost averaging better than lump-sum investing?",
+        "answer": "Lump sum often wins if markets rise on average because cash is invested sooner. DCA can still be right when you invest from each paycheck or want to reduce timing regret—compare both with matching capital."
       }
     ]
   },
@@ -1320,6 +1364,14 @@
       {
         "question": "Do I need to upload data to use this calculator?",
         "answer": "No upload is required for standard calculations—inputs stay in your browser session."
+      },
+      {
+        "question": "How much does a 1% MER cost over 20 years?",
+        "answer": "It depends on balance, contributions, and gross return, but a 1% annual fee can cost six figures on large portfolios because the drag compounds. Enter your numbers to see exact dollars lost versus a lower-fee path."
+      },
+      {
+        "question": "Should I switch to low-cost index funds to reduce fees?",
+        "answer": "Lower fees improve the odds of keeping more of the market return when holdings are otherwise similar. Compare your current MER with a low-cost alternative using the fee slider before you decide."
       }
     ]
   },

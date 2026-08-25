@@ -166,7 +166,7 @@ export function mergeToolFaqs(
     if (seen.has(key)) continue;
     seen.add(key);
     unique.push(faq);
-    if (unique.length >= 8) break;
+    if (unique.length >= 12) break;
   }
   return unique;
 }

@@ -24,6 +24,10 @@ import {
   revokeObjectUrl,
   triggerDownload,
 } from "@/lib/converter-utils";
+import {
+  ConverterPrivacyRecent,
+  recordConverterJob,
+} from "@/components/converters/ConverterPrivacyRecent";
 
 const MAX_SIZE = 100 * 1024 * 1024; // 100 MB soft soft limit for WASM memory
 
@@ -166,6 +170,11 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
         const next = await convertMediaFile(file, direction.from, direction.to);
         setResult(next);
         setProcessPercent(100);
+        recordConverterJob(
+          slug,
+          file.name,
+          `${direction.from} → ${direction.to}`
+        );
         revokeObjectUrl(previewUrl);
         const url = URL.createObjectURL(next.blob);
         setPreviewUrl(url);
@@ -215,6 +224,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
 
   return (
     <div className="space-y-5">
+      <ConverterPrivacyRecent toolSlug={slug} />
       <WasmLoadingCard state={loadState} />
 
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">

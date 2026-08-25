@@ -7,6 +7,9 @@ import {
 import type { AffordabilityPageConfig } from "@/lib/affordability/types";
 import { StrategicInsightsPanel } from "@/components/strategic/StrategicInsightsPanel";
 import { buildAffordabilityInsightsConfig } from "@/lib/strategicInsights";
+import { ToolMemoryBar } from "@/components/shared/ToolMemoryBar";
+import { ProgressSnapshotsPanel } from "@/components/health/HealthEnhancements";
+import type { CalcResult } from "@/lib/types";
 
 function initialValues(page: AffordabilityPageConfig): Record<string, number> {
   const values: Record<string, number> = { ...page.presets };
@@ -58,6 +61,12 @@ export function AffordabilityEngine({
 
   return (
     <div className="space-y-6">
+      <ToolMemoryBar
+        slug={page.slug}
+        values={values}
+        onRestore={(next) => setValues((prev) => ({ ...prev, ...next }))}
+      />
+
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-2">
@@ -193,6 +202,20 @@ export function AffordabilityEngine({
       {strategicConfig ? (
         <StrategicInsightsPanel config={strategicConfig} />
       ) : null}
+
+      <ProgressSnapshotsPanel
+        slug={page.slug}
+        result={
+          {
+            primary: result.primary,
+            secondary: result.secondary,
+            featured: result.featured,
+            insight: result.insight,
+          } satisfies CalcResult
+        }
+        title="Affordability check-ins"
+        disclaimer="Snapshots stay on this device. Recalculate when rates or income change. Not lending approval or financial advice."
+      />
     </div>
   );
 }
