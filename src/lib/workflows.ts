@@ -94,13 +94,12 @@ export const WORKFLOWS: Workflow[] = [
     title: "Go freelance — rate, fees, and taxes",
     eyebrow: "Freelance workflow",
     description:
-      "Price after marketplace fees, set a sustainable hourly rate, then estimate self-employment tax so quotes still hit take-home.",
+      "Price after marketplace fees with a fee waterfall, set a sustainable hourly rate, then estimate self-employment tax so quotes still hit take-home.",
     steps: [
       {
-        toolSlug: "freelance-rate-after-platform-fees-calculator",
-        label: "Rate after platform fees",
-        verdict: "Marketplace cut first — then decide if the gig is worth it.",
-        preset: { grossRate: 75, feePercent: 20, hours: 10 },
+        toolSlug: "freelance-true-rate-planner",
+        label: "True rate after fees",
+        verdict: "Invoice enough after platform, processor, FX, and tax.",
       },
       {
         toolSlug: "freelance-hourly-rate-calculator",
@@ -116,6 +115,66 @@ export const WORKFLOWS: Workflow[] = [
         toolSlug: "side-hustle-net-profit-calculator",
         label: "Side hustle net profit",
         verdict: "See true profit after costs — not just revenue.",
+      },
+    ],
+  },
+  {
+    slug: "fitness-phase",
+    shortTitle: "Fitness phase",
+    title: "Fitness phase — bulk, cut, reverse, recomp",
+    eyebrow: "Fitness workflow",
+    description:
+      "Set phase calories and macros, reverse diet out of a cut, then recomp near maintenance with volume-aware protein.",
+    steps: [
+      {
+        toolSlug: "bulk-cut-macro-planner",
+        label: "Bulk & cut macros",
+        verdict: "Pick cut or lean bulk with experience-safe weekly rates.",
+      },
+      {
+        toolSlug: "reverse-diet-planner",
+        label: "Reverse diet",
+        verdict: "Raise calories with adaptive bumps when the scale still drops.",
+      },
+      {
+        toolSlug: "body-recomposition-planner",
+        label: "Body recomp",
+        verdict: "Cap deficit by training volume so recovery keeps up.",
+      },
+      {
+        toolSlug: "tdee-calculator-weight-loss",
+        label: "TDEE check",
+        verdict: "Re-check maintenance before the next phase.",
+      },
+    ],
+  },
+  {
+    slug: "money-runway",
+    shortTitle: "Money runway",
+    title: "Money runway — emergency fund to FIRE",
+    eyebrow: "Money workflow",
+    description:
+      "Build runway, pause subscriptions, prioritize goals, then project financial freedom milestones.",
+    steps: [
+      {
+        toolSlug: "emergency-fund-runway-planner",
+        label: "Emergency fund",
+        verdict: "Stress-test job loss before you chase returns.",
+      },
+      {
+        toolSlug: "subscription-runway-audit",
+        label: "Subscription audit",
+        verdict: "Pause drains and reclaim months of runway.",
+      },
+      {
+        toolSlug: "multi-goal-savings-planner",
+        label: "Multi-goal savings",
+        verdict: "Choose sequential vs split to hit every deadline.",
+      },
+      {
+        toolSlug: "financial-freedom-property-planner",
+        label: "FIRE & property",
+        verdict: "Map milestones once the foundation is solid.",
       },
     ],
   },

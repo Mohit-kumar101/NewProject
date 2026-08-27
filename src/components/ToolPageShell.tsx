@@ -10,6 +10,10 @@ import { ToolTermsGuide } from "@/components/ToolTermsGuide";
 import { ToolSearchFooter } from "@/components/ToolSearchFooter";
 import { LongTailKeywordContent } from "@/components/seo/LongTailKeywordContent";
 import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
+import { ClusterNextSteps } from "@/components/growth/ClusterNextSteps";
+import { EmailCapture } from "@/components/growth/EmailCapture";
+import { AffiliateSlot } from "@/components/growth/AffiliateSlot";
+import { getGrowthClusterForSlug } from "@/lib/growthClusters";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
 import { getRelatedCalculators } from "@/lib/calculators";
 import {
@@ -187,6 +191,27 @@ export function ToolPageShell({
       </section>
 
       <RelatedCalculators tools={related} category={calculator.category} />
+
+      <ClusterNextSteps toolSlug={calculator.slug} />
+
+      {(() => {
+        const cluster = getGrowthClusterForSlug(calculator.slug);
+        return cluster ? (
+          <>
+            <AffiliateSlot cluster={cluster.id} />
+            <EmailCapture
+              source={`tool-${calculator.slug}`}
+              headline={
+                cluster.id === "fitness"
+                  ? "Email me fitness planner tips"
+                  : "Email me money milestone tips"
+              }
+            />
+          </>
+        ) : (
+          <EmailCapture source={`tool-${calculator.slug}`} />
+        );
+      })()}
 
       <ToolSearchFooter
         currentCategory={calculator.category}

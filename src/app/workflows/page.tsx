@@ -7,14 +7,15 @@ import { WORKFLOWS, getWorkflowHref } from "@/lib/workflows";
 export const metadata: Metadata = buildPageMetadata({
   title: "Workflows",
   description:
-    "Guided multi-tool journeys for buying a home, killing debt, going freelance, and converting files privately — free on CalculioHub.",
+    "Guided multi-tool journeys for fitness phases, money runway, buying a home, killing debt, freelancing, and converting files privately — free on CalculioHub.",
   path: "/workflows",
   keywords: [
     "calculator workflow",
+    "fitness phase planner",
+    "emergency fund runway",
     "home buying calculator",
     "debt payoff plan",
     "freelance rate guide",
-    "private file converter",
     SITE_NAME,
   ],
 });

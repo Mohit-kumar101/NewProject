@@ -347,15 +347,28 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                     )}
                   </ul>
                   <p className="mx-auto mt-6 max-w-lg text-sm text-[var(--muted)]">
-                    Or start a guided journey:{" "}
+                    Start with{" "}
+                    <Link
+                      href="/hubs/fitness-planners"
+                      className="font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      Fitness planners
+                    </Link>{" "}
+                    or{" "}
+                    <Link
+                      href="/hubs/money-milestones"
+                      className="font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      Money milestones
+                    </Link>
+                    — or open{" "}
                     <Link
                       href="/workflows"
                       className="font-semibold text-[var(--accent)] hover:underline"
                     >
                       Workflows
                     </Link>{" "}
-                    for buying a home, killing debt, freelancing, and private
-                    converts.
+                    for guided journeys.
                   </p>
                 </>
               )}
@@ -425,7 +438,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
 
             {splitActive && (
               <div className="mt-4 flex flex-wrap gap-2">
-                {["pdf", "heic", "mp3", "json", "mortgage", "GPA"].map(
+                {["macros", "emergency fund", "freelance", "pdf", "heic", "FIRE"].map(
                   (chip) => (
                     <button
                       key={chip}

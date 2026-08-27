@@ -1,4 +1,5 @@
 import { HomeExplorer } from "@/components/HomeExplorer";
+import { FeaturedPlanners } from "@/components/growth/FeaturedPlanners";
 import type { Metadata } from "next";
 import { calculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { buildPageMetadata } from "@/lib/pageMetadata";
@@ -6,14 +7,15 @@ import { buildPageMetadata } from "@/lib/pageMetadata";
 const homeMeta = buildPageMetadata({
   title: "Free Calculators & Converters",
   description:
-    "Free PDF, HEIC, video, and data converters plus finance and crypto calculators. No subscription, no watermark — files stay in your browser.",
+    "Free fitness and money planners, PDF/HEIC/video converters, and finance calculators. No subscription, no watermark — private in your browser.",
   path: "/",
   keywords: [
-    "free file converter",
     "free calculator",
+    "bulk cut macro calculator",
+    "emergency fund calculator",
+    "free file converter",
     "PDF converter",
-    "HEIC to JPG",
-    "crypto calculator",
+    "freelance rate calculator",
     SITE_NAME,
   ],
   ogTitle: "CalculioHub — Free Calculators & Converters",
@@ -34,7 +36,7 @@ export default function HomePage() {
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "Free PDF, HEIC, video, and data converters plus finance and crypto calculators. Private, in-browser, no paywall.",
+      "Free fitness and money planners plus PDF, HEIC, video, and data converters. Private, in-browser, no paywall.",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -84,6 +86,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
       <HomeExplorer calculators={calculators} />
+      <FeaturedPlanners />
     </>
   );
 }

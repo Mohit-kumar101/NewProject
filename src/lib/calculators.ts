@@ -33,6 +33,7 @@ import {
   SPECIALIZED_PETS_CATEGORY,
 } from "@/lib/categoryPaths";
 import { pseoToolsAsCalculators } from "@/lib/pseo/calculatorsData";
+import { getClusterMateSlugs } from "@/lib/growthClusters";
 
 export const calculators: Calculator[] = [
   ...(calculatorsData as Calculator[]),
@@ -200,14 +201,14 @@ const BC_TAX_RIGHT_RAIL_SLUGS = [
 ] as const;
 
 const DEFAULT_SPOTLIGHT_SLUGS = [
-  "scientific-calculator",
+  "bulk-cut-macro-planner",
+  "reverse-diet-planner",
+  "emergency-fund-runway-planner",
+  "multi-goal-savings-planner",
+  "freelance-true-rate-planner",
+  "financial-freedom-property-planner",
   "compound-interest-calculator",
-  "expense-tracker",
-  "ai-nutrition-calorie-calculator",
-  "pdf-text-converter",
-  "mp4-mp3-converter",
-  "json-csv-converter",
-  "png-jpg-converter",
+  "scientific-calculator",
 ] as const;
 
 export function isBcTaxCalculator(tool: Pick<Calculator, "slug" | "category">): boolean {
@@ -274,6 +275,19 @@ export function getRelatedCalculators(
   calculator: Calculator,
   limit = 6
 ): Calculator[] {
+  const target = Math.min(Math.max(limit, 4), 6);
+  const seen = new Set<string>([calculator.slug]);
+  const out: Calculator[] = [];
+
+  // Prefer growth-cluster mates for stronger internal SEO
+  for (const slug of getClusterMateSlugs(calculator.slug, target)) {
+    const tool = getCalculatorBySlug(slug);
+    if (!tool || seen.has(tool.slug)) continue;
+    seen.add(tool.slug);
+    out.push(tool);
+    if (out.length >= target) return out;
+  }
+
   const stop = new Set([
     "and",
     "the",
@@ -292,7 +306,7 @@ export function getRelatedCalculators(
   ].filter((w) => w.length > 2 && !stop.has(w));
 
   const sameCategory = calculators.filter(
-    (c) => c.category === calculator.category && c.slug !== calculator.slug
+    (c) => c.category === calculator.category && !seen.has(c.slug)
   );
 
   const scored = sameCategory
@@ -306,9 +320,11 @@ export function getRelatedCalculators(
     })
     .sort((a, b) => b.score - a.score || a.c.title.localeCompare(b.c.title));
 
-  // Prefer 6 related tools; always at least 4 when available
-  const target = Math.min(Math.max(limit, 4), 6);
-  return scored.slice(0, target).map((s) => s.c);
+  for (const { c } of scored) {
+    if (out.length >= target) break;
+    out.push(c);
+  }
+  return out;
 }
 
 export function searchCalculators(query: string): Calculator[] {

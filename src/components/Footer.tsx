@@ -11,15 +11,15 @@ const LEGAL_LINKS = [
 
 const PRODUCT_LINKS = [
   { href: "/tools", label: "All Tools" },
+  { href: "/hubs/fitness-planners", label: "Fitness Planners" },
+  { href: "/hubs/money-milestones", label: "Money Milestones" },
   { href: "/workflows", label: "Workflows" },
   { href: "/crypto", label: "Crypto Calculators" },
-  { href: "/workflows/buy-a-home", label: "Buy a Home Guide" },
-  { href: "/tools/scientific-calculator", label: "Scientific Calculator" },
-  { href: "/tools/pdf-text-converter", label: "PDF ↔ Text Converter" },
-  { href: "/tools/pdf-merge-split", label: "PDF Merge & Split" },
-  { href: "/tools/heic-jpg-converter", label: "HEIC to JPG" },
-  { href: "/tools/mp4-mp3-converter", label: "MP4 ↔ MP3 Converter" },
-  { href: "/tools/json-csv-converter", label: "JSON ↔ CSV Converter" },
+  { href: "/workflows/fitness-phase", label: "Fitness Phase Guide" },
+  { href: "/workflows/money-runway", label: "Money Runway Guide" },
+  { href: "/tools/health-fitness-and-wellness/bulk-cut-macro-planner", label: "Bulk & Cut Macros" },
+  { href: "/tools/emergency-fund-runway-planner", label: "Emergency Fund Runway" },
+  { href: "/tools/freelance-true-rate-planner", label: "Freelance True Rate" },
 ] as const;
 
 function categoryHref(category: string) {
@@ -35,8 +35,8 @@ export function Footer() {
           <Logo size="sm" />
           <p className="max-w-sm text-sm leading-relaxed text-[var(--muted)]">
             The free alternative to paid converters. CalculioHub gives you
-            private PDF, image, and media tools plus finance and crypto
-            calculators — no subscription, no watermark.
+            private PDF, image, and media tools plus fitness and money
+            planners — no subscription, no watermark.
           </p>
         </div>
         <div>
