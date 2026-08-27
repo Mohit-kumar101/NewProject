@@ -42,6 +42,16 @@ import {
   NICHE50_TOOLS,
   getNiche50ToolBySlug,
 } from "@/lib/hubs/niche50Pack";
+import {
+  ADVANCED_TOOLS,
+  ADVANCED_CATEGORY_PATH_SLUGS,
+  getAdvancedToolBySlug,
+} from "@/lib/hubs/advancedToolsPack";
+import {
+  GLOBAL_PLANNER_TOOLS,
+  GLOBAL_CATEGORY_PATH_SLUGS,
+  getGlobalPlannerBySlug,
+} from "@/lib/hubs/globalPlannersPack";
 
 export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...EXPANSION_READY_TOOLS,
@@ -50,6 +60,8 @@ export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...NICHE65_READY_TOOLS,
   ...HEALTH_READY_TOOLS,
   ...NICHE50_READY_TOOLS,
+  ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
+  ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
 ];
 
 export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
@@ -59,6 +71,8 @@ export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
   ...NICHE65_TOOLS,
   ...HEALTH_TOOLS,
   ...NICHE50_TOOLS,
+  ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
+  ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
 ];
 
 export const CATEGORY_PATH_SLUGS = new Set([
@@ -68,6 +82,8 @@ export const CATEGORY_PATH_SLUGS = new Set([
   ...NICHE65_SLUGS,
   ...HEALTH_SLUGS,
   ...NICHE50_SLUGS,
+  ...ADVANCED_CATEGORY_PATH_SLUGS,
+  ...GLOBAL_CATEGORY_PATH_SLUGS,
 ]);
 
 /** Prefer newer hub packs when slugs overlap. */
@@ -75,6 +91,8 @@ export function getCategoryPathToolBySlug(
   slug: string
 ): Calculator | undefined {
   return (
+    getGlobalPlannerBySlug(slug) ??
+    getAdvancedToolBySlug(slug) ??
     getNiche50ToolBySlug(slug) ??
     getHealthToolBySlug(slug) ??
     getNiche65ToolBySlug(slug) ??

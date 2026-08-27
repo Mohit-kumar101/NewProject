@@ -102,6 +102,30 @@ const LONG_TAIL_H1: Record<string, string> = {
     "How to Budget a Token Launch Including Gas and Liquidity",
   "bc-used-vehicle-private-sale-pst-calculator":
     "BC Used Car Private Sale PST Calculator (Black Book Value)",
+  "bulk-cut-macro-planner":
+    "How to Calculate Macros for Lean Bulk and Cutting",
+  "financial-freedom-property-planner":
+    "How to Calculate FIRE with Rental Property and Side Income",
+  "salary-ctc-in-hand-calculator":
+    "How to Calculate In-Hand Salary from CTC in India",
+  "reverse-diet-planner":
+    "How to Reverse Diet with Adaptive Weekly Calorie Bumps",
+  "emergency-fund-runway-planner":
+    "How to Calculate Emergency Fund Runway After a Job Loss",
+  "multi-goal-savings-planner":
+    "How to Prioritize Multiple Savings Goals Faster",
+  "body-recomposition-planner":
+    "How to Calculate Recomp Macros by Training Volume",
+  "freelance-true-rate-planner":
+    "How to Calculate Freelance Rates After Platform Fees",
+  "wedding-budget-cashflow-planner":
+    "How to Plan Wedding Deposits Without Cash Crunches",
+  "baby-first-year-cost-planner":
+    "How to Budget a Baby’s First Year Through Parental Leave",
+  "subscription-runway-audit":
+    "How Pausing Subscriptions Extends Emergency Runway",
+  "keep-lease-buy-car-tco":
+    "How to Compare Keep vs Lease vs Buy Car Costs by Year",
 };
 
 const LONG_TAIL_DESCRIPTIONS: Record<string, string> = {
@@ -141,6 +165,30 @@ const LONG_TAIL_DESCRIPTIONS: Record<string, string> = {
     "Budget gas, liquidity, and launch fees for a token. Free, instant, no email required.",
   "bc-used-vehicle-private-sale-pst-calculator":
     "Calculate BC private-sale used-car PST from Black Book vs price. Free, instant, no email required.",
+  "bulk-cut-macro-planner":
+    "Lean bulk and cutting macro calculator from TDEE and training experience. Free online tool, no sign up.",
+  "financial-freedom-property-planner":
+    "FIRE calculator with rental property, side income, and net worth milestones. Free, instant, no email required.",
+  "salary-ctc-in-hand-calculator":
+    "India CTC to in-hand salary with HRA, PF, and new vs old tax regime. Free online tool, no sign up.",
+  "reverse-diet-planner":
+    "Reverse diet planner with adaptive calorie bumps when weight still drops. Free online tool, no sign up.",
+  "emergency-fund-runway-planner":
+    "Emergency fund runway with job-loss and life-shock scenarios. Free, instant, no email required.",
+  "multi-goal-savings-planner":
+    "Multi-goal savings optimizer: sequential vs split funding. Free online tool, no sign up.",
+  "body-recomposition-planner":
+    "Recomp macros with training-volume deficit caps. Free online tool, no sign up.",
+  "freelance-true-rate-planner":
+    "Freelance rate after fees with reverse invoice waterfall. Free, instant, no email required.",
+  "wedding-budget-cashflow-planner":
+    "Wedding budget with deposit cashflow calendar. Free online tool, no sign up.",
+  "baby-first-year-cost-planner":
+    "Baby first-year costs with parental leave bridge. Free, instant, no email required.",
+  "subscription-runway-audit":
+    "Subscription audit that shows emergency runway gained. Free online tool, no sign up.",
+  "keep-lease-buy-car-tco":
+    "Keep vs lease vs buy car TCO matrix by year. Free online tool, no sign up.",
 };
 
 function defaultLongTailH1(calculator: Calculator): string {

@@ -14,6 +14,18 @@ import {
   isLoansDebtCategoryFormula,
 } from "@/components/LoansCategoryWorkspace";
 import { MonthlyMortgageWorkspace } from "@/components/realEstate/MonthlyMortgageWorkspace";
+import { BulkCutMacroPlanner } from "@/components/health/BulkCutMacroPlanner";
+import { FinancialFreedomPlanner } from "@/components/investing/FinancialFreedomPlanner";
+import { CtcSalaryCalculator } from "@/components/payroll/CtcSalaryCalculator";
+import { ReverseDietPlanner } from "@/components/global/ReverseDietPlanner";
+import { EmergencyFundPlanner } from "@/components/global/EmergencyFundPlanner";
+import { SavingsGoalPlanner } from "@/components/global/SavingsGoalPlanner";
+import { RecompPlanner } from "@/components/global/RecompPlanner";
+import { FreelanceTrueRatePlanner } from "@/components/global/FreelanceTrueRatePlanner";
+import { WeddingBudgetPlanner } from "@/components/global/WeddingBudgetPlanner";
+import { BabyCostPlanner } from "@/components/global/BabyCostPlanner";
+import { SubscriptionAuditPlanner } from "@/components/global/SubscriptionAuditPlanner";
+import { CarTcoPlanner } from "@/components/global/CarTcoPlanner";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
 import { CryptoProWorkspace } from "@/components/crypto/CryptoProWorkspace";
 import { CRYPTO_CATEGORY } from "@/lib/cryptoFormulas";
@@ -121,6 +133,52 @@ export function CalculatorWorkspace({
     return (
       <MonthlyMortgageWorkspace calculator={calculator} related={related} />
     );
+  }
+
+  if (calculator.formulaType === "bulkCutMacroPlanner") {
+    return <BulkCutMacroPlanner calculator={calculator} related={related} />;
+  }
+
+  if (calculator.formulaType === "financialFreedomPropertyPlanner") {
+    return (
+      <FinancialFreedomPlanner calculator={calculator} related={related} />
+    );
+  }
+
+  if (calculator.formulaType === "salaryCtcInHand") {
+    return <CtcSalaryCalculator calculator={calculator} related={related} />;
+  }
+
+  if (calculator.formulaType === "reverseDietPlanner") {
+    return <ReverseDietPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "emergencyFundRunwayPlanner") {
+    return <EmergencyFundPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "multiGoalSavingsPlanner") {
+    return <SavingsGoalPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "bodyRecompPlanner") {
+    return <RecompPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "freelanceTrueRatePlanner") {
+    return (
+      <FreelanceTrueRatePlanner calculator={calculator} related={related} />
+    );
+  }
+  if (calculator.formulaType === "weddingBudgetCashflowPlanner") {
+    return <WeddingBudgetPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "babyFirstYearCostPlanner") {
+    return <BabyCostPlanner calculator={calculator} related={related} />;
+  }
+  if (calculator.formulaType === "subscriptionRunwayAudit") {
+    return (
+      <SubscriptionAuditPlanner calculator={calculator} related={related} />
+    );
+  }
+  if (calculator.formulaType === "keepLeaseBuyCarTco") {
+    return <CarTcoPlanner calculator={calculator} related={related} />;
   }
 
   return (

@@ -14,6 +14,8 @@ import { NICHE65_READY_TOOLS } from "@/lib/hubs/niche65Pack";
 import { AFFORDABILITY_READY_TOOLS } from "@/lib/affordability/catalog";
 import { HEALTH_READY_TOOLS } from "@/lib/hubs/healthPack";
 import { NICHE50_READY_TOOLS } from "@/lib/hubs/niche50Pack";
+import { ADVANCED_TOOLS } from "@/lib/hubs/advancedToolsPack";
+import { GLOBAL_PLANNER_TOOLS } from "@/lib/hubs/globalPlannersPack";
 import {
   AFFORDABILITY_DISPLAY_CATEGORY,
   AFFORDABILITY_HUB_CATEGORIES,
@@ -42,6 +44,8 @@ export const calculators: Calculator[] = [
   ...AFFORDABILITY_READY_TOOLS,
   ...HEALTH_READY_TOOLS,
   ...NICHE50_READY_TOOLS,
+  ...ADVANCED_TOOLS,
+  ...GLOBAL_PLANNER_TOOLS,
 ];
 
 export const CATEGORIES = [

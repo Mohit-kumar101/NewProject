@@ -8096,5 +8096,669 @@
         "route": true
       }
     ]
+  },
+  "bulk-cut-macro-planner": {
+    "primary": "bulk and cut macro calculator",
+    "benefit": "Plan macros instantly",
+    "synonyms": [
+      "lean bulk macro calculator",
+      "cutting macro calculator",
+      "bodybuilding macro planner",
+      "TDEE bulk cut calculator",
+      "macro split calculator for cutting",
+      "calorie and macro planner for lifters"
+    ],
+    "useCases": [
+      "Set lean bulk calories and macros by training experience",
+      "Plan a cut with safe weekly fat-loss rate and protein targets",
+      "Compare maintenance, bulk, and cut phases before a training block",
+      "Cycle carbs on training vs rest days during a cut or bulk"
+    ],
+    "regions": [
+      "Metric (kg/cm) and imperial (lb/ft) body stats",
+      "Mifflin–St Jeor BMR used worldwide for calorie estimates"
+    ],
+    "longTails": [
+      "how to calculate macros for lean bulk",
+      "macro calculator for cutting bodybuilding",
+      "bulk cut diet planner online free",
+      "macro split by training experience calculator",
+      "weekly weight loss macro calculator TDEE"
+    ],
+    "features": [
+      "Experience-tier caps on safe bulk/cut weekly rates",
+      "Protein-forward macros with training-day carb cycling",
+      "Goal-weight timeline and phase projections",
+      "Instant browser calculation — no sign up"
+    ],
+    "faqs": [
+      {
+        "question": "How do I calculate macros for a lean bulk?",
+        "answer": "Enter sex, age, height, weight, activity, and training experience. The planner estimates TDEE, adds a controlled surplus from your weekly gain target, and sets protein high enough to support muscle gain while filling remaining calories with carbs and fat."
+      },
+      {
+        "question": "What is a safe cutting rate for macros?",
+        "answer": "Most lifters do well at 0.5–0.75 lb per week. Beginners are capped lower to protect muscle; the tool floors calories near 85% of BMR and warns on aggressive deficits."
+      },
+      {
+        "question": "Is this bulk and cut macro calculator free?",
+        "answer": "Yes. It runs instantly in your browser with no account. Results are planning estimates—not medical or dietitian advice."
+      },
+      {
+        "question": "How is this different from a basic TDEE calculator?",
+        "answer": "It combines TDEE with phase planning (bulk/cut/maintain), experience-based protein and rate caps, goal-weight timelines, and optional training-day carb shifts—built for lifters, not generic calorie counting."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "lean-bulk-macros",
+        "focus": "lean bulk macro calculator",
+        "benefit": "Plan bulk macros instantly",
+        "intro": "Calculate lean bulk calories and macros from TDEE, training experience, and weekly gain rate—protein-forward splits for muscle gain without excessive fat.",
+        "route": true
+      },
+      {
+        "slug": "cutting-macro-split",
+        "focus": "cutting macro calculator bodybuilding",
+        "benefit": "Plan cut macros instantly",
+        "intro": "Set cutting calories and macro splits from TDEE and a safe weekly fat-loss rate. Experience tiers cap aggressive deficits and keep protein high.",
+        "route": true
+      },
+      {
+        "slug": "no-sign-up",
+        "focus": "free bulk cut macro planner no sign up",
+        "benefit": "Plan macros instantly",
+        "intro": "Free bulk and cut macro planner with no sign up. Adjust phase, weekly rate, and training experience—results stay private in your browser.",
+        "route": true
+      }
+    ]
+  },
+  "financial-freedom-property-planner": {
+    "primary": "financial freedom calculator with rental property",
+    "benefit": "Map FIRE milestones",
+    "synonyms": [
+      "FIRE calculator with real estate",
+      "financial independence timeline calculator",
+      "net worth milestone planner",
+      "multi income stream FIRE calculator",
+      "rental property financial freedom planner",
+      "side income retirement calculator"
+    ],
+    "useCases": [
+      "Model salary plus side income growing toward FIRE",
+      "Add rental acquisitions and see net worth milestones year by year",
+      "Stress-test withdrawal rate, returns, and expense inflation",
+      "Compare discipline scenarios before increasing savings or buying property"
+    ],
+    "regions": [
+      "USD income and property inputs",
+      "Blended stock/bond return assumptions"
+    ],
+    "longTails": [
+      "how to calculate financial freedom with rental income",
+      "FIRE calculator with investment property",
+      "net worth projection calculator with milestones",
+      "financial freedom timeline with side hustle income",
+      "rental property FIRE planner free online"
+    ],
+    "features": [
+      "Year-by-year salary, side income, and expense inflation",
+      "Multiple rental properties with mortgage and cash flow",
+      "FIRE year, net worth chart, and milestone timeline",
+      "What-if discipline boost slider"
+    ],
+    "faqs": [
+      {
+        "question": "How do I calculate financial freedom with rental property?",
+        "answer": "Enter current investments, income streams, expenses, return assumptions, and each property’s purchase year, price, rent, and mortgage. The planner simulates yearly savings, portfolio growth, equity, and flags when you cross your FIRE number."
+      },
+      {
+        "question": "What withdrawal rate should I use for FIRE planning?",
+        "answer": "4% is a common starting point from historical US portfolio studies. Conservative planners often model 3–3.5% for longer retirements—adjust the slider to stress-test your timeline."
+      },
+      {
+        "question": "Can I include side income in a FIRE calculator?",
+        "answer": "Yes. Add annual side income and a growth rate. It compounds with salary toward savings each year until you reach your target portfolio."
+      },
+      {
+        "question": "Is this financial freedom planner free?",
+        "answer": "Yes. All projections run instantly in your browser with no sign up. Figures are educational—not financial advice."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "fire-rental-property",
+        "focus": "FIRE calculator with rental property",
+        "benefit": "Map FIRE milestones",
+        "intro": "Model financial independence with salary, side income, and rental acquisitions. See FIRE year, net worth milestones, and property equity on a year-by-year timeline.",
+        "route": true
+      },
+      {
+        "slug": "net-worth-milestones",
+        "focus": "net worth milestone planner calculator",
+        "benefit": "Track wealth milestones",
+        "intro": "Project net worth milestones ($250k–$2M), FIRE date, and rental equity with multi-stream income and inflation-adjusted expenses.",
+        "route": true
+      },
+      {
+        "slug": "side-income-fire",
+        "focus": "financial freedom calculator side income",
+        "benefit": "Map FIRE milestones",
+        "intro": "See how side hustle income accelerates FIRE when paired with primary salary, savings discipline, and optional rental property.",
+        "route": true
+      }
+    ]
+  },
+  "salary-ctc-in-hand-calculator": {
+    "primary": "CTC to in hand salary calculator India",
+    "benefit": "See net pay instantly",
+    "synonyms": [
+      "in hand salary calculator India",
+      "salary breakdown calculator CTC HRA PF",
+      "monthly in hand from CTC calculator",
+      "new vs old tax regime salary calculator",
+      "job offer CTC calculator India",
+      "take home salary calculator after tax India"
+    ],
+    "useCases": [
+      "Compare in-hand pay before accepting a job offer",
+      "Break down CTC into basic, HRA, allowances, and PF",
+      "Choose new vs old tax regime with HRA and 80C modeled",
+      "Negotiate higher basic and see monthly in-hand impact"
+    ],
+    "regions": [
+      "India FY 2025-26 income tax slabs",
+      "Metro vs non-metro HRA exemption rules",
+      "Employee PF capped at ₹1,800/month on basic"
+    ],
+    "longTails": [
+      "how to calculate in hand salary from CTC India",
+      "CTC to take home salary calculator with HRA and PF",
+      "salary structure calculator for job negotiation India",
+      "new tax regime vs old regime in hand salary",
+      "18 lakh CTC in hand monthly calculator"
+    ],
+    "features": [
+      "CTC split into basic, HRA, special allowance, variable pay",
+      "Employee PF, professional tax, and slab-wise income tax",
+      "Old vs new regime comparison on one screen",
+      "Negotiation mode — raise basic % and compare in-hand"
+    ],
+    "faqs": [
+      {
+        "question": "How do I calculate in-hand salary from CTC in India?",
+        "answer": "Enter annual CTC, basic and HRA percentages, variable pay, rent (for old regime HRA), and deductions. The calculator derives gross, subtracts employee PF and income tax under your chosen regime, and shows monthly in-hand."
+      },
+      {
+        "question": "What is the difference between CTC and in-hand salary?",
+        "answer": "CTC is total employer cost—including employer PF and gratuity. In-hand is what lands in your bank after employee PF, TDS/income tax, and professional tax on your gross components."
+      },
+      {
+        "question": "Should I choose new or old tax regime for higher in-hand?",
+        "answer": "New regime uses lower slabs and a ₹75,000 standard deduction but fewer deductions. Old regime helps if you claim HRA exemption, 80C, and 80D. The calculator compares both side by side for your offer."
+      },
+      {
+        "question": "How does increasing basic salary affect in-hand pay?",
+        "answer": "Higher basic raises HRA and PF (which reduces taxable income in old regime) but also increases PF outflow. Use negotiation mode to see whether a basic bump actually increases monthly take-home."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "ctc-breakdown-india",
+        "focus": "CTC salary breakdown calculator India HRA PF",
+        "benefit": "See net pay instantly",
+        "intro": "Break down India CTC into basic, HRA, special allowance, employee PF, and tax. See annual and monthly in-hand before you sign an offer letter.",
+        "route": true
+      },
+      {
+        "slug": "new-vs-old-tax-regime",
+        "focus": "new vs old tax regime in hand salary calculator",
+        "benefit": "Compare regimes instantly",
+        "intro": "Compare new vs old tax regime in-hand salary on the same CTC. Model HRA, 80C, and 80D under old regime against new regime slabs.",
+        "route": true
+      },
+      {
+        "slug": "job-offer-negotiation",
+        "focus": "job offer salary calculator India CTC negotiation",
+        "benefit": "Negotiate with numbers",
+        "intro": "Use this job offer CTC calculator to see monthly in-hand, compare tax regimes, and test raising basic before salary negotiation.",
+        "route": true
+      }
+    ]
+  },
+  "reverse-diet-planner": {
+    "primary": "reverse diet calculator",
+    "benefit": "Adapt calories weekly",
+    "synonyms": [
+      "reverse diet planner",
+      "maintenance calories after cut",
+      "adaptive calorie increase calculator"
+    ],
+    "useCases": [
+      "Raise calories after a cut without rebound",
+      "Adapt weekly bumps when weight still drops",
+      "Plan weeks to maintenance"
+    ],
+    "regions": [
+      "Metric body weight (kg)",
+      "Any calorie unit system"
+    ],
+    "longTails": [
+      "how to reverse diet after a cut",
+      "reverse diet calorie increase schedule",
+      "free reverse diet planner no sign up"
+    ],
+    "features": [
+      "Adaptive bump shrinks if scale still dropping",
+      "Week-by-week calorie table",
+      "Instant browser calculation"
+    ],
+    "faqs": [
+      {
+        "question": "How does a reverse diet calculator work?",
+        "answer": "It raises calories weekly from your cut intake toward maintenance. If weight is still dropping too fast, this planner shrinks the next bump automatically."
+      },
+      {
+        "question": "Is this reverse diet tool free?",
+        "answer": "Yes. It runs in your browser with no sign up. Estimates only—not medical advice."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "adaptive-bumps",
+        "focus": "adaptive reverse diet calorie calculator",
+        "benefit": "Adapt calories weekly",
+        "intro": "Plan reverse diet calories with adaptive weekly bumps that shrink when weight is still dropping.",
+        "route": true
+      },
+      {
+        "slug": "no-sign-up",
+        "focus": "free reverse diet planner no sign up",
+        "benefit": "Adapt calories weekly",
+        "intro": "Free reverse diet planner with no sign up. Private, instant calorie schedule in your browser.",
+        "route": true
+      }
+    ]
+  },
+  "emergency-fund-runway-planner": {
+    "primary": "emergency fund calculator",
+    "benefit": "Stress-test runway",
+    "synonyms": [
+      "financial runway calculator",
+      "months of expenses calculator",
+      "job loss emergency fund"
+    ],
+    "useCases": [
+      "Measure months of expenses saved",
+      "Simulate job loss or medical bills",
+      "Plan months to a 3–6 month target"
+    ],
+    "regions": [
+      "Any currency",
+      "User-defined expense and income amounts"
+    ],
+    "longTails": [
+      "how many months of expenses should I save",
+      "emergency fund after job loss calculator",
+      "financial runway stress test"
+    ],
+    "features": [
+      "Life-shock simulator",
+      "Runway chart",
+      "Months-to-target estimate"
+    ],
+    "faqs": [
+      {
+        "question": "How do I calculate emergency fund runway?",
+        "answer": "Divide liquid savings by monthly expenses. This tool also applies shocks like job loss to show remaining months."
+      },
+      {
+        "question": "Is the emergency fund calculator free?",
+        "answer": "Yes. Instant results in your browser with no account."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "job-loss-shock",
+        "focus": "job loss emergency fund runway calculator",
+        "benefit": "Stress-test runway",
+        "intro": "See how job loss changes your emergency fund runway month by month.",
+        "route": true
+      },
+      {
+        "slug": "months-of-expenses",
+        "focus": "how many months of expenses calculator",
+        "benefit": "Stress-test runway",
+        "intro": "Calculate months of expenses covered and plan to a 3–6–12 month target.",
+        "route": true
+      }
+    ]
+  },
+  "multi-goal-savings-planner": {
+    "primary": "savings goal calculator",
+    "benefit": "Hit every deadline",
+    "synonyms": [
+      "multiple savings goals calculator",
+      "savings timeline calculator",
+      "how much to save per month"
+    ],
+    "useCases": [
+      "Compare sequential vs split funding",
+      "Prioritize trip, emergency, and purchase goals",
+      "Find months to finish all goals"
+    ],
+    "regions": [
+      "Any currency"
+    ],
+    "longTails": [
+      "how much to save each month for multiple goals",
+      "prioritize savings goals calculator",
+      "sequential vs split savings plan"
+    ],
+    "features": [
+      "Multi-goal optimizer",
+      "On-time / late flags",
+      "Recommended funding mode"
+    ],
+    "faqs": [
+      {
+        "question": "Should I save for one goal at a time?",
+        "answer": "Sequential works when priorities differ. Split helps with tight parallel deadlines. This planner compares both."
+      },
+      {
+        "question": "Is the savings goal calculator free?",
+        "answer": "Yes. No sign up—results update instantly."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "sequential-vs-split",
+        "focus": "sequential vs split savings goals calculator",
+        "benefit": "Hit every deadline",
+        "intro": "Compare sequential and split funding to finish every savings goal on time.",
+        "route": true
+      }
+    ]
+  },
+  "body-recomposition-planner": {
+    "primary": "body recomposition calculator",
+    "benefit": "Set recomp macros",
+    "synonyms": [
+      "recomp macros",
+      "recomposition calorie calculator",
+      "maintain weight lose fat gain muscle"
+    ],
+    "useCases": [
+      "Set calories near maintenance for recomp",
+      "Raise protein with training volume",
+      "Cap deficit when hard sets are high"
+    ],
+    "regions": [
+      "Metric (kg/cm)",
+      "Mifflin–St Jeor BMR"
+    ],
+    "longTails": [
+      "body recomposition macro calculator",
+      "recomp calories by training volume",
+      "high protein recomp planner"
+    ],
+    "features": [
+      "Volume-aware deficit cap",
+      "Training vs rest carbs",
+      "Instant macros"
+    ],
+    "faqs": [
+      {
+        "question": "How do I calculate recomp macros?",
+        "answer": "Estimate TDEE, apply a small volume-capped deficit, set protein by weekly hard sets, then fill carbs and fat."
+      },
+      {
+        "question": "Is this recomp calculator free?",
+        "answer": "Yes. Free, private, and instant—not medical advice."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "volume-deficit-cap",
+        "focus": "recomp macros by training volume",
+        "benefit": "Set recomp macros",
+        "intro": "Body recomposition macros with a deficit cap that shrinks as weekly hard sets rise.",
+        "route": true
+      }
+    ]
+  },
+  "freelance-true-rate-planner": {
+    "primary": "freelance hourly rate calculator",
+    "benefit": "Invoice the right amount",
+    "synonyms": [
+      "freelancer take home calculator",
+      "how much to charge after fees",
+      "platform fee rate calculator"
+    ],
+    "useCases": [
+      "Back-solve invoice from desired net",
+      "Stack platform and processor fees",
+      "Account for non-billable time"
+    ],
+    "regions": [
+      "Any currency",
+      "User-defined tax and fee percentages"
+    ],
+    "longTails": [
+      "freelance rate after platform fees",
+      "invoice amount to hit net income",
+      "freelancer fee waterfall calculator"
+    ],
+    "features": [
+      "Fee waterfall",
+      "Reverse invoice math",
+      "True productive hourly rate"
+    ],
+    "faqs": [
+      {
+        "question": "How do I set a freelance rate after fees?",
+        "answer": "Enter the net you need, then reverse through tax, FX, processor, and platform fees to get the invoice and hourly rate."
+      },
+      {
+        "question": "Is this freelance rate calculator free?",
+        "answer": "Yes. Instant browser math with no sign up."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "fee-waterfall",
+        "focus": "freelance fee waterfall rate calculator",
+        "benefit": "Invoice the right amount",
+        "intro": "See platform, processor, FX, and tax deductions in a waterfall, then invoice enough to hit your net.",
+        "route": true
+      }
+    ]
+  },
+  "wedding-budget-cashflow-planner": {
+    "primary": "wedding budget calculator",
+    "benefit": "Avoid cash crunches",
+    "synonyms": [
+      "wedding cost breakdown",
+      "wedding deposit planner",
+      "per guest wedding cost calculator"
+    ],
+    "useCases": [
+      "Plan venue and catering deposits",
+      "Track savings vs payment months",
+      "Spot shortfall months early"
+    ],
+    "regions": [
+      "Any currency"
+    ],
+    "longTails": [
+      "wedding deposit cashflow calendar",
+      "wedding budget vs savings timeline",
+      "per guest wedding cost free calculator"
+    ],
+    "features": [
+      "Deposit cashflow calendar",
+      "Line-item budget",
+      "Crunch-month alerts"
+    ],
+    "faqs": [
+      {
+        "question": "How do I plan wedding deposits?",
+        "answer": "Assign each line item a deposit % and month, plus a final month. The calendar compares outflows to your savings plan."
+      },
+      {
+        "question": "Is the wedding budget calculator free?",
+        "answer": "Yes. No sign up required."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "deposit-calendar",
+        "focus": "wedding deposit cashflow calculator",
+        "benefit": "Avoid cash crunches",
+        "intro": "Map wedding deposits and finals against savings to catch cash crunches before they happen.",
+        "route": true
+      }
+    ]
+  },
+  "baby-first-year-cost-planner": {
+    "primary": "cost of baby first year calculator",
+    "benefit": "Find the tightest month",
+    "synonyms": [
+      "newborn budget planner",
+      "parental leave budget calculator",
+      "baby expense calculator"
+    ],
+    "useCases": [
+      "Estimate first-year baby costs",
+      "Model leave income drop",
+      "See when childcare starts"
+    ],
+    "regions": [
+      "Any currency",
+      "User-defined leave pay %"
+    ],
+    "longTails": [
+      "baby first year cost with parental leave",
+      "childcare start month budget",
+      "newborn expense timeline calculator"
+    ],
+    "features": [
+      "Leave→childcare bridge",
+      "Worst-month highlight",
+      "12-month table"
+    ],
+    "faqs": [
+      {
+        "question": "How do I budget for a baby’s first year?",
+        "answer": "Add one-time and monthly costs, set leave pay %, and when childcare starts. The planner shows monthly net and the worst cash month."
+      },
+      {
+        "question": "Is this baby cost calculator free?",
+        "answer": "Yes. Instant and private in your browser."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "leave-bridge",
+        "focus": "parental leave baby budget calculator",
+        "benefit": "Find the tightest month",
+        "intro": "Model parental leave pay and childcare start to find your tightest cash month in year one.",
+        "route": true
+      }
+    ]
+  },
+  "subscription-runway-audit": {
+    "primary": "subscription spending calculator",
+    "benefit": "Extend emergency runway",
+    "synonyms": [
+      "cancel subscriptions savings calculator",
+      "subscription audit tool",
+      "monthly fixed costs calculator"
+    ],
+    "useCases": [
+      "Audit monthly subscriptions",
+      "See runway gained by pausing",
+      "Free cash toward a goal"
+    ],
+    "regions": [
+      "Any currency"
+    ],
+    "longTails": [
+      "how much do subscriptions cost per year",
+      "subscription audit emergency fund",
+      "pause subscriptions runway calculator"
+    ],
+    "features": [
+      "Runway extension meter",
+      "Pause toggles",
+      "Annual savings from paused subs"
+    ],
+    "faqs": [
+      {
+        "question": "How much can cancelling subscriptions save?",
+        "answer": "Add each sub, pause what you can, and read monthly/annual savings plus emergency runway months gained."
+      },
+      {
+        "question": "Is the subscription calculator free?",
+        "answer": "Yes—and it does not take a cut of what you save."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "runway-meter",
+        "focus": "subscription audit emergency runway calculator",
+        "benefit": "Extend emergency runway",
+        "intro": "Pause subscriptions and see how many months of emergency runway you gain—no fee on savings.",
+        "route": true
+      }
+    ]
+  },
+  "keep-lease-buy-car-tco": {
+    "primary": "keep vs lease vs buy calculator",
+    "benefit": "Pick the cheapest fork",
+    "synonyms": [
+      "lease vs buy calculator",
+      "car total cost of ownership",
+      "keep old car vs upgrade"
+    ],
+    "useCases": [
+      "Compare keep, lease, and buy",
+      "See cheapest option by year",
+      "Model fuel and insurance costs"
+    ],
+    "regions": [
+      "Any currency",
+      "Fuel price per liter",
+      "Km per year"
+    ],
+    "longTails": [
+      "should I keep my car or lease",
+      "car TCO keep lease buy",
+      "lease vs buy vs keep calculator free"
+    ],
+    "features": [
+      "Three-way year matrix",
+      "Fuel and insurance included",
+      "Residual credit on buy"
+    ],
+    "faqs": [
+      {
+        "question": "Should I keep, lease, or buy?",
+        "answer": "Compare cumulative cost each year with your km, fuel price, and payments. This matrix highlights the cheapest fork annually."
+      },
+      {
+        "question": "Is this car TCO calculator free?",
+        "answer": "Yes. Instant results with no sign up."
+      }
+    ],
+    "variations": [
+      {
+        "slug": "three-way-matrix",
+        "focus": "keep lease buy car cost matrix",
+        "benefit": "Pick the cheapest fork",
+        "intro": "Year-by-year keep vs lease vs buy total cost matrix with the cheapest option highlighted.",
+        "route": true
+      }
+    ]
   }
 }

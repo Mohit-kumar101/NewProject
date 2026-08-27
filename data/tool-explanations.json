@@ -4255,5 +4255,107 @@
       "Planning estimate only—ICBC assesses the amount at vehicle transfer.",
       "Confirm current ZEV eligibility and Black Book value with ICBC."
     ]
+  },
+  "bulkCutMacroPlanner": {
+    "formula": "BMR = 10w + 6.25h − 5a + s    ·    TDEE = BMR × activity    ·    Target = TDEE ± (lb/wk × 3500 ÷ 7)",
+    "summary": "Mifflin–St Jeor BMR, activity-scaled TDEE, experience-capped weekly bulk/cut rates, and protein-forward macro splits with optional training-day carb cycling.",
+    "variables": [
+      { "symbol": "w,h,a", "name": "Weight, height, age", "description": "Body stats for BMR." },
+      { "symbol": "activity", "name": "Activity factor", "description": "1.2 sedentary through 1.9 very active." },
+      { "symbol": "experience", "name": "Training tier", "description": "Caps safe weekly rate and sets protein g/kg." }
+    ],
+    "notes": ["Estimates only—not medical or dietary advice."]
+  },
+  "financialFreedomPropertyPlanner": {
+    "formula": "FIRE# = annual spend ÷ SWR    ·    Net worth_y = portfolio_y + Σ property equity",
+    "summary": "Year-by-year simulation of salary, side income, inflated expenses, blended investment returns, and rental property down payments, debt service, and equity.",
+    "variables": [
+      { "symbol": "SWR", "name": "Safe withdrawal rate", "description": "Often 3–4% for FIRE target." },
+      { "symbol": "r", "name": "Blended return", "description": "Stock/bond mix weighted annual return." }
+    ],
+    "notes": ["Planning estimates—not financial advice."]
+  },
+  "salaryCtcInHand": {
+    "formula": "In-hand = Gross − Employee PF − Income Tax − PT    ·    Tax per FY 2025-26 slabs",
+    "summary": "India CTC unpacked into basic, HRA, allowances, PF, and income tax under new or old regime with HRA and 80C deductions.",
+    "variables": [
+      { "symbol": "CTC", "name": "Cost to company", "description": "Total employer cost including PF/gratuity." },
+      { "symbol": "80C", "name": "Section 80C", "description": "Old regime deduction up to ₹1.5L." }
+    ],
+    "notes": ["Verify with HR/payroll—employer structures vary."]
+  },
+  "reverseDietPlanner": {
+    "formula": "Calories_w = min(maintenance, Calories_{w−1} + bump_w)    ·    bump_w = planned or planned/2 if still losing",
+    "summary": "Raises calories weekly toward maintenance; shrinks the bump when observed weight change stays below the target gain band.",
+    "variables": [
+      { "symbol": "bump", "name": "Weekly calorie increase", "description": "Planned kcal added each week, optionally halved when adapting." },
+      { "symbol": "maintenance", "name": "Maintenance calories", "description": "Estimated TDEE / hold calories." }
+    ],
+    "notes": ["Estimates only—not medical advice."]
+  },
+  "emergencyFundRunwayPlanner": {
+    "formula": "Runway months = savings ÷ monthly expenses    ·    Shock adjusts income or expenses",
+    "summary": "Measures emergency runway and stress-tests job loss, medical bills, rent hikes, or lost partner income.",
+    "variables": [
+      { "symbol": "S", "name": "Liquid savings", "description": "Cash available for essentials." },
+      { "symbol": "E", "name": "Monthly expenses", "description": "Essential burn rate." }
+    ],
+    "notes": ["Planning estimates—not financial advice."]
+  },
+  "multiGoalSavingsPlanner": {
+    "formula": "Sequential: fund by priority    ·    Split: allocate by urgency weights    ·    Recommend earlier all-done plan",
+    "summary": "Compares sequential vs split funding across multiple savings goals and recommends the faster on-time path.",
+    "variables": [
+      { "symbol": "B", "name": "Monthly budget", "description": "Amount available to allocate across goals." }
+    ],
+    "notes": ["Currency-agnostic planning tool."]
+  },
+  "bodyRecompPlanner": {
+    "formula": "Target = TDEE − volumeCap    ·    Protein g/kg rises with hard sets/week",
+    "summary": "Recomp calories and macros with a training-volume deficit cap and higher protein at higher weekly sets.",
+    "variables": [
+      { "symbol": "sets", "name": "Hard sets / week", "description": "Caps deficit and sets protein density." }
+    ],
+    "notes": ["Estimates only—not medical advice."]
+  },
+  "freelanceTrueRatePlanner": {
+    "formula": "Invoice = reverse(net through tax, FX, processor, platform)",
+    "summary": "Fee waterfall from invoice to net with reverse math so you bill enough after fees and admin time.",
+    "variables": [
+      { "symbol": "net", "name": "Desired take-home", "description": "Monthly net target after tax reserve." }
+    ],
+    "notes": ["User-defined fee and tax percentages—global."]
+  },
+  "weddingBudgetCashflowPlanner": {
+    "formula": "Balance_m = Balance_{m−1} + save − Σ deposits/finals in month m",
+    "summary": "Line-item wedding budget with deposit and final payment cashflow against savings.",
+    "variables": [
+      { "symbol": "deposit%", "name": "Deposit share", "description": "Portion due early for each line item." }
+    ],
+    "notes": ["Planning estimates only."]
+  },
+  "babyFirstYearCostPlanner": {
+    "formula": "Month net = income(leave%) + partner − recurring − childcare(after start)",
+    "summary": "First-year baby costs with parental leave income bridge and childcare start month.",
+    "variables": [
+      { "symbol": "leave%", "name": "Pay during leave", "description": "Percent of normal income while on leave." }
+    ],
+    "notes": ["Not legal or benefits advice—enter your own leave terms."]
+  },
+  "subscriptionRunwayAudit": {
+    "formula": "Runway = savings ÷ (expenses + active subs)",
+    "summary": "Pause subscriptions to measure emergency runway gained and annual savings.",
+    "variables": [
+      { "symbol": "paused", "name": "Paused monthly cost", "description": "Subscriptions marked inactive." }
+    ],
+    "notes": ["Private browser tool—no cancellation fees taken."]
+  },
+  "keepLeaseBuyCarTco": {
+    "formula": "Cumulative cost_year for keep, lease, buy    ·    cheapest = min of the three",
+    "summary": "Year-by-year total cost of ownership comparing keep vs lease vs buy.",
+    "variables": [
+      { "symbol": "km", "name": "Km per year", "description": "Drives fuel cost for each fork." }
+    ],
+    "notes": ["Currency-agnostic; enter local fuel price per liter."]
   }
 }
