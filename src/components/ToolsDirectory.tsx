@@ -89,7 +89,7 @@ export function ToolsDirectory() {
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                className="shrink-0 rounded-lg border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="shrink-0 rounded-lg border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] hover-lift hover:text-[var(--accent)]"
               >
                 Clear
               </button>
@@ -103,7 +103,7 @@ export function ToolsDirectory() {
               key={chip}
               type="button"
               onClick={() => setQuery(chip)}
-              className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1 text-xs font-medium text-[var(--muted)] hover-lift hover:text-[var(--accent)]"
             >
               {chip}
             </button>
@@ -125,7 +125,7 @@ export function ToolsDirectory() {
             <a
               key={category}
               href={`#${categoryId(category)}`}
-              className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] hover-lift hover:text-[var(--accent)]"
             >
               {category}
             </a>
@@ -183,7 +183,7 @@ export function ToolsDirectory() {
                   <Link
                     key={tool.slug}
                     href={getToolHref(tool.slug)}
-                    className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)] hover:bg-[var(--background)]"
+                    className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift hover:bg-[var(--background)]"
                   >
                     <div className="font-semibold text-[var(--foreground)]">
                       {tool.title}

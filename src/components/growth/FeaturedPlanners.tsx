@@ -32,7 +32,7 @@ export function FeaturedPlanners() {
               <Link
                 key={c.id}
                 href={c.href}
-                className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-[var(--accent)] hover:border-[var(--accent)]"
+                className="hover-tint rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-2 text-[var(--accent)]"
               >
                 {c.title} →
               </Link>
@@ -45,7 +45,7 @@ export function FeaturedPlanners() {
               <li key={tool.slug}>
                 <Link
                   href={getToolHref(tool.slug)}
-                  className="flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition hover:border-[var(--accent)]"
+                  className="hover-lift flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--background)] px-4 py-4"
                 >
                   <span className="text-sm font-semibold">{tool.title}</span>
                   <span className="mt-2 line-clamp-2 text-xs text-[var(--muted)]">

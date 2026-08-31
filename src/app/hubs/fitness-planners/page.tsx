@@ -64,7 +64,7 @@ export default function FitnessPlannersHubPage() {
             <li key={tool.slug}>
               <Link
                 href={getToolHref(tool.slug)}
-                className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition hover:border-[var(--accent)]"
+                className="hover-lift flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/15 text-sm font-bold text-[var(--accent)]">
                   {i + 1}

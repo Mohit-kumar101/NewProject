@@ -48,7 +48,7 @@ export function Footer() {
               <li key={category}>
                 <Link
                   href={categoryHref(category)}
-                  className="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+                  className="hover-tint text-sm text-[var(--muted)]"
                 >
                   {category}
                 </Link>
@@ -58,7 +58,7 @@ export function Footer() {
               <li key={category}>
                 <Link
                   href={categoryHref(category)}
-                  className="text-sm text-[var(--muted)] transition hover:text-[var(--accent)]"
+                  className="hover-tint text-sm text-[var(--muted)]"
                 >
                   {category}
                 </Link>
@@ -105,7 +105,7 @@ export function Footer() {
             <Link
               key={`bottom-${link.href}`}
               href={link.href}
-              className="transition hover:text-[var(--accent)]"
+              className="hover-tint"
             >
               {link.label}
             </Link>

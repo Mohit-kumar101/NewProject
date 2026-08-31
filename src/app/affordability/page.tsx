@@ -66,7 +66,7 @@ export default function AffordabilityHubPage() {
             <li key={page.slug}>
               <Link
                 href={getAffordabilityHref(page)}
-                className="flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)]"
+                className="flex flex-col gap-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
               >
                 <span className="font-semibold">{page.title}</span>
                 <span className="text-sm text-[var(--muted)]">
@@ -92,7 +92,7 @@ export default function AffordabilityHubPage() {
               <li key={category.id}>
                 <Link
                   href={getAffordabilityCategoryHref(category.slug)}
-                  className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] hover-lift hover:text-[var(--accent)]"
                 >
                   {category.name}
                   {pages.length > 0 ? ` · ${pages.length}` : ""}

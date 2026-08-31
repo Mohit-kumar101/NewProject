@@ -104,7 +104,7 @@ export default function CryptoHubPage() {
       <div className="mb-10 grid gap-3 sm:grid-cols-2">
         <Link
           href="/crypto/reports"
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)]"
+          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
         >
           <p className="text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
             Free
@@ -113,7 +113,7 @@ export default function CryptoHubPage() {
         </Link>
         <Link
           href="/crypto/token-creator"
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)]"
+          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
         >
           <p className="text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
             Free
@@ -130,7 +130,7 @@ export default function CryptoHubPage() {
             <Link
               key={tool.slug}
               href={href}
-              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)] hover:bg-[var(--background)]"
+              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift hover:bg-[var(--background)]"
             >
               <div className="font-semibold text-[var(--foreground)]">
                 {tool.title}

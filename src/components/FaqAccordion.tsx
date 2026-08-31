@@ -18,7 +18,7 @@ export function FaqAccordion({ faqs }: { faqs: CalculatorFaq[] }) {
               aria-expanded={open}
               onClick={() => setOpenIndex(open ? null : index)}
             >
-              <span className="text-sm font-semibold text-[var(--foreground)] sm:text-base">
+              <span className="min-w-0 text-sm font-semibold text-[var(--foreground)] break-words-safe sm:text-base">
                 {faq.question}
               </span>
               <span

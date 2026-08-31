@@ -86,7 +86,7 @@ export default async function AffordabilityCategoryPage({
             <li key={page.slug}>
               <Link
                 href={getAffordabilityHref(page)}
-                className="block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)]"
+                className="block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
               >
                 <p className="font-semibold text-[var(--foreground)]">
                   {page.title}

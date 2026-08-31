@@ -1,0 +1,493 @@
+================================================================================
+CalculioHub — Calculator Tools Catalog
+Free vs Paid · Functions · Pricing · Why Paid
+Last updated: 2026-08-28
+================================================================================
+
+PRICING MODEL (site-wide)
+--------------------------------------------------------------------------------
+Free        $0          Basic calc, limited or no saves, SEO traffic
+Pro         $9–12/mo    Unlimited saves, PDF export, scenarios A/B/C
+Business    $19–29/mo   Branded PDF, 3–5 seats, shared templates
+
+RULE OF THUMB
+--------------------------------------------------------------------------------
+FREE  = one answer, leave, generic math, converters
+PAID  = save history, PDF/report, compare scenarios, libraries, team use
+
+NO PAID APIs REQUIRED for MVP launch.
+All tools below run on formulas + user inputs (browser-side).
+Optional APIs later: Stripe (billing), Resend (email PDF), tax/fuel data feeds.
+
+
+================================================================================
+SECTION A — FOREVER FREE (traffic / SEO magnets)
+================================================================================
+These stay free. They drive traffic into paid tools above.
+
+ID   NAME                         FUNCTION (inputs → output)
+--------------------------------------------------------------------------------
+F01  Tip Calculator               Bill + tip% + people → tip + per person
+F02  Percentage Calculator        Of / increase / decrease / change
+F03  Unit Converter               Length, weight, volume, temp
+F04  Square Footage               Length × width (simple shapes)
+F05  BMI Calculator               Height + weight → BMI + category
+F06  Basic Loan Payment           Principal + rate + term → monthly payment
+F07  Discount Calculator          Price + % off → final price + savings
+F08  Age Calculator               DOB → age in years/months/days
+F09  Tip + Tax Split              Bill + tax + tip → fair split
+F10  Simple Interest              P × r × t
+
+
+================================================================================
+SECTION B — PAID / FREEMIUM TOOLS (50+)
+================================================================================
+Pricing note: each tool is usable FREE with limits (e.g. 1–3 saves).
+Pro unlocks unlimited saves, PDF, history, scenarios.
+Why paid = what makes someone reopen it and pay.
+
+
+--------------------------------------------------------------------------------
+CONSTRUCTION / TRADES
+--------------------------------------------------------------------------------
+
+01  Job Bid Profit Calculator
+    Function: materials + labor + overhead + markup → bid price, cost, net profit, margin %
+    Pricing: Free (1 save) | Pro $9–12 | Business $19–29
+    Why paid: Every quote; save jobs + client PDF. Replaces messy Excel per job.
+    Competitors: Clear Estimates $59+, Buildxact $85+ (full suites — we stay calc-only)
+
+02  Change-Order Impact Calculator
+    Function: original bid vs added scope/cost → new margin, profit delta, revised total
+    Pricing: Free (1) | Pro
+    Why paid: Contractors reopen mid-job; save change-order history for disputes.
+
+03  Paint / Drywall Materials + Waste
+    Function: room dims + coats + waste% → gallons, sheets, cost estimate
+    Pricing: Free (3 runs) | Pro (save rooms/projects + PDF)
+    Why paid: Job-site reuse; saved room templates.
+
+04  Roofing Squares + Waste + Labor
+    Function: roof area/pitch + waste + labor rate → squares, materials, labor, total
+    Pricing: Free (1) | Pro
+    Why paid: Every roofing quote; PDF for homeowners.
+
+05  Concrete Volume + Bags + Labor
+    Function: L×W×D + bag size + labor → volume, bags, cost
+    Pricing: Free (3) | Pro
+    Why paid: Repeat pours; save mix presets.
+
+06  Fence / Deck Materials Estimator
+    Function: length/area + post spacing + board sizes → posts, boards, fasteners, cost
+    Pricing: Free (1) | Pro
+    Why paid: Saved project library for landscapers/carpenters.
+
+07  Remodel Room Cost Ballpark
+    Function: room type + sq ft + quality tier → ballpark cost range (not full takeoff)
+    Pricing: Free (unlimited basic) | Pro (save scenarios + PDF for clients)
+    Why paid: Sales conversations; branded PDF.
+
+08  Subcontractor Bid Compare
+    Function: 2–5 bids (line totals + exclusions notes) → leveled compare + flags
+    Pricing: Free (1 compare) | Pro (unlimited + PDF report)
+    Why paid: High-stakes decisions; report worth money.
+    Competitors: EstimateHawk $9–39/report, BidScope $39 — undercut with flat Pro.
+
+09  Crew Day-Rate vs Piece-Rate
+    Function: crew size, hours, piece quantities, rates → effective $/hr and job cost
+    Pricing: Free (3) | Pro
+    Why paid: Weekly planning; save crew presets.
+
+10  Permit + Overhead Recovery on Bid
+    Function: permit fees + fixed overhead + target recovery → add-on to bid
+    Pricing: Free (1) | Pro
+    Why paid: Prevents underpricing; company defaults saved.
+
+11  Equipment Rental vs Buy
+    Function: rental rate × days vs purchase + maint + utilization → cheaper option + break-even
+    Pricing: Free (3) | Pro
+    Why paid: Capital decisions; compare scenarios.
+
+12  Warranty Reserve / Contingency %
+    Function: job value + risk tier → recommended contingency $ and %
+    Pricing: Free (unlimited basic) | Pro (save company risk presets)
+    Why paid: Firm standards; consistent bidding.
+
+
+--------------------------------------------------------------------------------
+FOOD / HOSPITALITY
+--------------------------------------------------------------------------------
+
+13  Recipe Cost + Plate Margin
+    Function: ingredients + qty + waste% + labor → recipe cost, cost/portion, menu price, margin
+    Pricing: Free (3 recipes) | Pro unlimited + PDF | Business multi-user
+    Why paid: Core weekly tool; ingredient library = sticky data.
+    Competitors: Recipe Cost Calculator $29–129, MenuCalc ~$30+, MarketMan $199+
+
+14  Menu Price from Target Food-Cost %
+    Function: plate cost + target food-cost% → suggested sell price
+    Pricing: Free (unlimited) | Pro (save menu items)
+    Why paid: Menu updates when supplier prices move.
+
+15  Catering Per-Head Cost
+    Function: headcount + menu items + staff + rentals → cost/guest + quote price
+    Pricing: Free (1 event) | Pro
+    Why paid: Every catering quote; client PDF.
+
+16  Bakery Batch Scale + Waste
+    Function: recipe + batch multiplier + waste → scaled ingredients + cost
+    Pricing: Free (3) | Pro
+    Why paid: Daily production; saved formulas.
+
+17  Bar Pour Cost / Liquor Cost %
+    Function: bottle cost + pour size + sell price → pour cost, liquor cost %
+    Pricing: Free (5 drinks) | Pro (full bar list)
+    Why paid: Weekly bar management; price library.
+
+18  Food Truck Break-Even Covers/Day
+    Function: fixed costs + variable/cover + price → covers needed to break even
+    Pricing: Free (1) | Pro (save truck profiles)
+    Why paid: Seasonal planning; reopen monthly.
+
+19  Ingredient Price-Hike Impact
+    Function: old vs new ingredient price → recipe/menu margin change
+    Pricing: Free (3) | Pro
+    Why paid: When suppliers raise prices; alerts via saved recipes.
+
+20  Allergen / Portion Yield Waste
+    Function: raw weight + yield% → usable portions + true cost
+    Pricing: Free (unlimited basic) | Pro (saved yields)
+    Why paid: Accurate costing; kitchen standards.
+
+
+--------------------------------------------------------------------------------
+TRUCKING / LOGISTICS
+--------------------------------------------------------------------------------
+
+21  Load Net Profit
+    Function: rate + fuel + tolls + deadhead + fees → net $, $/mile, $/hour
+    Pricing: Free (5 loads) | Pro unlimited history + PDF
+    Why paid: Used before accepting every load; history = tax/accountant export.
+    Competitors: LANEMetrics ~$20/mo, Truck Profit ~$8/mo
+
+22  Cost Per Mile Break-Even
+    Function: fixed monthly costs + variable + miles → CPM break-even rate
+    Pricing: Free (1 profile) | Pro (multi-truck)
+    Why paid: Owner-op core metric; update monthly.
+
+23  Reefer vs Dry Van Trip Compare
+    Function: two load options → net compare (fuel, time, rate)
+    Pricing: Free (3) | Pro
+    Why paid: Decision tool before booking.
+
+24  Owner-Op Take-Home After Tax (estimate)
+    Function: gross + expenses + filing status → rough take-home (disclaimer)
+    Pricing: Free (3) | Pro (saved year profile)
+    Why paid: Quarterly planning; sticky profile.
+    Note: estimate only — no tax API required for MVP.
+
+25  Detention / Layover Pay Calculator
+    Function: free time + hourly detention rate + hours waited → claim amount
+    Pricing: Free (unlimited) | Pro (log claims history)
+    Why paid: Claim tracking history.
+
+26  Lane Rate Needed for Target Hourly
+    Function: costs + hours + target $/hr → minimum rate to accept
+    Pricing: Free (3) | Pro
+    Why paid: Reverse-engineer broker offers.
+
+27  IFTA Fuel Tax Rough Estimate
+    Function: miles by jurisdiction + MPG + fuel tax rates (user/manual table) → estimate
+    Pricing: Free (1 quarter) | Pro (save quarters)
+    Why paid: Quarterly reuse; history.
+
+
+--------------------------------------------------------------------------------
+REAL ESTATE / LANDLORDS
+--------------------------------------------------------------------------------
+
+28  Rental Cash-Flow / Break-Even Rent
+    Function: mortgage + taxes + insurance + vacancy + repairs → cash flow, break-even rent
+    Pricing: Free (1 property) | Pro unlimited + PDF
+    Why paid: Every offer; saved deals.
+    Competitors: Mashvisor $50–100, PropertyMetrics ~$129 (heavier — we undercut)
+
+29  Cap Rate + Cash-on-Cash
+    Function: NOI + price + cash invested → cap rate, CoC
+    Pricing: Free (unlimited) | Pro (save + compare deals)
+    Why paid: Portfolio compare.
+
+30  BRRRR Deal Checker
+    Function: buy/rehab/rent/refi/repeat inputs → cash left in, CoC, equity
+    Pricing: Free (1) | Pro
+    Why paid: Investor workflows; scenario save.
+
+31  Short-Term vs Long-Term Rent
+    Function: Airbnb income assumptions vs LTR → net compare
+    Pricing: Free (1) | Pro
+    Why paid: Strategy decisions; PDF for partners.
+
+32  Closing Cost + Cash-to-Close
+    Function: price + down% + fees + credits → cash to close
+    Pricing: Free (unlimited basic) | Pro (save offers)
+    Why paid: House-hunting reuse.
+
+33  Refinance Break-Even Months
+    Function: closing costs + payment savings → months to break even
+    Pricing: Free (unlimited) | Pro (save quotes)
+    Why paid: Rate-shop comparisons.
+
+34  House Flip Profit After Holding Costs
+    Function: purchase + rehab + holding + sell costs → profit, ROI, timeline
+    Pricing: Free (1) | Pro
+    Why paid: Every flip underwrite.
+
+35  Property Tax + Insurance Affordability
+    Function: income + debts + PITI → affordability / DTI style estimate
+    Pricing: Free (3) | Pro
+    Why paid: Buyer planning; saved scenarios.
+
+
+--------------------------------------------------------------------------------
+CONSUMERS + FREELANCERS
+--------------------------------------------------------------------------------
+
+36  True Take-Home Paycheck
+    Function: gross + pay frequency + state (simple rules) → estimated net
+    Pricing: Free (unlimited basic) | Pro (multi-job / side income save)
+    Why paid: Job offers compare; saved profiles.
+    Disclaimer required; no tax API for MVP.
+
+37  Freelance Rate / Break-Even Day Rate
+    Function: desired income + expenses + billable days → hourly/day rate
+    Pricing: Free (1) | Pro (save rate cards)
+    Why paid: Annual pricing reviews; client proposals.
+
+38  Side-Hustle Pricing
+    Function: materials + hours + tax buffer → minimum price
+    Pricing: Free (5) | Pro
+    Why paid: Makers/sellers reuse per product.
+
+39  Debt Payoff Date (Snowball vs Avalanche)
+    Function: debts + payment → payoff date + interest by method
+    Pricing: Free (3 debts) | Pro (unlimited + plan PDF)
+    Why paid: Motivation + plan tracking.
+
+40  Subscription Waste / Yearly Bleed
+    Function: list of subs → monthly + yearly total + cancel targets
+    Pricing: Free (10 items) | Pro (full audit + reminders export)
+    Why paid: Ongoing money management.
+
+41  True Car Ownership Cost
+    Function: payment + insurance + fuel + maint + depreciation → true $/mo and $/mile
+    Pricing: Free (1 car) | Pro (compare cars)
+    Why paid: Purchase decisions; compare PDF.
+
+42  Rent vs Buy Decision
+    Function: rent vs buy assumptions → which wins over N years
+    Pricing: Free (1) | Pro (scenarios + PDF)
+    Why paid: Big life decision; share with partner.
+
+43  Emergency Fund Target
+    Function: monthly burn + risk profile → target $ and months
+    Pricing: Free (unlimited) | Pro (save budget categories)
+    Why paid: Financial planning stickiness.
+
+44  Wedding / Event Budget Remaining
+    Function: total budget − categories → remaining + overspend flags
+    Pricing: Free (1 event) | Pro
+    Why paid: Months of planning; shared PDF.
+
+45  Moving Cost DIY vs Movers
+    Function: truck/gas/time vs mover quotes → cheaper + true cost of time
+    Pricing: Free (3) | Pro
+    Why paid: Seasonal; family share.
+
+
+--------------------------------------------------------------------------------
+SMALL BUSINESS / SALES / HR-ISH
+--------------------------------------------------------------------------------
+
+46  SaaS / Product Pricing → Margin & Break-Even Customers
+    Function: price + variable cost + fixed costs → margin, break-even customers, MRR/ARR sketch
+    Pricing: Free (1 model) | Pro
+    Why paid: Founders/PMs iterate pricing.
+
+47  Quote Discount Impact on Margin
+    Function: list price + cost + discount% → new margin and profit lost
+    Pricing: Free (unlimited) | Pro (save price books)
+    Why paid: Sales managers; deal desk.
+
+48  Sales Commission / SPIFF Calculator
+    Function: deal size + plan rules → payout
+    Pricing: Free (3) | Pro (save plans)
+    Why paid: Reps and managers weekly.
+
+49  Overtime Labor Cost
+    Function: hours + OT rules + rate → OT pay + employer burden estimate
+    Pricing: Free (unlimited) | Pro (multi-employee week save)
+    Why paid: Managers every payroll week.
+
+50  Employee True Cost
+    Function: wage + taxes + benefits + tools → fully loaded cost
+    Pricing: Free (3) | Pro (headcount list)
+    Why paid: Hiring decisions; budget planning.
+
+51  Invoice Late-Fee / Cash-Flow Delay Cost
+    Function: invoice $ + days late + cost of capital → delay cost + suggested fee
+    Pricing: Free (unlimited) | Pro (AR scenario history)
+    Why paid: Freelancers/SMBs chasing payment.
+
+52  Ad ROAS Break-Even
+    Function: product margin + ad spend → required ROAS / CPA
+    Pricing: Free (unlimited) | Pro (campaign saves)
+    Why paid: Marketers weekly.
+
+53  Agency Retainer vs Project Pricing
+    Function: hours + costs + utilization → retainer vs project recommendation
+    Pricing: Free (1) | Pro
+    Why paid: Agency owners quarterly.
+
+54  Inventory Reorder / EOQ Lite
+    Function: demand + order cost + holding cost → EOQ + reorder point
+    Pricing: Free (5 SKUs) | Pro
+    Why paid: Small shops; SKU library.
+
+55  Price Increase Revenue Impact
+    Function: current price/volume + elasticity assumption → revenue/profit delta
+    Pricing: Free (3) | Pro
+    Why paid: Menu/SaaS/retail price tests.
+
+
+--------------------------------------------------------------------------------
+NICHE HIGH-INTENT
+--------------------------------------------------------------------------------
+
+56  Solar Payback / Savings
+    Function: system cost + incentives + utility rate + production → payback years, savings
+    Pricing: Free (1) | Pro (sales PDF branded)
+    Why paid: Sales-call tool; Business for solar installers.
+
+57  HVAC SEER Savings
+    Function: old vs new SEER + kWh rate + usage → annual savings + payback
+    Pricing: Free (unlimited) | Pro (branded PDF)
+    Why paid: HVAC sales close tool.
+
+58  Lawn / Landscaping Mulch–Sod–Gravel
+    Function: area + depth → volume + bags/yards + cost
+    Pricing: Free (3) | Pro (project saves)
+    Why paid: Seasonal weekly use.
+
+59  Salon Service Pricing / Chair Rental
+    Function: costs + hours + booth rent → service prices or chair viability
+    Pricing: Free (1) | Pro
+    Why paid: Stylists annual pricing.
+
+60  Gym Membership LTV vs CAC
+    Function: price + churn + CAC → LTV, LTV:CAC
+    Pricing: Free (1) | Pro
+    Why paid: Gym/studio owners monthly.
+
+61  Ecom Returns Cost
+    Function: refund + shipping + restock + rate → true return cost / order
+    Pricing: Free (3) | Pro
+    Why paid: DTC brands optimize policy.
+
+62  Amazon / Shopify Fee Net Profit
+    Function: price + COGS + fees + ads → net profit + margin
+    Pricing: Free (5 SKUs) | Pro (catalog)
+    Why paid: Sellers every listing/price change.
+
+63  Print Shop / Merch Margin
+    Function: blanks + print cost + quantity breaks → unit cost + sell price
+    Pricing: Free (5) | Pro
+    Why paid: Print shops quote daily.
+
+64  Photography Package Pricing
+    Function: hours + editing + travel + desired income → package prices
+    Pricing: Free (1) | Pro (rate card PDF)
+    Why paid: Creatives yearly + proposals.
+
+65  Event Ticket Break-Even
+    Function: venue + talent + marketing + capacity → tickets needed + price
+    Pricing: Free (1 event) | Pro
+    Why paid: Promoters per event.
+
+
+================================================================================
+SECTION C — WHAT IS FREE VS PAID INSIDE EACH PAID TOOL
+================================================================================
+
+FREE TIER (per paid tool)
+  - Full calculation once / limited runs
+  - See results on screen
+  - No or very limited saves (1–3)
+  - CalculioHub watermark if PDF allowed at all
+
+PRO ($9–12/mo)
+  - Unlimited calculations
+  - Unlimited saves / history
+  - Scenario compare (A vs B vs C)
+  - PDF / CSV export
+  - No watermark (or light brand)
+
+BUSINESS ($19–29/mo)
+  - Everything in Pro
+  - Custom logo / company name on PDF
+  - 3–5 team seats
+  - Shared templates / price libraries
+  - Priority: sales-facing tools (solar, HVAC, remodel ballpark, bid compare)
+
+
+================================================================================
+SECTION D — WHY THESE ARE PAID (SUMMARY)
+================================================================================
+
+People pay when the tool:
+  1. Is used WEEKLY or PER JOB (bid, load, recipe, payroll week)
+  2. Stores THEIR data (recipes, trucks, properties, rate cards)
+  3. Produces a SHAREABLE artifact (PDF for client, partner, accountant)
+  4. Avoids a costly mistake (losing load, underbid, bad menu price)
+  5. Is cheaper/faster than Excel + full SaaS ($49–$199+)
+
+People expect FREE when:
+  - One-off curiosity math
+  - Generic converters
+  - Results they won't reopen tomorrow
+
+
+================================================================================
+SECTION E — LAUNCH ORDER (recommended)
+================================================================================
+
+Wave 1 (highest reuse + clear paid hook)
+  01 Job Bid Profit
+  13 Recipe Cost + Plate Margin
+  21 Load Net Profit
+  28 Rental Cash-Flow
+  37 Freelance Rate / Break-Even
+
+Wave 2
+  08 Bid Compare, 15 Catering, 22 CPM, 29 Cap Rate, 36 Take-Home,
+  39 Debt Payoff, 41 True Car Cost, 49 Overtime, 56 Solar, 62 Fee Net Profit
+
+Wave 3
+  Remaining tools from 01–65
+
+
+================================================================================
+SECTION F — TECHNICAL NOTES
+================================================================================
+
+- MVP: client-side formulas only (mathjs / existing CalculioHub engine)
+- Persistence for Pro: local account DB (jobs, recipes, loads, properties)
+- PDF: existing html2canvas / jspdf stack
+- Payments: Stripe when Pro launches (not required to ship free tools)
+- Email PDF: Resend (already in project) — optional
+- NO purchased data APIs required for Wave 1
+- Always show disclaimer on tax/finance/legal-adjacent tools
+
+
+================================================================================
+END OF CATALOG
+================================================================================

@@ -15,8 +15,11 @@ export function ToolBreadcrumbs({
         : "/tools";
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--muted)]">
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+    <nav
+      aria-label="Breadcrumb"
+      className="mb-4 text-xs text-[var(--muted)] sm:mb-6 sm:text-sm"
+    >
+      <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 sm:gap-x-2">
         <li>
           <Link href="/" className="transition hover:text-[var(--accent)]">
             Home
@@ -35,10 +38,11 @@ export function ToolBreadcrumbs({
             <li aria-hidden className="text-[var(--border)]">
               /
             </li>
-            <li className="max-w-[12rem] truncate sm:max-w-none">
+            <li className="max-w-[9rem] truncate sm:max-w-[14rem] md:max-w-none">
               <Link
                 href={categoryHref}
                 className="transition hover:text-[var(--accent)]"
+                title={category}
               >
                 {category}
               </Link>
@@ -48,7 +52,11 @@ export function ToolBreadcrumbs({
         <li aria-hidden className="text-[var(--border)]">
           /
         </li>
-        <li className="font-medium text-[var(--foreground)]" aria-current="page">
+        <li
+          className="max-w-full font-medium text-[var(--foreground)] break-words-safe md:max-w-none"
+          aria-current="page"
+          title={toolTitle}
+        >
           {toolTitle}
         </li>
       </ol>

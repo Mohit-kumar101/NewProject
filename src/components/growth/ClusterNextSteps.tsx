@@ -37,7 +37,7 @@ export function ClusterNextSteps({ toolSlug }: { toolSlug: string }) {
             <li key={tool.slug}>
               <Link
                 href={getToolHref(tool.slug)}
-                className="block rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="hover-lift block rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium"
               >
                 {tool.title}
                 <span className="mt-0.5 block text-xs font-normal text-[var(--muted)]">

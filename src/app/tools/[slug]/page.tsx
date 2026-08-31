@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
+import { CalculatorLayout } from "@/components/CalculatorLayout";
 import { CalculatorWorkspace } from "@/components/CalculatorWorkspace";
 import { ToolPageShell } from "@/components/ToolPageShell";
+import {
+  getAllConfigCalculatorSlugs,
+  getConfigCalculatorBySlug,
+} from "@/config/calculators";
 import {
   calculators,
   getCalculatorBySlug,
   getRelatedCalculators,
+  SITE_URL,
 } from "@/lib/calculators";
 import { CUSTOM_TOOL_SLUGS } from "@/lib/customToolSlugs";
 import { getToolHref } from "@/lib/cryptoFormulas";
@@ -20,19 +26,46 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return calculators
+  const catalog = calculators
     .filter(
       (calculator) =>
         !CUSTOM_TOOL_SLUGS.has(calculator.slug) &&
         !CATEGORY_PATH_SLUGS.has(calculator.slug)
     )
     .map((calculator) => ({ slug: calculator.slug }));
+
+  const configPack = getAllConfigCalculatorSlugs().map((slug) => ({ slug }));
+
+  return [...catalog, ...configPack];
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+
+  const configTool = getConfigCalculatorBySlug(slug);
+  if (configTool) {
+    const canonical = `${SITE_URL}/tools/${configTool.slug}`;
+    return {
+      title: configTool.seoTitle,
+      description: configTool.metaDescription,
+      keywords: configTool.keywords,
+      alternates: { canonical },
+      openGraph: {
+        title: configTool.seoTitle,
+        description: configTool.metaDescription,
+        url: canonical,
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: configTool.seoTitle,
+        description: configTool.metaDescription,
+      },
+    };
+  }
+
   if (CATEGORY_PATH_SLUGS.has(slug)) {
     const calculator = getCalculatorBySlug(slug);
     if (calculator) return buildToolMetadata(calculator);
@@ -156,6 +189,11 @@ function NutritionGuide() {
 
 export default async function ToolPage({ params }: PageProps) {
   const { slug } = await params;
+
+  const configTool = getConfigCalculatorBySlug(slug);
+  if (configTool) {
+    return <CalculatorLayout tool={configTool} />;
+  }
 
   if (CATEGORY_PATH_SLUGS.has(slug)) {
     permanentRedirect(getToolHref(slug));

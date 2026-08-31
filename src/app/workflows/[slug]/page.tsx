@@ -102,7 +102,7 @@ export default async function WorkflowPage({
             <li key={step.toolSlug}>
               <Link
                 href={href}
-                className="block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-5 transition hover:border-[var(--accent)]"
+                className="hover-lift block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-5"
               >
                 <div className="flex flex-wrap items-start gap-4">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-sm font-bold text-[var(--accent)]">

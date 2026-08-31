@@ -161,7 +161,7 @@ export function AffordabilityPage({
               <li key={related.slug}>
                 <Link
                   href={getAffordabilityHref(related)}
-                  className="block rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="block rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm font-medium hover-lift hover:text-[var(--accent)]"
                 >
                   {related.title}
                 </Link>

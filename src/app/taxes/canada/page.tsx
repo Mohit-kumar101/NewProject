@@ -42,7 +42,7 @@ export default function CanadaTaxHubPage() {
             <li key={tool.slug}>
               <Link
                 href={getToolHref(tool.slug)}
-                className="block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition hover:border-[var(--accent)]"
+                className="hover-lift block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4"
               >
                 <span className="font-semibold">{tool.title}</span>
                 <span className="mt-1 block text-xs text-[var(--muted)] line-clamp-2">
@@ -63,7 +63,7 @@ export default function CanadaTaxHubPage() {
             <li key={tool.slug}>
               <Link
                 href={getToolHref(tool.slug)}
-                className="block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition hover:border-[var(--accent)]"
+                className="hover-lift block rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4"
               >
                 <span className="font-semibold">{tool.title}</span>
                 <span className="mt-1 block text-xs text-[var(--muted)] line-clamp-2">

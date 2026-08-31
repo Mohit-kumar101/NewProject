@@ -16,7 +16,10 @@ export function Logo({
     size === "lg" ? "text-3xl" : size === "sm" ? "text-lg" : "text-xl";
 
   return (
-    <Link href="/" className="group inline-flex items-center gap-2.5">
+    <Link
+      href="/"
+      className="group inline-flex max-w-full items-center gap-2 sm:gap-2.5"
+    >
       <Image
         src="/favicon-192.png"
         alt="CalculioHub"
@@ -29,7 +32,7 @@ export function Logo({
       />
       {showText && (
         <span
-          className={`font-[family-name:var(--font-display)] font-bold tracking-tight text-[var(--foreground)] ${text}`}
+          className={`font-[family-name:var(--font-display)] truncate font-bold tracking-tight text-[var(--foreground)] ${text}`}
         >
           Calculio<span className="gradient-text">Hub</span>
         </span>

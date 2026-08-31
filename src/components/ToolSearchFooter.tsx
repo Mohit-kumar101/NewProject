@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { CONFIG_CALCULATORS } from "@/config/calculators";
 import { calculators, toolMatchesQuery } from "@/lib/calculators";
 import { getToolHref } from "@/lib/cryptoFormulas";
 
@@ -12,14 +13,28 @@ export type ToolSearchFooterProps = {
   currentSlug: string;
 };
 
+type FooterTool = {
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+};
+
 const DEFAULT_RELATED = 3;
 /** Cap search hits so the footer stays scannable while still filtering the full catalog. */
 const SEARCH_LIMIT = 12;
 
+function footerToolMatches(tool: FooterTool, query: string): boolean {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const haystack =
+    `${tool.title} ${tool.category} ${tool.description}`.toLowerCase();
+  return q.split(/\s+/).every((token) => haystack.includes(token));
+}
+
 /**
  * Post-FAQ internal linking widget.
- * Default: 3 same-category tools · Search: live filter across the full catalog.
- * Present on every tool page via ToolPageShell (including all file converters).
+ * Default: same-category tools · if none, other site tools · Search: full catalog.
  */
 export function ToolSearchFooter({
   currentCategory,
@@ -27,32 +42,107 @@ export function ToolSearchFooter({
 }: ToolSearchFooterProps) {
   const [query, setQuery] = useState("");
 
-  const catalog = useMemo(
-    () => calculators.filter((tool) => tool.slug !== currentSlug),
-    [currentSlug]
-  );
+  const catalog = useMemo((): FooterTool[] => {
+    const fromMain: FooterTool[] = calculators
+      .filter((tool) => tool.slug !== currentSlug)
+      .map((tool) => ({
+        slug: tool.slug,
+        title: tool.title,
+        category: tool.category,
+        description: tool.description,
+      }));
 
-  const relatedInCategory = useMemo(
-    () =>
-      catalog
-        .filter((tool) => tool.category === currentCategory)
-        .slice(0, DEFAULT_RELATED),
-    [catalog, currentCategory]
-  );
+    const fromConfig: FooterTool[] = CONFIG_CALCULATORS.filter(
+      (tool) => tool.slug !== currentSlug
+    ).map((tool) => ({
+      slug: tool.slug,
+      title: tool.topic,
+      category: tool.category,
+      description: tool.intro,
+    }));
+
+    const seen = new Set<string>();
+    const merged: FooterTool[] = [];
+    for (const tool of [...fromConfig, ...fromMain]) {
+      if (seen.has(tool.slug)) continue;
+      seen.add(tool.slug);
+      merged.push(tool);
+    }
+    return merged;
+  }, [currentSlug]);
+
+  const relatedTools = useMemo(() => {
+    const sameCategory = catalog.filter(
+      (tool) => tool.category === currentCategory
+    );
+    if (sameCategory.length >= DEFAULT_RELATED) {
+      return {
+        tools: sameCategory.slice(0, DEFAULT_RELATED),
+        fromCategory: true,
+      };
+    }
+    // No (or too few) same-category matches → fill with other site tools
+    const seen = new Set(sameCategory.map((t) => t.slug));
+    const fillers = catalog.filter((tool) => !seen.has(tool.slug));
+    const mixed = [...sameCategory, ...fillers].slice(0, DEFAULT_RELATED);
+    return {
+      tools: mixed,
+      fromCategory: sameCategory.length > 0 && fillers.length === 0,
+    };
+  }, [catalog, currentCategory]);
 
   const filtered = useMemo(() => {
     const q = query.trim();
-    if (!q) return relatedInCategory;
-    return catalog
-      .filter((tool) => toolMatchesQuery(tool, q))
-      .slice(0, SEARCH_LIMIT);
-  }, [catalog, query, relatedInCategory]);
+    if (!q) return relatedTools.tools;
+
+    // Prefer the richer main-catalog matcher when available
+    const mainHits = calculators
+      .filter((tool) => tool.slug !== currentSlug && toolMatchesQuery(tool, q))
+      .map(
+        (tool): FooterTool => ({
+          slug: tool.slug,
+          title: tool.title,
+          category: tool.category,
+          description: tool.description,
+        })
+      );
+
+    const configHits = CONFIG_CALCULATORS.filter(
+      (tool) =>
+        tool.slug !== currentSlug &&
+        footerToolMatches(
+          {
+            slug: tool.slug,
+            title: tool.topic,
+            category: tool.category,
+            description: tool.intro,
+          },
+          q
+        )
+    ).map(
+      (tool): FooterTool => ({
+        slug: tool.slug,
+        title: tool.topic,
+        category: tool.category,
+        description: tool.intro,
+      })
+    );
+
+    const seen = new Set<string>();
+    const merged: FooterTool[] = [];
+    for (const tool of [...configHits, ...mainHits]) {
+      if (seen.has(tool.slug)) continue;
+      seen.add(tool.slug);
+      merged.push(tool);
+    }
+    return merged.slice(0, SEARCH_LIMIT);
+  }, [currentSlug, query, relatedTools.tools]);
 
   const isSearching = query.trim().length > 0;
   const totalMatches = useMemo(() => {
-    if (!isSearching) return relatedInCategory.length;
-    return catalog.filter((tool) => toolMatchesQuery(tool, query)).length;
-  }, [catalog, isSearching, query, relatedInCategory.length]);
+    if (!isSearching) return relatedTools.tools.length;
+    return catalog.filter((tool) => footerToolMatches(tool, query)).length;
+  }, [catalog, isSearching, query, relatedTools.tools.length]);
 
   return (
     <section
@@ -76,7 +166,9 @@ export function ToolSearchFooter({
           <p className="mt-2 text-sm text-[color-mix(in_srgb,var(--foreground)_75%,var(--muted))]">
             {isSearching
               ? "Searching all CalculioHub calculators and file converters."
-              : `Related tools in ${currentCategory} — strengthening topical internal links.`}
+              : relatedTools.fromCategory
+                ? `Related tools in ${currentCategory} — strengthening topical internal links.`
+                : "More tools from CalculioHub — explore calculators across the site."}
           </p>
 
           <label className="mt-5 block">
@@ -117,7 +209,7 @@ export function ToolSearchFooter({
                 <button
                   type="button"
                   onClick={() => setQuery("")}
-                  className="shrink-0 rounded-md border border-[var(--border)] px-2 py-0.5 text-[11px] font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="hover-tint shrink-0 rounded-md border border-[var(--border)] px-2 py-0.5 text-[11px] font-medium text-[var(--muted)]"
                 >
                   Clear
                 </button>
@@ -129,11 +221,13 @@ export function ToolSearchFooter({
             <p className="text-xs text-[var(--muted)]" aria-live="polite">
               {isSearching
                 ? `${filtered.length} of ${totalMatches} match${totalMatches === 1 ? "" : "es"}`
-                : `Same category · ${filtered.length} tool${filtered.length === 1 ? "" : "s"}`}
+                : relatedTools.fromCategory
+                  ? `Same category · ${filtered.length} tool${filtered.length === 1 ? "" : "s"}`
+                  : `From CalculioHub · ${filtered.length} tool${filtered.length === 1 ? "" : "s"}`}
             </p>
             <Link
               href="/tools"
-              className="text-xs font-semibold tracking-wide text-[var(--accent)] uppercase transition hover:brightness-110"
+              className="hover-tint text-xs font-semibold tracking-wide text-[var(--accent)] uppercase"
             >
               Browse all →
             </Link>
@@ -143,7 +237,7 @@ export function ToolSearchFooter({
             <p className="mt-4 rounded-xl border border-dashed border-[var(--border)] px-4 py-10 text-center text-sm text-[var(--muted)]">
               {isSearching
                 ? `No tools match “${query.trim()}”. Try pdf, mp3, json, or mortgage.`
-                : "No other tools found in this category yet."}
+                : "No other tools available yet. Browse the full directory instead."}
             </p>
           ) : (
             <div
@@ -155,13 +249,13 @@ export function ToolSearchFooter({
                 <Link
                   key={tool.slug}
                   href={getToolHref(tool.slug)}
-                  className="result-card group rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_14px_30px_-20px_rgba(41,121,255,0.55)]"
+                  className="hover-lift result-card group rounded-xl border border-[var(--border)] bg-[var(--background)] p-4"
                   style={{
                     animationDelay: `${Math.min(index, 6) * 35}ms`,
                   }}
                 >
-                  <div className="mb-3 h-1 w-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF] transition-all group-hover:w-14" />
-                  <h3 className="text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)]">
+                  <div className="hover-lift-bar mb-3 h-1 w-10 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF] transition-all duration-200" />
+                  <h3 className="hover-lift-title text-sm font-semibold text-[var(--foreground)] transition-colors duration-200">
                     {tool.title}
                   </h3>
                   <p className="mt-1 text-[10px] font-semibold tracking-wide text-[var(--accent)] uppercase">

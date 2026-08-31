@@ -82,7 +82,7 @@ export default function WorkflowsIndexPage() {
           <li key={workflow.slug}>
             <Link
               href={getWorkflowHref(workflow.slug)}
-              className="block h-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-5 transition hover:border-[var(--accent)]"
+              className="hover-lift block h-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-5"
             >
               <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
                 {workflow.eyebrow}

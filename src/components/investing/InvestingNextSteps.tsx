@@ -54,7 +54,7 @@ export function InvestingNextSteps({
         <button
           type="button"
           onClick={copySummary}
-          className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-2 text-sm font-semibold text-[var(--foreground)] hover-lift hover:text-[var(--accent)]"
         >
           {copied ? "Copied ✓" : "Copy summary"}
         </button>

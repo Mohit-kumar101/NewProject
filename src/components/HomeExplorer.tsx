@@ -294,7 +294,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
           className={`relative mx-auto max-w-7xl px-4 sm:px-6 ${
             splitActive
               ? "grid gap-8 py-8 lg:grid-cols-[minmax(280px,0.95fr)_1.35fr] lg:gap-10 lg:py-10"
-              : "flex flex-col items-center pb-20 pt-6 text-center sm:pt-10"
+              : "flex flex-col items-center pb-12 pt-4 text-center sm:pb-20 sm:pt-10"
           }`}
         >
           {/* Left / hero search panel */}
@@ -314,39 +314,37 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
             </div>
 
             <div
-              className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                splitActive
-                  ? "max-h-40 opacity-100"
-                  : "max-h-96 opacity-100"
+              className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                splitActive ? "opacity-100" : "opacity-100"
               }`}
             >
               {!splitActive && (
                 <>
-                  <p className="mb-5 text-sm font-medium tracking-[0.2em] text-[var(--accent)] uppercase">
+                  <p className="mb-4 text-[11px] font-medium tracking-[0.14em] text-[var(--accent)] uppercase sm:mb-5 sm:text-sm sm:tracking-[0.2em]">
                     Free alternative · No paywall
                   </p>
-                  <h1 className="font-[family-name:var(--font-display)] max-w-3xl text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-6xl">
+                  <h1 className="font-[family-name:var(--font-display)] mx-auto max-w-3xl text-[1.85rem] font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-4xl sm:leading-tight md:text-5xl lg:text-6xl">
                     The tools you paid for,{" "}
                     <span className="gradient-text">now free</span>
                   </h1>
-                  <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg">
+                  <p className="mx-auto mt-4 max-w-xl px-1 text-sm leading-relaxed text-[var(--muted)] sm:mt-5 sm:text-base md:text-lg">
                     Skip the subscription. Convert PDFs, video, and photos — plus
                     finance and crypto calculators — with no watermark, no daily
                     cap, and nothing uploaded.
                   </p>
-                  <ul className="mx-auto mt-7 flex flex-wrap justify-center gap-2">
+                  <ul className="mx-auto mt-5 flex max-w-md flex-wrap justify-center gap-2 sm:mt-7 sm:max-w-none">
                     {["No subscription", "No watermark", "Files stay on-device"].map(
                       (item) => (
                         <li
                           key={item}
-                          className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-[var(--muted)]"
+                          className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-[11px] font-medium text-[var(--muted)] sm:px-3 sm:text-xs"
                         >
                           {item}
                         </li>
                       )
                     )}
                   </ul>
-                  <p className="mx-auto mt-6 max-w-lg text-sm text-[var(--muted)]">
+                  <p className="mx-auto mt-5 max-w-lg px-1 text-sm text-[var(--muted)] sm:mt-6">
                     Start with{" "}
                     <Link
                       href="/hubs/fitness-planners"
@@ -390,8 +388,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
             </div>
 
             <div
-              className={`command-bar flex w-full items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)] ${
-                splitActive ? "max-w-none" : "mx-auto mt-10 max-w-2xl"
+              className={`command-bar flex w-full items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)] sm:gap-3 sm:px-4 sm:py-4 ${
+                splitActive ? "max-w-none" : "mx-auto mt-8 max-w-2xl sm:mt-10"
               }`}
             >
               <svg
@@ -418,10 +416,10 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 onFocus={() => setSearchOpen(true)}
                 placeholder={
                   splitActive
-                    ? "mortgage, pdf, mp3, json, png…"
-                    : "Click to search calculators & converters…"
+                    ? "mortgage, pdf, mp3, json…"
+                    : "Search calculators & converters…"
                 }
-                className="w-full bg-transparent text-lg text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
+                className="min-w-0 w-full bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--muted)] sm:text-lg"
                 autoComplete="off"
                 aria-label="Search all calculators and converters"
               />
@@ -429,9 +427,9 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 <button
                   type="button"
                   onClick={closeSearch}
-                  className="shrink-0 rounded-lg border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="hover-tint shrink-0 rounded-lg border border-[var(--border)] px-2.5 py-1 text-xs font-medium text-[var(--muted)]"
                 >
-                  Esc
+                  Close
                 </button>
               )}
             </div>
@@ -447,7 +445,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                         setQuery(chip);
                         inputRef.current?.focus();
                       }}
-                      className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1 text-xs font-medium text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                      className="hover-tint rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1 text-xs font-medium text-[var(--muted)]"
                     >
                       {chip}
                     </button>
@@ -496,7 +494,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                             setQuery(hint);
                             inputRef.current?.focus();
                           }}
-                          className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 text-left transition hover:border-[var(--accent)]"
+                          className="hover-lift rounded-xl border border-[var(--border)] bg-[var(--background)] p-4 text-left"
                         >
                           <div
                             className={`mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${meta.accent} text-xs font-bold text-white`}
@@ -521,7 +519,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                       <Link
                         key={tool.slug}
                         href={getToolHref(tool.slug)}
-                        className="result-card rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 transition hover:border-[var(--accent)] hover:shadow-[0_12px_28px_-18px_rgba(41,121,255,0.55)]"
+                        className="hover-lift result-card rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3.5"
                         style={{ animationDelay: `${Math.min(index, 12) * 30}ms` }}
                       >
                         <div className="text-sm font-semibold text-[var(--foreground)]">
@@ -561,7 +559,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               </div>
               <Link
                 href="/tools"
-                className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="hover-tint rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--foreground)]"
               >
                 Browse all tools →
               </Link>
@@ -587,17 +585,20 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   <Link
                     key={tool.slug}
                     href={getToolHref(tool.slug)}
-                    className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_20px_40px_-24px_rgba(41,121,255,0.45)]"
+                    className="hover-lift group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
                   >
                     <div className="mb-3 h-1.5 w-14 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF]" />
-                    <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)]">
+                    <h3 className="hover-lift-title font-semibold text-[var(--foreground)] transition-colors duration-200">
                       {tool.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
                       {item.blurb}
                     </p>
-                    <p className="mt-4 text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
+                    <p className="mt-4 hidden text-xs font-semibold tracking-wide text-[var(--accent)] uppercase sm:block">
                       /tools/{tool.slug}
+                    </p>
+                    <p className="mt-4 text-xs font-semibold tracking-wide text-[var(--accent)] uppercase sm:hidden">
+                      Open tool →
                     </p>
                   </Link>
                 );
@@ -626,7 +627,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   <a
                     key={category}
                     href={`#${categoryId(category)}`}
-                    className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-[0_20px_40px_-24px_rgba(41,121,255,0.45)]"
+                    className="hover-lift group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
                   >
                     <div
                       className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${meta.accent} text-sm font-bold text-white`}
@@ -667,7 +668,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                         <Link
                           key={tool.slug}
                           href={getToolHref(tool.slug)}
-                          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 transition hover:border-[var(--accent)] hover:bg-[var(--background)]"
+                          className="hover-lift rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4"
                         >
                           <div className="font-semibold text-[var(--foreground)]">
                             {tool.title}

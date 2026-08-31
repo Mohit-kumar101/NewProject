@@ -12,6 +12,7 @@ import {
   getCategoryPathModifiers,
 } from "@/lib/categoryPathTools";
 import { PSEO_SLUGS, PSEO_TOOLS } from "@/lib/pseo/calculatorsData";
+import { getAllConfigCalculatorSlugs } from "@/config/calculators";
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
@@ -53,6 +54,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.8,
   }));
+
+  const configPackPages: MetadataRoute.Sitemap =
+    getAllConfigCalculatorSlugs().map((slug) => ({
+      url: `${SITE_URL}/tools/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    }));
 
   const catalogPages: MetadataRoute.Sitemap = calculators
     .filter(
@@ -109,6 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...STATIC_PAGES.map((page) => ({ ...page, lastModified: now })),
     ...cryptoPages,
     ...pseoPages,
+    ...configPackPages,
     ...catalogPages,
     ...categoryPathPages,
     ...keywordVariationPages,
