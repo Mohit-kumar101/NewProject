@@ -1,5 +1,6 @@
 import { HomeExplorer } from "@/components/HomeExplorer";
 import { FeaturedPlanners } from "@/components/growth/FeaturedPlanners";
+import { SpecialCareerTools } from "@/components/SpecialCareerTools";
 import type { Metadata } from "next";
 import { calculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { buildPageMetadata } from "@/lib/pageMetadata";
@@ -86,6 +87,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
       <HomeExplorer calculators={calculators} />
+      <SpecialCareerTools />
       <FeaturedPlanners />
     </>
   );

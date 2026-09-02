@@ -43,6 +43,18 @@ import {
   getNiche50ToolBySlug,
 } from "@/lib/hubs/niche50Pack";
 import {
+  TRADES_NICHE_READY_TOOLS,
+  TRADES_NICHE_SLUGS,
+  TRADES_NICHE_TOOLS,
+  getTradesNicheToolBySlug,
+} from "@/lib/hubs/tradesNichePack";
+import {
+  TECH_NICHE_READY_TOOLS,
+  TECH_NICHE_SLUGS,
+  TECH_NICHE_TOOLS,
+  getTechNicheToolBySlug,
+} from "@/lib/hubs/techNichePack";
+import {
   ADVANCED_TOOLS,
   ADVANCED_CATEGORY_PATH_SLUGS,
   getAdvancedToolBySlug,
@@ -60,6 +72,8 @@ export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...NICHE65_READY_TOOLS,
   ...HEALTH_READY_TOOLS,
   ...NICHE50_READY_TOOLS,
+  ...TRADES_NICHE_READY_TOOLS,
+  ...TECH_NICHE_READY_TOOLS,
   ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
   ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
 ];
@@ -71,6 +85,8 @@ export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
   ...NICHE65_TOOLS,
   ...HEALTH_TOOLS,
   ...NICHE50_TOOLS,
+  ...TRADES_NICHE_TOOLS,
+  ...TECH_NICHE_TOOLS,
   ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
   ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
 ];
@@ -82,6 +98,8 @@ export const CATEGORY_PATH_SLUGS = new Set([
   ...NICHE65_SLUGS,
   ...HEALTH_SLUGS,
   ...NICHE50_SLUGS,
+  ...TRADES_NICHE_SLUGS,
+  ...TECH_NICHE_SLUGS,
   ...ADVANCED_CATEGORY_PATH_SLUGS,
   ...GLOBAL_CATEGORY_PATH_SLUGS,
 ]);
@@ -93,6 +111,8 @@ export function getCategoryPathToolBySlug(
   return (
     getGlobalPlannerBySlug(slug) ??
     getAdvancedToolBySlug(slug) ??
+    getTechNicheToolBySlug(slug) ??
+    getTradesNicheToolBySlug(slug) ??
     getNiche50ToolBySlug(slug) ??
     getHealthToolBySlug(slug) ??
     getNiche65ToolBySlug(slug) ??

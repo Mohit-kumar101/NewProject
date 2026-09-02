@@ -6,6 +6,8 @@ import {
 } from "./formulas_affordability";
 import { isHealthFormulaType, runHealthCalculation } from "./formulas_health";
 import { isNiche50FormulaType, runNiche50Calculation } from "./formulas_niche50";
+import { isTradesFormulaType, runTradesCalculation } from "./formulas_trades";
+import { isTechFormulaType, runTechCalculation } from "./formulas_tech";
 
 type Inputs = Record<string, number>;
 
@@ -2699,6 +2701,14 @@ export function runCalculation(
     }
 
     default: {
+      if (isTechFormulaType(formulaType)) {
+        const tech = runTechCalculation(formulaType, inputs);
+        if (tech) return tech;
+      }
+      if (isTradesFormulaType(formulaType)) {
+        const trades = runTradesCalculation(formulaType, inputs);
+        if (trades) return trades;
+      }
       if (isNiche50FormulaType(formulaType)) {
         const niche50 = runNiche50Calculation(formulaType, inputs);
         if (niche50) return niche50;

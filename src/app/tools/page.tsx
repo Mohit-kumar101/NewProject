@@ -4,6 +4,7 @@ import { CATEGORIES, SITE_NAME, SITE_URL, calculators } from "@/lib/calculators"
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { buildPageMetadata } from "@/lib/pageMetadata";
 import { ToolsDirectory } from "@/components/ToolsDirectory";
+import { SpecialCareerTools } from "@/components/SpecialCareerTools";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "All Calculators & Converters",
@@ -79,6 +80,8 @@ export default function ToolsIndexPage() {
           its own URL.
         </p>
       </header>
+
+      <SpecialCareerTools variant="tools" />
 
       <ToolsDirectory />
     </div>

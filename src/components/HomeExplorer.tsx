@@ -6,12 +6,24 @@ import type { Calculator } from "@/lib/types";
 import { CATEGORIES, toolMatchesQuery } from "@/lib/calculators";
 import {
   AFFORDABILITY_DISPLAY_CATEGORY,
+  CONSTRUCTION_TRADES_CATEGORY,
   CRAFTERS_MAKERS_CATEGORY,
+  ELECTRICAL_TRADES_CATEGORY,
   GIG_ECONOMY_CATEGORY,
   HEALTH_DISPLAY_CATEGORY,
   HOMESTEADING_CATEGORY,
+  HVAC_TRADES_CATEGORY,
+  LANDSCAPING_TRADES_CATEGORY,
+  MASONRY_TRADES_CATEGORY,
   NICHE_EVENTS_CATEGORY,
+  PLUMBING_TRADES_CATEGORY,
+  ROOFING_TRADES_CATEGORY,
   SPECIALIZED_PETS_CATEGORY,
+  NETWORKING_IT_CATEGORY,
+  SOFTWARE_DEV_CATEGORY,
+  CLOUD_AI_CATEGORY,
+  ELECTRONICS_HW_CATEGORY,
+  DIGITAL_SEO_CATEGORY,
 } from "@/lib/categoryPaths";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { Logo } from "@/components/Logo";
@@ -164,6 +176,66 @@ const categoryMeta: Record<
     icon: "E",
     blurb: "Wedding cake tiers, open bar alcohol, D&D XP budgets, homebrew priming, and telescope FOV.",
     accent: "from-[#E91E63] to-[#7C4DFF]",
+  },
+  [HVAC_TRADES_CATEGORY]: {
+    icon: "A",
+    blurb: "SEER savings, BTU sizing, ductwork CFM, heat pump COP, and HVAC service pricing.",
+    accent: "from-[#0277BD] to-[#00B8D4]",
+  },
+  [PLUMBING_TRADES_CATEGORY]: {
+    icon: "P",
+    blurb: "Water heater sizing, pipe runs, drain slope, fixture units, and plumbing job bids.",
+    accent: "from-[#1565C0] to-[#42A5F5]",
+  },
+  [ELECTRICAL_TRADES_CATEGORY]: {
+    icon: "E",
+    blurb: "Wire gauge ampacity, voltage drop, conduit fill, EV charger circuits, and electrical bids.",
+    accent: "from-[#F9A825] to-[#FF8F00]",
+  },
+  [ROOFING_TRADES_CATEGORY]: {
+    icon: "R",
+    blurb: "Roofing squares, shingle bundles, gutters, siding, and fence material estimates.",
+    accent: "from-[#5D4037] to-[#8D6E63]",
+  },
+  [CONSTRUCTION_TRADES_CATEGORY]: {
+    icon: "B",
+    blurb: "Job bid profit, change orders, concrete volume, remodel ballparks, and sub bid compare.",
+    accent: "from-[#455A64] to-[#78909C]",
+  },
+  [LANDSCAPING_TRADES_CATEGORY]: {
+    icon: "L",
+    blurb: "Mulch cubic yards, sod, gravel driveways, irrigation GPM, pavers, and retaining walls.",
+    accent: "from-[#558B2F] to-[#8BC34A]",
+  },
+  [MASONRY_TRADES_CATEGORY]: {
+    icon: "M",
+    blurb: "Brick mortar, CMU blocks, rebar weight, and post-hole concrete bags.",
+    accent: "from-[#6D4C41] to-[#A1887F]",
+  },
+  [NETWORKING_IT_CATEGORY]: {
+    icon: "N",
+    blurb: "Subnet masks, CIDR, RAID, bandwidth, fiber loss, and DNS propagation.",
+    accent: "from-[#1565C0] to-[#00B8D4]",
+  },
+  [SOFTWARE_DEV_CATEGORY]: {
+    icon: "D",
+    blurb: "Epoch timestamps, JSON size, Base64, cron schedules, hex/RGB, and ASCII codes.",
+    accent: "from-[#7C4DFF] to-[#448AFF]",
+  },
+  [CLOUD_AI_CATEGORY]: {
+    icon: "C",
+    blurb: "AWS/Azure/GCP TCO, AI token costs, serverless, SaaS MRR/LTV, and SLA uptime.",
+    accent: "from-[#00B8D4] to-[#00E676]",
+  },
+  [ELECTRONICS_HW_CATEGORY]: {
+    icon: "E",
+    blurb: "Ohm's law, LED resistors, PCB traces, battery runtime, AWG, and PSU sizing.",
+    accent: "from-[#FF6F00] to-[#FFD600]",
+  },
+  [DIGITAL_SEO_CATEGORY]: {
+    icon: "S",
+    blurb: "Page speed churn, SEO ROI, CPM/CPC, CRO, A/B significance, and video bitrate.",
+    accent: "from-[#E91E63] to-[#FF4081]",
   },
   "Education, GPA & Academic": {
     icon: "A",

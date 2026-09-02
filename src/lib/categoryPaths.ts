@@ -76,6 +76,40 @@ export const NICHE50_HUB_CATEGORIES = [
   NICHE_EVENTS_CATEGORY,
 ] as const;
 
+/** Skilled-trades niche pack — HVAC, plumbing, electrical, roofing, construction. */
+export const HVAC_TRADES_CATEGORY = "HVAC & Climate Control" as const;
+export const PLUMBING_TRADES_CATEGORY = "Plumbing & Piping" as const;
+export const ELECTRICAL_TRADES_CATEGORY = "Electrical & Wiring" as const;
+export const ROOFING_TRADES_CATEGORY = "Roofing & Exterior" as const;
+export const CONSTRUCTION_TRADES_CATEGORY = "Construction & Bidding" as const;
+export const LANDSCAPING_TRADES_CATEGORY = "Landscaping & Hardscape" as const;
+export const MASONRY_TRADES_CATEGORY = "Masonry & Concrete" as const;
+
+export const TRADES_NICHE_HUB_CATEGORIES = [
+  HVAC_TRADES_CATEGORY,
+  PLUMBING_TRADES_CATEGORY,
+  ELECTRICAL_TRADES_CATEGORY,
+  ROOFING_TRADES_CATEGORY,
+  CONSTRUCTION_TRADES_CATEGORY,
+  LANDSCAPING_TRADES_CATEGORY,
+  MASONRY_TRADES_CATEGORY,
+] as const;
+
+/** Tech & engineering calculator pack — networking, dev, cloud, hardware, SEO. */
+export const NETWORKING_IT_CATEGORY = "Networking & IT Infrastructure" as const;
+export const SOFTWARE_DEV_CATEGORY = "Software Development & Programming" as const;
+export const CLOUD_AI_CATEGORY = "Cloud Computing & AI Tech" as const;
+export const ELECTRONICS_HW_CATEGORY = "Electronics & Hardware Engineering" as const;
+export const DIGITAL_SEO_CATEGORY = "Digital Tech & SEO Marketing" as const;
+
+export const TECH_NICHE_HUB_CATEGORIES = [
+  NETWORKING_IT_CATEGORY,
+  SOFTWARE_DEV_CATEGORY,
+  CLOUD_AI_CATEGORY,
+  ELECTRONICS_HW_CATEGORY,
+  DIGITAL_SEO_CATEGORY,
+] as const;
+
 export type ExpansionCategory = (typeof EXPANSION_CATEGORIES)[number];
 export type LongtailHubCategory = (typeof LONGTAIL_HUB_CATEGORIES)[number];
 export type Intent80HubCategory = (typeof INTENT80_HUB_CATEGORIES)[number];
@@ -84,3 +118,5 @@ export type AffordabilityHubCategory =
   (typeof AFFORDABILITY_HUB_CATEGORIES)[number];
 export type HealthHubCategory = (typeof HEALTH_HUB_CATEGORIES)[number];
 export type Niche50HubCategory = (typeof NICHE50_HUB_CATEGORIES)[number];
+export type TradesNicheHubCategory = (typeof TRADES_NICHE_HUB_CATEGORIES)[number];
+export type TechNicheHubCategory = (typeof TECH_NICHE_HUB_CATEGORIES)[number];

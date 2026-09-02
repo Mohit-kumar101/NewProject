@@ -4,18 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.3",
     "heic2any": "^0.0.4",
     "html2canvas": "^1.4.1",
+    "jose": "^6.2.10",
     "js-yaml": "^5.2.3",
     "jspdf": "^4.2.1",
     "jszip": "^3.10.1",
+    "lucide-react": "^1.39.0",
     "marked": "^18.0.9",
     "mathjs": "^15.2.0",
     "next": "16.3.0",
@@ -33,6 +40,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/js-yaml": "^4.0.9",
     "@types/jszip": "^3.4.0",
     "@types/mathjs": "^9.4.1",
@@ -44,6 +52,7 @@
     "@types/utif": "^3.0.6",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
