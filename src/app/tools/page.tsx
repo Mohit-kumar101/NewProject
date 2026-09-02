@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CATEGORIES, SITE_NAME, SITE_URL, calculators } from "@/lib/calculators";
+import { CATEGORIES, getPublicCalculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { buildPageMetadata } from "@/lib/pageMetadata";
 import { ToolsDirectory } from "@/components/ToolsDirectory";
@@ -21,6 +21,7 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function ToolsIndexPage() {
+  const publicTools = getPublicCalculators();
   const itemList = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -35,8 +36,8 @@ export default function ToolsIndexPage() {
     },
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: calculators.length,
-      itemListElement: calculators.map((tool, index) => ({
+      numberOfItems: publicTools.length,
+      itemListElement: publicTools.map((tool, index) => ({
         "@type": "ListItem",
         position: index + 1,
         url: `${SITE_URL}${getToolHref(tool.slug)}`,
@@ -75,7 +76,7 @@ export default function ToolsIndexPage() {
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
           Same jobs as the paid PDF, video, and image converters — plus finance
-          and crypto calculators. Browse {calculators.length} tools across{" "}
+          and crypto calculators. Browse {publicTools.length} tools across{" "}
           {CATEGORIES.length} categories. Every tool is free, private, and on
           its own URL.
         </p>

@@ -7,7 +7,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: [
+          "/api/",
+          "/vaultline/purchases",
+          "/vaultline/subscriptions",
+          "/vaultline/saved",
+          "/vaultline/settings",
+        ],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

@@ -2,7 +2,7 @@ import { HomeExplorer } from "@/components/HomeExplorer";
 import { FeaturedPlanners } from "@/components/growth/FeaturedPlanners";
 import { SpecialCareerTools } from "@/components/SpecialCareerTools";
 import type { Metadata } from "next";
-import { calculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { getPublicCalculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { buildPageMetadata } from "@/lib/pageMetadata";
 
 const homeMeta = buildPageMetadata({
@@ -86,7 +86,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
-      <HomeExplorer calculators={calculators} />
+      <HomeExplorer calculators={getPublicCalculators()} />
       <SpecialCareerTools />
       <FeaturedPlanners />
     </>

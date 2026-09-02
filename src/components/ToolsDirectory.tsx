@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   CATEGORIES,
-  calculators,
+  getPublicCalculators,
   toolMatchesQuery,
 } from "@/lib/calculators";
 import { getToolHref } from "@/lib/cryptoFormulas";
@@ -29,10 +29,12 @@ export function ToolsDirectory() {
   const [query, setQuery] = useState("");
   const q = query.trim();
   const isSearching = q.length > 0;
+  const publicCount = useMemo(() => getPublicCalculators().length, []);
 
   const filtered = useMemo(() => {
-    if (!isSearching) return calculators;
-    return calculators.filter((tool) => toolMatchesQuery(tool, q));
+    const catalog = getPublicCalculators();
+    if (!isSearching) return catalog;
+    return catalog.filter((tool) => toolMatchesQuery(tool, q));
   }, [isSearching, q]);
 
   const grouped = useMemo(() => {
@@ -115,7 +117,7 @@ export function ToolsDirectory() {
             ? filtered.length === 0
               ? `No tools match “${q}”.`
               : `${filtered.length} tool${filtered.length === 1 ? "" : "s"} match “${q}”`
-            : `${calculators.length} tools across ${CATEGORIES.length} categories`}
+            : `${publicCount} tools across ${CATEGORIES.length} categories`}
         </p>
       </div>
 

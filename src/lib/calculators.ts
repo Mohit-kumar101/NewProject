@@ -179,6 +179,11 @@ export function getCalculatorBySlug(slug: string): Calculator | undefined {
   return calculators.find((c) => c.slug === slug);
 }
 
+/** Tools safe for public catalog, sitemap, and SERP (excludes unfinished stubs). */
+export function getPublicCalculators(): Calculator[] {
+  return calculators.filter((c) => c.ready !== false);
+}
+
 export function getCalculatorsByCategory(category: string): Calculator[] {
   return calculators.filter((c) => c.category === category);
 }
@@ -326,7 +331,7 @@ export function getRelatedCalculators(
   // Prefer growth-cluster mates for stronger internal SEO
   for (const slug of getClusterMateSlugs(calculator.slug, target)) {
     const tool = getCalculatorBySlug(slug);
-    if (!tool || seen.has(tool.slug)) continue;
+    if (!tool || tool.ready === false || seen.has(tool.slug)) continue;
     seen.add(tool.slug);
     out.push(tool);
     if (out.length >= target) return out;
@@ -349,7 +354,7 @@ export function getRelatedCalculators(
     ...(calculator.seoKeywords ?? []).map((k) => k.toLowerCase()),
   ].filter((w) => w.length > 2 && !stop.has(w));
 
-  const sameCategory = calculators.filter(
+  const sameCategory = getPublicCalculators().filter(
     (c) => c.category === calculator.category && !seen.has(c.slug)
   );
 
@@ -373,8 +378,8 @@ export function getRelatedCalculators(
 
 export function searchCalculators(query: string): Calculator[] {
   const q = query.trim();
-  if (!q) return calculators;
-  return calculators.filter((c) => toolMatchesQuery(c, q));
+  if (!q) return getPublicCalculators();
+  return getPublicCalculators().filter((c) => toolMatchesQuery(c, q));
 }
 
 export const SITE_URL = "https://calculiohub.com";

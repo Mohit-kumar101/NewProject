@@ -10,6 +10,7 @@ import {
 import {
   calculators,
   getCalculatorBySlug,
+  getPublicCalculators,
   getRelatedCalculators,
   SITE_URL,
 } from "@/lib/calculators";
@@ -26,7 +27,7 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  const catalog = calculators
+  const catalog = getPublicCalculators()
     .filter(
       (calculator) =>
         !CUSTOM_TOOL_SLUGS.has(calculator.slug) &&
@@ -203,7 +204,7 @@ export default async function ToolPage({ params }: PageProps) {
   if (pseo) return <PseoToolPage tool={pseo} />;
 
   const calculator = getCalculatorBySlug(slug);
-  if (!calculator) notFound();
+  if (!calculator || calculator.ready === false) notFound();
 
   const related = getRelatedCalculators(calculator, 6);
 
