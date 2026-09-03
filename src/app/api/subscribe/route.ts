@@ -15,7 +15,8 @@ const OWNER_EMAIL =
   SITE_SUPPORT_EMAIL;
 
 const FROM_EMAIL =
-  process.env.FEEDBACK_FROM_EMAIL || "CalculioHub <onboarding@resend.dev>";
+  process.env.FEEDBACK_FROM_EMAIL ||
+  "CalculioHub <noreply@mail.calculiohub.com>";
 
 const LIST_SECRET = process.env.SUBSCRIBERS_SECRET?.trim();
 

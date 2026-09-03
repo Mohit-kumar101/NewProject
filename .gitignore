@@ -39,6 +39,7 @@ yarn-error.log*
 
 # collected newsletter emails (local / writable host)
 /data/subscribers.json
+/data/feedback.json
 
 # vercel
 .vercel
