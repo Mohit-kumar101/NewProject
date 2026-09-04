@@ -33,8 +33,8 @@ export function SpecialCareerTools({ variant = "home" }: Props) {
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)] sm:text-base">
             Side-by-side offer comparison, remote stipend value, non-compete
-            radius, layoff runway, and shift-swap fairness — free to use. Sign
-            in for a free Vaultline account to save your results.
+            radius, layoff runway, and shift-swap fairness — free to use, no
+            account required.
           </p>
         </div>
 

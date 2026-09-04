@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { SaveCalculationButton } from "@/components/vaultline/SaveCalculationButton";
 
 type OfferKey = "A" | "B" | "C";
 
@@ -342,25 +341,6 @@ export function OfferStackComparator({
           offer letter. Not tax or legal advice.
         </p>
       </aside>
-
-      <SaveCalculationButton
-        payload={{
-          toolSlug: "offer-stack-comparator-calculator",
-          toolTitle: "Offer Stack Comparator",
-          inputs: { includeC, offers },
-          result: {
-            primaryLabel: "Winning offer (3-year)",
-            primaryValue: `${winner.label} — ${money(winner.threeYear)}`,
-            rows: scored.map((o) => ({
-              label: o.label,
-              value:
-                o.key === winner.key
-                  ? `${money(o.threeYear)} (winner)`
-                  : `${money(o.threeYear)} (−${money(winner.threeYear - o.threeYear)})`,
-            })),
-          },
-        }}
-      />
 
       <section
         className="max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"

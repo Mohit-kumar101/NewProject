@@ -16,22 +16,6 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/vaultline/me")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!cancelled) setLoggedIn(Boolean(data?.user));
-      })
-      .catch(() => {
-        if (!cancelled) setLoggedIn(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -67,20 +51,6 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/vaultline"
-              className="hover-tint rounded-lg px-3 py-2 text-sm font-semibold text-[var(--accent)]"
-            >
-              {loggedIn ? "Dashboard" : "Vaultline"}
-            </Link>
-            {!loggedIn ? (
-              <Link
-                href="/vaultline/login"
-                className="hover-tint rounded-lg px-3 py-2 text-sm font-medium text-[var(--muted)]"
-              >
-                Sign in
-              </Link>
-            ) : null}
           </div>
           <ThemeToggle />
           <button
@@ -136,22 +106,6 @@ export function Header() {
             >
               Contact
             </Link>
-            <Link
-              href="/vaultline"
-              onClick={() => setOpen(false)}
-              className="mt-1 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-3 text-center text-sm font-semibold text-white"
-            >
-              Vaultline dashboard
-            </Link>
-            {!loggedIn ? (
-              <Link
-                href="/vaultline/login"
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-center text-sm font-medium text-[var(--muted)]"
-              >
-                Sign in
-              </Link>
-            ) : null}
           </div>
         </div>
       ) : null}

@@ -42,8 +42,6 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.7 },
   { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.4 },
   { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.4 },
-  { url: `${SITE_URL}/vaultline/login`, changeFrequency: "monthly", priority: 0.5 },
-  { url: `${SITE_URL}/vaultline/signup`, changeFrequency: "monthly", priority: 0.5 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

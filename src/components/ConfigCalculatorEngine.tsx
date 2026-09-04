@@ -6,7 +6,6 @@ import {
   type ConfigCalculator,
 } from "@/config/calculators";
 import { OfferStackComparator } from "@/components/OfferStackComparator";
-import { SaveCalculationButton } from "@/components/vaultline/SaveCalculationButton";
 import { PseoCalcShell } from "@/components/pseo/PseoCalcShell";
 
 function GenericConfigCalculatorEngine({ tool }: { tool: ConfigCalculator }) {
@@ -37,19 +36,6 @@ function GenericConfigCalculatorEngine({ tool }: { tool: ConfigCalculator }) {
         primaryValue={result.primaryValue}
         rows={result.rows}
         note={result.note}
-      />
-
-      <SaveCalculationButton
-        payload={{
-          toolSlug: tool.slug,
-          toolTitle: tool.topic,
-          inputs: values,
-          result: {
-            primaryLabel: result.primaryLabel,
-            primaryValue: result.primaryValue,
-            rows: result.rows,
-          },
-        }}
       />
 
       <section
