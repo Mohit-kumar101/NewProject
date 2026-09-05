@@ -3,20 +3,24 @@ import { SITE_URL, getPublicCalculators } from "@/lib/calculators";
 import {
   CRYPTO_SHORT_SLUGS,
   getToolHref,
-  getToolModifierHref,
 } from "@/lib/cryptoFormulas";
-import { getAllKeywordPacks, getRoutableVariations } from "@/lib/keywords";
 import {
   CATEGORY_PATH_READY_TOOLS,
   CATEGORY_PATH_SLUGS,
-  getCategoryPathModifiers,
 } from "@/lib/categoryPathTools";
 import { PSEO_SLUGS, PSEO_TOOLS } from "@/lib/pseo/calculatorsData";
 import { getAllConfigCalculatorSlugs } from "@/config/calculators";
+import { getAllGuideSlugs } from "@/lib/guides/articles";
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
   { url: `${SITE_URL}/tools`, changeFrequency: "weekly", priority: 0.9 },
+  { url: `${SITE_URL}/guides`, changeFrequency: "weekly", priority: 0.92 },
+  ...getAllGuideSlugs().map((slug) => ({
+    url: `${SITE_URL}/guides/${slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.86,
+  })),
   { url: `${SITE_URL}/workflows`, changeFrequency: "weekly", priority: 0.88 },
   { url: `${SITE_URL}/workflows/buy-a-home`, changeFrequency: "monthly", priority: 0.85 },
   { url: `${SITE_URL}/workflows/kill-debt`, changeFrequency: "monthly", priority: 0.85 },
@@ -38,8 +42,9 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
     changeFrequency: "monthly",
     priority: 0.85,
   },
-  { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.7 },
-  { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.75 },
+  { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.75 },
+  { url: `${SITE_URL}/disclaimer`, changeFrequency: "yearly", priority: 0.45 },
   { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.4 },
   { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.4 },
 ];
@@ -78,21 +83,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   const categoryPathPages: MetadataRoute.Sitemap =
-    CATEGORY_PATH_READY_TOOLS.flatMap((tool) => {
-      const base = {
-        url: `${SITE_URL}${getToolHref(tool.slug)}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.8,
-      };
-      const modifiers = getCategoryPathModifiers(tool).map((modifier) => ({
-        url: `${SITE_URL}${getToolModifierHref(tool.slug, modifier.slug)}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
-      }));
-      return [base, ...modifiers];
-    });
+    CATEGORY_PATH_READY_TOOLS.map((tool) => ({
+      url: `${SITE_URL}${getToolHref(tool.slug)}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
 
   const cryptoPages: MetadataRoute.Sitemap = Object.keys(CRYPTO_SHORT_SLUGS).map(
     (short) => ({
@@ -103,16 +99,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const keywordVariationPages: MetadataRoute.Sitemap = Object.keys(
-    getAllKeywordPacks()
-  ).flatMap((slug) =>
-    getRoutableVariations(slug).map((variation) => ({
-      url: `${SITE_URL}/tools/${slug}/for/${variation.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }))
-  );
+  // Intentionally omit thin long-tail `/for/` and category modifier URLs from
+  // the sitemap so crawlers prioritize canonical tool + guide pages.
 
   return [
     ...STATIC_PAGES.map((page) => ({ ...page, lastModified: now })),
@@ -121,6 +109,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...configPackPages,
     ...catalogPages,
     ...categoryPathPages,
-    ...keywordVariationPages,
   ];
 }

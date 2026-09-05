@@ -40,6 +40,9 @@ import {
   buildToolTermsGuide,
   getToolExplanation,
 } from "@/lib/toolExplanations";
+import { getToolEditorialGuide } from "@/lib/editorial/toolGuides";
+import { ToolEditorialGuidePanel } from "@/components/editorial/ToolEditorialGuidePanel";
+import { AuthorByline } from "@/components/AuthorByline";
 
 /**
  * Unified tool page template:
@@ -78,6 +81,10 @@ export function ToolPageShell({
     modifier?.focusKeyword ||
     resolvedVariation?.focus ||
     calculator.title;
+  const editorial =
+    !resolvedVariation && !modifier
+      ? getToolEditorialGuide(calculator.slug)
+      : undefined;
 
   const termsPanel = (
     <ToolTermsGuide toolTitle={pageTitle} guide={termsGuide} compact />
@@ -117,6 +124,9 @@ export function ToolPageShell({
             resolvedVariation?.intro ||
             calculator.seoContent.intro}
         </p>
+        {!resolvedVariation && !modifier ? (
+          <AuthorByline compact dateLabel="Maintained by CalculioHub" />
+        ) : null}
       </header>
 
       <div className="min-w-0">{workspace}</div>
@@ -185,6 +195,13 @@ export function ToolPageShell({
       />
 
       {guideExtra}
+
+      {editorial ? (
+        <ToolEditorialGuidePanel
+          guide={editorial}
+          toolTitle={calculator.title}
+        />
+      ) : null}
 
       <section className="mt-16 max-w-3xl">
         <h2 className="mb-5 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight">

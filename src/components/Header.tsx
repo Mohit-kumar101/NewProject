@@ -6,12 +6,13 @@ import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
+  { href: "/guides", label: "Guides" },
   { href: "/workflows", label: "Workflows" },
-  { href: "/crypto", label: "Crypto" },
   { href: "/tools", label: "All Tools" },
-  { href: "/hubs/fitness-planners", label: "Fitness" },
   { href: "/hubs/money-milestones", label: "Money" },
+  { href: "/hubs/fitness-planners", label: "Fitness" },
   { href: "/about", label: "About" },
+  { href: "/crypto", label: "Crypto" },
 ];
 
 export function Header() {
@@ -42,7 +43,7 @@ export function Header() {
           className="flex shrink-0 items-center gap-1.5 sm:gap-3"
         >
           <div className="hidden items-center gap-1 md:flex">
-            {links.slice(0, 4).map((link) => (
+            {links.slice(0, 5).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

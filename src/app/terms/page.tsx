@@ -15,14 +15,18 @@ export default function TermsPage() {
       eyebrow="Legal"
       title="Terms of Service"
       description={`These Terms govern your use of ${SITE_NAME}. By accessing or using our calculators and utilities, you agree to these Terms.`}
-      updated="August 8, 2026"
+      updated="September 5, 2026"
     >
       <InfoSection title="Agreement to terms">
         <p>
           Welcome to {SITE_NAME} ({SITE_URL}). By using this website, you agree to
-          these Terms of Service and our{" "}
+          these Terms of Service, our{" "}
           <a href="/privacy" className="font-medium text-[var(--accent)] underline-offset-2 hover:underline">
             Privacy Policy
+          </a>
+          , and our{" "}
+          <a href="/disclaimer" className="font-medium text-[var(--accent)] underline-offset-2 hover:underline">
+            Disclaimer
           </a>
           . If you do not agree, please do not use the site.
         </p>

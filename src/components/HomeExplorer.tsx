@@ -393,19 +393,19 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               {!splitActive && (
                 <>
                   <p className="mb-4 text-[11px] font-medium tracking-[0.14em] text-[var(--accent)] uppercase sm:mb-5 sm:text-sm sm:tracking-[0.2em]">
-                    Free alternative · No paywall
+                    Planners · Converters · Guides
                   </p>
                   <h1 className="font-[family-name:var(--font-display)] mx-auto max-w-3xl text-[1.85rem] font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-4xl sm:leading-tight md:text-5xl lg:text-6xl">
-                    The tools you paid for,{" "}
-                    <span className="gradient-text">now free</span>
+                    Clear tools,{" "}
+                    <span className="gradient-text">explained</span>
                   </h1>
                   <p className="mx-auto mt-4 max-w-xl px-1 text-sm leading-relaxed text-[var(--muted)] sm:mt-5 sm:text-base md:text-lg">
-                    Skip the subscription. Convert PDFs, video, and photos — plus
-                    finance and crypto calculators — with no watermark, no daily
-                    cap, and nothing uploaded.
+                    Money and fitness planners with transparent formulas, private
+                    PDF and photo converters, plus original guides—built by Mohit,
+                    free to use.
                   </p>
                   <ul className="mx-auto mt-5 flex max-w-md flex-wrap justify-center gap-2 sm:mt-7 sm:max-w-none">
-                    {["No subscription", "No watermark", "Files stay on-device"].map(
+                    {["No subscription", "Named operator", "Guides included"].map(
                       (item) => (
                         <li
                           key={item}
@@ -418,6 +418,13 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   </ul>
                   <p className="mx-auto mt-5 max-w-lg px-1 text-sm text-[var(--muted)] sm:mt-6">
                     Start with{" "}
+                    <Link
+                      href="/guides"
+                      className="font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      Guides
+                    </Link>
+                    ,{" "}
                     <Link
                       href="/hubs/fitness-planners"
                       className="font-semibold text-[var(--accent)] hover:underline"

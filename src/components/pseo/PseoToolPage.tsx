@@ -7,6 +7,9 @@ import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
 import { CalculatorRenderer } from "@/components/pseo/CalculatorRenderer";
 import { PseoJsonLd } from "@/components/pseo/PseoJsonLd";
+import { AuthorByline } from "@/components/AuthorByline";
+import { ToolEditorialGuidePanel } from "@/components/editorial/ToolEditorialGuidePanel";
+import { getToolEditorialGuide } from "@/lib/editorial/toolGuides";
 import {
   getCalculatorBySlug,
   getRelatedCalculators,
@@ -73,6 +76,7 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
   const termsGuide = calculator
     ? buildToolTermsGuide(calculator)
     : pseoTermsGuide(tool);
+  const editorial = getToolEditorialGuide(tool.slug);
   const termsPanel = (
     <ToolTermsGuide toolTitle={tool.h1} guide={termsGuide} compact />
   );
@@ -97,6 +101,7 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
         <p className="mt-4 text-base leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-lg">
           {tool.whatIsIt}
         </p>
+        <AuthorByline compact dateLabel="Maintained by CalculioHub" />
       </header>
 
       <CalculatorRenderer id={tool.id} />
@@ -146,6 +151,10 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
           {tool.whyItMatters}
         </p>
       </section>
+
+      {editorial ? (
+        <ToolEditorialGuidePanel guide={editorial} toolTitle={tool.h1} />
+      ) : null}
 
       <section className="mt-16 max-w-3xl">
         <h2 className="mb-5 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight">

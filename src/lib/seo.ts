@@ -450,9 +450,10 @@ export function buildToolMetadata(
         META_DESCRIPTION_MAX
       )
     : getToolPageDescription(calculator, resolvedVariation);
-  const url = resolvedVariation
-    ? getToolVariationCanonicalUrl(calculator, resolvedVariation.slug)
-    : getToolCanonicalUrl(calculator);
+  // Thin long-tail / modifier URLs stay reachable for users but should not
+  // compete as indexed duplicates — canonical points at the primary tool page.
+  const isThinDerivative = Boolean(variation || modifier);
+  const url = getToolCanonicalUrl(calculator);
   const image = {
     ...DEFAULT_OG_IMAGE,
     alt: `${calculator.title} on ${SITE_NAME}`,
@@ -484,9 +485,8 @@ export function buildToolMetadata(
       description,
       images: [image.url],
     },
-    robots: {
-      index: true,
-      follow: true,
-    },
+    robots: isThinDerivative
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
   };
 }

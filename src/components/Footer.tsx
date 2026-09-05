@@ -5,12 +5,15 @@ import { CATEGORIES, CONVERTER_CATEGORIES } from "@/lib/calculators";
 const LEGAL_LINKS = [
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
+  { href: "/guides", label: "Guides" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
+  { href: "/disclaimer", label: "Disclaimer" },
 ] as const;
 
 const PRODUCT_LINKS = [
   { href: "/tools", label: "All Tools" },
+  { href: "/guides", label: "Guides" },
   { href: "/hubs/fitness-planners", label: "Fitness Planners" },
   { href: "/hubs/money-milestones", label: "Money Milestones" },
   { href: "/workflows", label: "Workflows" },
@@ -34,9 +37,9 @@ export function Footer() {
         <div className="space-y-4">
           <Logo size="sm" />
           <p className="max-w-sm text-sm leading-relaxed text-[var(--muted)]">
-            The free alternative to paid converters. CalculioHub gives you
-            private PDF, image, and media tools plus fitness and money
-            planners — no subscription, no watermark.
+            Free planners and converters with transparent formulas and practical
+            guides—built by Mohit. Private when it matters; no subscription wall
+            for core tools.
           </p>
         </div>
         <div>

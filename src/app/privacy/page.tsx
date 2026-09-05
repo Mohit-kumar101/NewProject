@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       eyebrow="Legal"
       title="Privacy Policy"
       description={`${SITE_NAME} respects your privacy. This policy explains what information we collect, how it is used, and your choices—including disclosures required for advertising partners such as Google.`}
-      updated="August 8, 2026"
+      updated="September 5, 2026"
     >
       <InfoSection title="Who we are">
         <p>
