@@ -34,7 +34,7 @@ export function ProgressSnapshotsPanel({
   };
 
   return (
-    <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="calc-panel rounded-2xl p-5 sm:p-6">
       <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
         Come back later
       </p>

@@ -151,7 +151,7 @@ export function TokenCreatorWizard() {
         ))}
       </ol>
 
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+      <div className="calc-panel rounded-2xl p-6">
         {step === 0 ? (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Token details</h2>

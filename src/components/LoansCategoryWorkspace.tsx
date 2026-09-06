@@ -224,7 +224,7 @@ function AmortExtraWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between gap-3">
             <h3 className="text-lg font-semibold">Inputs</h3>
             <button
@@ -250,7 +250,7 @@ function AmortExtraWorkspace({
           </div>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="space-y-4 calc-panel rounded-2xl p-5 sm:p-6">
           <h3 className="text-lg font-semibold">Plan summary</h3>
           <dl className="space-y-3 text-sm">
             <div className="flex justify-between gap-3 border-t border-[var(--border)] pt-3">
@@ -402,7 +402,7 @@ function PersonalLoanWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Offer A</h3>
             <button
@@ -435,7 +435,7 @@ function PersonalLoanWorkspace({
           </div>
         </div>
 
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <h3 className="mb-5 text-lg font-semibold">Offer B</h3>
           <div className="space-y-6">
             <LoanNumberField
@@ -628,7 +628,7 @@ function CreditCardWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Card details</h3>
             <button
@@ -683,7 +683,7 @@ function CreditCardWorkspace({
           ].map(({ title, s }) => (
             <div
               key={title}
-              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
+              className="calc-panel rounded-2xl p-5"
             >
               <h3 className="font-semibold">{title}</h3>
               <dl className="mt-3 space-y-2 text-sm">
@@ -804,7 +804,7 @@ function RefinanceWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Loan details</h3>
             <button
@@ -831,7 +831,7 @@ function RefinanceWorkspace({
         </div>
 
         <div className="grid gap-4 content-start">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+          <div className="calc-panel rounded-2xl p-5">
             <h3 className="font-semibold">Current loan</h3>
             <dl className="mt-3 space-y-2 text-sm">
               <div className="flex justify-between">
@@ -957,7 +957,7 @@ function HomeEquityWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Inputs</h3>
             <button
@@ -982,7 +982,7 @@ function HomeEquityWorkspace({
             ]}
           />
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <h3 className="text-lg font-semibold">Equity usage</h3>
           <div className="mt-4 h-3 overflow-hidden rounded-full bg-[var(--background)]">
             <div
@@ -1098,7 +1098,7 @@ function BiWeeklyWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Mortgage inputs</h3>
             <button
@@ -1152,7 +1152,7 @@ function BiWeeklyWorkspace({
           ].map((row) => (
             <div
               key={row.title}
-              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
+              className="calc-panel rounded-2xl p-5"
             >
               <h3 className="font-semibold">{row.title}</h3>
               <dl className="mt-3 space-y-2 text-sm">
@@ -1260,7 +1260,7 @@ function BalloonWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
             <h3 className="text-lg font-semibold">Inputs</h3>
             <button
@@ -1278,7 +1278,7 @@ function BalloonWorkspace({
             ids={["principal", "annualRate", "amortYears", "balloonYears"]}
           />
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6 space-y-4">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6 space-y-4">
           <LoanWhatIfBanner
             text={`After ${result.balloonMonths} payments of ${formatLoanMoney(result.payment)}, you’ll still owe about ${formatLoanMoney(result.balloon)}. Start a refinance or savings plan well before that date.`}
           />

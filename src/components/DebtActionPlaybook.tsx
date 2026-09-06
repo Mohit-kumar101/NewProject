@@ -193,7 +193,7 @@ export function DebtActionPlaybook({
 
   if (!result) {
     return (
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
           Action playbook
         </p>
@@ -210,7 +210,7 @@ export function DebtActionPlaybook({
 
   if (result.unreachable || steps.length === 0) {
     return (
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
           Action playbook
         </p>
@@ -226,7 +226,7 @@ export function DebtActionPlaybook({
   }
 
   return (
-    <section className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6">
       <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-[#00E5FF22] to-[#2979FF18] blur-2xl" />
 
       <div className="relative flex flex-wrap items-start justify-between gap-3">

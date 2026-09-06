@@ -43,7 +43,7 @@ export function SpecialCareerTools({ variant = "home" }: Props) {
             <li key={tool.slug}>
               <Link
                 href={`/tools/${tool.slug}`}
-                className="hover-lift flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4"
+                className="hover-lift flex h-full flex-col calc-panel rounded-2xl px-4 py-4"
               >
                 <span className="text-sm font-semibold">{tool.topic}</span>
                 <span className="mt-2 line-clamp-2 text-xs text-[var(--muted)]">

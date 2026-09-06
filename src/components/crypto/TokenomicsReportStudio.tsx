@@ -31,7 +31,7 @@ export function TokenomicsReportStudio() {
   return (
     <div className="space-y-10">
       <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+        <div className="calc-panel rounded-2xl p-5">
           <h2 className="text-lg font-semibold">Scenario inputs</h2>
           <div className="mt-4 space-y-3">
             {(

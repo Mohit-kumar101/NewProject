@@ -4,6 +4,7 @@ import { DM_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { DepthAtmosphere } from "@/components/DepthAtmosphere";
 import { SITE_NAME, SITE_URL } from "@/lib/calculators";
 import {
   DEFAULT_OG_IMAGE,
@@ -100,8 +101,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <ThemeProvider>
+          <DepthAtmosphere />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-0 flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
         <Script

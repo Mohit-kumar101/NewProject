@@ -30,7 +30,7 @@ export function LoanMetricCards({
       {items.map((item) => (
         <div
           key={item.label}
-          className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5"
+          className="relative overflow-hidden calc-panel rounded-2xl p-4 sm:p-5"
         >
           {item.accent && (
             <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
@@ -66,7 +66,7 @@ export function LoanScheduleTable({
 }) {
   if (rows.length === 0) return null;
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <div className="calc-panel rounded-2xl p-5 sm:p-6">
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="mt-1 text-sm text-[var(--muted)]">
         Showing key months from your schedule (client-side only).
@@ -243,7 +243,7 @@ export function LoanRelatedTools({
   related: Calculator[];
 }) {
   return (
-    <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+    <aside className="calc-panel rounded-2xl p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
           Related tools
@@ -277,7 +277,7 @@ export function LoanWorkspaceFrame({
 }) {
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
           Interactive workspace
         </p>

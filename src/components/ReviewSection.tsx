@@ -237,7 +237,7 @@ export function ReviewSection({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateSchema) }}
       />
 
-      <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-[0_20px_50px_-36px_rgba(41,121,255,0.45)]">
+      <div className="overflow-hidden calc-panel rounded-2xl shadow-[0_20px_50px_-36px_rgba(41,121,255,0.45)]">
         <div className="border-b border-[var(--border)] bg-gradient-to-r from-[rgba(0,229,255,0.08)] to-[rgba(41,121,255,0.08)] px-5 py-6 sm:px-6">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>

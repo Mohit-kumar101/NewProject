@@ -38,7 +38,7 @@ function WasmLoadingCard({ state }: { state: FfmpegLoadState }) {
     state.phase === "initializing";
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <div className="relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6">
       <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
       <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00E5FF] to-[#2979FF] text-white shadow-[0_8px_24px_rgba(41,121,255,0.28)]">
@@ -146,7 +146,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
 
   if (!tool || !direction) {
     return (
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+      <div className="calc-panel rounded-2xl p-6">
         <p className="text-sm text-[var(--muted)]">Converter configuration missing.</p>
       </div>
     );
@@ -227,7 +227,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
       <ConverterPrivacyRecent toolSlug={slug} engine="ffmpeg" engineReady={engineReady} />
       <WasmLoadingCard state={loadState} />
 
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <div className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
@@ -279,7 +279,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
       />
 
       {(isConverting || processPercent > 0) && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 sm:px-5">
+        <div className="calc-panel rounded-2xl px-4 py-3 sm:px-5">
           <div className="flex items-center justify-between gap-3 text-xs sm:text-sm">
             <span className="font-medium text-[var(--muted)]">
               {isConverting ? "FFmpeg processing media…" : "Last conversion"}
@@ -312,7 +312,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
       ) : null}
 
       {previewUrl && result ? (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
             Preview · {result.filename}
           </p>

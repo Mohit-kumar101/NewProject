@@ -340,7 +340,7 @@ export function DebtPayoffWorkspace({
   return (
     <div className="space-y-6">
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="relative overflow-hidden calc-panel rounded-2xl p-4 sm:p-5">
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Total balances
@@ -349,7 +349,7 @@ export function DebtPayoffWorkspace({
             {hydrated ? formatDebtMoney(balanceTotal) : "—"}
           </p>
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Min. payments / mo
           </p>
@@ -357,7 +357,7 @@ export function DebtPayoffWorkspace({
             {hydrated ? formatDebtMoney(minsTotal) : "—"}
           </p>
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Plan total / mo
           </p>
@@ -367,7 +367,7 @@ export function DebtPayoffWorkspace({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-[var(--foreground)]">
@@ -514,7 +514,7 @@ export function DebtPayoffWorkspace({
         </button>
       </div>
 
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold">Extra monthly payment</h2>
@@ -579,7 +579,7 @@ export function DebtPayoffWorkspace({
       )}
 
       {clashLine && (
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6">
           <div className="pointer-events-none absolute -right-10 -top-12 h-36 w-36 rounded-full bg-gradient-to-br from-[#2979FF33] to-transparent blur-2xl" />
           <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
             Behavioral vs mathematical clash
@@ -653,7 +653,7 @@ export function DebtPayoffWorkspace({
         result={preferredResult}
       />
 
-      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <aside className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="mb-3 flex items-baseline justify-between gap-3">
           <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
             Related tools

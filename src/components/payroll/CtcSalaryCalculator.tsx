@@ -111,7 +111,7 @@ export function CtcSalaryCalculator({
   return (
     <div className="space-y-6">
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="space-y-5 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="space-y-5 calc-panel rounded-2xl p-5 sm:p-6">
           <h2 className="text-lg font-semibold">Offer breakdown</h2>
           <Field label="Annual CTC (₹)" value={annualCtc} min={300000} max={10000000} step={50000} onChange={setAnnualCtc} />
           <Field label="Basic (% of gross)" value={basicPct} min={30} max={60} step={1} onChange={setBasicPct} />
@@ -153,7 +153,7 @@ export function CtcSalaryCalculator({
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+          <div className="results-card calc-panel rounded-2xl p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               Monthly in-hand
             </p>
@@ -174,7 +174,7 @@ export function CtcSalaryCalculator({
             </dl>
           </div>
 
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+          <div className="calc-panel rounded-2xl p-5">
             <h3 className="text-sm font-semibold">Regime comparison</h3>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <div className={`rounded-xl border p-3 ${result.regimeComparison.better === "new" ? "border-[var(--accent)]" : "border-[var(--border)]"}`}>
@@ -190,7 +190,7 @@ export function CtcSalaryCalculator({
         </aside>
       </div>
 
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Salary components</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[400px] text-sm">
@@ -219,7 +219,7 @@ export function CtcSalaryCalculator({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Tax slab breakdown ({taxRegime} regime)</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[480px] text-sm">
@@ -251,7 +251,7 @@ export function CtcSalaryCalculator({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Negotiation: raise basic salary</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
           Higher basic increases PF and HRA (old regime) but may change tax — model before you sign.
@@ -281,7 +281,7 @@ export function CtcSalaryCalculator({
         </div>
       )}
 
-      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
+      <aside className="calc-panel rounded-2xl p-4">
         <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((tool) => (
             <li key={tool.slug}>

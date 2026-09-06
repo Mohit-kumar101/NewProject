@@ -55,7 +55,7 @@ export function ToolsDirectory() {
       <div className="mb-8">
         <label className="block">
           <span className="sr-only">Search all tools</span>
-          <div className="command-bar flex w-full items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)]">
+          <div className="command-bar flex w-full items-center gap-3 calc-panel rounded-2xl px-4 py-4 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)]">
             <svg
               width="22"
               height="22"

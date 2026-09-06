@@ -149,7 +149,7 @@ export function ToolSearchFooter({
       className="mt-16 w-full"
       aria-labelledby="tool-search-footer-heading"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6">
         <div className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
         <div className="pointer-events-none absolute -bottom-14 -left-10 h-32 w-32 rounded-full bg-gradient-to-tr from-[#2979FF22] to-transparent blur-2xl" />
 

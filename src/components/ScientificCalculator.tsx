@@ -629,7 +629,7 @@ export function ScientificCalculator() {
     <div className="space-y-5">
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(200px,0.75fr)] lg:items-stretch">
         <section
-          className="results-card flex h-[min(600px,calc(100dvh-9rem))] max-h-[calc(100dvh-9rem)] min-h-0 flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]"
+          className="results-card flex h-[min(600px,calc(100dvh-9rem))] max-h-[calc(100dvh-9rem)] min-h-0 flex-col overflow-hidden calc-panel rounded-2xl"
         >
         {/* Toolbar */}
         <div className="shrink-0 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--background)_70%,transparent)] px-3 py-2 sm:px-4">
@@ -746,7 +746,7 @@ export function ScientificCalculator() {
 
       {/* History rail / drawer */}
       <aside
-        className={`flex min-h-0 flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3 sm:p-4 ${
+        className={`flex min-h-0 flex-col overflow-hidden calc-panel rounded-2xl p-3 sm:p-4 ${
           historyOpen ? "flex max-h-[40vh]" : "hidden"
         } lg:flex lg:h-[min(600px,calc(100dvh-9rem))] lg:max-h-[calc(100dvh-9rem)]`}
       >

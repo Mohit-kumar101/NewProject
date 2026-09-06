@@ -23,7 +23,7 @@ export function InvestingLifestyleTranslator({
   if (lines.length === 0) return null;
 
   return (
-    <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="calc-panel rounded-2xl p-5 sm:p-6">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

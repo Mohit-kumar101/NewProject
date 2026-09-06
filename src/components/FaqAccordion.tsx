@@ -7,7 +7,7 @@ export function FaqAccordion({ faqs }: { faqs: CalculatorFaq[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-[var(--border)] rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
+    <div className="divide-y divide-[var(--border)] calc-panel rounded-2xl">
       {faqs.map((faq, index) => {
         const open = openIndex === index;
         return (

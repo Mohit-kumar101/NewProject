@@ -36,10 +36,13 @@ function GenericConfigCalculatorEngine({ tool }: { tool: ConfigCalculator }) {
         primaryValue={result.primaryValue}
         rows={result.rows}
         note={result.note}
+        toolTitle={tool.h1 || tool.topic}
+        category={tool.category || "Legal, HR & Payroll Management"}
+        toolSlug={tool.slug}
       />
 
       <section
-        className="max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+        className="max-w-3xl calc-panel rounded-2xl p-5 sm:p-6"
         aria-labelledby="how-calculated-heading"
       >
         <h2

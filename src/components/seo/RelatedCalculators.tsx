@@ -41,7 +41,7 @@ export function RelatedCalculators({
             <li key={tool.slug}>
               <Link
                 href={getToolHref(tool.slug)}
-                className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-4 transition hover:border-[color-mix(in_srgb,var(--accent)_45%,var(--border))] hover:bg-[var(--background)]"
+                className="group flex h-full flex-col calc-panel rounded-2xl px-4 py-4 transition hover:border-[color-mix(in_srgb,var(--accent)_45%,var(--border))] hover:bg-[var(--background)]"
               >
                 <span className="text-sm font-semibold text-[var(--foreground)] transition group-hover:text-[var(--accent)]">
                   {tool.title}

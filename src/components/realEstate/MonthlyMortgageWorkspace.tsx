@@ -269,7 +269,7 @@ export function MonthlyMortgageWorkspace({
       title="Monthly mortgage payment studio"
       blurb="Core inputs unchanged — add optional PITI, explore extra or bi-weekly payoffs, and compare how interest vs principal shifts over time."
     >
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
           {pitiEnabled ? "Estimated monthly PITI" : "Principal & interest"}
         </p>
@@ -327,7 +327,7 @@ export function MonthlyMortgageWorkspace({
       />
 
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between gap-3">
             <h3 className="text-lg font-semibold">Mortgage inputs</h3>
             <button
@@ -409,7 +409,7 @@ export function MonthlyMortgageWorkspace({
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+          <div className="calc-panel rounded-2xl p-5 sm:p-6">
             <button
               type="button"
               onClick={() => setAccelerateOpen((o) => !o)}
@@ -470,7 +470,7 @@ export function MonthlyMortgageWorkspace({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h3 className="text-lg font-semibold">Amortization snapshot</h3>

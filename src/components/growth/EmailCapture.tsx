@@ -48,7 +48,7 @@ export function EmailCapture({
   };
 
   return (
-    <section className="mt-12 max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="mt-12 max-w-3xl calc-panel rounded-2xl p-5 sm:p-6">
       <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight">
         {headline}
       </h2>

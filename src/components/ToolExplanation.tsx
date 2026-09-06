@@ -24,7 +24,7 @@ export function ToolExplanation({
       className="mt-16 max-w-3xl"
       aria-labelledby="tool-explanation-heading"
     >
-      <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
+      <div className="overflow-hidden calc-panel rounded-2xl">
         <button
           type="button"
           aria-expanded={open}

@@ -68,7 +68,7 @@ export function AffordabilityEngine({
       />
 
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-2">
             <h2 className="text-lg font-semibold">Inputs</h2>
             <p className="text-[11px] font-medium tracking-[0.12em] text-[var(--accent)] uppercase">
@@ -147,7 +147,7 @@ export function AffordabilityEngine({
         </div>
 
         <aside className="lg:sticky lg:top-24">
-          <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+          <div className="results-card calc-panel rounded-2xl p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               Live results
             </p>

@@ -205,7 +205,7 @@ export function OfferStackComparator({
           return (
             <div
               key={key}
-              className={`rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5 ${
+              className={`calc-panel rounded-2xl p-4 sm:p-5 ${
                 hideOnMobile ? "hidden lg:block" : ""
               }`}
             >
@@ -267,7 +267,7 @@ export function OfferStackComparator({
       </div>
 
       {/* Winner + comparison table */}
-      <aside className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5 md:p-6">
+      <aside className="results-card calc-panel rounded-2xl p-4 sm:p-5 md:p-6">
         <p className="text-[10px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-xs sm:tracking-[0.16em]">
           Side-by-side results
         </p>
@@ -343,7 +343,7 @@ export function OfferStackComparator({
       </aside>
 
       <section
-        className="max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+        className="max-w-3xl calc-panel rounded-2xl p-5 sm:p-6"
         aria-labelledby="how-calculated-heading"
       >
         <h2

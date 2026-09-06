@@ -31,8 +31,9 @@ export default function GuidesIndexPage() {
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-lg">
           Original explainers from CalculioHub—how to size an emergency fund,
-          set freelance rates, run bulk/cut macros, and convert files without
-          careless uploads. Each guide links to the matching free tool.
+          understand compounding, compare rent vs buy, set freelance rates, run
+          sustainable macros, and convert files without careless uploads. Each
+          guide links to the matching free tool.
         </p>
       </header>
 

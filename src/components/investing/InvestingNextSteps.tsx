@@ -33,7 +33,7 @@ export function InvestingNextSteps({
 
   return (
     <section
-      className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+      className="calc-panel rounded-2xl p-5 sm:p-6"
       aria-labelledby="investing-next-steps-heading"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">

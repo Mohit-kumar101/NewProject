@@ -556,6 +556,487 @@ export const GUIDE_ARTICLES: GuideArticle[] = [
     ],
   },
   {
+    slug: "compound-interest-patience-not-magic",
+    title: "Compound interest is patience, not a magic trick",
+    description:
+      "What compounding actually does over 10–30 years, why early contributions matter more than chasing returns, and how to read a compound calculator without fooling yourself.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/compound-interest-calculator",
+        label: "Compound interest calculator",
+      },
+      {
+        href: "/tools/fire-early-retirement-calculator",
+        label: "FIRE / early retirement calculator",
+      },
+    ],
+    intro:
+      "People talk about compound interest like it is a cheat code. It is not. It is math that rewards time more than cleverness. If you leave money invested long enough, earnings start earning their own earnings. That sounds obvious until you watch someone obsess over a 0.3% fee difference while skipping contributions for six months. This guide is about reading the curve honestly—and not mistaking a projection for a promise.",
+    sections: [
+      {
+        heading: "What the calculator is really showing you",
+        paragraphs: [
+          "A compound interest tool assumes a steady rate of return. Markets do not do that. They zigzag. The smooth line on the chart is a teaching model, not a forecast of next year’s brokerage balance. Use it to compare habits: ‘What if I contribute $400 a month for 20 years?’ versus ‘What if I wait five years and then try to catch up?’ The gap between those two stories is the point.",
+          "When I run my own scenarios, I care less about the final dollar than about when most of the growth appears. Early years look boring. Later years look dramatic. That shape is why starting late hurts more than people expect—and why a ‘temporary pause’ can quietly cost a decade of runway.",
+        ],
+      },
+      {
+        heading: "A walkthrough with ordinary numbers",
+        paragraphs: [
+          "Say you invest $300 a month for 25 years at an assumed 7% average annual return. You contribute $90,000 of your own money. The projected balance is much larger than $90,000 because the early contributions had more years to compound. Now delay the same plan by five years and keep the same monthly amount: you contribute less total cash and give each dollar fewer years. The ending balance usually drops more than the five years of skipped deposits alone would suggest.",
+          "That is the human lesson: catching up is harder than starting small. If cash is tight this year, a smaller automatic contribution still beats waiting for a perfect month that never arrives.",
+        ],
+      },
+      {
+        heading: "Return assumptions people quietly inflate",
+        paragraphs: [
+          "It feels good to type 12% because a recent bull market made that number familiar. Long-term diversified stock returns have historically been lower than peak years, and your personal result depends on fees, taxes, and when you buy and sell. If a plan only ‘works’ at an aggressive rate, it is fragile.",
+        ],
+        bullets: [
+          "Try a base case (for example 6–7%) and a cautious case a couple points lower.",
+          "Separate pre-tax retirement accounts from taxable accounts in your head—taxes change spendable outcomes.",
+          "Ignore day-trading fantasies inside a compounding planner. The tool is for steady contribution math.",
+        ],
+      },
+      {
+        heading: "When compounding advice is the wrong priority",
+        paragraphs: [
+          "If you carry 22% credit card debt, maximizing brokerage contributions while minimum-paying the card is usually backwards. Compound interest works against you on high-APR balances just as hard as it works for you in an index fund. Pay the expensive debt down first, keep any employer match if you have one, then widen investing.",
+          "Also: an emergency fund that prevents a panicked sale during a job loss protects compounding better than an extra $50 of market exposure you cannot hold through a rough quarter.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Treat compound charts as habit comparisons, not guarantees.",
+      "Starting earlier usually beats waiting for a bigger contribution later.",
+      "Stress-test with a modest return assumption, not a highlight-reel rate.",
+      "High-interest debt can compound against you faster than markets compound for you.",
+    ],
+  },
+  {
+    slug: "rent-vs-buy-when-spreadsheet-lies",
+    title: "Rent vs buy: when the spreadsheet quietly lies",
+    description:
+      "How to compare renting and buying without ignoring maintenance, moving plans, opportunity cost, or the emotional pressure to ‘stop throwing money away.’",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/rent-vs-buy-long-term-calculator",
+        label: "Rent vs buy long-term calculator",
+      },
+      {
+        href: "/tools/home-affordability-calculator",
+        label: "Home affordability calculator",
+      },
+      {
+        href: "/tools/monthly-mortgage-payment-calculator",
+        label: "Monthly mortgage payment calculator",
+      },
+    ],
+    intro:
+      "Someone always says renting is ‘throwing money away.’ That line skips property tax, insurance, repairs, closing costs, and the cash you lock into a down payment. Buying can be the right call—I have recommended it for friends who planned to stay put—but the honest comparison is messier than a mortgage payment versus last month’s rent. This is how I walk through it when someone asks for a straight answer.",
+    sections: [
+      {
+        heading: "Match the time horizon first",
+        paragraphs: [
+          "If you might move cities in two or three years, buying often loses on transaction costs alone. Closing fees, realtor commissions, and the hassle of selling can erase early principal paydown. A five-to-seven-year stay starts to make the math more competitive in many markets; longer stays generally favor ownership if you can afford the house without stretching every paycheck.",
+          "The calculator needs your real horizon. Optimism (‘we’ll stay forever’) is fine as a values statement. It is a bad input if your industry relocates people every few years.",
+        ],
+      },
+      {
+        heading: "Total housing cost beats ‘the payment’",
+        paragraphs: [
+          "Your mortgage payment is principal and interest—sometimes escrowed taxes and insurance. Ownership also means maintenance (roofs do not care about your budget), HOA dues, higher utilities in larger spaces, and the occasional special assessment. Renters pay some of those indirectly through rent, but the surprise bills land on owners.",
+          "On the rent side, include renter’s insurance and expected rent increases. A lease that looks cheaper in year one can catch up if local rents rise faster than your fixed mortgage rate.",
+        ],
+      },
+      {
+        heading: "Opportunity cost of the down payment",
+        paragraphs: [
+          "Twenty percent down is not free just because it becomes home equity. That cash could have sat in a boring index fund. A fair rent-vs-buy model asks what that money might have earned elsewhere, then credits the buyer with equity buildup and any appreciation you are willing to assume cautiously.",
+          "I treat aggressive appreciation assumptions the same way I treat aggressive stock returns: interesting for a sensitivity case, dangerous as the only case.",
+        ],
+      },
+      {
+        heading: "Lifestyle is allowed to matter—just name it",
+        paragraphs: [
+          "Wanting a yard, a workshop, or the freedom to paint walls is legitimate. So is wanting mobility and a landlord who fixes the water heater at 11 p.m. Put those preferences next to the spreadsheet instead of pretending the spreadsheet includes them. The tool answers ‘which path looks cheaper under these assumptions.’ You still decide what you are optimizing for.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Short time horizons often favor renting once transaction costs are honest.",
+      "Compare total ownership costs, not payment vs rent alone.",
+      "Count the opportunity cost of the down payment.",
+      "Let lifestyle preferences be explicit—not smuggled into fake appreciation rates.",
+    ],
+  },
+  {
+    slug: "credit-card-minimums-why-they-hurt",
+    title: "Why credit card minimums feel safe and still hurt",
+    description:
+      "What minimum payments are designed to do, how long balances can linger, and a calmer way to choose an extra payment you can sustain.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/credit-card-minimum-payment-calculator",
+        label: "Credit card minimum payment calculator",
+      },
+      {
+        href: "/tools/debt-avalanche-strategy-calculator",
+        label: "Debt avalanche strategy calculator",
+      },
+      {
+        href: "/tools/debt-snowball-strategy-calculator",
+        label: "Debt snowball strategy calculator",
+      },
+    ],
+    intro:
+      "Minimum payments exist so the bank keeps the account current while interest keeps working. They are not a payoff plan. If you have ever looked at a statement, paid the minimum, and felt briefly responsible, you already know the trap: the emotional relief is immediate and the math is slow. Here is how to see the timeline clearly without turning money into a guilt spiral.",
+    sections: [
+      {
+        heading: "What ‘minimum due’ usually means",
+        paragraphs: [
+          "Issuers commonly ask for a percentage of the balance (often around 1–3%) or a flat floor, whichever is higher, plus any fees or past-due amounts. On a large balance, that percentage can look manageable month to month while barely touching principal after interest posts.",
+          "Run your actual APR and balance through a minimum-payment calculator. The payoff date is usually the moment people stop arguing with themselves. Decades for a five-figure balance at typical card rates is not rare if you never pay more than the minimum.",
+        ],
+      },
+      {
+        heading: "A concrete example",
+        paragraphs: [
+          "Imagine $6,500 at 22% APR with a minimum near 2% of the balance. Paying only the minimum can stretch far longer than it feels like it should, and the total interest can rival a chunk of the original balance. Add $75 or $100 above the minimum whenever you can, and the timeline compresses in a way that is hard to appreciate until you see both schedules side by side.",
+          "You do not need a perfect budget overhaul on day one. You need a payment that clears interest with room left for principal—and that you can repeat on stressful months, not only on ideal ones.",
+        ],
+      },
+      {
+        heading: "Where extra dollars should go first",
+        paragraphs: [
+          "If you have multiple cards, two common approaches show up: avalanche (highest APR first) and snowball (smallest balance first). Avalanche usually saves more interest. Snowball sometimes wins on motivation because accounts disappear sooner. Either beats rotating minimums forever while lifestyle spending stays untouched.",
+          "Also pause new charges on the card you are attacking. Paying down a balance while still dining on the same plastic is like bailing a boat with the tap open.",
+        ],
+      },
+      {
+        heading: "When a different product is worth considering",
+        paragraphs: [
+          "A 0% balance transfer or a personal loan can help if the fee is clear, the rate is truly lower, and you will not refill the old card. Those products fail when the transfer is treated as free capacity for new spending. The calculator on this site will not underwrite you; it will only show whether the payment plan is plausible on paper.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Minimums protect the issuer’s timeline more than yours.",
+      "Even a modest recurring extra payment can cut years off payoff.",
+      "Pick avalanche or snowball—then stop adding new charges to the target card.",
+      "Refinancing only helps if behavior changes with the rate.",
+    ],
+  },
+  {
+    slug: "personal-loan-when-it-actually-helps",
+    title: "When a personal loan actually helps (and when it just reshuffles stress)",
+    description:
+      "How to judge loan offers by APR, fees, and payoff timeline—plus the situations where consolidating debt is smart versus cosmetic.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/personal-loan-calculator",
+        label: "Personal loan calculator",
+      },
+      {
+        href: "/tools/credit-card-minimum-payment-calculator",
+        label: "Credit card minimum payment calculator",
+      },
+    ],
+    intro:
+      "A personal loan is a tool, not a personality upgrade. Used well, it can replace messy high-interest balances with one predictable payment. Used poorly, it adds a second debt while the old habits stay intact. I care about three questions: Is the all-in rate actually lower? Can you afford the payment without starving essentials? And what happens if income dips mid-loan?",
+    sections: [
+      {
+        heading: "Read the offer like a skeptic",
+        paragraphs: [
+          "APR matters more than the advertised monthly payment. A longer term can make a payment feel painless while you pay more interest overall. Origination fees shrink the cash you receive, so compare the amount that lands in your account against the amount you repay.",
+          "Plug the principal, rate, and term into a loan calculator and look at total interest, not just month one. If two offers have similar payments but different terms, the longer one is often the more expensive friendship.",
+        ],
+      },
+      {
+        heading: "Consolidation that works",
+        paragraphs: [
+          "Consolidating credit cards into a lower-APR installment loan can be rational when you close the behavioral loop: freeze or cut up the cards, automate the new payment, and keep a small emergency buffer so the next surprise does not go back on plastic.",
+          "If the loan rate is only marginally better after fees, or if approval requires a co-signer you are not comfortable involving, pause. A mediocre refinance is not mandatory just because an ad followed you around the internet.",
+        ],
+      },
+      {
+        heading: "Consolidation that fails quietly",
+        paragraphs: [
+          "The classic failure mode is paying off cards with a loan, then running the cards back up because the available credit feels like found money. Six months later you have a loan payment and new card balances. The spreadsheet looked fine on signing day; the household cash flow did not change.",
+        ],
+        bullets: [
+          "Do not count on future raises to rescue an oversized payment.",
+          "Keep rent, groceries, and minimums covered before stretching for a shorter term.",
+          "If you need the loan for a one-time expense, price the expense itself—do not borrow the lifestyle around it.",
+        ],
+      },
+      {
+        heading: "How I use the calculator with someone",
+        paragraphs: [
+          "We run the payment at the offered term, then again one term shorter and one longer. We ask which payment still leaves room for an emergency fund contribution. If only the longest term ‘fits,’ the loan may be too large for the current income, not ‘perfectly optimized.’",
+        ],
+      },
+    ],
+    takeaways: [
+      "Compare APR, fees, and total interest—not payment comfort alone.",
+      "Consolidation helps when rates drop and spending behavior changes.",
+      "Longer terms can hide a loan that is simply too big.",
+      "Stress-test the payment against a leaner month before you sign.",
+    ],
+  },
+  {
+    slug: "student-loans-payoff-without-panic",
+    title: "Student loans: build a payoff plan without panic math",
+    description:
+      "How to think about extra payments, interest rates, and cash-flow tradeoffs—without treating every online rule of thumb as law.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/student-loan-payoff-calculator",
+        label: "Student loan payoff calculator",
+      },
+      {
+        href: "/tools/debt-avalanche-strategy-calculator",
+        label: "Debt avalanche strategy calculator",
+      },
+      {
+        href: "/tools/emergency-fund-runway-planner",
+        label: "Emergency fund runway planner",
+      },
+    ],
+    intro:
+      "Student debt sits in a weird emotional category: it funded something valuable, it lasts for years, and advice online swings between ‘ignore it forever’ and ‘austerity until it is gone.’ Neither extreme is a plan. A workable approach starts with your loan rate, your cash buffer, and whether extra payments beat other uses of the same dollar.",
+    sections: [
+      {
+        heading: "Know what you actually owe",
+        paragraphs: [
+          "List each loan’s balance, rate, and minimum. Federal and private loans can behave differently on repayment options, but the cash-flow question is shared: what happens if you send an extra $100 or $200 a month to the highest rate first?",
+          "A payoff calculator will show a shorter timeline and less total interest. That output is useful. It is not a moral score. If the aggressive plan deletes your ability to handle a car repair, it is too aggressive.",
+        ],
+      },
+      {
+        heading: "Order of operations I trust more than slogans",
+        paragraphs: [
+          "Cover essentials and required minimums. Build a small cash floor so you are not forced to put emergencies on a credit card. Capture any employer retirement match if available—that is a hard-to-beat return. Then decide whether extra dollars go to high-APR student loans, other debt, or investing based on rates and risk tolerance.",
+          "People argue endlessly about investing versus loan payoff when rates are mid-single digits. Reasonable adults can disagree. What is not reasonable is skipping the emergency floor or the match while debating philosophy on a podcast.",
+        ],
+      },
+      {
+        heading: "A simple extra-payment experiment",
+        paragraphs: [
+          "Take your current minimum and add an amount you have already demonstrated you can spare for three months—not an aspirational gym-membership number. Run that through the student loan payoff calculator. If the interest saved feels meaningful and the payment still leaves breathing room, automate it. If it only works on paper during your best pay cycle, scale down until it is boringly sustainable.",
+        ],
+      },
+      {
+        heading: "Programs and caveats",
+        paragraphs: [
+          "Income-driven plans, forgiveness pathways, and refinancing into private loans each change the rules. Calculators on CalculioHub estimate payoff math from the inputs you enter; they do not replace reading your servicer’s terms or talking with a qualified advisor for edge cases. If forgiveness is central to your strategy, confirm eligibility before you accelerate payments in a way that cannot be undone.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Map every loan’s rate and minimum before you invent a strategy.",
+      "Protect a cash floor and any employer match before over-optimizing payoff speed.",
+      "Automate an extra payment you can survive in a normal month.",
+      "Treat specialized repayment programs as rules to verify—not vibes.",
+    ],
+  },
+  {
+    slug: "mortgage-payment-what-youre-really-buying",
+    title: "Your mortgage payment is not the full story",
+    description:
+      "How principal, interest, taxes, and insurance fit together—and why a payment you can ‘technically afford’ can still crowd out the rest of life.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/monthly-mortgage-payment-calculator",
+        label: "Monthly mortgage payment calculator",
+      },
+      {
+        href: "/tools/home-affordability-calculator",
+        label: "Home affordability calculator",
+      },
+      {
+        href: "/tools/rent-vs-buy-long-term-calculator",
+        label: "Rent vs buy long-term calculator",
+      },
+    ],
+    intro:
+      "Lender pre-approval answers a narrow question: will we get paid back under our rules? Your life asks a wider one: after this payment, can we still save, travel occasionally, and handle a broken HVAC without panic? A mortgage calculator helps translate price, rate, and term into a monthly number. Reading that number wisely is the human part.",
+    sections: [
+      {
+        heading: "Principal and interest are only the start",
+        paragraphs: [
+          "The classic amortization payment covers principal and interest. In many places you also escrow property taxes and homeowners insurance, so the amount leaving your account each month is higher than the P&I quote that looked manageable in a text message.",
+          "Ask for the estimated total housing payment early—taxes and insurance vary wildly by location. A house that ‘wins’ on sticker price can lose on escrow.",
+        ],
+      },
+      {
+        heading: "Term length changes the story",
+        paragraphs: [
+          "A 15-year loan usually means a higher payment and less total interest. A 30-year loan lowers the payment and raises lifetime interest. Neither is morally superior. If the 15-year payment forces you to skip retirement contributions, it may be the wrong flex. If the 30-year payment is comfortable, you can still send extra principal when life is calm—flexibility you do not get if you are barely surviving a shorter term.",
+        ],
+      },
+      {
+        heading: "Rate shopping without theater",
+        paragraphs: [
+          "A half-point difference on a large loan is real money over time. It is also easy to over-weight rate while under-weighting points, lender fees, and whether you can refinance later. Run two or three realistic rate scenarios in the calculator instead of anchoring on the single best teaser you saw in an ad.",
+        ],
+      },
+      {
+        heading: "Affordability is cash flow plus margin",
+        paragraphs: [
+          "I like a boring test: after the full housing payment, do you still fund a basic emergency buffer and retirement contribution without relying on a bonus? If the plan only works when everything goes right, the house is buying your stress for you.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Model taxes and insurance with principal and interest.",
+      "Choose term length for cash-flow resilience, not ego.",
+      "Compare a few rate scenarios, including fees in the real world.",
+      "Leave margin for saving—not only for the mortgage clearing.",
+    ],
+  },
+  {
+    slug: "calorie-deficit-you-can-live-with",
+    title: "A calorie deficit you can actually live with",
+    description:
+      "How to set a moderate deficit, why aggressive cuts backfire, and how to use a calculator without turning dinner into a spreadsheet fight.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Fitness",
+    relatedToolHrefs: [
+      {
+        href: "/tools/calorie-deficit-calculator",
+        label: "Calorie deficit calculator",
+      },
+      {
+        href: "/tools/bulk-cut-macro-planner",
+        label: "Bulk / cut macro planner",
+      },
+      {
+        href: "/tools/protein-intake-calculator",
+        label: "Protein intake calculator",
+      },
+    ],
+    intro:
+      "Weight change is mostly about energy balance over weeks, not virtue at a single meal. A deficit calculator estimates how much to eat relative to maintenance. The number is a starting line. If it leaves you exhausted, sleepless, or bargaining with yourself at 9 p.m., it is too aggressive—no matter how tidy the math looked.",
+    sections: [
+      {
+        heading: "Maintenance first, ego second",
+        paragraphs: [
+          "You need a rough maintenance calorie level before a cut means anything. Online formulas use age, weight, height, and activity. They are estimates. If your weight has been stable for a month, your average intake over that month is better evidence than any formula.",
+          "From maintenance, a modest deficit—often a few hundred calories—tends to beat crash cuts. Faster loss looks exciting for two weeks and then collides with hunger, training quality, and rebound.",
+        ],
+      },
+      {
+        heading: "What ‘moderate’ looks like in practice",
+        paragraphs: [
+          "Many people do well targeting roughly 0.5–1% of body weight per week as a pace, adjusting if energy or gym performance falls apart. Pair the calorie target with enough protein and some lifting so more of the loss comes from fat than from muscle you wanted to keep.",
+          "Track weekly averages, not daily drama. Sodium, stress, and menstrual cycle timing can move the scale without meaning your plan failed overnight.",
+        ],
+      },
+      {
+        heading: "When the calculator is wrong for you",
+        paragraphs: [
+          "Athletes in heavy training blocks, people with a history of disordered eating, and anyone under medical care need individualized guidance beyond a webpage. A free tool cannot see your labs, your sleep, or your relationship with food. If cutting makes your life smaller in unhealthy ways, stop and talk to a qualified professional.",
+        ],
+      },
+      {
+        heading: "Make the plan boring enough to keep",
+        paragraphs: [
+          "The deficit that works is the one that still allows meals you recognize. Keep high-volume foods you like, schedule flexibility for social dinners, and decide in advance how you will handle weekends. Perfect adherence for nine days followed by a blowout is not a strategy—it is a cycle.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Estimate maintenance before you invent a deficit.",
+      "Prefer a moderate cut you can sustain over a dramatic short sprint.",
+      "Judge progress on weekly trends and how you feel training.",
+      "Step away from DIY cutting if it harms your relationship with food.",
+    ],
+  },
+  {
+    slug: "protein-targets-without-obsession",
+    title: "Protein targets without turning every meal into a project",
+    description:
+      "How to pick a daily protein range from body weight and goals—and how to hit it with normal food instead of living on shakes alone.",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    category: "Fitness",
+    relatedToolHrefs: [
+      {
+        href: "/tools/protein-intake-calculator",
+        label: "Protein intake calculator",
+      },
+      {
+        href: "/tools/calorie-deficit-calculator",
+        label: "Calorie deficit calculator",
+      },
+      {
+        href: "/tools/bulk-cut-macro-planner",
+        label: "Bulk / cut macro planner",
+      },
+    ],
+    intro:
+      "Protein advice online splits into two camps: ‘eat like a bodybuilder or fail’ and ‘it does not matter at all.’ Most people training a few times a week land in the middle. A protein calculator gives a gram target from your weight and goal. Your job is to hit a sensible range most days without building a personality around chicken breast.",
+    sections: [
+      {
+        heading: "Why protein shows up in every decent plan",
+        paragraphs: [
+          "Protein helps preserve muscle when you are in a calorie deficit and supports recovery when you lift. It is also filling, which makes adherence easier. That does not mean infinite protein is infinite progress. Past a point, extras mostly displace carbs and fats you may want for training energy.",
+          "I treat the calculator output as a daily neighborhood—not a courtroom exhibit. Landing within a reasonable band beats missing entirely because the target felt impossible.",
+        ],
+      },
+      {
+        heading: "A practical way to hit the number",
+        paragraphs: [
+          "Anchor each meal with a protein source you already eat: eggs, dairy, fish, tofu, legumes, meat, or a shake when food is inconvenient. Spread intake across the day if that helps; total daily intake matters more than perfect timing for most non-elite lifters.",
+          "If appetite is low while cutting, a shake earns its keep. If you enjoy cooking, whole food first keeps you sane and usually cheaper.",
+        ],
+      },
+      {
+        heading: "Common overcorrections",
+        paragraphs: [
+          "Chasing protein while ignoring total calories can stall fat loss. Ignoring protein while slashing calories can leave you softer than the scale suggests. And copying a 200-plus-gram target from a 100 kg competitor when you weigh 65 kg is how people burn out on meal prep.",
+        ],
+        bullets: [
+          "Use body-weight-based ranges as a start, then adjust to adherence.",
+          "Raise protein preference during cuts; keep it adequate during easy maintenance.",
+          "Do not let supplements replace learning how to build a normal plate.",
+        ],
+      },
+      {
+        heading: "Reassess when life changes",
+        paragraphs: [
+          "New training blocks, aging, vegetarian shifts, or a medical diet all change what ‘enough’ looks like. Recalculate when weight moves meaningfully. And remember: calculators estimate. Persistent fatigue, injury, or clinical concerns belong with a professional, not another internet macro tweak.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Treat protein as a helpful daily range, not a purity test.",
+      "Build meals around foods you will repeat.",
+      "Keep calories and protein in the same conversation.",
+      "Recalculate when weight, training, or diet pattern changes.",
+    ],
+  },
+  {
     slug: "how-calculiohub-tools-are-built",
     title: "How CalculioHub tools are built (and what that means for you)",
     description:

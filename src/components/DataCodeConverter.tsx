@@ -41,7 +41,7 @@ export function DataCodeConverter({ slug }: { slug: DataConverterSlug }) {
 
   if (!tool || !direction) {
     return (
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+      <div className="calc-panel rounded-2xl p-6">
         <p className="text-sm text-[var(--muted)]">Converter configuration missing.</p>
       </div>
     );
@@ -159,7 +159,7 @@ export function DataCodeConverter({ slug }: { slug: DataConverterSlug }) {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <div className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">

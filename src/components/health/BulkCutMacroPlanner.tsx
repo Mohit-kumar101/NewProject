@@ -131,7 +131,7 @@ export function BulkCutMacroPlanner({
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="space-y-5 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="space-y-5 calc-panel rounded-2xl p-5 sm:p-6">
           <h2 className="text-lg font-semibold">Your profile</h2>
 
           <div className="grid grid-cols-2 gap-3">
@@ -254,7 +254,7 @@ export function BulkCutMacroPlanner({
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+          <div className="results-card calc-panel rounded-2xl p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               Daily target
             </p>
@@ -278,7 +278,7 @@ export function BulkCutMacroPlanner({
             </dl>
           </div>
 
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+          <div className="calc-panel rounded-2xl p-5">
             <h3 className="font-semibold">Macro split</h3>
             <div className="mt-4 space-y-4">
               <MacroBar label="Protein" grams={result.macros.proteinG} pct={result.macros.proteinPct} color="#38bdf8" />
@@ -288,7 +288,7 @@ export function BulkCutMacroPlanner({
           </div>
 
           {trainingDays > 0 && trainingDays < 7 && (
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+            <div className="calc-panel rounded-2xl p-5">
               <h3 className="font-semibold">Training vs rest days</h3>
               <p className="mt-1 text-xs text-[var(--muted)]">
                 Carbs shift +15% on training days ({trainingDays}d/wk).
@@ -316,7 +316,7 @@ export function BulkCutMacroPlanner({
       </div>
 
       {result.projections.length > 1 && phase !== "maintain" && (
-        <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <section className="calc-panel rounded-2xl p-5 sm:p-6">
           <h2 className="text-lg font-semibold">Weight projection</h2>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[320px] text-left text-sm">
@@ -339,7 +339,7 @@ export function BulkCutMacroPlanner({
         </section>
       )}
 
-      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <aside className="calc-panel rounded-2xl p-4 sm:p-5">
         <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
           Related tools
         </h2>

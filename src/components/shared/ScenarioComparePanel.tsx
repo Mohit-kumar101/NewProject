@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Calculator, CalcResult } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
 import { buildScenarioUrl, copyText } from "@/lib/scenarioLinks";
+import { savePresentationCompare } from "@/lib/presentation/storage";
 
 type ScenarioSnap = {
   name: string;
@@ -39,6 +40,28 @@ export function ScenarioComparePanel({
     return nb - na;
   }, [a, b]);
 
+  useEffect(() => {
+    if (!a || !b) {
+      savePresentationCompare(calculator.slug, null);
+      return;
+    }
+    const na = parsePrimaryNumber(a.result);
+    const nb = parsePrimaryNumber(b.result);
+    const deltaLabel =
+      na != null && nb != null
+        ? `Δ ${nb - na >= 0 ? "+" : ""}${(nb - na).toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })} (B − A)`
+        : "Compare A vs B";
+    savePresentationCompare(calculator.slug, {
+      labelA: a.name,
+      labelB: b.name,
+      primaryA: a.result.primary.value,
+      primaryB: b.result.primary.value,
+      deltaLabel,
+    });
+  }, [a, b, calculator.slug]);
+
   const capture = (slot: "a" | "b") => {
     const result = runCalculation(calculator.formulaType, values);
     const snap: ScenarioSnap = {
@@ -67,7 +90,7 @@ export function ScenarioComparePanel({
   };
 
   return (
-    <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="calc-panel rounded-2xl p-5 sm:p-6">
       <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
         Scenario studio
       </p>

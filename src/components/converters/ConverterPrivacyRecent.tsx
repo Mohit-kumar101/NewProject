@@ -92,7 +92,7 @@ export function ConverterPrivacyRecent({
       </div>
 
       {recent.length > 0 ? (
-        <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 sm:px-5">
+        <section className="calc-panel rounded-2xl px-4 py-3 sm:px-5">
           <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
             Recent on this device
           </p>

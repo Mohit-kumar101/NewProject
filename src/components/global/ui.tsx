@@ -28,7 +28,7 @@ export function Field({
           max={max}
           step={step}
           onChange={(e) => onChange(Number(e.target.value) || 0)}
-          className="w-28 rounded-lg border border-[var(--border)] bg-[var(--background)] px-2 py-1 text-right text-sm"
+          className="calc-inset w-28 rounded-lg px-2 py-1 text-right text-sm outline-none focus:border-[var(--accent)]"
         />
       </div>
       <input
@@ -56,15 +56,17 @@ export function ResultHero({
   children?: ReactNode;
 }) {
   return (
-    <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
-      <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
-        {eyebrow}
-      </p>
-      <p className="result-glow mt-2 font-[family-name:var(--font-display)] text-3xl font-bold">
-        {value}
-      </p>
-      <p className="mt-2 text-sm text-[var(--muted)]">{insight}</p>
-      {children}
+    <div className="results-card relative z-0 rounded-2xl p-6">
+      <div className="relative z-[1]">
+        <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
+          {eyebrow}
+        </p>
+        <p className="result-glow mt-2 font-[family-name:var(--font-display)] text-3xl font-bold">
+          {value}
+        </p>
+        <p className="mt-2 text-sm text-[var(--muted)]">{insight}</p>
+        {children}
+      </div>
     </div>
   );
 }
@@ -77,7 +79,7 @@ export function Panel({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section className="calc-panel rounded-2xl p-5 sm:p-6">
       <h2 className="text-lg font-semibold">{title}</h2>
       <div className="mt-4 space-y-4">{children}</div>
     </section>

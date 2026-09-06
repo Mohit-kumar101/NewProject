@@ -32,7 +32,7 @@ function categoryHref(category: string) {
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-[var(--border)] bg-[var(--surface)]">
+    <footer className="relative z-0 mt-auto border-t border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_70%,transparent)] backdrop-blur-xl">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div className="space-y-4">
           <Logo size="sm" />

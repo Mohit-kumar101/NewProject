@@ -20,7 +20,7 @@ export function CommandSearch({ calculators }: { calculators: Calculator[] }) {
       <label htmlFor="command-search" className="sr-only">
         Search calculators and converters
       </label>
-      <div className="command-bar group flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)]">
+      <div className="command-bar group flex items-center gap-3 calc-panel rounded-2xl px-4 py-3 shadow-[0_0_0_1px_rgba(0,229,255,0.08)] transition focus-within:border-[var(--accent)] focus-within:shadow-[0_0_0_4px_rgba(0,229,255,0.15)]">
         <svg
           width="20"
           height="20"
@@ -52,7 +52,7 @@ export function CommandSearch({ calculators }: { calculators: Calculator[] }) {
       </div>
 
       {query.trim() && (
-        <div className="absolute inset-x-0 top-[calc(100%+8px)] z-40 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl">
+        <div className="absolute inset-x-0 top-[calc(100%+8px)] z-40 overflow-hidden calc-panel rounded-2xl shadow-2xl">
           {results.length === 0 ? (
             <p className="px-4 py-6 text-center text-sm text-[var(--muted)]">
               No tools match “{query.trim()}”

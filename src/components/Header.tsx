@@ -32,8 +32,8 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_78%,transparent)] shadow-[0_10px_40px_-28px_rgba(0,0,0,0.45)] backdrop-blur-2xl dark:bg-[color-mix(in_srgb,var(--surface-solid)_92%,transparent)]">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-3 sm:h-16 sm:px-6">
         <div className="min-w-0 shrink">
           <Logo size="sm" priority />
         </div>
@@ -47,7 +47,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover-tint rounded-lg px-3 py-2 text-sm font-medium text-[var(--muted)] hover:bg-[var(--surface)] hover:text-[var(--foreground)]"
+                className="hover-tint rounded-xl px-3 py-2 text-sm font-medium text-[var(--muted)] hover:bg-[color-mix(in_srgb,var(--surface)_70%,transparent)] hover:text-[var(--foreground)]"
               >
                 {link.label}
               </Link>
@@ -56,7 +56,7 @@ export function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] md:hidden"
+            className="glass-3d inline-flex h-10 w-10 items-center justify-center rounded-xl text-[var(--foreground)] md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -87,9 +87,9 @@ export function Header() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-[var(--border)] bg-[var(--background)] md:hidden"
+          className="border-t border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_92%,transparent)] backdrop-blur-2xl dark:bg-[var(--surface-solid)] md:hidden"
         >
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-3 py-3 sm:px-6">
             {links.map((link) => (
               <Link
                 key={link.href}

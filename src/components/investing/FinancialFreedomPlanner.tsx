@@ -126,7 +126,7 @@ export function FinancialFreedomPlanner({
   return (
     <div className="space-y-6">
       <div className="grid gap-6 xl:grid-cols-3">
-        <div className="space-y-5 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6 xl:col-span-2">
+        <div className="space-y-5 calc-panel rounded-2xl p-5 sm:p-6 xl:col-span-2">
           <h2 className="text-lg font-semibold">Income & expenses</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Current age" value={currentAge} min={22} max={65} step={1} onChange={setCurrentAge} />
@@ -197,7 +197,7 @@ export function FinancialFreedomPlanner({
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+          <div className="results-card calc-panel rounded-2xl p-6">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               FIRE target
             </p>
@@ -223,7 +223,7 @@ export function FinancialFreedomPlanner({
             </dl>
           </div>
 
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+          <div className="calc-panel rounded-2xl p-5">
             <h3 className="text-sm font-semibold">What-if: boost discipline</h3>
             <p className="mt-1 text-xs text-[var(--muted)]">
               Simulates modest income bump + expense trim.
@@ -233,7 +233,7 @@ export function FinancialFreedomPlanner({
         </aside>
       </div>
 
-      <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="calc-panel rounded-2xl p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Net worth trajectory</h2>
         <div className="mt-4 flex h-48 items-end gap-0.5 sm:gap-1">
           {result.timeline.map((snap) => (
@@ -256,7 +256,7 @@ export function FinancialFreedomPlanner({
       </section>
 
       {result.milestones.length > 0 && (
-        <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <section className="calc-panel rounded-2xl p-5 sm:p-6">
           <h2 className="text-lg font-semibold">Milestone timeline</h2>
           <ol className="mt-4 space-y-3">
             {result.milestones.map((m, i) => (
@@ -276,7 +276,7 @@ export function FinancialFreedomPlanner({
         </section>
       )}
 
-      <section className="overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <section className="overflow-x-auto calc-panel rounded-2xl p-5 sm:p-6">
         <h2 className="text-lg font-semibold">Year-by-year snapshot</h2>
         <table className="mt-4 w-full min-w-[640px] text-left text-sm">
           <thead>
@@ -304,7 +304,7 @@ export function FinancialFreedomPlanner({
         </table>
       </section>
 
-      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
+      <aside className="calc-panel rounded-2xl p-4">
         <h2 className="text-xs font-semibold uppercase tracking-wide text-[var(--accent)]">Related</h2>
         <ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((tool) => (

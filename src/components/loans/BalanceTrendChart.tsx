@@ -77,7 +77,7 @@ export function BalanceTrendChart({
 
   return (
     <div
-      className={`rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5 ${className}`}
+      className={`calc-panel rounded-2xl p-4 sm:p-5 ${className}`}
     >
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div>

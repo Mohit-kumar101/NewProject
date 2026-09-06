@@ -31,7 +31,7 @@ export function ToolLayout({
           </AdBannerSlot>
         </div>
 
-        <div className="mx-auto w-full min-w-0 max-w-[820px] tablet-readable lg:max-w-none">
+        <div className="mx-auto w-full min-w-0 max-w-[820px] tablet-readable calc-stage lg:max-w-none">
           {children}
         </div>
 

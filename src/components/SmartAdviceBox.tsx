@@ -46,7 +46,7 @@ export function SmartAdviceBox({
 
   return (
     <section
-      className={`relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6 ${className}`}
+      className={`relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6 ${className}`}
       aria-labelledby="smart-advice-heading"
       aria-live="polite"
     >

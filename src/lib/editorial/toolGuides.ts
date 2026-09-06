@@ -151,6 +151,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "compound-interest-calculator",
+    relatedGuideSlug: "compound-interest-patience-not-magic",
     whoItsFor:
       "Anyone comparing lump-sum vs recurring contributions, or illustrating why time in market dominates small rate differences.",
     workedExample:
@@ -186,6 +187,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "monthly-mortgage-payment-calculator",
+    relatedGuideSlug: "mortgage-payment-what-youre-really-buying",
     whoItsFor:
       "Shoppers converting price, down payment, rate, and term into principal & interest before adding tax/insurance.",
     workedExample:
@@ -239,6 +241,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "rent-vs-buy-long-term-calculator",
+    relatedGuideSlug: "rent-vs-buy-when-spreadsheet-lies",
     whoItsFor:
       "Households deciding whether ownership still wins after opportunity cost of the down payment.",
     workedExample:
@@ -380,6 +383,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "credit-card-minimum-payment-calculator",
+    relatedGuideSlug: "credit-card-minimums-why-they-hurt",
     whoItsFor:
       "Cardholders who want to see how long minimum payments actually take—and what extra payments change.",
     workedExample:
@@ -397,6 +401,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "personal-loan-calculator",
+    relatedGuideSlug: "personal-loan-when-it-actually-helps",
     whoItsFor:
       "Borrowers estimating payment and total interest before signing a personal loan offer.",
     workedExample:
@@ -414,6 +419,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "student-loan-payoff-calculator",
+    relatedGuideSlug: "student-loans-payoff-without-panic",
     whoItsFor:
       "Graduates modeling extra payments toward student debt payoff dates.",
     workedExample:
@@ -431,6 +437,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "calorie-deficit-calculator",
+    relatedGuideSlug: "calorie-deficit-you-can-live-with",
     whoItsFor:
       "People estimating a daily deficit for fat loss without jumping to crash targets.",
     workedExample:
@@ -448,6 +455,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
   },
   {
     slug: "protein-intake-calculator",
+    relatedGuideSlug: "protein-targets-without-obsession",
     whoItsFor:
       "Lifters and dieters setting a daily protein target from body weight and goal.",
     workedExample:

@@ -61,7 +61,7 @@ export function SuggestionBox({
 
   return (
     <section className="mt-10 scroll-mt-24">
-      <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+      <div className="relative overflow-hidden calc-panel rounded-2xl p-5 sm:p-6">
         <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
 
         <div className="relative">

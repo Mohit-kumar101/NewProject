@@ -45,6 +45,8 @@ import {
   HealthEnhancements,
   ProgressSnapshotsPanel,
 } from "@/components/health/HealthEnhancements";
+import { PresentationLaunchCard } from "@/components/presentation/PresentationLaunchCard";
+import { supportsFinancialPresentation } from "@/lib/presentation/financialCategories";
 
 function usesStickyMemory(calculator: Calculator): boolean {
   return (
@@ -83,7 +85,7 @@ export function CalculatorWorkspace({
     return (
       <div className="space-y-5">
         <ScientificCalculator />
-        <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <aside className="calc-panel rounded-2xl p-4 sm:p-5">
           <div className="mb-3 flex items-baseline justify-between gap-3">
             <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
               Related tools
@@ -231,7 +233,7 @@ function StandardCalculatorWorkspace({
       ) : null}
 
       <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <h2 className="mb-5 text-lg font-semibold">Inputs</h2>
           <div className="space-y-6">
             {calculator.inputs.map((input) => {
@@ -242,7 +244,7 @@ function StandardCalculatorWorkspace({
                   <div key={input.id}>
                     <label
                       htmlFor={input.id}
-                      className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3"
+                      className="calc-inset flex cursor-pointer items-center justify-between gap-3 rounded-xl px-4 py-3"
                     >
                       <span className="text-sm font-medium text-[var(--foreground)]">
                         {input.label}
@@ -264,11 +266,11 @@ function StandardCalculatorWorkspace({
                 );
               }
               return (
-                <div key={input.id}>
-                  <div className="mb-2 flex items-center justify-between gap-3">
+                <div key={input.id} className="min-w-0">
+                  <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <label
                       htmlFor={input.id}
-                      className="text-sm font-medium text-[var(--foreground)]"
+                      className="min-w-0 text-sm font-medium break-words-safe text-[var(--foreground)]"
                     >
                       {input.label}
                     </label>
@@ -281,7 +283,7 @@ function StandardCalculatorWorkspace({
                       step={input.step}
                       value={value}
                       onChange={(e) => update(input.id, e.target.value)}
-                      className="w-28 rounded-lg border border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 text-right text-sm outline-none focus:border-[var(--accent)]"
+                      className="calc-inset w-full max-w-[9.5rem] shrink-0 self-end rounded-lg px-2.5 py-1.5 text-right text-sm outline-none focus:border-[var(--accent)] sm:w-28 sm:self-auto"
                     />
                   </div>
                   <input
@@ -292,11 +294,11 @@ function StandardCalculatorWorkspace({
                     step={input.step}
                     value={value}
                     onChange={(e) => update(input.id, e.target.value)}
-                    className="range-input w-full"
+                    className="range-input w-full max-w-full"
                   />
-                  <div className="mt-1 flex justify-between text-[11px] text-[var(--muted)]">
-                    <span>{input.min}</span>
-                    <span>{input.max}</span>
+                  <div className="mt-1 flex justify-between gap-2 text-[11px] text-[var(--muted)]">
+                    <span className="min-w-0 truncate">{input.min}</span>
+                    <span className="min-w-0 truncate text-right">{input.max}</span>
                   </div>
                 </div>
               );
@@ -305,14 +307,15 @@ function StandardCalculatorWorkspace({
         </div>
 
         <aside className="lg:sticky lg:top-24">
-          <div className="results-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+          <div className="results-card relative z-0 rounded-2xl p-6">
+            <div className="relative z-[1]">
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
               Live results
             </p>
             <p className="mt-3 text-sm text-[var(--muted)]">
               {result.primary.label}
             </p>
-            <p className="result-glow mt-1 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
+            <p className="result-glow mt-1 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight break-words-safe sm:text-4xl">
               {result.primary.value}
             </p>
 
@@ -333,10 +336,12 @@ function StandardCalculatorWorkspace({
               {result.secondary.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-start justify-between gap-4 border-t border-[var(--border)] pt-4"
+                  className="flex items-start justify-between gap-3 border-t border-[var(--border)] pt-4"
                 >
-                  <dt className="text-sm text-[var(--muted)]">{item.label}</dt>
-                  <dd className="text-right text-sm font-semibold text-[var(--foreground)]">
+                  <dt className="min-w-0 flex-1 text-sm break-words-safe text-[var(--muted)]">
+                    {item.label}
+                  </dt>
+                  <dd className="max-w-[50%] shrink-0 text-right text-sm font-semibold break-words-safe text-[var(--foreground)]">
                     {item.value}
                   </dd>
                 </div>
@@ -359,6 +364,7 @@ function StandardCalculatorWorkspace({
                 ? "Results are for informational and educational purposes only and do not constitute financial, investment, or trading advice. Crypto markets are volatile—verify figures independently before making decisions."
                 : "Estimates update instantly in your browser. Figures are for planning guidance and are not professional advice."}
             </p>
+            </div>
           </div>
         </aside>
       </div>
@@ -366,6 +372,36 @@ function StandardCalculatorWorkspace({
       <SmartAdviceBox items={advice} />
 
       <ScenarioComparePanel calculator={calculator} values={values} />
+
+      {supportsFinancialPresentation(calculator.category) ? (
+        <PresentationLaunchCard
+          slug={calculator.slug}
+          toolHref={getToolHref(calculator.slug)}
+          numericValues={values}
+          deck={{
+            toolTitle: calculator.title,
+            category: calculator.category,
+            inputs: calculator.inputs.map((input) => ({
+              label: input.label,
+              value: String(values[input.id] ?? input.defaultValue),
+            })),
+            primaryLabel: result.primary.label,
+            primaryValue: result.primary.value,
+            rows: [
+              ...(result.featured ?? []),
+              ...result.secondary,
+            ].map((item) => ({
+              label: item.label,
+              value: item.value,
+            })),
+            note:
+              calculator.category === "Crypto & Digital Assets"
+                ? "Informational only — not investment advice."
+                : "Planning estimates only — not professional advice.",
+            insight: result.insight,
+          }}
+        />
+      ) : null}
 
       {calculator.category === CRYPTO_CATEGORY ? (
         <CryptoProWorkspace calculator={calculator} values={values} />
@@ -434,7 +470,7 @@ function StandardCalculatorWorkspace({
         />
       ) : null}
 
-      <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <aside className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="mb-3 flex items-baseline justify-between gap-3">
           <h2 className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase sm:text-sm">
             Related tools

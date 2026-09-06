@@ -38,7 +38,7 @@ const MAX_SIZE = 40 * 1024 * 1024;
 function ProgressBar({ progress }: { progress: ProgressUpdate | null }) {
   if (!progress) return null;
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 sm:px-5">
+    <div className="calc-panel rounded-2xl px-4 py-3 sm:px-5">
       <div className="flex items-center justify-between gap-3 text-xs sm:text-sm">
         <span className="font-medium text-[var(--muted)]">{progress.phase}</span>
         <span className="font-semibold text-[var(--foreground)]">
@@ -101,7 +101,7 @@ export function DocumentFileConverter({
 
   if (!tool || !direction) {
     return (
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
+      <div className="calc-panel rounded-2xl p-6">
         <p className="text-sm text-[var(--muted)]">Converter configuration missing.</p>
       </div>
     );
@@ -329,7 +329,7 @@ export function DocumentFileConverter({
   return (
     <div className="space-y-5">
       <ConverterPrivacyRecent toolSlug={slug} engine="pdf" />
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+      <div className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
@@ -400,7 +400,7 @@ export function DocumentFileConverter({
       ) : null}
 
       {direction.imageExtractControls ? (
-        <div className="grid gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:grid-cols-2 sm:p-5">
+        <div className="grid gap-4 calc-panel rounded-2xl p-4 sm:grid-cols-2 sm:p-5">
           <label className="block text-sm">
             <span className="mb-1.5 block text-xs font-medium text-[var(--muted)]">
               Image format
@@ -437,7 +437,7 @@ export function DocumentFileConverter({
       ) : null}
 
       {direction.splitControls ? (
-        <div className="space-y-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="space-y-4 calc-panel rounded-2xl p-4 sm:p-5">
           <div className="flex flex-wrap gap-2">
             {(
               [
@@ -501,7 +501,7 @@ export function DocumentFileConverter({
       ) : null}
 
       {result?.textPreview ? (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
             Text preview
           </p>
@@ -512,7 +512,7 @@ export function DocumentFileConverter({
       ) : null}
 
       {result?.previewUrls && result.previewUrls.length > 0 ? (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
             Page previews
             {result.pageCount && result.pageCount > result.previewUrls.length

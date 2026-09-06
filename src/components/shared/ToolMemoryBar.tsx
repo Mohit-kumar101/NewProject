@@ -69,7 +69,7 @@ export function ToolMemoryBar({
   };
 
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 sm:px-5">
+    <div className="calc-panel rounded-2xl px-4 py-3 sm:px-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">

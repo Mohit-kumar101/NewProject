@@ -18,7 +18,7 @@ export function InvestingExpandedFaq({
 
   return (
     <section
-      className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+      className="calc-panel rounded-2xl p-5 sm:p-6"
       aria-labelledby="investing-expanded-faq-heading"
     >
       <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">

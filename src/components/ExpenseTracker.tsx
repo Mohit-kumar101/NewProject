@@ -233,7 +233,7 @@ export function ExpenseTracker() {
   return (
     <div className="space-y-6">
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="relative overflow-hidden calc-panel rounded-2xl p-4 sm:p-5">
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Total balance
@@ -244,7 +244,7 @@ export function ExpenseTracker() {
             {hydrated ? formatMoney(summary.balance) : "—"}
           </p>
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Income
           </p>
@@ -252,7 +252,7 @@ export function ExpenseTracker() {
             {hydrated ? formatMoney(summary.income) : "—"}
           </p>
         </div>
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-5">
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
           <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
             Expenses
           </p>
@@ -265,7 +265,7 @@ export function ExpenseTracker() {
       <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <form
           onSubmit={addTransaction}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+          className="calc-panel rounded-2xl p-5 sm:p-6"
         >
           <h2 className="text-lg font-semibold text-[var(--foreground)]">
             Add transaction
@@ -397,7 +397,7 @@ export function ExpenseTracker() {
           </div>
         </form>
 
-        <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <section className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <h2 className="text-lg font-semibold text-[var(--foreground)]">
