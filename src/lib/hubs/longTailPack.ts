@@ -1,9 +1,5 @@
 /**
- * Long-tail hub pack (30 tools) — Shift Work, Commute, Airbnb/Housing, Food.
- *
- * READY (5): warehouse overtime, car commute/workday, Airbnb cleaning,
- *            grocery cost/meal, EV winter charging
- * TODO: remaining 25 configs + formulaType handlers in formulas.ts
+ * Long-tail hub pack — five ready tools (overtime, commute, Airbnb, grocery, EV).
  */
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
@@ -31,51 +27,6 @@ function modifier(
     route: true,
     benefit: extras?.benefit,
     faqs: extras?.faqs,
-  };
-}
-
-function stubHubTool(partial: {
-  slug: string;
-  title: string;
-  category: string;
-  description: string;
-  formulaType: string;
-  focusHint: string;
-}): Calculator {
-  return {
-    slug: partial.slug,
-    title: partial.title,
-    category: partial.category,
-    description: partial.description,
-    formulaType: partial.formulaType,
-    useCategoryPath: true,
-    ready: false,
-    inputs: [input("placeholder", "Value (TODO)", 100, 0, 1_000_000, 1)],
-    seoContextTemplate: `{{title}} targets “{{focusKeyword}}” ({{year}}). {{formulaSummary}} {{example}} Configuration stub — implement formulaType “${partial.formulaType}” in src/lib/formulas.ts, then set ready: true.`,
-    formulaSummary: "Formula wiring is TODO.",
-    realWorldExample: "Add a worked example when this tool ships.",
-    explanationTemplate: `{{variantExplanation}} This {{title}} page targets “{{focusKeyword}}” (${SEO_CONTENT_YEAR}).`,
-    longTailModifiers: [
-      modifier("overview", partial.focusHint, partial.description, {
-        benefit: "Instant estimate",
-        route: false,
-      }),
-    ],
-    seoContent: {
-      intro: `${partial.description} (Hub schema registered — calculation engine TODO.)`,
-      howToUse: [
-        "Implement the formula handler, then set ready: true.",
-        "Enter the labeled inputs.",
-        "Read the live result and long-tail FAQ.",
-      ],
-      faqs: [
-        {
-          question: `How do I calculate ${partial.focusHint}?`,
-          answer:
-            "This tool is scaffolded in the long-tail hub pack. The formula is marked TODO until implemented.",
-        },
-      ],
-    },
   };
 }
 
@@ -392,219 +343,6 @@ const evWinterChargingCost: Calculator = {
   },
 };
 
-/**
- * Remaining 25 hub tools — schema + category only.
- * TODO: full inputs, seoContextTemplate, longTailModifiers, formulas, ready: true
- */
-const hubStubs: Calculator[] = [
-  // Shift Work & Payroll (8 remaining after warehouse OT)
-  stubHubTool({
-    slug: "night-shift-pay-differential-calculator",
-    title: "Night Shift Pay Differential Calculator",
-    category: "Shift Work & Payroll",
-    description: "Estimate night-shift pay from base rate and differential % or flat add-on.",
-    formulaType: "nightShiftPayDifferential", // TODO
-    focusHint: "night shift pay differential calculator",
-  }),
-  stubHubTool({
-    slug: "split-shift-pay-calculator",
-    title: "Split Shift Pay Calculator",
-    category: "Shift Work & Payroll",
-    description: "Calculate pay across split shifts including premiums between segments.",
-    formulaType: "splitShiftPay", // TODO
-    focusHint: "split shift pay calculator",
-  }),
-  stubHubTool({
-    slug: "four-on-four-off-schedule-calculator",
-    title: "4-on-4-off Schedule Calculator",
-    category: "Shift Work & Payroll",
-    description: "Project hours and pay across a 4-on-4-off rotating schedule.",
-    formulaType: "fourOnFourOffSchedule", // TODO
-    focusHint: "4 on 4 off schedule calculator",
-  }),
-  stubHubTool({
-    slug: "twelve-hour-shift-work-hours-calculator",
-    title: "12-Hour Shift Work Hours Calculator",
-    category: "Shift Work & Payroll",
-    description: "Convert 12-hour shifts into weekly/biweekly hours and OT exposure.",
-    formulaType: "twelveHourShiftHours", // TODO
-    focusHint: "12 hour shift work hours calculator",
-  }),
-  stubHubTool({
-    slug: "two-job-income-calculator",
-    title: "Two Job Income Calculator",
-    category: "Shift Work & Payroll",
-    description: "Combine wages from two jobs into weekly and monthly totals.",
-    formulaType: "twoJobIncome", // TODO
-    focusHint: "two job income calculator",
-  }),
-  stubHubTool({
-    slug: "job-side-hustle-take-home-calculator",
-    title: "Job + Side Hustle Take-Home Calculator",
-    category: "Shift Work & Payroll",
-    description: "Estimate combined take-home from a W-2 job plus side hustle income.",
-    formulaType: "jobSideHustleTakeHome", // TODO
-    focusHint: "job and side hustle take-home calculator",
-  }),
-  stubHubTool({
-    slug: "break-time-deduction-calculator",
-    title: "Break Time Deduction Calculator",
-    category: "Shift Work & Payroll",
-    description: "See how unpaid breaks reduce paid hours and weekly earnings.",
-    formulaType: "breakTimeDeduction", // TODO
-    focusHint: "break time deduction calculator",
-  }),
-  stubHubTool({
-    slug: "lunch-break-unpaid-hours-calculator",
-    title: "Lunch Break Unpaid Hours Calculator",
-    category: "Shift Work & Payroll",
-    description: "Calculate unpaid lunch time across a week of shifts.",
-    formulaType: "lunchBreakUnpaidHours", // TODO
-    focusHint: "lunch break unpaid hours calculator",
-  }),
-  stubHubTool({
-    slug: "overtime-plus-regular-hours-calculator",
-    title: "Overtime + Regular Hours Calculator",
-    category: "Shift Work & Payroll",
-    description: "Split a timesheet into regular vs overtime hours and pay.",
-    formulaType: "overtimePlusRegularHours", // TODO
-    focusHint: "overtime and regular hours calculator",
-  }),
-
-  // Commute & Vehicle Costs (8 remaining; workday + EV winter ready)
-  stubHubTool({
-    slug: "car-commute-cost-per-month-calculator",
-    title: "Car Commute Cost Per Month Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Roll daily commute fuel costs into a monthly total.",
-    formulaType: "carCommuteCostPerMonth", // TODO
-    focusHint: "car commute cost per month calculator",
-  }),
-  stubHubTool({
-    slug: "gas-cost-for-5-day-commute-calculator",
-    title: "Gas Cost for 5-Day Commute Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Estimate a standard 5-day workweek fuel spend for commuting.",
-    formulaType: "gasCostFiveDayCommute", // TODO
-    focusHint: "gas cost for 5 day commute calculator",
-  }),
-  stubHubTool({
-    slug: "winter-fuel-cost-calculator",
-    title: "Winter Fuel Cost Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Adjust fuel cost for colder MPG and winter blend prices.",
-    formulaType: "winterFuelCost", // TODO
-    focusHint: "winter fuel cost calculator",
-  }),
-  stubHubTool({
-    slug: "idling-fuel-cost-calculator",
-    title: "Idling Fuel Cost Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Estimate fuel burned while idling by minutes and engine size.",
-    formulaType: "idlingFuelCost", // TODO
-    focusHint: "idling fuel cost calculator",
-  }),
-  stubHubTool({
-    slug: "drive-thru-idling-cost-calculator",
-    title: "Drive-Thru Idling Cost Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Cost the fuel spent waiting in drive-thru lines.",
-    formulaType: "driveThruIdlingCost", // TODO
-    focusHint: "drive thru idling cost calculator",
-  }),
-  stubHubTool({
-    slug: "remote-start-fuel-cost-calculator",
-    title: "Remote Start Fuel Cost Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Estimate fuel used warming the car with remote start.",
-    formulaType: "remoteStartFuelCost", // TODO
-    focusHint: "remote start fuel cost calculator",
-  }),
-  stubHubTool({
-    slug: "ev-charging-at-work-savings-calculator",
-    title: "EV Charging at Work Savings Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Compare workplace charging rates vs home charging costs.",
-    formulaType: "evChargingAtWorkSavings", // TODO
-    focusHint: "EV charging at work savings calculator",
-  }),
-  stubHubTool({
-    slug: "road-trip-cost-per-person-calculator",
-    title: "Road Trip Cost Per Person Calculator",
-    category: "Commute & Vehicle Costs",
-    description: "Split fuel and trip costs evenly across passengers.",
-    formulaType: "roadTripCostPerPerson", // TODO
-    focusHint: "road trip cost per person calculator",
-  }),
-
-  // Short-term Rental & Housing (5 remaining)
-  stubHubTool({
-    slug: "airbnb-profit-after-cleaning-calculator",
-    title: "Airbnb Profit After Cleaning Calculator",
-    category: "Short-term Rental & Housing",
-    description: "Net booking profit after cleaning and platform fees.",
-    formulaType: "airbnbProfitAfterCleaning", // TODO
-    focusHint: "Airbnb profit after cleaning calculator",
-  }),
-  stubHubTool({
-    slug: "airbnb-occupancy-break-even-calculator",
-    title: "Airbnb Occupancy Break-Even Calculator",
-    category: "Short-term Rental & Housing",
-    description: "Find occupancy needed to cover fixed hosting costs.",
-    formulaType: "airbnbOccupancyBreakEven", // TODO
-    focusHint: "Airbnb occupancy break-even calculator",
-  }),
-  stubHubTool({
-    slug: "tenant-move-out-cost-calculator",
-    title: "Tenant Move-Out Cost Calculator",
-    category: "Short-term Rental & Housing",
-    description: "Estimate move-out repairs, cleaning, and deposit impacts.",
-    formulaType: "tenantMoveOutCost", // TODO
-    focusHint: "tenant move-out cost calculator",
-  }),
-  stubHubTool({
-    slug: "security-deposit-deduction-calculator",
-    title: "Security Deposit Deduction Calculator",
-    category: "Short-term Rental & Housing",
-    description: "Itemize deposit deductions vs refundable balance.",
-    formulaType: "securityDepositDeduction", // TODO
-    focusHint: "security deposit deduction calculator",
-  }),
-  stubHubTool({
-    slug: "roommate-utility-split-calculator",
-    title: "Roommate Utility Split Calculator",
-    category: "Short-term Rental & Housing",
-    description: "Split utilities fairly across roommates by share or usage.",
-    formulaType: "roommateUtilitySplit", // TODO
-    focusHint: "roommate utility split calculator",
-  }),
-
-  // Food & Meal Planning (3 remaining)
-  stubHubTool({
-    slug: "cost-per-serving-meal-prep-calculator",
-    title: "Cost Per Serving Calculator for Meal Prep",
-    category: "Food & Meal Planning",
-    description: "Divide recipe cost by servings for meal-prep unit cost.",
-    formulaType: "costPerServingMealPrep", // TODO
-    focusHint: "cost per serving meal prep calculator",
-  }),
-  stubHubTool({
-    slug: "coffee-cost-per-cup-calculator",
-    title: "Coffee Cost Per Cup Calculator",
-    category: "Food & Meal Planning",
-    description: "Estimate homemade coffee cost per cup from beans and filters.",
-    formulaType: "coffeeCostPerCup", // TODO
-    focusHint: "coffee cost per cup calculator",
-  }),
-  stubHubTool({
-    slug: "restaurant-menu-price-break-even-calculator",
-    title: "Restaurant Menu Price Break-Even Calculator",
-    category: "Food & Meal Planning",
-    description: "Find menu prices that cover food cost % and overhead.",
-    formulaType: "restaurantMenuPriceBreakEven", // TODO
-    focusHint: "restaurant menu price break-even calculator",
-  }),
-];
 
 export const LONGTAIL_HUB_TOOLS: Calculator[] = [
   warehouseOvertimePay,
@@ -612,7 +350,6 @@ export const LONGTAIL_HUB_TOOLS: Calculator[] = [
   airbnbCleaningCost,
   groceryCostPerMeal,
   evWinterChargingCost,
-  ...hubStubs,
 ];
 
 export const LONGTAIL_HUB_READY_TOOLS = LONGTAIL_HUB_TOOLS.filter(
@@ -620,7 +357,7 @@ export const LONGTAIL_HUB_READY_TOOLS = LONGTAIL_HUB_TOOLS.filter(
 );
 
 export const LONGTAIL_HUB_SLUGS = new Set(
-  LONGTAIL_HUB_TOOLS.map((tool) => tool.slug)
+  LONGTAIL_HUB_READY_TOOLS.map((tool) => tool.slug)
 );
 
 export function getLongtailHubToolBySlug(slug: string): Calculator | undefined {
