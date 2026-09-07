@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
-import type { TokenomicsPoint } from "@/lib/monetization/tokenomicsSeries";
+import type { TokenomicsPoint } from "@/lib/tokenomicsSeries";
 import { SITE_NAME } from "@/lib/calculators";
 
 export function TokenomicsReportPanel({

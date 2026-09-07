@@ -13,7 +13,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { TokenomicsPoint } from "@/lib/monetization/tokenomicsSeries";
+import type { TokenomicsPoint } from "@/lib/tokenomicsSeries";
 
 /** Hex colors — SVG attrs often fail to resolve CSS variables. */
 const ACCENT = "#00B8D4";

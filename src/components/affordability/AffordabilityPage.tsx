@@ -72,7 +72,7 @@ export function AffordabilityPage({
   );
 
   return (
-    <ToolLayout rightAd={termsPanel}>
+    <ToolLayout sidebar={termsPanel}>
       <AffordabilityJsonLd page={page} />
 
       <nav

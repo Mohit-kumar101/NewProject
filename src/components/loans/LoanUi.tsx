@@ -10,7 +10,7 @@ import {
 } from "@/lib/loanTools";
 import { BalanceTrendChart } from "@/components/loans/BalanceTrendChart";
 import { jsPDF } from "jspdf";
-import { downloadTextFile } from "@/lib/monetization/tokenomicsSeries";
+import { downloadTextFile } from "@/lib/tokenomicsSeries";
 
 export function LoanMetricCards({
   items,

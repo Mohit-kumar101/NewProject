@@ -117,13 +117,13 @@ export function ToolsDirectory() {
             ? filtered.length === 0
               ? `No tools match “${q}”.`
               : `${filtered.length} tool${filtered.length === 1 ? "" : "s"} match “${q}”`
-            : `${publicCount} tools across ${CATEGORIES.length} categories`}
+            : `${publicCount} tools across ${grouped.length} categories`}
         </p>
       </div>
 
       {!isSearching && (
         <div className="mb-10 flex flex-wrap gap-2">
-          {CATEGORIES.map((category) => (
+          {grouped.map(({ category }) => (
             <a
               key={category}
               href={`#${categoryId(category)}`}

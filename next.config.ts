@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      { source: "/vaultline", destination: "/", permanent: true },
+      { source: "/vaultline/:path*", destination: "/", permanent: true },
+      { source: "/savewise", destination: "/", permanent: true },
+      { source: "/savewise/:path*", destination: "/", permanent: true },
+      { source: "/crypto/token-creator", destination: "/crypto", permanent: true },
+      { source: "/presentation", destination: "/", permanent: true },
+      { source: "/presentation/:path*", destination: "/", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -1,9 +1,5 @@
 "use client";
 
-import { PresentationLaunchCard } from "@/components/presentation/PresentationLaunchCard";
-import { usePresentationToolSlug } from "@/components/presentation/PresentationToolSlugContext";
-import { supportsFinancialPresentation } from "@/lib/presentation/financialCategories";
-
 export function formatUsd(n: number, digits = 0): string {
   if (!Number.isFinite(n)) return "—";
   return new Intl.NumberFormat("en-US", {
@@ -46,9 +42,6 @@ export function PseoCalcShell({
   primaryValue,
   rows,
   note,
-  toolTitle = "Calculator results",
-  category = "HR & Ops",
-  toolSlug,
 }: {
   fields: PseoField[];
   primaryLabel: string;
@@ -59,20 +52,6 @@ export function PseoCalcShell({
   category?: string;
   toolSlug?: string;
 }) {
-  const ctxSlug = usePresentationToolSlug();
-  const showPresentation = supportsFinancialPresentation(category);
-  const slug =
-    toolSlug ||
-    ctxSlug ||
-    toolTitle
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-
-  const numericValues = Object.fromEntries(
-    fields.map((f) => [f.id, f.value])
-  );
-
   return (
     <div className="space-y-6">
       <div className="grid gap-5 sm:gap-6 lg:grid-cols-2 lg:items-start">
@@ -176,30 +155,6 @@ export function PseoCalcShell({
         </div>
       </div>
 
-      {showPresentation ? (
-        <PresentationLaunchCard
-          slug={slug}
-          toolHref={`/tools/${slug}`}
-          numericValues={numericValues}
-          deck={{
-            toolTitle,
-            category,
-            inputs: fields.map((f) => ({
-              label: f.label,
-              value:
-                f.inputType === "checkbox"
-                  ? f.value >= 0.5
-                    ? "Yes"
-                    : "No"
-                  : String(f.value),
-            })),
-            primaryLabel,
-            primaryValue,
-            rows,
-            note,
-          }}
-        />
-      ) : null}
     </div>
   );
 }

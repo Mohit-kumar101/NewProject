@@ -1,12 +1,5 @@
 /**
- * Intent-80 pSEO hub pack (80 tools across 6 categories).
- *
- * READY (12): first tool per category + six high-intent clones
- *   laundry, dryer, idling, drive-thru, shift differential, 12h shift,
- *   roommate split, master bedroom, freelance fees, meal prep cost,
- *   meal sell price, recipe cost per serving
- *
- * TODO: remaining stubs — expand configs + formulas.ts handlers, then ready: true
+ * Intent hub pack — 12 ready high-intent calculators.
  */
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
@@ -34,51 +27,6 @@ function modifier(
     route: true,
     benefit: extras?.benefit,
     faqs: extras?.faqs,
-  };
-}
-
-function stub80(partial: {
-  slug: string;
-  title: string;
-  category: string;
-  description: string;
-  formulaType: string;
-  focusHint: string;
-}): Calculator {
-  return {
-    slug: partial.slug,
-    title: partial.title,
-    category: partial.category,
-    description: partial.description,
-    formulaType: partial.formulaType,
-    useCategoryPath: true,
-    ready: false,
-    inputs: [input("placeholder", "Value (TODO)", 100, 0, 1_000_000, 1)],
-    seoContextTemplate: `{{title}} targets “{{focusKeyword}}” ({{year}}). {{formulaSummary}} {{example}} TODO: implement “${partial.formulaType}” in src/lib/formulas.ts and set ready: true.`,
-    formulaSummary: "Formula wiring is TODO.",
-    realWorldExample: "Add a worked example when this tool ships.",
-    explanationTemplate: `{{variantExplanation}} {{title}} — “{{focusKeyword}}” (${SEO_CONTENT_YEAR}).`,
-    longTailModifiers: [
-      modifier("overview", partial.focusHint, partial.description, {
-        benefit: "Instant estimate",
-        route: false,
-      }),
-    ],
-    seoContent: {
-      intro: `${partial.description} (Intent-80 schema stub — engine TODO.)`,
-      howToUse: [
-        "Implement the formula handler, then set ready: true.",
-        "Enter the labeled inputs.",
-        "Read the live result and long-tail FAQ.",
-      ],
-      faqs: [
-        {
-          question: `How do I use the ${partial.title}?`,
-          answer:
-            "This calculator is scaffolded in the Intent-80 hub pack. The formula is marked TODO until implemented.",
-        },
-      ],
-    },
   };
 }
 
@@ -814,114 +762,6 @@ const recipeCostPerServing: Calculator = {
   },
 };
 
-/** Compact stub defs for the remaining tools (TODO: full configs + formulas). */
-const STUB_DEFS: Array<{
-  slug: string;
-  title: string;
-  category: string;
-  formulaType: string;
-  focusHint: string;
-  description: string;
-}> = [
-  // Home & Appliance Utilities (19 remaining)
-  ["dishwasher-cost-per-cycle-calculator", "Dishwasher Cost Per Cycle Calculator", "Home & Appliance Utilities", "dishwasherCostPerCycle", "dishwasher cost per cycle calculator", "Estimate dishwasher energy and water cost per cycle."],
-  ["hand-washing-vs-dishwasher-cost-calculator", "Hand Washing vs Dishwasher Cost Calculator", "Home & Appliance Utilities", "handWashVsDishwasherCost", "hand washing vs dishwasher cost calculator", "Compare hand-washing water/energy vs dishwasher cycles."],
-  ["shower-cost-per-minute-calculator", "Shower Cost Per Minute Calculator", "Home & Appliance Utilities", "showerCostPerMinute", "shower cost per minute calculator", "Estimate water and heat cost per minute of showering."],
-  ["bath-vs-shower-cost-calculator", "Bath vs Shower Cost Calculator", "Home & Appliance Utilities", "bathVsShowerCost", "bath vs shower cost calculator", "Compare the utility cost of a bath versus a shower."],
-  ["toilet-flush-water-cost-calculator", "Toilet Flush Water Cost Calculator", "Home & Appliance Utilities", "toiletFlushWaterCost", "toilet flush water cost calculator", "Estimate water/sewer cost per flush."],
-  ["toilet-leak-cost-calculator", "Toilet Leak Cost Calculator", "Home & Appliance Utilities", "toiletLeakCost", "toilet leak cost calculator", "Estimate monthly cost of a running toilet leak."],
-  ["coffee-maker-cost-per-cup-calculator", "Coffee Maker Cost Per Cup Calculator", "Home & Appliance Utilities", "coffeeMakerCostPerCup", "coffee maker cost per cup calculator", "Estimate electricity cost to brew a cup."],
-  ["kettle-boiling-cost-calculator", "Kettle Boiling Cost Calculator", "Home & Appliance Utilities", "kettleBoilingCost", "kettle boiling cost calculator", "Estimate electricity cost to boil a kettle."],
-  ["microwave-cost-per-use-calculator", "Microwave Cost Per Use Calculator", "Home & Appliance Utilities", "microwaveCostPerUse", "microwave cost per use calculator", "Estimate microwave electricity per use."],
-  ["oven-cost-per-hour-calculator", "Oven Cost Per Hour Calculator", "Home & Appliance Utilities", "ovenCostPerHour", "oven cost per hour calculator", "Estimate oven electricity or gas cost per hour."],
-  ["air-fryer-cost-per-use-calculator", "Air Fryer Cost Per Use Calculator", "Home & Appliance Utilities", "airFryerCostPerUse", "air fryer cost per use calculator", "Estimate air fryer electricity per cook."],
-  ["slow-cooker-cost-per-meal-calculator", "Slow Cooker Cost Per Meal Calculator", "Home & Appliance Utilities", "slowCookerCostPerMeal", "slow cooker cost per meal calculator", "Estimate slow cooker electricity per meal."],
-  ["rice-cooker-electricity-cost-calculator", "Rice Cooker Electricity Cost Calculator", "Home & Appliance Utilities", "riceCookerElectricityCost", "rice cooker electricity cost calculator", "Estimate rice cooker electricity per batch."],
-  ["space-heater-cost-per-night-calculator", "Space Heater Cost Per Night Calculator", "Home & Appliance Utilities", "spaceHeaterCostPerNight", "space heater cost per night calculator", "Estimate space heater cost overnight."],
-  ["fan-cost-per-night-calculator", "Fan Cost Per Night Calculator", "Home & Appliance Utilities", "fanCostPerNight", "fan cost per night calculator", "Estimate fan electricity overnight."],
-  ["humidifier-cost-per-month-calculator", "Humidifier Cost Per Month Calculator", "Home & Appliance Utilities", "humidifierCostPerMonth", "humidifier cost per month calculator", "Estimate humidifier electricity and water monthly."],
-  ["dehumidifier-cost-per-month-calculator", "Dehumidifier Cost Per Month Calculator", "Home & Appliance Utilities", "dehumidifierCostPerMonth", "dehumidifier cost per month calculator", "Estimate dehumidifier electricity monthly."],
-  ["christmas-lights-electricity-cost-calculator", "Christmas Lights Electricity Cost Calculator", "Home & Appliance Utilities", "christmasLightsElectricityCost", "christmas lights electricity cost calculator", "Estimate seasonal lighting electricity cost."],
-
-  // Commute & Vehicle Costs (14 remaining; idling ready)
-  ["remote-start-fuel-cost-calculator", "Remote Start Fuel Cost Calculator", "Commute & Vehicle Costs", "remoteStartFuelCost", "remote start fuel cost calculator", "Estimate fuel used during remote start warm-ups."],
-  ["winter-warm-up-fuel-cost-calculator", "Winter Warm-Up Fuel Cost Calculator", "Commute & Vehicle Costs", "winterWarmUpFuelCost", "winter warm up fuel cost calculator", "Estimate winter warm-up idling fuel cost."],
-  ["traffic-jam-fuel-cost-calculator", "Traffic Jam Fuel Cost Calculator", "Commute & Vehicle Costs", "trafficJamFuelCost", "traffic jam fuel cost calculator", "Estimate fuel burned sitting in traffic."],
-  ["car-ac-fuel-cost-calculator", "Car AC Fuel Cost Calculator", "Commute & Vehicle Costs", "carAcFuelCost", "car AC fuel cost calculator", "Estimate extra fuel cost from running AC."],
-  ["car-heater-fuel-cost-calculator", "Car Heater Fuel Cost Calculator", "Commute & Vehicle Costs", "carHeaterFuelCost", "car heater fuel cost calculator", "Estimate cabin heat impact on fuel use."],
-  ["parking-plus-fuel-commute-cost-calculator", "Parking + Fuel Commute Cost Calculator", "Commute & Vehicle Costs", "parkingPlusFuelCommuteCost", "parking and fuel commute cost calculator", "Combine parking fees with commute fuel."],
-  ["two-car-commute-comparison-calculator", "Two-Car Commute Comparison Calculator", "Commute & Vehicle Costs", "twoCarCommuteComparison", "two car commute comparison calculator", "Compare commute cost across two vehicles."],
-  ["work-from-home-vs-driving-cost-calculator", "Work From Home vs Driving Cost Calculator", "Commute & Vehicle Costs", "wfhVsDrivingCost", "work from home vs driving cost calculator", "Compare WFH days against driving commute cost."],
-  ["gas-vs-ev-commute-cost-calculator", "Gas vs EV Commute Cost Calculator", "Commute & Vehicle Costs", "gasVsEvCommuteCost", "gas vs EV commute cost calculator", "Compare gas and EV cost for the same commute."],
-  ["transit-vs-car-commute-cost-calculator", "Transit vs Car Commute Cost Calculator", "Commute & Vehicle Costs", "transitVsCarCommuteCost", "transit vs car commute cost calculator", "Compare transit passes against driving costs."],
-  ["cost-of-driving-to-work-per-year-calculator", "Cost of Driving to Work Per Year Calculator", "Commute & Vehicle Costs", "drivingToWorkPerYearCost", "cost of driving to work per year calculator", "Annualize daily commute driving costs."],
-  ["cost-of-a-1-hour-commute-calculator", "Cost of a 1-Hour Commute Calculator", "Commute & Vehicle Costs", "oneHourCommuteCost", "cost of a 1 hour commute calculator", "Monetize a one-hour each-way commute."],
-  ["extra-cost-of-a-longer-commute-calculator", "Extra Cost of a Longer Commute Calculator", "Commute & Vehicle Costs", "extraCostLongerCommute", "extra cost of a longer commute calculator", "Compare incremental cost of a longer drive."],
-
-  // Payroll & Shift Work (14 remaining; shift differential ready)
-  ["night-shift-plus-overtime-pay-calculator", "Night Shift + Overtime Pay Calculator", "Payroll & Shift Work", "nightShiftPlusOvertimePay", "night shift overtime pay calculator", "Stack night differential with overtime premiums."],
-  ["weekend-shift-pay-calculator", "Weekend Shift Pay Calculator", "Payroll & Shift Work", "weekendShiftPay", "weekend shift pay calculator", "Estimate weekend premium shift pay."],
-  ["two-jobs-take-home-pay-calculator", "Two Jobs Take-Home Pay Calculator", "Payroll & Shift Work", "twoJobsTakeHomePay", "two jobs take-home pay calculator", "Combine take-home from two jobs."],
-  ["job-plus-side-hustle-income-calculator", "Job + Side Hustle Income Calculator", "Payroll & Shift Work", "jobPlusSideHustleIncome", "job plus side hustle income calculator", "Combine W-2 and side hustle income."],
-  ["unpaid-lunch-break-salary-calculator", "Unpaid Lunch Break Salary Calculator", "Payroll & Shift Work", "unpaidLunchBreakSalary", "unpaid lunch break salary calculator", "See salary impact of unpaid lunch breaks."],
-  ["paid-vs-unpaid-break-pay-calculator", "Paid vs Unpaid Break Pay Calculator", "Payroll & Shift Work", "paidVsUnpaidBreakPay", "paid vs unpaid break pay calculator", "Compare paid and unpaid break policies."],
-  ["overtime-after-shift-differential-calculator", "Overtime After Shift Differential Calculator", "Payroll & Shift Work", "overtimeAfterShiftDifferential", "overtime after shift differential calculator", "Apply OT on top of differential rates."],
-  ["four-on-four-off-salary-calculator", "4-on-4-off Salary Calculator", "Payroll & Shift Work", "fourOnFourOffSalary", "4 on 4 off salary calculator", "Project pay on a 4-on-4-off roster."],
-  ["rotating-shift-income-calculator", "Rotating Shift Income Calculator", "Payroll & Shift Work", "rotatingShiftIncome", "rotating shift income calculator", "Average income across rotating shift patterns."],
-  ["missed-shift-pay-loss-calculator", "Missed Shift Pay Loss Calculator", "Payroll & Shift Work", "missedShiftPayLoss", "missed shift pay loss calculator", "Estimate wages lost from a missed shift."],
-  ["calling-in-sick-pay-loss-calculator", "Calling in Sick Pay Loss Calculator", "Payroll & Shift Work", "callingInSickPayLoss", "calling in sick pay loss calculator", "Estimate unpaid sick-day wage loss."],
-  ["extra-hour-of-work-take-home-calculator", "Extra Hour of Work Take-Home Calculator", "Payroll & Shift Work", "extraHourWorkTakeHome", "extra hour of work take-home calculator", "Net take-home from one extra hour."],
-  ["raise-vs-overtime-income-calculator", "Raise vs Overtime Income Calculator", "Payroll & Shift Work", "raiseVsOvertimeIncome", "raise vs overtime income calculator", "Compare a raise against working more OT."],
-
-  // Rent & Roommate Splits (9 remaining)
-  ["room-with-private-bathroom-rent-calculator", "Room With Private Bathroom Rent Calculator", "Rent & Roommate Splits", "roomPrivateBathroomRent", "room with private bathroom rent calculator", "Adjust rent for a private bath."],
-  ["roommate-rent-split-different-closets-calculator", "Roommate Rent Split With Different Closets Calculator", "Rent & Roommate Splits", "roommateRentDifferentClosets", "roommate rent split different closets calculator", "Factor closet size into rent share."],
-  ["roommate-rent-split-extra-person-calculator", "Roommate Rent Split With Extra Person Calculator", "Rent & Roommate Splits", "roommateRentExtraPerson", "roommate rent split extra person calculator", "Recalculate shares when someone moves in."],
-  ["boyfriend-girlfriend-moving-in-rent-calculator", "Boyfriend/Girlfriend Moving In Rent Calculator", "Rent & Roommate Splits", "partnerMovingInRent", "boyfriend girlfriend moving in rent calculator", "Split rent when a partner moves in."],
-  ["roommate-utility-split-by-usage-calculator", "Roommate Utility Split by Usage Calculator", "Rent & Roommate Splits", "roommateUtilitySplitByUsage", "roommate utility split by usage calculator", "Split utilities by estimated usage."],
-  ["roommate-utility-split-wfh-calculator", "Roommate Utility Split With Work-From-Home Calculator", "Rent & Roommate Splits", "roommateUtilitySplitWfh", "roommate utility split work from home calculator", "Adjust utilities for WFH days at home."],
-  ["roommate-rent-parking-split-calculator", "Roommate Rent + Parking Split Calculator", "Rent & Roommate Splits", "roommateRentParkingSplit", "roommate rent parking split calculator", "Split rent and parking spots fairly."],
-  ["roommate-rent-split-different-bedroom-sizes-calculator", "Roommate Rent Split With Different Bedroom Sizes Calculator", "Rent & Roommate Splits", "roommateRentDifferentBedroomSizes", "roommate rent split different bedroom sizes calculator", "Multi-room size-weighted rent split."],
-
-  // Freelance & Micro-Business (9 remaining)
-  ["freelance-rate-after-taxes-calculator", "Freelance Rate After Taxes Calculator", "Freelance & Micro-Business", "freelanceRateAfterTaxes", "freelance rate after taxes calculator", "Net hourly after estimated tax drag."],
-  ["freelance-rate-non-billable-hours-calculator", "Freelance Rate With Non-Billable Hours Calculator", "Freelance & Micro-Business", "freelanceRateNonBillableHours", "freelance rate with non-billable hours calculator", "Inflate rate for admin and sales time."],
-  ["freelance-project-scope-creep-cost-calculator", "Freelance Project Scope-Creep Cost Calculator", "Freelance & Micro-Business", "freelanceScopeCreepCost", "freelance project scope creep cost calculator", "Cost extra hours from scope creep."],
-  ["freelance-retainer-pricing-calculator", "Freelance Retainer Pricing Calculator", "Freelance & Micro-Business", "freelanceRetainerPricing", "freelance retainer pricing calculator", "Price a monthly retainer from hours and rate."],
-  ["hourly-rate-to-project-quote-calculator", "Hourly Rate to Project Quote Calculator", "Freelance & Micro-Business", "hourlyRateToProjectQuote", "hourly rate to project quote calculator", "Turn hourly rate into a fixed project quote."],
-  ["client-discount-vs-profit-calculator", "Client Discount vs Profit Calculator", "Freelance & Micro-Business", "clientDiscountVsProfit", "client discount vs profit calculator", "See how discounts cut project profit."],
-  ["freelancer-break-even-client-calculator", "Freelancer Break-Even Client Calculator", "Freelance & Micro-Business", "freelancerBreakEvenClient", "freelancer break-even client calculator", "Find the client volume needed to break even."],
-  ["freelance-monthly-income-target-calculator", "Freelance Monthly Income Target Calculator", "Freelance & Micro-Business", "freelanceMonthlyIncomeTarget", "freelance monthly income target calculator", "Back into hours/rate for a monthly income goal."],
-  ["freelancer-vacation-cost-calculator", "Freelancer Vacation Cost Calculator", "Freelance & Micro-Business", "freelancerVacationCost", "freelancer vacation cost calculator", "Estimate income lost during unpaid vacation."],
-
-  // Food & Catering Business (9 remaining)
-  ["meal-prep-delivery-profit-calculator", "Meal Prep Delivery Profit Calculator", "Food & Catering Business", "mealPrepDeliveryProfit", "meal prep delivery profit calculator", "Profit after delivery fees per meal."],
-  ["food-packaging-cost-per-order-calculator", "Food Packaging Cost Per Order Calculator", "Food & Catering Business", "foodPackagingCostPerOrder", "food packaging cost per order calculator", "Packaging cost allocated per order."],
-  ["restaurant-portion-cost-calculator", "Restaurant Portion Cost Calculator", "Food & Catering Business", "restaurantPortionCost", "restaurant portion cost calculator", "Food cost for a plated portion."],
-  ["food-delivery-break-even-calculator", "Food Delivery Break-Even Calculator", "Food & Catering Business", "foodDeliveryBreakEven", "food delivery break-even calculator", "Orders needed to cover delivery overhead."],
-  ["catering-cost-per-guest-calculator", "Catering Cost Per Guest Calculator", "Food & Catering Business", "cateringCostPerGuest", "catering cost per guest calculator", "Per-guest cost for a catering event."],
-  ["catering-profit-per-event-calculator", "Catering Profit Per Event Calculator", "Food & Catering Business", "cateringProfitPerEvent", "catering profit per event calculator", "Event revenue minus catering costs."],
-  ["food-truck-daily-break-even-calculator", "Food Truck Daily Break-Even Calculator", "Food & Catering Business", "foodTruckDailyBreakEven", "food truck daily break-even calculator", "Sales needed to cover a food truck day."],
-].map(([slug, title, category, formulaType, focusHint, description]) => ({
-  slug,
-  title,
-  category,
-  formulaType,
-  focusHint,
-  description,
-}));
-
-const intent80Stubs: Calculator[] = STUB_DEFS.map((def) =>
-  stub80({
-    slug: def.slug,
-    title: def.title,
-    category: def.category,
-    description: def.description,
-    formulaType: def.formulaType,
-    focusHint: def.focusHint,
-  })
-);
-
 export const INTENT80_TOOLS: Calculator[] = [
   laundryCostPerLoad,
   idlingFuelCost,
@@ -935,14 +775,13 @@ export const INTENT80_TOOLS: Calculator[] = [
   masterBedroomFairRent,
   mealPrepSellingPrice,
   recipeCostPerServing,
-  ...intent80Stubs,
 ];
 
 export const INTENT80_READY_TOOLS = INTENT80_TOOLS.filter(
   (tool) => tool.ready !== false
 );
 
-export const INTENT80_SLUGS = new Set(INTENT80_TOOLS.map((t) => t.slug));
+export const INTENT80_SLUGS = new Set(INTENT80_READY_TOOLS.map((t) => t.slug));
 
 export const INTENT80_CATEGORIES = [
   "Home & Appliance Utilities",

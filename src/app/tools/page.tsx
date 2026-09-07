@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CATEGORIES, getPublicCalculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
+import { getPublicCalculators, SITE_NAME, SITE_URL } from "@/lib/calculators";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { buildPageMetadata } from "@/lib/pageMetadata";
 import { ToolsDirectory } from "@/components/ToolsDirectory";
@@ -76,9 +76,8 @@ export default function ToolsIndexPage() {
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--muted)] sm:text-lg">
           Same jobs as the paid PDF, video, and image converters — plus finance
-          and crypto calculators. Browse {publicTools.length} tools across{" "}
-          {CATEGORIES.length} categories. Every tool is free, private, and on
-          its own URL.
+          and crypto calculators. Browse {publicTools.length} tools. Every tool
+          is free, private, and on its own URL.
         </p>
       </header>
 

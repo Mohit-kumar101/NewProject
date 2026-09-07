@@ -12,7 +12,6 @@ import { LongTailKeywordContent } from "@/components/seo/LongTailKeywordContent"
 import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
 import { ClusterNextSteps } from "@/components/growth/ClusterNextSteps";
 import { EmailCapture } from "@/components/growth/EmailCapture";
-import { AffiliateSlot } from "@/components/growth/AffiliateSlot";
 import { getGrowthClusterForSlug } from "@/lib/growthClusters";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
 import { getRelatedCalculators } from "@/lib/calculators";
@@ -46,7 +45,7 @@ import { AuthorByline } from "@/components/AuthorByline";
 
 /**
  * Unified tool page template:
- * Ad rails → Breadcrumbs → H1 → Workspace → Long-tail → How-to → Formula → FAQ → Related → Explore → Reviews
+ * Breadcrumbs → H1 → Workspace → Long-tail → How-to → Formula → FAQ → Related → Explore → Reviews
  */
 export function ToolPageShell({
   calculator,
@@ -91,7 +90,7 @@ export function ToolPageShell({
   );
 
   return (
-    <ToolLayout rightAd={termsPanel}>
+    <ToolLayout sidebar={termsPanel}>
       <JsonLd
         calculator={calculator}
         faqs={faqs}
@@ -217,17 +216,14 @@ export function ToolPageShell({
       {(() => {
         const cluster = getGrowthClusterForSlug(calculator.slug);
         return cluster ? (
-          <>
-            <AffiliateSlot cluster={cluster.id} />
-            <EmailCapture
-              source={`tool-${calculator.slug}`}
-              headline={
-                cluster.id === "fitness"
-                  ? "Email me fitness planner tips"
-                  : "Email me money milestone tips"
-              }
-            />
-          </>
+          <EmailCapture
+            source={`tool-${calculator.slug}`}
+            headline={
+              cluster.id === "fitness"
+                ? "Email me fitness planner tips"
+                : "Email me money milestone tips"
+            }
+          />
         ) : (
           <EmailCapture source={`tool-${calculator.slug}`} />
         );

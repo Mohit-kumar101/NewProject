@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { jsPDF } from "jspdf";
-import { downloadTextFile } from "@/lib/monetization/tokenomicsSeries";
+import { downloadTextFile } from "@/lib/tokenomicsSeries";
 import {
   buildPlaybookSteps,
   formatDebtMoney,

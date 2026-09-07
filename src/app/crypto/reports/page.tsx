@@ -71,14 +71,6 @@ export default function CryptoReportsPage() {
           </li>
           <li>
             <Link
-              href="/crypto/token-creator"
-              className="text-sm font-medium text-[var(--accent)] hover:underline"
-            >
-              Token Creator Wizard →
-            </Link>
-          </li>
-          <li>
-            <Link
               href="/crypto"
               className="text-sm font-medium text-[var(--accent)] hover:underline"
             >

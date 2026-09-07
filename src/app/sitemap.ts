@@ -37,11 +37,6 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
     changeFrequency: "monthly",
     priority: 0.85,
   },
-  {
-    url: `${SITE_URL}/crypto/token-creator`,
-    changeFrequency: "monthly",
-    priority: 0.85,
-  },
   { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.75 },
   { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.75 },
   { url: `${SITE_URL}/disclaimer`, changeFrequency: "yearly", priority: 0.45 },

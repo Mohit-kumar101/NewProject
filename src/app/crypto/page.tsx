@@ -101,24 +101,15 @@ export default function CryptoHubPage() {
         </p>
       </header>
 
-      <div className="mb-10 grid gap-3 sm:grid-cols-2">
+      <div className="mb-10">
         <Link
           href="/crypto/reports"
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
+          className="block rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift sm:max-w-md"
         >
           <p className="text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
             Free
           </p>
           <p className="mt-1 font-semibold">Tokenomics Report Studio</p>
-        </Link>
-        <Link
-          href="/crypto/token-creator"
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 hover-lift"
-        >
-          <p className="text-xs font-semibold tracking-wide text-[var(--accent)] uppercase">
-            Free
-          </p>
-          <p className="mt-1 font-semibold">Token Creator Wizard</p>
         </Link>
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projectTokenomicsSeries } from "@/lib/monetization/tokenomicsSeries";
+import { projectTokenomicsSeries } from "@/lib/tokenomicsSeries";
 import { TokenomicsCharts } from "@/components/crypto/TokenomicsCharts";
 import { TokenomicsReportPanel } from "@/components/crypto/TokenomicsReport";
 

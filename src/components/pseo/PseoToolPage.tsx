@@ -6,7 +6,6 @@ import { LongTailKeywordContent } from "@/components/seo/LongTailKeywordContent"
 import { RelatedCalculators } from "@/components/seo/RelatedCalculators";
 import { ToolLayout } from "@/components/layouts/ToolLayout";
 import { CalculatorRenderer } from "@/components/pseo/CalculatorRenderer";
-import { PresentationToolSlugProvider } from "@/components/presentation/PresentationToolSlugContext";
 import { PseoJsonLd } from "@/components/pseo/PseoJsonLd";
 import { AuthorByline } from "@/components/AuthorByline";
 import { ToolEditorialGuidePanel } from "@/components/editorial/ToolEditorialGuidePanel";
@@ -83,7 +82,7 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
   );
 
   return (
-    <ToolLayout rightAd={termsPanel}>
+    <ToolLayout sidebar={termsPanel}>
       <PseoJsonLd tool={tool} faqs={faqs} />
 
       <ToolBreadcrumbs toolTitle={tool.h1} category={tool.category} />
@@ -105,9 +104,7 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
         <AuthorByline compact dateLabel="Maintained by CalculioHub" />
       </header>
 
-      <PresentationToolSlugProvider slug={tool.slug}>
-        <CalculatorRenderer id={tool.id} />
-      </PresentationToolSlugProvider>
+      <CalculatorRenderer id={tool.id} />
 
       <div className="mt-8 lg:hidden">{termsPanel}</div>
       {calculator ? (

@@ -334,6 +334,21 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
     return calculators.filter((c) => toolMatchesQuery(c, q));
   }, [calculators, query]);
 
+  const populatedCategories = useMemo(
+    () =>
+      CATEGORIES.filter((category) =>
+        calculators.some((c) => c.category === category)
+      ),
+    [calculators]
+  );
+
+  const metaFor = (category: string) =>
+    categoryMeta[category] ?? {
+      icon: category.charAt(0),
+      blurb: "Instant planning tools.",
+      accent: "from-[#00E5FF] to-[#2979FF]",
+    };
+
   const splitActive = searchOpen || query.trim().length > 0;
 
   useEffect(() => {
@@ -557,8 +572,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
 
                 {!query.trim() ? (
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {CATEGORIES.slice(0, 6).map((category) => {
-                      const meta = categoryMeta[category];
+                    {populatedCategories.slice(0, 6).map((category) => {
+                      const meta = metaFor(category);
                       return (
                         <button
                           key={category}
@@ -692,8 +707,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {CATEGORIES.map((category) => {
-                const meta = categoryMeta[category];
+              {populatedCategories.map((category) => {
+                const meta = metaFor(category);
                 const count = calculators.filter(
                   (c) => c.category === category
                 ).length;
@@ -725,7 +740,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
 
           <section id="tools" className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
             <div className="space-y-14">
-              {CATEGORIES.map((category) => {
+              {populatedCategories.map((category) => {
                 const tools = calculators.filter((c) => c.category === category);
                 return (
                   <div key={category} id={categoryId(category)}>

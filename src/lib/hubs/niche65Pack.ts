@@ -1,11 +1,6 @@
 /**
- * Niche-65 pSEO hub pack (65 tools across 6 categories).
- *
- * READY (6 — first tool per category):
- *   amazonFbaStorageFeeByBox, refrigeratorCostPerYear, dogFoodCostPerMonth,
- *   wfhElectricityCost, houseCleaningJobPrice, coffeeShopCostPerCup
- *
- * TODO: remaining 59 — expand stub configs + formulas.ts handlers, then ready: true
+ * Niche hub pack — six ready tools (FBA storage, fridge cost, dog food,
+ * WFH electricity, house-cleaning price, coffee cost per cup).
  */
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
@@ -33,51 +28,6 @@ function modifier(
     route: true,
     benefit: extras?.benefit,
     faqs: extras?.faqs,
-  };
-}
-
-function stub65(partial: {
-  slug: string;
-  title: string;
-  category: string;
-  description: string;
-  formulaType: string;
-  focusHint: string;
-}): Calculator {
-  return {
-    slug: partial.slug,
-    title: partial.title,
-    category: partial.category,
-    description: partial.description,
-    formulaType: partial.formulaType,
-    useCategoryPath: true,
-    ready: false,
-    inputs: [input("placeholder", "Value (TODO)", 100, 0, 1_000_000, 1)],
-    seoContextTemplate: `{{title}} targets “{{focusKeyword}}” ({{year}}). {{formulaSummary}} {{example}} TODO: implement “${partial.formulaType}” in src/lib/formulas.ts and set ready: true.`,
-    formulaSummary: "Formula wiring is TODO.",
-    realWorldExample: "Add a worked example when this tool ships.",
-    explanationTemplate: `{{variantExplanation}} {{title}} — “{{focusKeyword}}” (${SEO_CONTENT_YEAR}).`,
-    longTailModifiers: [
-      modifier("overview", partial.focusHint, partial.description, {
-        benefit: "Instant estimate",
-        route: false,
-      }),
-    ],
-    seoContent: {
-      intro: `${partial.description} (Niche-65 schema stub — engine TODO.)`,
-      howToUse: [
-        "Implement the formula handler, then set ready: true.",
-        "Enter the labeled inputs.",
-        "Read the live result and long-tail FAQ.",
-      ],
-      faqs: [
-        {
-          question: `How do I use the ${partial.title}?`,
-          answer:
-            "This calculator is scaffolded in the Niche-65 hub pack. The formula is marked TODO until implemented.",
-        },
-      ],
-    },
   };
 }
 
@@ -448,107 +398,6 @@ const coffeeShopCostPerCup: Calculator = {
   },
 };
 
-/** Compact stub defs for the remaining 59 tools. */
-const STUB_DEFS: Array<{
-  slug: string;
-  title: string;
-  category: string;
-  formulaType: string;
-  focusHint: string;
-  description: string;
-}> = (
-  [
-    // E-Commerce, Logistics & Storage (16 remaining)
-    ["etsy-shipping-cost-per-item-calculator", "Etsy Shipping Cost Per Item Calculator", "E-Commerce, Logistics & Storage", "etsyShippingCostPerItem", "Etsy shipping cost per item calculator", "Allocate shipping spend across items in an order."],
-    ["shopify-packaging-cost-per-order-calculator", "Shopify Packaging Cost Per Order Calculator", "E-Commerce, Logistics & Storage", "shopifyPackagingCostPerOrder", "Shopify packaging cost per order calculator", "Estimate packaging materials cost per Shopify order."],
-    ["box-dimensional-weight-calculator", "Box Dimensional Weight Calculator", "E-Commerce, Logistics & Storage", "boxDimensionalWeight", "box dimensional weight calculator", "Compute DIM weight from box size and carrier divisor."],
-    ["shipping-box-cubic-volume-calculator", "Shipping Box Cubic Volume Calculator", "E-Commerce, Logistics & Storage", "shippingBoxCubicVolume", "shipping box cubic volume calculator", "Calculate cubic volume of a shipping carton."],
-    ["pallet-space-calculator", "Pallet Space Calculator", "E-Commerce, Logistics & Storage", "palletSpace", "pallet space calculator", "Estimate usable pallet footprint and layers."],
-    ["how-many-boxes-fit-on-a-pallet-calculator", "How Many Boxes Fit on a Pallet Calculator", "E-Commerce, Logistics & Storage", "boxesFitOnPallet", "how many boxes fit on a pallet calculator", "Fit boxes onto a pallet by footprint and stack height."],
-    ["pallet-weight-capacity-calculator", "Pallet Weight Capacity Calculator", "E-Commerce, Logistics & Storage", "palletWeightCapacity", "pallet weight capacity calculator", "Check load vs pallet rated capacity."],
-    ["container-fill-percentage-calculator", "Container Fill Percentage Calculator", "E-Commerce, Logistics & Storage", "containerFillPercentage", "container fill percentage calculator", "Estimate how full a container is by volume."],
-    ["truck-load-weight-calculator", "Truck Load Weight Calculator", "E-Commerce, Logistics & Storage", "truckLoadWeight", "truck load weight calculator", "Sum pallet/box weights against truck limits."],
-    ["warehouse-storage-cost-per-pallet-calculator", "Warehouse Storage Cost Per Pallet Calculator", "E-Commerce, Logistics & Storage", "warehouseStorageCostPerPallet", "warehouse storage cost per pallet calculator", "Monthly storage cost by pallet position."],
-    ["warehouse-storage-cost-per-cubic-foot-calculator", "Warehouse Storage Cost Per Cubic Foot Calculator", "E-Commerce, Logistics & Storage", "warehouseStorageCostPerCuFt", "warehouse storage cost per cubic foot calculator", "Storage cost from cubic footage occupied."],
-    ["pick-and-pack-cost-per-order-calculator", "Pick-and-Pack Cost Per Order Calculator", "E-Commerce, Logistics & Storage", "pickAndPackCostPerOrder", "pick and pack cost per order calculator", "Labor and materials for pick-and-pack."],
-    ["moving-truck-cost-per-room-calculator", "Moving Truck Cost Per Room Calculator", "E-Commerce, Logistics & Storage", "movingTruckCostPerRoom", "moving truck cost per room calculator", "Allocate truck rental across rooms moved."],
-    ["moving-box-quantity-by-apartment-size-calculator", "Moving Box Quantity Calculator by Apartment Size", "E-Commerce, Logistics & Storage", "movingBoxQuantityByApartment", "moving box quantity by apartment size calculator", "Estimate boxes needed by apartment size."],
-    ["storage-unit-cost-per-square-foot-calculator", "Storage Unit Cost Per Square Foot Calculator", "E-Commerce, Logistics & Storage", "storageUnitCostPerSqFt", "storage unit cost per square foot calculator", "Unit rent divided by square footage."],
-    ["closet-storage-capacity-calculator", "Closet Storage Capacity Calculator", "E-Commerce, Logistics & Storage", "closetStorageCapacity", "closet storage capacity calculator", "Estimate closet volume and shelf capacity."],
-
-    // Home Utilities, Appliances & Specialty Amenities (12 remaining)
-    ["freezer-electricity-cost-per-month-calculator", "Freezer Electricity Cost Per Month Calculator", "Home Utilities, Appliances & Specialty Amenities", "freezerElectricityCostPerMonth", "freezer electricity cost per month calculator", "Monthly freezer electricity from kWh and rate."],
-    ["gaming-pc-monitor-electricity-cost-calculator", "Gaming PC + Monitor Electricity Cost Calculator", "Home Utilities, Appliances & Specialty Amenities", "gamingPcMonitorElectricityCost", "gaming PC monitor electricity cost calculator", "PC + monitor power cost per session or month."],
-    ["bathroom-exhaust-fan-cost-calculator", "Cost to Run Bathroom Exhaust Fan Calculator", "Home Utilities, Appliances & Specialty Amenities", "bathroomExhaustFanCost", "cost to run bathroom exhaust fan calculator", "Exhaust fan electricity for timed use."],
-    ["heated-bathroom-floor-cost-calculator", "Cost to Run Heated Bathroom Floor Calculator", "Home Utilities, Appliances & Specialty Amenities", "heatedBathroomFloorCost", "cost to run heated bathroom floor calculator", "Radiant floor heat electricity estimate."],
-    ["heated-towel-rack-cost-calculator", "Cost to Run Heated Towel Rack Calculator", "Home Utilities, Appliances & Specialty Amenities", "heatedTowelRackCost", "cost to run heated towel rack calculator", "Towel warmer electricity cost."],
-    ["aquarium-filter-cost-calculator", "Cost to Run Aquarium Filter Calculator", "Home Utilities, Appliances & Specialty Amenities", "aquariumFilterCost", "cost to run aquarium filter calculator", "Filter pump electricity for 24/7 run."],
-    ["aquarium-heater-cost-calculator", "Cost to Run Aquarium Heater Calculator", "Home Utilities, Appliances & Specialty Amenities", "aquariumHeaterCost", "cost to run aquarium heater calculator", "Heater duty-cycle electricity estimate."],
-    ["fish-tank-electricity-cost-calculator", "Fish Tank Electricity Cost Calculator", "Home Utilities, Appliances & Specialty Amenities", "fishTankElectricityCost", "fish tank electricity cost calculator", "Combined tank equipment electricity."],
-    ["hot-tub-electricity-cost-per-month-calculator", "Hot Tub Electricity Cost Per Month Calculator", "Home Utilities, Appliances & Specialty Amenities", "hotTubElectricityCostPerMonth", "hot tub electricity cost per month calculator", "Monthly spa electricity estimate."],
-    ["hot-tub-heating-cost-calculator", "Hot Tub Heating Cost Calculator", "Home Utilities, Appliances & Specialty Amenities", "hotTubHeatingCost", "hot tub heating cost calculator", "Cost to heat a hot tub to setpoint."],
-    ["pool-pump-electricity-cost-calculator", "Pool Pump Electricity Cost Calculator", "Home Utilities, Appliances & Specialty Amenities", "poolPumpElectricityCost", "pool pump electricity cost calculator", "Pool pump run-time electricity."],
-    ["pool-heater-running-cost-calculator", "Pool Heater Running Cost Calculator", "Home Utilities, Appliances & Specialty Amenities", "poolHeaterRunningCost", "pool heater running cost calculator", "Pool heater fuel or electric cost."],
-
-    // Pet Care & Household Expenses (9 remaining)
-    ["cost-to-feed-a-large-dog-calculator", "Cost to Feed a Large Dog Calculator", "Pet Care & Household Expenses", "costToFeedLargeDog", "cost to feed a large dog calculator", "Monthly feed cost scaled for large breeds."],
-    ["puppy-food-cost-per-year-calculator", "Puppy Food Cost Per Year Calculator", "Pet Care & Household Expenses", "puppyFoodCostPerYear", "puppy food cost per year calculator", "Annualize puppy feeding costs."],
-    ["cat-litter-cost-per-month-calculator", "Cat Litter Cost Per Month Calculator", "Pet Care & Household Expenses", "catLitterCostPerMonth", "cat litter cost per month calculator", "Litter bag cost spread over a month."],
-    ["cost-per-cat-litter-box-cleaning-calculator", "Cost Per Cat Litter Box Cleaning Calculator", "Pet Care & Household Expenses", "costPerCatLitterBoxCleaning", "cost per cat litter box cleaning calculator", "Litter and liner cost per scooping cycle."],
-    ["dog-treat-cost-per-month-calculator", "Dog Treat Cost Per Month Calculator", "Pet Care & Household Expenses", "dogTreatCostPerMonth", "dog treat cost per month calculator", "Monthly treat spend estimate."],
-    ["pet-medication-cost-per-month-calculator", "Pet Medication Cost Per Month Calculator", "Pet Care & Household Expenses", "petMedicationCostPerMonth", "pet medication cost per month calculator", "Rx and preventatives monthly cost."],
-    ["aquarium-fish-food-cost-calculator", "Aquarium Fish Food Cost Calculator", "Pet Care & Household Expenses", "aquariumFishFoodCost", "aquarium fish food cost calculator", "Fish food cost per week or month."],
-    ["fish-tank-water-change-cost-calculator", "Fish Tank Water Change Cost Calculator", "Pet Care & Household Expenses", "fishTankWaterChangeCost", "fish tank water change cost calculator", "Water/sewer cost of tank changes."],
-    ["multiple-pet-monthly-cost-calculator", "Multiple Pet Monthly Cost Calculator", "Pet Care & Household Expenses", "multiplePetMonthlyCost", "multiple pet monthly cost calculator", "Roll up food, litter, and care for multiple pets."],
-
-    // Remote Work & Home Office (9 remaining)
-    ["home-office-electricity-cost-calculator", "Home Office Electricity Cost Calculator", "Remote Work & Home Office", "homeOfficeElectricityCost", "home office electricity cost calculator", "Broader home-office electricity estimate."],
-    ["laptop-electricity-cost-per-workday-calculator", "Laptop Electricity Cost Per Workday Calculator", "Remote Work & Home Office", "laptopElectricityCostPerWorkday", "laptop electricity cost per workday calculator", "Laptop-only power cost per workday."],
-    ["external-monitor-electricity-cost-calculator", "External Monitor Electricity Cost Calculator", "Remote Work & Home Office", "externalMonitorElectricityCost", "external monitor electricity cost calculator", "Monitor wattage cost while working."],
-    ["wfh-internet-cost-per-workday-calculator", "Work From Home Internet Cost Per Workday Calculator", "Remote Work & Home Office", "wfhInternetCostPerWorkday", "work from home internet cost per workday calculator", "Allocate monthly internet to workdays."],
-    ["home-office-tax-deduction-by-sqft-calculator", "Home Office Tax Deduction Calculator by Square Foot", "Remote Work & Home Office", "homeOfficeTaxDeductionBySqFt", "home office tax deduction by square foot calculator", "Simplified sq-ft home office deduction estimate."],
-    ["working-from-cafe-cost-calculator", "Working From Cafe Cost Calculator", "Remote Work & Home Office", "workingFromCafeCost", "working from cafe cost calculator", "Cafe spend vs home office for remote days."],
-    ["remote-work-vs-office-cost-calculator", "Remote Work vs Office Cost Calculator", "Remote Work & Home Office", "remoteWorkVsOfficeCost", "remote work vs office cost calculator", "Compare WFH costs to commuting/office days."],
-    ["work-from-home-savings-calculator", "Work From Home Savings Calculator", "Remote Work & Home Office", "workFromHomeSavings", "work from home savings calculator", "Net savings from WFH vs office baseline."],
-    ["second-monitor-cost-vs-productivity-calculator", "Second Monitor Cost vs Productivity Calculator", "Remote Work & Home Office", "secondMonitorCostVsProductivity", "second monitor cost vs productivity calculator", "Payback of a second monitor via time saved."],
-
-    // Local Services & Trade Pricing (9 remaining)
-    ["window-cleaning-job-price-calculator", "Window Cleaning Job Price Calculator", "Local Services & Trade Pricing", "windowCleaningJobPrice", "window cleaning job price calculator", "Quote window cleaning from panes and rate."],
-    ["lawn-mowing-job-price-calculator", "Lawn Mowing Job Price Calculator", "Local Services & Trade Pricing", "lawnMowingJobPrice", "lawn mowing job price calculator", "Price mowing from lot size and rate."],
-    ["snow-removal-job-price-calculator", "Snow Removal Job Price Calculator", "Local Services & Trade Pricing", "snowRemovalJobPrice", "snow removal job price calculator", "Price driveway/ walk snow removal jobs."],
-    ["pressure-washing-job-price-calculator", "Pressure Washing Job Price Calculator", "Local Services & Trade Pricing", "pressureWashingJobPrice", "pressure washing job price calculator", "Quote pressure washing by area and rate."],
-    ["junk-removal-job-price-calculator", "Junk Removal Job Price Calculator", "Local Services & Trade Pricing", "junkRemovalJobPrice", "junk removal job price calculator", "Price junk hauling by volume and dump fees."],
-    ["handyman-minimum-charge-calculator", "Handyman Minimum Charge Calculator", "Local Services & Trade Pricing", "handymanMinimumCharge", "handyman minimum charge calculator", "Set a profitable minimum service call."],
-    ["painter-job-quote-calculator", "Painter Job Quote Calculator", "Local Services & Trade Pricing", "painterJobQuote", "painter job quote calculator", "Paint job quote from area, coats, and labor."],
-    ["mobile-car-detailing-price-calculator", "Mobile Car Detailing Price Calculator", "Local Services & Trade Pricing", "mobileCarDetailingPrice", "mobile car detailing price calculator", "Detailing package price with travel."],
-    ["house-cleaning-break-even-calculator", "House Cleaning Break-Even Calculator", "Local Services & Trade Pricing", "houseCleaningBreakEven", "house cleaning break-even calculator", "Jobs needed to cover cleaning business fixed costs."],
-
-    // Events, Hospitality & Micro-Business (4 remaining)
-    ["bakery-cost-per-cupcake-calculator", "Bakery Cost Per Cupcake Calculator", "Events, Hospitality & Micro-Business", "bakeryCostPerCupcake", "bakery cost per cupcake calculator", "Ingredient and liner cost per cupcake."],
-    ["wedding-cost-per-guest-calculator", "Wedding Cost Per Guest Calculator", "Events, Hospitality & Micro-Business", "weddingCostPerGuest", "wedding cost per guest calculator", "Total wedding budget divided by guests."],
-    ["airbnb-cost-per-occupied-night-calculator", "Airbnb Cost Per Occupied Night Calculator", "Events, Hospitality & Micro-Business", "airbnbCostPerOccupiedNight", "Airbnb cost per occupied night calculator", "Fixed + variable hosting cost per occupied night."],
-    ["airbnb-cleaning-cost-per-booking-calculator", "Airbnb Cleaning Cost Per Booking Calculator", "Events, Hospitality & Micro-Business", "airbnbCleaningCostPerBooking", "Airbnb cleaning cost per booking calculator", "Cleaning fee vs true turnover cost per booking."],
-  ] as Array<[string, string, string, string, string, string]>
-).map(([slug, title, category, formulaType, focusHint, description]) => ({
-  slug,
-  title,
-  category,
-  formulaType,
-  focusHint,
-  description,
-}));
-
-const niche65Stubs: Calculator[] = STUB_DEFS.map((def) =>
-  stub65({
-    slug: def.slug,
-    title: def.title,
-    category: def.category,
-    description: def.description,
-    formulaType: def.formulaType,
-    focusHint: def.focusHint,
-  })
-);
-
 export const NICHE65_TOOLS: Calculator[] = [
   amazonFbaStorageByBox,
   refrigeratorCostPerYear,
@@ -556,14 +405,13 @@ export const NICHE65_TOOLS: Calculator[] = [
   wfhElectricityCost,
   houseCleaningJobPrice,
   coffeeShopCostPerCup,
-  ...niche65Stubs,
 ];
 
 export const NICHE65_READY_TOOLS = NICHE65_TOOLS.filter(
   (tool) => tool.ready !== false
 );
 
-export const NICHE65_SLUGS = new Set(NICHE65_TOOLS.map((t) => t.slug));
+export const NICHE65_SLUGS = new Set(NICHE65_READY_TOOLS.map((t) => t.slug));
 
 export const NICHE65_CATEGORIES = [
   "E-Commerce, Logistics & Storage",

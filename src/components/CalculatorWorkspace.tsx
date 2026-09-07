@@ -45,8 +45,6 @@ import {
   HealthEnhancements,
   ProgressSnapshotsPanel,
 } from "@/components/health/HealthEnhancements";
-import { PresentationLaunchCard } from "@/components/presentation/PresentationLaunchCard";
-import { supportsFinancialPresentation } from "@/lib/presentation/financialCategories";
 
 function usesStickyMemory(calculator: Calculator): boolean {
   return (
@@ -372,36 +370,6 @@ function StandardCalculatorWorkspace({
       <SmartAdviceBox items={advice} />
 
       <ScenarioComparePanel calculator={calculator} values={values} />
-
-      {supportsFinancialPresentation(calculator.category) ? (
-        <PresentationLaunchCard
-          slug={calculator.slug}
-          toolHref={getToolHref(calculator.slug)}
-          numericValues={values}
-          deck={{
-            toolTitle: calculator.title,
-            category: calculator.category,
-            inputs: calculator.inputs.map((input) => ({
-              label: input.label,
-              value: String(values[input.id] ?? input.defaultValue),
-            })),
-            primaryLabel: result.primary.label,
-            primaryValue: result.primary.value,
-            rows: [
-              ...(result.featured ?? []),
-              ...result.secondary,
-            ].map((item) => ({
-              label: item.label,
-              value: item.value,
-            })),
-            note:
-              calculator.category === "Crypto & Digital Assets"
-                ? "Informational only — not investment advice."
-                : "Planning estimates only — not professional advice.",
-            insight: result.insight,
-          }}
-        />
-      ) : null}
 
       {calculator.category === CRYPTO_CATEGORY ? (
         <CryptoProWorkspace calculator={calculator} values={values} />

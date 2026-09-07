@@ -5,7 +5,6 @@ import { getToolHref } from "@/lib/cryptoFormulas";
 import { getGrowthClusterById } from "@/lib/growthClusters";
 import { buildPageMetadata } from "@/lib/pageMetadata";
 import { EmailCapture } from "@/components/growth/EmailCapture";
-import { AffiliateSlot } from "@/components/growth/AffiliateSlot";
 import { getWorkflowHref } from "@/lib/workflows";
 
 const cluster = getGrowthClusterById("money")!;
@@ -81,7 +80,6 @@ export default function MoneyMilestonesHubPage() {
         )}
       </ol>
 
-      <AffiliateSlot cluster="money" />
       <EmailCapture
         source="hub-money"
         headline="Get money milestone tips"

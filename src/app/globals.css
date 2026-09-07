@@ -568,8 +568,7 @@ body {
   /* Avoid horizontal bleed from decorative blurs */
   .calc-stage,
   .calc-panel,
-  .results-card,
-  .presentation-stage {
+  .results-card {
     max-width: 100%;
   }
 }
@@ -664,52 +663,15 @@ body {
   outline-offset: 2px;
 }
 
-@keyframes presentation-slide-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.presentation-slide-enter {
-  animation: presentation-slide-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.presenter-mode {
-  min-height: 100vh;
-}
-
-.presenter-mode .presentation-stage {
-  width: 100%;
-}
-
 @media print {
   header,
   footer,
-  nav,
-  .print\\:hidden {
+  nav {
     display: none !important;
-  }
-
-  .presentation-slide-enter {
-    animation: none !important;
-  }
-
-  [data-presentation-slide] {
-    break-after: page;
-    box-shadow: none !important;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .presentation-slide-enter {
-    animation: none !important;
-  }
-
   .hover-lift,
   .hover-tint,
   .hero-glow,

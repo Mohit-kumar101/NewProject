@@ -3,11 +3,11 @@
 import { useMemo, useState } from "react";
 import type { Calculator } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
-import { projectTokenomicsSeries } from "@/lib/monetization/tokenomicsSeries";
 import {
   downloadTextFile,
   inputsToCsv,
-} from "@/lib/monetization/tokenomicsSeries";
+  projectTokenomicsSeries,
+} from "@/lib/tokenomicsSeries";
 import Link from "next/link";
 
 function cloneInputs(values: Record<string, number>) {

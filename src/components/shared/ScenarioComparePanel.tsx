@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { Calculator, CalcResult } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
 import { buildScenarioUrl, copyText } from "@/lib/scenarioLinks";
-import { savePresentationCompare } from "@/lib/presentation/storage";
 
 type ScenarioSnap = {
   name: string;
@@ -39,28 +38,6 @@ export function ScenarioComparePanel({
     if (na == null || nb == null) return null;
     return nb - na;
   }, [a, b]);
-
-  useEffect(() => {
-    if (!a || !b) {
-      savePresentationCompare(calculator.slug, null);
-      return;
-    }
-    const na = parsePrimaryNumber(a.result);
-    const nb = parsePrimaryNumber(b.result);
-    const deltaLabel =
-      na != null && nb != null
-        ? `Δ ${nb - na >= 0 ? "+" : ""}${(nb - na).toLocaleString(undefined, {
-            maximumFractionDigits: 2,
-          })} (B − A)`
-        : "Compare A vs B";
-    savePresentationCompare(calculator.slug, {
-      labelA: a.name,
-      labelB: b.name,
-      primaryA: a.result.primary.value,
-      primaryB: b.result.primary.value,
-      deltaLabel,
-    });
-  }, [a, b, calculator.slug]);
 
   const capture = (slot: "a" | "b") => {
     const result = runCalculation(calculator.formulaType, values);
