@@ -13,6 +13,7 @@ import {
   SEO_CONTENT_YEAR,
   getKeywordSearchTerms,
   resolveKeywordPack,
+  preferredLongTail,
   type KeywordVariation,
 } from "@/lib/keywords";
 import {
@@ -20,13 +21,6 @@ import {
   interpolateTemplate,
 } from "@/lib/expansion/tools";
 import { categoryToSlug } from "@/lib/categoryPaths";
-
-export const SEO_MODIFIERS = [
-  "free online tool",
-  "no sign up",
-  "instant calculation",
-  "formula & step-by-step example",
-] as const;
 
 /** Short crypto path for a tools slug, if registered. */
 function cryptoPublicPath(toolSlug: string): string | null {
@@ -191,21 +185,34 @@ const LONG_TAIL_DESCRIPTIONS: Record<string, string> = {
     "Keep vs lease vs buy car TCO matrix by year. Free online tool, no sign up.",
 };
 
+function asQuestionHeading(phrase: string): string {
+  return phrase
+    .split(/\s+/)
+    .map((word, index) => {
+      if (index > 0 && /^(a|an|the|and|or|of|for|to|with|from|in|on|vs)$/i.test(word)) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
 function defaultLongTailH1(calculator: Calculator): string {
+  const pack = resolveKeywordPack(calculator);
+  const tail = preferredLongTail(pack);
+  if (tail) return asQuestionHeading(tail);
   const metric = getToolMetricName(calculator);
   if (isFileConverter(calculator)) {
-    return `How to Convert ${metric} Free Online`;
+    return `How to Convert ${metric} Without Uploading`;
   }
   if (/tracker/i.test(calculator.slug)) {
-    return `How to Track ${metric} Free Online`;
+    return `How to Track ${metric} in Your Browser`;
   }
-  return `How to Calculate ${metric} Free Online`;
+  return `How to Calculate ${metric}`;
 }
 
 /**
- * Action-driven meta title segment (≤45 chars) so full `<title>` with
- * `| CalculioHub` stays under 60 characters.
- * Pattern: "[Name] Free [Benefit] (2026)" when it fits.
+ * Unique title segment (≤45 chars) so `<title>` with `| CalculioHub` stays under 60.
  */
 export function getToolMetaTitle(
   calculator: Calculator,
@@ -213,31 +220,24 @@ export function getToolMetaTitle(
 ): string {
   const pack = resolveKeywordPack(calculator);
   const metric = getToolMetricName(calculator);
-  const benefit = (variation?.benefit || pack.benefit)
-    .replace(/^Free\s+/i, "")
-    .trim();
 
   if (variation?.focus) {
-    return clampTitleSegment(
-      `${variation.focus} Free (${SEO_CONTENT_YEAR})`
-    );
+    return clampTitleSegment(asQuestionHeading(variation.focus));
   }
 
-  const actionDriven = `${metric} Free ${benefit} (${SEO_CONTENT_YEAR})`;
-  if (actionDriven.length <= 45) {
-    return clampTitleSegment(actionDriven);
+  const tail = preferredLongTail(pack);
+  if (tail) {
+    const heading = asQuestionHeading(tail);
+    if (heading.length <= 45) return clampTitleSegment(heading);
   }
 
-  const compact = `${metric} Free (${SEO_CONTENT_YEAR})`;
-  if (compact.length <= 45) {
-    return clampTitleSegment(compact);
+  const benefit = pack.benefit.replace(/^Free\s+/i, "").trim();
+  const withBenefit = `${metric}: ${benefit}`;
+  if (withBenefit.length <= 45) {
+    return clampTitleSegment(withBenefit);
   }
 
-  const preferred = (calculator.title || metric)
-    .replace(/^Free\s+/i, "")
-    .replace(/\s*\((?:Free|free)[^)]*\)\s*$/g, "")
-    .trim();
-  return clampTitleSegment(preferred);
+  return clampTitleSegment(metric);
 }
 
 /** @deprecated Prefer getToolMetaTitle for <title>; kept for callers expecting a page label. */
@@ -278,46 +278,48 @@ export function getFaqHeading(): string {
   return "Frequently Asked Questions";
 }
 
-function ensureUtilityModifiers(text: string): string {
-  let t = text.trim();
-  if (!t.endsWith(".")) t += ".";
-  const missing: string[] = [];
-  if (!/\bfree\b/i.test(t)) missing.push("Free");
-  if (!/\binstant\b/i.test(t)) missing.push("instant");
-  if (!/no sign ?up|no email/i.test(t)) missing.push("no email required");
-  if (missing.length === 0) return t;
-  return `${t} ${missing.join(", ")}.`;
+function stripUtilityBoilerplate(text: string): string {
+  return text
+    .replace(/\s*Built for searches like [“"'].+?[”"'][^.]*\.?/gi, "")
+    .replace(/\s*Free online tool, no sign up\.?/gi, "")
+    .replace(/\s*Free, instant, no email required\.?/gi, "")
+    .replace(/\s*Updated for 20\d{2}\.?/gi, "")
+    .replace(/\s*Instant results—no sign up\.?/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function defaultDescription(calculator: Calculator): string {
   const metric = getToolMetricName(calculator);
+  const pack = resolveKeywordPack(calculator);
   if (isFileConverter(calculator)) {
-    return `Convert ${metric} in your browser. Instant, private, no sign up. Free online tool with formula & step-by-step example.`;
+    return `Convert ${metric} in your browser. Files stay on this device.`;
   }
-  return `Calculate ${metric} instantly with the formula and a step-by-step example. Free online tool, no sign up required.`;
+  if (pack.benefit) {
+    return `${pack.benefit}. Adjust the inputs below to calculate ${metric.toLowerCase()}.`;
+  }
+  return `Calculate ${metric} from the inputs below and check the formula against a worked example.`;
 }
 
-/** Meta description, 155 characters max, utility-first + long-tail intent. */
+/** Meta description, 155 characters max — unique per tool, no cloned modifiers. */
 export function getToolPageDescription(
   calculator: Calculator,
   variation?: KeywordVariation
 ): string {
-  const pack = resolveKeywordPack(calculator);
-
   if (variation) {
     return clampMetaText(
-      ensureUtilityModifiers(
-        `${variation.intro} ${variation.benefit}. Instant results in your browser.`
-      ),
+      stripUtilityBoilerplate(variation.intro || variation.benefit),
       META_DESCRIPTION_MAX
     );
   }
 
   const curated = LONG_TAIL_DESCRIPTIONS[calculator.slug];
-  const fromPack = `Free ${pack.primary}. ${pack.benefit}. Instant results—no sign up. Updated ${SEO_CONTENT_YEAR}.`;
   const source =
-    curated || calculator.seoDescription || fromPack || defaultDescription(calculator);
-  return clampMetaText(ensureUtilityModifiers(source), META_DESCRIPTION_MAX);
+    curated ||
+    calculator.seoDescription ||
+    calculator.seoContent.intro ||
+    defaultDescription(calculator);
+  return clampMetaText(stripUtilityBoilerplate(source), META_DESCRIPTION_MAX);
 }
 
 export function getToolPageKeywords(
@@ -342,7 +344,6 @@ export function getToolPageKeywords(
 
   const extras = [
     SITE_NAME,
-    ...SEO_MODIFIERS,
     calculator.category,
     ...packTerms,
     ...longTail,
@@ -378,7 +379,7 @@ export function getPracticalExample(calculator: Calculator): string {
         : String(input.defaultValue);
     return `${input.label} = ${value}`;
   });
-  return `Practical example: set ${bits.join(", ")}, then read the result instantly in your browser. Free online tool, no sign up.`;
+  return `Example: set ${bits.join(", ")}, then read the result.`;
 }
 
 export function getToolVariationCanonicalUrl(
@@ -444,9 +445,7 @@ export function buildToolMetadata(
   );
   const description = modifier
     ? clampMetaText(
-        ensureUtilityModifiers(
-          `${buildVariantExplanation(calculator, modifier)} Instant results—no sign up.`
-        ),
+        stripUtilityBoilerplate(buildVariantExplanation(calculator, modifier)),
         META_DESCRIPTION_MAX
       )
     : getToolPageDescription(calculator, resolvedVariation);

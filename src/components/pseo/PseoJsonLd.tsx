@@ -29,13 +29,7 @@ export function PseoJsonLd({
     description: tool.metaDescription,
     url,
     image: `${SITE_URL}/myicon.png`,
-    keywords: [
-      tool.targetKeyword,
-      "free online calculator",
-      "no sign up",
-      "instant calculation",
-      "formula & step-by-step example",
-    ].join(", "),
+    keywords: [tool.targetKeyword, tool.h1, tool.category].join(", "),
     inLanguage: "en-US",
     isAccessibleForFree: true,
     offers: {
@@ -55,12 +49,7 @@ export function PseoJsonLd({
         height: 512,
       },
     },
-    featureList: [
-      "free online calculator",
-      "no sign up",
-      "instant calculation",
-      "formula & step-by-step example",
-    ],
+    featureList: [tool.formula, tool.whyItMatters].filter(Boolean),
   };
 
   const webPage = {

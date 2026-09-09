@@ -27,21 +27,13 @@ export function CalculatorLayout({ tool, children }: CalculatorLayoutProps) {
 
       <header className="mb-6 max-w-3xl sm:mb-8">
         <p className="mb-2 text-[10px] font-semibold tracking-[0.12em] text-[var(--accent)] uppercase sm:mb-3 sm:text-xs sm:tracking-[0.18em]">
-          <span className="sm:hidden">Free online · No sign up</span>
-          <span className="hidden sm:inline">
-            Free online tool · Estimator · Formula · 2026 update · No sign up
-          </span>
+          {tool.category}
         </p>
         <h1 className="font-[family-name:var(--font-display)] text-[1.65rem] font-bold leading-snug tracking-tight break-words-safe sm:text-3xl sm:leading-tight md:text-4xl">
           {tool.h1}
         </h1>
-        <p className="mt-2 text-sm text-[var(--muted)]">{tool.category}</p>
         <p className="mt-2 text-sm font-medium text-[var(--accent)] break-words-safe sm:mt-3 sm:text-base">
-          <span className="sm:hidden">{tool.benefit}</span>
-          <span className="hidden sm:inline">
-            {tool.benefit} — calculator, estimator tool, Excel template
-            alternative.
-          </span>
+          {tool.benefit}
         </p>
         <p className="mt-3 text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:mt-4 sm:text-base sm:text-lg">
           {tool.intro}

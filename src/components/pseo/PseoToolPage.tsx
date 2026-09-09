@@ -89,12 +89,11 @@ export function PseoToolPage({ tool }: { tool: PseoTool }) {
 
       <header className="mb-8 max-w-3xl">
         <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[var(--accent)] uppercase">
-          Free online tool · No sign up · Instant calculation
+          {tool.category}
         </p>
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
           {tool.h1}
         </h1>
-        <p className="mt-2 text-sm text-[var(--muted)]">{tool.category}</p>
         <p className="mt-3 text-sm font-medium text-[var(--accent)] sm:text-base">
           {subtitle}
         </p>

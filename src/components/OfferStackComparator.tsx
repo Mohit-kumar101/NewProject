@@ -147,7 +147,7 @@ export function OfferStackComparator({
           `${winner.label} leads ${o.label} by ${money(winner.threeYear - o.threeYear)}`
       )
       .join("; ");
-    return `How it's calculated: For each offer, 3-year total = 3 × (base + bonus + retirement match − commute) + 3-year RSU vesting + signing bonus. ${lines} Winner: ${winner.label} at ${money(winner.threeYear)} (${money(winner.annualized)}/yr average). ${gaps}. Free online offer stack comparator · estimator tool · Excel template alternative · 2026 update—not tax advice.`;
+    return `How it's calculated: For each offer, 3-year total = 3 × (base + bonus + retirement match − commute) + 3-year RSU vesting + signing bonus. ${lines} Winner: ${winner.label} at ${money(winner.threeYear)} (${money(winner.annualized)}/yr average). ${gaps}. Planning estimate — not tax advice.`;
   }, [scored, winner]);
 
   function patch(key: OfferKey, id: keyof OfferInputs, value: number | string) {

@@ -44,7 +44,7 @@ export type ConfigCalculator = {
   intro: string;
   benefit: string;
   keywords: string[];
-  /** Trailing SEO modifiers injected into schema + copy */
+  /** Unique schema extras — not cloned modifier lists */
   trailingWords: string[];
   fields: ConfigField[];
   faqs: ConfigFaq[];
@@ -56,16 +56,6 @@ export type ConfigCalculator = {
     | "UtilitiesApplication";
   compute: (values: Record<string, number>) => ConfigCalcResult;
 };
-
-const TRAILING = [
-  "Calculator",
-  "Estimator",
-  "Tool",
-  "Formula",
-  "Online",
-  "Excel Template Alternative",
-  "2026 Update",
-] as const;
 
 function money(n: number, digits = 0): string {
   if (!Number.isFinite(n)) return "—";
@@ -94,23 +84,26 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     slug: "offer-stack-comparator-calculator",
     topic: "Offer Stack Comparator",
     seoTitle:
-      "Free Offer Stack Comparator Calculator | Compare Total Comp Online 2026 Update",
+      "Offer Stack Comparator | 3-Year Total Comp A vs B vs C",
     metaDescription:
-      "Free offer stack comparator calculator — side-by-side Offer A/B/C estimator for base, bonus, signing, RSU vesting, 401k match, and commute over 3 years. Online formula + Excel template alternative. 2026 update.",
-    h1: "Free Offer Stack Comparator Calculator | Compare Offers A vs B vs C",
+      "Compare job offers A, B, and C on 3-year total compensation: base, bonus, signing, RSU vesting, 401k match, and commute.",
+    h1: "Compare Job Offers A vs B vs C on 3-Year Total Compensation",
     category: "Career & Compensation",
     intro:
-      "Use this free online offer stack comparator calculator to line up Offer A, Offer B, and optional Offer C on one 3-year total-compensation scorecard. It is a side-by-side estimator tool and Excel template alternative for 2026 job decisions—winner, gaps, and stack breakdown included.",
+      "Line up Offer A, Offer B, and optional Offer C on one 3-year scorecard. See which stack wins after RSUs vest, 401k match, signing bonus, and commute, plus the dollar gap between them.",
     benefit: "Side-by-side total compensation across competing offers",
     keywords: [
-      "offer stack comparator calculator",
       "compare job offers side by side",
-      "total compensation estimator A vs B",
-      "RSU vesting formula online",
-      "Excel template alternative compensation",
-      "2026 update job offer calculator",
+      "3-year total compensation calculator",
+      "RSU vesting offer comparison",
+      "signing bonus vs commute cost",
     ],
-    trailingWords: [...TRAILING],
+    trailingWords: [
+      "3-year total compensation",
+      "RSU vesting",
+      "401k match",
+      "signing bonus",
+    ],
     applicationCategory: "BusinessApplication",
     formulaSummary:
       "Per offer: 3yr_total = 3×(base + bonus + match%×base − commute) + RSU_y1..y3 + signing ; winner = max(Offer A, B, optional C)",
@@ -183,14 +176,14 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     faqs: [
       {
         question:
-          "How does this free offer stack comparator calculator compare offers online?",
+          "How does the offer stack compare RSUs, match, and commute?",
         answer:
           "Enter Offer A and Offer B (and toggle Offer C) with base, bonus, signing, three years of equity, retirement match, and commute. The estimator ranks them on the same 3-year total-comp formula and shows the gap to the leader.",
       },
       {
-        question: "Is this an Excel template alternative for comparing offers?",
+        question: "Can I compare three offers including RSUs and commute?",
         answer:
-          "Yes. Side-by-side offer columns replace the usual comparison spreadsheet. Rename each offer, include a third column when needed, and read the winner plus dollar gaps instantly.",
+          "Yes. Enter base, bonus, signing, three years of RSU value, retirement match, and commute for each offer. The scorecard ranks 3-year totals and shows the gap.",
       },
       {
         question: "Does the 2026 update include RSU taxes?",
@@ -238,23 +231,26 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     slug: "remote-stipend-true-value-calculator",
     topic: "Remote Stipend True Value",
     seoTitle:
-      "Free Remote Stipend True Value Calculator | WFH Stipend Estimator Tool 2026",
+      "Remote Stipend True Value | Keep After WFH Costs",
     metaDescription:
-      "Free remote stipend true value calculator — subtract WFH electricity, internet, desk gear, and coworking from your stipend. Online formula estimator and Excel template alternative. 2026 update.",
-    h1: "Free Remote Stipend True Value Calculator | See What You Actually Keep",
+      "See how much of a remote stipend you keep after electricity, internet, desk gear, coworking, and optional tax.",
+    h1: "What Is Your Remote Stipend Worth After Real WFH Costs?",
     category: "Career & Compensation",
     intro:
-      "This free online remote stipend true value calculator and estimator tool shows how much of a WFH stipend survives after home-office costs. Use it as a 2026 Excel template alternative before you celebrate the perk.",
+      "Subtract electricity, internet, amortized desk gear, and coworking from a monthly WFH stipend, then apply an optional tax haircut. The result is the cash you actually keep—not the headline perk.",
     benefit: "Measure net stipend after real WFH costs",
     keywords: [
-      "remote stipend true value calculator",
-      "WFH stipend estimator",
-      "work from home stipend tool",
-      "stipend net value formula online",
-      "Excel template alternative stipend",
-      "2026 update remote work calculator",
+      "remote stipend true value",
+      "WFH stipend after electricity and internet",
+      "work from home stipend net of desk costs",
+      "coworking vs stipend tradeoff",
     ],
-    trailingWords: [...TRAILING],
+    trailingWords: [
+      "after-tax stipend",
+      "electricity and internet",
+      "desk amortization",
+      "coworking cost",
+    ],
     applicationCategory: "FinanceApplication",
     formulaSummary:
       "true_monthly = stipend_monthly − (electricity + internet + desk_amortized + coworking) ; optional_tax_haircut = true_monthly × (1 − tax%)",
@@ -330,7 +326,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
       {
         question: "Can I use this tool instead of an Excel stipend tracker?",
         answer:
-          "Yes. It is designed as an Excel template alternative estimator tool with the same inputs you would put in a spreadsheet, without the setup time.",
+          "Yes. Enter the same stipend, utilities, gear, and coworking lines you would put in a spreadsheet. The true-value line updates as you change each cost.",
       },
     ],
     compute: (v) => {
@@ -356,7 +352,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
           { label: "Desk gear amortized / mo", value: money(deskAmort, 2) },
           { label: "True annual value", value: money(annual) },
         ],
-        howCalculated: `How it's calculated: Monthly costs = electricity ${money(electricity, 2)} + internet ${money(internet, 2)} + desk amortized ${money(deskAmort, 2)} + coworking ${money(coworking, 2)} = ${money(costs, 2)}. After-tax stipend = ${money(stipend, 2)} × (1 − ${pct(v.taxPct ?? 0, 0)}) = ${money(afterTaxStipend, 2)}. True value = after-tax stipend − costs = ${money(trueNet, 2)}/mo (${money(annual)}/year). Free online formula estimator tool · Excel template alternative · 2026 update.`,
+        howCalculated: `How it's calculated: Monthly costs = electricity ${money(electricity, 2)} + internet ${money(internet, 2)} + desk amortized ${money(deskAmort, 2)} + coworking ${money(coworking, 2)} = ${money(costs, 2)}. After-tax stipend = ${money(stipend, 2)} × (1 − ${pct(v.taxPct ?? 0, 0)}) = ${money(afterTaxStipend, 2)}. True value = after-tax stipend − costs = ${money(trueNet, 2)}/mo (${money(annual)}/year).`,
         note: "Tax treatment varies. This is a planning estimator, not tax advice.",
       };
     },
@@ -366,23 +362,26 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     slug: "non-compete-geographic-radius-value-calculator",
     topic: "Non-Compete Geographic Radius Value",
     seoTitle:
-      "Free Non-Compete Geographic Radius Value Calculator | Negotiation Estimator 2026",
+      "Non-Compete Radius Value | Negotiation Floor from Miles and Pay",
     metaDescription:
-      "Free non-compete geographic radius value calculator and estimator tool — convert restricted months, pay, and radius severity into a negotiation floor. Online formula + Excel template alternative. 2026 update.",
-    h1: "Free Non-Compete Geographic Radius Value Calculator | Negotiation Floor Tool",
+      "Turn restricted months, pay, and geographic radius into a cash negotiation floor for a non-compete clause.",
+    h1: "What Is a Non-Compete Geographic Radius Worth in Cash?",
     category: "Career & Compensation",
     intro:
-      "Estimate what a non-compete is “worth” in cash terms with this free online calculator. The estimator tool combines restricted months, pay, and geographic radius severity into a negotiation floor—an Excel template alternative for 2026 offer reviews.",
+      "Restricted months × monthly pay, scaled by how far the radius reaches, becomes a negotiation floor. Use it to talk dollars instead of vague “we’ll be reasonable” language—not legal advice.",
     benefit: "Price a non-compete for negotiation",
     keywords: [
-      "non-compete geographic radius value calculator",
-      "noncompete negotiation estimator",
-      "restrictive covenant value tool",
-      "non-compete formula online",
-      "Excel template alternative non-compete",
-      "2026 update non-compete calculator",
+      "non-compete geographic radius value",
+      "noncompete negotiation floor",
+      "restricted months times pay",
+      "non-compete radius miles",
     ],
-    trailingWords: [...TRAILING],
+    trailingWords: [
+      "restricted months",
+      "radius miles",
+      "negotiation floor",
+      "scarcity boost",
+    ],
     applicationCategory: "BusinessApplication",
     formulaSummary:
       "floor = monthly_pay × restricted_months × radius_severity ; radius_severity = 0.7 + (miles/100)×0.15 (clamped 0.7–1.6)",
@@ -434,7 +433,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
       {
         question: "Why use this instead of an Excel non-compete model?",
         answer:
-          "Same formula, zero spreadsheet setup. It is an Excel template alternative estimator with trailing SEO-ready explanations for transparent math.",
+          "Same formula as a one-off spreadsheet: months × pay × radius factor, then an optional scarcity boost. The difference is you can change miles and months live while you negotiate.",
       },
     ],
     compute: (v) => {
@@ -459,7 +458,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
             value: money(months > 0 ? floor / months : 0),
           },
         ],
-        howCalculated: `How it's calculated: Radius factor = clamp(0.7 + (${num(miles, 0)} miles ÷ 100) × 0.15, 0.7–1.6) = ${num(radiusFactor, 2)}. Base floor = ${money(monthly)} × ${num(months, 0)} months × ${num(radiusFactor, 2)} = ${money(baseFloor)}. With scarcity boost ${pct(v.severityBoost ?? 0, 0)}, negotiation floor = ${money(floor)}. Free online non-compete estimator tool · formula · Excel template alternative · 2026 update. Not legal advice.`,
+        howCalculated: `How it's calculated: Radius factor = clamp(0.7 + (${num(miles, 0)} miles ÷ 100) × 0.15, 0.7–1.6) = ${num(radiusFactor, 2)}. Base floor = ${money(monthly)} × ${num(months, 0)} months × ${num(radiusFactor, 2)} = ${money(baseFloor)}. With scarcity boost ${pct(v.severityBoost ?? 0, 0)}, negotiation floor = ${money(floor)}. Not legal advice.`,
         note: "Planning aid only. Enforceability and remedies depend on jurisdiction—consult counsel.",
       };
     },
@@ -469,23 +468,26 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     slug: "layoff-runway-cobra-shock-calculator",
     topic: "Layoff Runway + COBRA Shock",
     seoTitle:
-      "Free Layoff Runway + COBRA Shock Calculator | Severance Estimator Tool 2026",
+      "Layoff Runway After COBRA | Weeks Until Cash Hits Zero",
     metaDescription:
-      "Free layoff runway + COBRA shock calculator — model severance weeks, monthly burn, and COBRA premium spikes to estimate weeks until cash zero. Online formula + Excel template alternative. 2026 update.",
-    h1: "Free Layoff Runway + COBRA Shock Calculator | Weeks Until Zero Estimator",
+      "Model layoff runway from savings, severance weeks, monthly burn, unemployment, and the COBRA premium jump.",
+    h1: "How Many Weeks of Cash After a Layoff Once COBRA Hits?",
     category: "Career & Compensation",
     intro:
-      "Model how long your cash lasts after a layoff with this free online calculator. The estimator tool folds in severance, emergency savings, burn rate, and the COBRA premium shock—an Excel template alternative for 2026 runway planning.",
+      "Cash in is savings plus severance weeks × weekly pay. Burn is essentials plus the COBRA jump minus unemployment. Runway weeks are how long that cash lasts—use it before you sign a package or drop coverage.",
     benefit: "Estimate cash runway after job loss",
     keywords: [
-      "layoff runway cobra shock calculator",
-      "severance runway estimator",
-      "COBRA cost planning tool",
-      "layoff formula online",
-      "Excel template alternative severance",
-      "2026 update layoff calculator",
+      "layoff runway with COBRA",
+      "severance weeks until cash zero",
+      "COBRA premium shock",
+      "unemployment offset runway",
     ],
-    trailingWords: [...TRAILING],
+    trailingWords: [
+      "severance weeks",
+      "COBRA delta",
+      "unemployment offset",
+      "weeks of runway",
+    ],
     applicationCategory: "FinanceApplication",
     formulaSummary:
       "cash_in = savings + severance_weeks × weekly_pay ; months = cash_in ÷ max(burn + cobra_delta, 1) ; weeks = months × 4.345",
@@ -559,9 +561,9 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
           "Severance is entered as weeks × weekly pay at face value. Actual net pay varies. Treat results as a planning estimator tool and refine with your last pay stub.",
       },
       {
-        question: "Is this an Excel template alternative for severance planning?",
+        question: "Should I include COBRA before I sign a severance package?",
         answer:
-          "Yes. The same runway math people build in spreadsheets is available here as a free online 2026 update tool with transparent how-it’s-calculated copy.",
+          "Yes if you will lose employer health coverage. Adding the COBRA delta to burn is what usually cuts runway in half versus looking at severance weeks alone.",
       },
     ],
     compute: (v) => {
@@ -590,7 +592,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
           { label: "Net monthly burn", value: money(netBurn) },
           { label: "Months of runway", value: num(months, 1) },
         ],
-        howCalculated: `How it's calculated: Cash in = savings ${money(savings)} + (${num(sevWeeks, 0)} × ${money(weeklyPay)}) = ${money(cashIn)}. COBRA shock = ${money(cobra)} − ${money(employerHealth)} = ${money(cobraDelta)}/mo. Net burn = burn ${money(burn)} + COBRA shock − UI ${money(uiMonthly)} = ${money(netBurn)}. Runway weeks = (${money(cashIn)} ÷ ${money(netBurn)}) × 4.345 ≈ ${num(weeks, 1)}. Free online layoff runway estimator · formula · Excel template alternative · 2026 update.`,
+        howCalculated: `How it's calculated: Cash in = savings ${money(savings)} + (${num(sevWeeks, 0)} × ${money(weeklyPay)}) = ${money(cashIn)}. COBRA shock = ${money(cobra)} − ${money(employerHealth)} = ${money(cobraDelta)}/mo. Net burn = burn ${money(burn)} + COBRA shock − UI ${money(uiMonthly)} = ${money(netBurn)}. Runway weeks = (${money(cashIn)} ÷ ${money(netBurn)}) × 4.345 ≈ ${num(weeks, 1)}.`,
         note: "Unemployment rules and COBRA timing vary. Confirm benefits with HR and your state/province agency.",
       };
     },
@@ -600,23 +602,26 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
     slug: "shift-swap-fairness-scorer-calculator",
     topic: "Shift Swap Fairness Scorer",
     seoTitle:
-      "Free Shift Swap Fairness Scorer Calculator | Schedule Equity Tool Online 2026",
+      "Shift Swap Fairness | Hours, Weekend, and Night Weight",
     metaDescription:
-      "Free shift swap fairness scorer calculator — balance hours, weekend differentials, and night premiums so swaps stay fair. Online estimator formula and Excel template alternative. 2026 update.",
-    h1: "Free Shift Swap Fairness Scorer Calculator | Who Owes Whom?",
+      "Score whether a shift swap is fair using hours plus weekend and night differentials for both people.",
+    h1: "Is This Shift Swap Fair After Weekend and Night Premiums?",
     category: "Career & Compensation",
     intro:
-      "Keep shift swaps fair with this free online fairness scorer calculator. The estimator tool converts hours, weekend flags, and night differentials into a single equity score—an Excel template alternative for 2026 team schedules.",
+      "Each person gives hours weighted for weekend (+25%) and night (+35%). The delta says who owes whom. Use it for nurse, retail, or warehouse swaps before the schedule locks.",
     benefit: "Score whether a shift swap is equitable",
     keywords: [
-      "shift swap fairness scorer calculator",
-      "shift swap estimator tool",
-      "schedule equity formula online",
-      "weekend differential calculator",
-      "Excel template alternative shift swap",
-      "2026 update shift fairness tool",
+      "shift swap fairness score",
+      "weekend differential swap",
+      "night premium schedule equity",
+      "who owes whom after a swap",
     ],
-    trailingWords: [...TRAILING],
+    trailingWords: [
+      "weekend differential",
+      "night premium",
+      "weighted hours",
+      "swap delta",
+    ],
     applicationCategory: "BusinessApplication",
     formulaSummary:
       "weight(h, weekend, night) = h × (1 + 0.25×weekend + 0.35×night) ; delta = weight_A_gives − weight_B_gives",
@@ -694,9 +699,9 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
           "The 2026 update uses simple planning differentials. If your contract uses different premiums, treat this as a starting estimator and adjust the narrative with your CBA rates.",
       },
       {
-        question: "Is this an Excel template alternative for nurse or retail swaps?",
+        question: "Can nurse or retail teams use different weekend premiums?",
         answer:
-          "Yes. Teams often track IOUs in spreadsheets—this free formula tool scores the same idea instantly in the browser.",
+          "The default is +25% weekend and +35% night. If your CBA uses other rates, treat the delta as a starting score and reweight with your contract percentages.",
       },
     ],
     compute: (v) => {
@@ -729,7 +734,7 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
             value: fairBand ? "Yes" : "No — log an IOU",
           },
         ],
-        howCalculated: `How it's calculated: Weighted hours = hours × (1 + 0.25×weekend + 0.35×night). Person A = ${num(v.hoursA ?? 0, 1)}h → ${num(wA, 2)}; Person B = ${num(v.hoursB ?? 0, 1)}h → ${num(wB, 2)}. Delta (A − B) = ${num(delta, 2)}. Verdict: ${verdict}${imbalanceNote}. Free online shift swap fairness scorer · estimator tool · formula · Excel template alternative · 2026 update.`,
+        howCalculated: `How it's calculated: Weighted hours = hours × (1 + 0.25×weekend + 0.35×night). Person A = ${num(v.hoursA ?? 0, 1)}h → ${num(wA, 2)}; Person B = ${num(v.hoursB ?? 0, 1)}h → ${num(wB, 2)}. Delta (A − B) = ${num(delta, 2)}. Verdict: ${verdict}${imbalanceNote}.`,
         note: "Planning scorer only—follow your workplace swap policy and manager approval rules.",
       };
     },

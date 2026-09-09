@@ -104,17 +104,13 @@ export function ToolPageShell({
 
       <header className="mb-6 max-w-3xl sm:mb-8">
         <p className="mb-2 text-[10px] font-semibold tracking-[0.12em] text-[var(--accent)] uppercase sm:mb-3 sm:text-xs sm:tracking-[0.18em]">
-          <span className="sm:hidden">Free online · No sign up</span>
-          <span className="hidden sm:inline">
-            Free online tool · No sign up · Instant calculation
-          </span>
+          {calculator.category}
         </p>
         <h1 className="font-[family-name:var(--font-display)] text-[1.65rem] font-bold leading-snug tracking-tight break-words-safe sm:text-3xl sm:leading-tight md:text-4xl">
           {modifier?.focusKeyword ||
             resolvedVariation?.focus ||
             getToolPageH1(calculator)}
         </h1>
-        <p className="mt-2 text-sm text-[var(--muted)]">{calculator.category}</p>
         <p className="mt-2 text-sm font-medium text-[var(--accent)] break-words-safe sm:mt-3 sm:text-base">
           {subtitle}
         </p>

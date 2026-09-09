@@ -1,13 +1,9 @@
 import type { Calculator } from "@/lib/types";
 import type { KeywordPack, KeywordVariation } from "@/lib/keywords";
-import {
-  buildLongTailIntro,
-  buildLongTailSubtitle,
-} from "@/lib/keywords";
 
 /**
- * Natural long-tail copy: subtitle, contextual intro, use cases,
- * localized examples, and feature bullets — not a stuffed keyword list.
+ * Natural long-tail copy: unique use cases, localized examples, and
+ * feature bullets — never cloned “Built for searches like…” intros.
  */
 export function LongTailKeywordContent({
   calculator,
@@ -18,8 +14,17 @@ export function LongTailKeywordContent({
   pack: KeywordPack;
   variation?: KeywordVariation;
 }) {
-  const subtitle = buildLongTailSubtitle(calculator, pack, variation);
-  const intro = buildLongTailIntro(calculator, pack, variation);
+  const heading = variation
+    ? variation.focus
+    : `When to use this ${calculator.title.replace(/\s+(Calculator|Converter|Tracker|Planner)$/i, "")}`;
+
+  if (
+    pack.useCases.length === 0 &&
+    pack.regions.length === 0 &&
+    pack.features.length === 0
+  ) {
+    return null;
+  }
 
   return (
     <section
@@ -31,16 +36,8 @@ export function LongTailKeywordContent({
           id="long-tail-heading"
           className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight"
         >
-          {variation
-            ? `Built for “${variation.focus}”`
-            : `Who this ${calculator.title.replace(/\s+Calculator$/i, "")} helps`}
+          {heading}
         </h2>
-        <p className="text-sm font-medium text-[var(--accent)] sm:text-base">
-          {subtitle}
-        </p>
-        <p className="text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:text-base">
-          {intro}
-        </p>
       </div>
 
       {pack.useCases.length > 0 && (

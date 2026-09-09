@@ -26,7 +26,7 @@ export function ConfigCalculatorJsonLd({ tool }: { tool: ConfigCalculator }) {
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      description: "Free online tool. No sign up. Instant calculation.",
+      description: tool.metaDescription,
     },
     author: {
       "@type": "Organization",
@@ -42,13 +42,7 @@ export function ConfigCalculatorJsonLd({ tool }: { tool: ConfigCalculator }) {
         url: `${SITE_URL}/favicon-512.png`,
       },
     },
-    featureList: [
-      ...tool.trailingWords,
-      "Free online",
-      "No sign up",
-      "Instant calculation",
-      tool.formulaSummary,
-    ],
+    featureList: [...tool.trailingWords, tool.formulaSummary],
     additionalProperty: tool.trailingWords.map((value) => ({
       "@type": "PropertyValue",
       name: value,
@@ -61,7 +55,7 @@ export function ConfigCalculatorJsonLd({ tool }: { tool: ConfigCalculator }) {
     potentialAction: {
       "@type": "UseAction",
       target: url,
-      name: `Use ${tool.topic} calculator free online`,
+      name: `Use ${tool.topic}`,
     },
   };
 

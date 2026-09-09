@@ -5,7 +5,6 @@ import {
   type KeywordVariation,
 } from "@/lib/keywords";
 import {
-  SEO_MODIFIERS,
   getFormulaHeading,
   getHowToHeading,
   getToolCanonicalUrl,
@@ -15,7 +14,6 @@ import {
   getToolPageH1,
   getToolPageKeywords,
   getToolVariationCanonicalUrl,
-  isFileConverter,
 } from "@/lib/seo";
 
 function applicationCategory(category: string): string {
@@ -83,7 +81,7 @@ export function JsonLd({
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      description: "Free online tool. No sign up. Instant calculation.",
+      description: calculator.description || pack.benefit,
     },
     author: {
       "@type": "Organization",
@@ -100,11 +98,10 @@ export function JsonLd({
       },
     },
     featureList: [
-      ...SEO_MODIFIERS,
       ...pack.features.slice(0, 4),
       ...calculator.seoContent.howToUse.slice(0, 3),
     ],
-    additionalProperty: SEO_MODIFIERS.map((value) => ({
+    additionalProperty: pack.features.slice(0, 4).map((value) => ({
       "@type": "PropertyValue",
       name: value,
       value: true,
@@ -116,9 +113,7 @@ export function JsonLd({
     potentialAction: {
       "@type": "UseAction",
       target: url,
-      name: isFileConverter(calculator)
-        ? `Convert ${metric} free online`
-        : `Calculate ${metric} free online`,
+      name: variation?.focus || pack.primary || calculator.title,
     },
   };
 

@@ -278,25 +278,20 @@ export function buildVariantExplanation(
   tool: Calculator,
   modifier?: LongTailModifier
 ): string {
-  const focusKeyword = modifier?.focusKeyword ?? tool.title;
-  const variantExplanation =
-    modifier?.explanation ??
-    tool.seoContent.intro ??
-    `Use this free ${tool.title} for instant results.`;
-
-  const template = tool.seoContextTemplate || tool.explanationTemplate;
-  if (template) {
-    return interpolateTemplate(template, {
-      focusKeyword,
-      year: String(SEO_CONTENT_YEAR),
-      variantExplanation,
-      title: tool.title,
-      formulaSummary: tool.formulaSummary ?? "",
-      example: tool.realWorldExample ?? "",
-    });
+  const parts: string[] = [];
+  if (modifier?.explanation?.trim()) {
+    parts.push(modifier.explanation.trim());
+  } else if (tool.seoContent.intro?.trim()) {
+    parts.push(tool.seoContent.intro.trim());
   }
-
-  return variantExplanation;
+  if (tool.formulaSummary?.trim()) {
+    parts.push(tool.formulaSummary.trim());
+  }
+  if (tool.realWorldExample?.trim()) {
+    parts.push(`Example: ${tool.realWorldExample.trim()}`);
+  }
+  if (parts.length > 0) return parts.join(" ");
+  return `Enter your ${tool.title.replace(/\s+Calculator$/i, "").toLowerCase()} figures below. The result updates as each input changes.`;
 }
 
 export function getRoutableLongTailModifiers(
