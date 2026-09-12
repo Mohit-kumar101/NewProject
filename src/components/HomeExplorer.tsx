@@ -24,6 +24,10 @@ import {
   CLOUD_AI_CATEGORY,
   ELECTRONICS_HW_CATEGORY,
   DIGITAL_SEO_CATEGORY,
+  LIFE_CALENDAR_CATEGORY,
+  LIFE_FUTURE_CATEGORY,
+  MONEY_CURIOSITY_CATEGORY,
+  RELATIONSHIP_CURIOSITY_CATEGORY,
 } from "@/lib/categoryPaths";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { Logo } from "@/components/Logo";
@@ -47,6 +51,26 @@ const categoryMeta: Record<
     icon: "I",
     blurb: "Compounding, FIRE, retirement, and fee impact.",
     accent: "from-[#00B8D4] to-[#2979FF]",
+  },
+  [LIFE_FUTURE_CATEGORY]: {
+    icon: "Y",
+    blurb: "Retirement age, nest eggs, and what a pile looks like at 40, 50, or 60.",
+    accent: "from-[#5E35B1] to-[#7C4DFF]",
+  },
+  [LIFE_CALENDAR_CATEGORY]: {
+    icon: "D",
+    blurb: "Days alive, weekends left, commute years, and the share of life already used.",
+    accent: "from-[#00838F] to-[#26C6DA]",
+  },
+  [MONEY_CURIOSITY_CATEGORY]: {
+    icon: "$",
+    blurb: "$100 a month, coffee, cars, inflation, and the first $100k.",
+    accent: "from-[#F9A825] to-[#FF8F00]",
+  },
+  [RELATIONSHIP_CURIOSITY_CATEGORY]: {
+    icon: "T",
+    blurb: "Days together, the 1,000th day, and how much of a life you have shared.",
+    accent: "from-[#C2185B] to-[#F06292]",
   },
   "Crypto & Digital Assets": {
     icon: "C",
@@ -419,8 +443,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   </h1>
                   <p className="mx-auto mt-4 max-w-xl px-1 text-sm leading-relaxed text-[var(--muted)] sm:mt-5 sm:text-base md:text-lg lg:mx-0">
                     Money and fitness planners with transparent formulas, private
-                    PDF and photo converters, plus original guides—built by Mohit,
-                    free to use.
+                    PDF and photo converters, plus original guides—free to use.
                   </p>
                   <p className="mx-auto mt-5 max-w-lg px-1 text-sm text-[var(--muted)] sm:mt-6 lg:mx-0">
                     Start with{" "}
@@ -436,13 +459,20 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                       className="font-semibold text-[var(--accent)] hover:underline"
                     >
                       Fitness planners
-                    </Link>{" "}
-                    or{" "}
+                    </Link>
+                    ,{" "}
                     <Link
                       href="/hubs/money-milestones"
                       className="font-semibold text-[var(--accent)] hover:underline"
                     >
                       Money milestones
+                    </Link>
+                    , or{" "}
+                    <Link
+                      href="/hubs/life-questions"
+                      className="font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      Life questions
                     </Link>
                     — or open{" "}
                     <Link
@@ -653,7 +683,7 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 Browse all tools →
               </Link>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="reveal-grid grid gap-3 sm:grid-cols-3">
               {[
                 {
                   slug: "pdf-merge-split",
@@ -667,13 +697,15 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   slug: "mp4-mp3-converter",
                   blurb: "Extract audio from video without a CloudConvert cap.",
                 },
-              ].map((item) => {
+              ].map((item, index) => {
                 const tool = calculators.find((c) => c.slug === item.slug);
                 if (!tool) return null;
                 return (
                   <Link
                     key={tool.slug}
                     href={getToolHref(tool.slug)}
+                    data-reveal
+                    style={{ transitionDelay: `${index * 80}ms` }}
                     className="hover-lift group glass-3d pressable-3d rounded-2xl p-5"
                   >
                     <div className="mb-3 h-1.5 w-14 rounded-full bg-gradient-to-r from-[#00E5FF] to-[#2979FF]" />
@@ -706,8 +738,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                 </p>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {populatedCategories.map((category) => {
+            <div className="reveal-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {populatedCategories.map((category, index) => {
                 const meta = metaFor(category);
                 const count = calculators.filter(
                   (c) => c.category === category
@@ -716,6 +748,8 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                   <a
                     key={category}
                     href={`#${categoryId(category)}`}
+                    data-reveal
+                    style={{ transitionDelay: `${Math.min(index, 8) * 50}ms` }}
                     className="hover-lift group glass-3d pressable-3d relative overflow-hidden rounded-2xl p-5"
                   >
                     <div
@@ -743,7 +777,12 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
               {populatedCategories.map((category) => {
                 const tools = calculators.filter((c) => c.category === category);
                 return (
-                  <div key={category} id={categoryId(category)}>
+                  <div
+                    key={category}
+                    id={categoryId(category)}
+                    data-reveal
+                    className="reveal-grid"
+                  >
                     <div className="mb-5 flex items-baseline justify-between gap-3">
                       <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight sm:text-2xl">
                         {category}
@@ -753,10 +792,14 @@ export function HomeExplorer({ calculators }: { calculators: Calculator[] }) {
                       </span>
                     </div>
                     <div className="grid gap-3 sm:grid-cols-2">
-                      {tools.map((tool) => (
+                      {tools.map((tool, index) => (
                         <Link
                           key={tool.slug}
                           href={getToolHref(tool.slug)}
+                          data-reveal
+                          style={{
+                            transitionDelay: `${Math.min(index, 10) * 40}ms`,
+                          }}
                           className="hover-lift glass-3d pressable-3d rounded-xl px-5 py-4"
                         >
                           <div className="font-semibold text-[var(--foreground)]">

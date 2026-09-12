@@ -19,6 +19,263 @@ export type GuideArticle = {
 
 export const GUIDE_ARTICLES: GuideArticle[] = [
   {
+    slug: "retirement-year-is-a-spreadsheet",
+    title: "Your retirement year is a spreadsheet, not a date",
+    description:
+      "How to read a “when can I retire” answer without treating 4% as a contract, and what to change when the year looks too far away.",
+    published: "2026-09-08",
+    updated: "2026-09-08",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/life-and-future/when-can-i-retire",
+        label: "When can I retire?",
+      },
+      {
+        href: "/tools/life-and-future/how-much-money-do-i-need-to-retire",
+        label: "How much money do I need to retire?",
+      },
+      {
+        href: "/tools/life-and-future/how-long-will-my-money-last",
+        label: "How long will my money last?",
+      },
+    ],
+    intro:
+      "The first time I typed my numbers into a retirement calculator I wanted a birthday. Age 57. Age 61. Something I could tell a friend. What I got was a pile of assumptions wearing a year like a costume. That is still useful. You just have to know which lever you are holding.",
+    sections: [
+      {
+        heading: "The year is only as honest as the spending number",
+        paragraphs: [
+          "Most “when can I stop” tools divide the income you want by a withdrawal rate. Four percent is the usual shortcut: $40,000 a year wants about $1 million sitting there on day one. If you type the lifestyle you have now—including the car payment you swear will be gone—you will get a later year than if you type the quieter budget you actually plan to live on.",
+          "I keep two spending numbers. One is “if nothing changes.” The other is “if we drop the second car and cook more.” The gap between those years is often bigger than the gap you get from arguing about 6% versus 7% returns.",
+        ],
+      },
+      {
+        heading: "Returns do most of the work. That is the uncomfortable part.",
+        paragraphs: [
+          "A $900 monthly deposit looks serious until you notice that, over 25 years, most of the pile is compound growth, not your deposits. That is why a one-point change in the return field slides the retirement age by years. It is also why a calculator that assumes 10% forever is doing you no favors.",
+          "I use something boring: 6–7% if the money is in a broad stock/bond mix, lower if a lot of it will sit in cash. If the year only works at 11%, the year does not work.",
+        ],
+      },
+      {
+        heading: "Social Security, pensions, and the part-time lie",
+        paragraphs: [
+          "If you will have a pension or a benefit you trust, subtract it from the income you type. If you might not, leave the income high and treat any check as a bonus. Same with “I’ll just consult a little.” Part-time work can buy years. It is not a plan until you know who will hire you at 64.",
+        ],
+        bullets: [
+          "Lower later spending moves the date more reliably than hoping for a hotter market.",
+          "A higher monthly deposit is the one lever you control this year.",
+          "A bad first decade in retirement can wreck a 4% plan. Keep a cash sleeve.",
+        ],
+      },
+      {
+        heading: "If the year looks impossible",
+        paragraphs: [
+          "That is information. Either the lifestyle you typed needs a cheaper version, the deposit needs to go up, or the stop-work age needs to move. Sometimes all three. The calculator will not choose for you. It will show you how expensive each choice is in years.",
+          "Run the same numbers in “how long will this pile last” if you already have a lump sum and a burn rate. That page answers a different question: not “when,” but “how many years if I start drawing now.”",
+        ],
+      },
+    ],
+    takeaways: [
+      "Treat the retirement age as a range under your own spending and return assumptions.",
+      "Write the lifestyle you will actually fund, not the one you have this month.",
+      "Raise deposits or cut later spend before you raise the hoped-for return.",
+      "A withdrawal rate is a planning mark. Markets do not sign it.",
+    ],
+  },
+  {
+    slug: "days-alive-and-weekends-left",
+    title: "How many days you have been alive—and what to do with that number",
+    description:
+      "A plain way to count days, weekends until 80, and the share of a life already used, without turning it into a panic poster.",
+    published: "2026-09-08",
+    updated: "2026-09-08",
+    category: "Work",
+    relatedToolHrefs: [
+      {
+        href: "/tools/life-calendar/how-many-days-have-i-been-alive",
+        label: "How many days have I been alive?",
+      },
+      {
+        href: "/tools/life-calendar/weekends-left-until-80",
+        label: "Weekends left until 80",
+      },
+      {
+        href: "/tools/life-calendar/percentage-of-life-lived",
+        label: "Percentage of life lived",
+      },
+    ],
+    intro:
+      "I can tell you I am 33. I cannot feel 12,000 days. The first time I counted them I expected a sermon. What I got was a calendar fact: a lot of Tuesdays already happened, and a finite number of Saturday mornings are left if I live to the age I typed. That is all. It is still enough to change how I spend a weekend.",
+    sections: [
+      {
+        heading: "Days alive is arithmetic. The rest is a story you add.",
+        paragraphs: [
+          "Birthday to today, in whole days. No personality test. No “best years.” If you were born on a leap day the page still lands on a real calendar date. Today is not a finished day, so the count sits one shy of midnight.",
+          "People use this when a round age is coming, when a parent dies, or when they are just tired of measuring life in job titles. The number does not care why you asked.",
+        ],
+      },
+      {
+        heading: "Weekends until 80 is the one that stings",
+        paragraphs: [
+          "I count a weekend as one Saturday–Sunday pair. From today to your 80th birthday, divide the days by seven. If you are 40, you do not get “40 years of weekends.” You get the weekends that are still ahead, and some of those will be funerals, night shifts, or a kid’s tournament in a gym that smells like rubber.",
+          "The point is not to panic. The point is that “we should take a trip sometime” has a smaller pile of slots than it feels like on a Sunday night.",
+        ],
+      },
+      {
+        heading: "Percent lived needs an expectancy you chose on purpose",
+        paragraphs: [
+          "Age divided by the life expectancy you type. If you pick 90 because it feels hopeful, you look younger on the bar. If you pick the table average for your country and sex, you look older. Neither is a booking. Family history, smoking, and luck do not live in that field.",
+          "I treat it as a denominator I am willing to say out loud, not a diagnosis.",
+        ],
+        bullets: [
+          "Days alive: finished midnights since birth.",
+          "Weekends left: Saturday–Sunday pairs until the 80th birthday you set.",
+          "Percent lived: your age over the expectancy you picked.",
+        ],
+      },
+      {
+        heading: "Work, commute, sleep, phone",
+        paragraphs: [
+          "Those pages multiply a habit by time. They will overcount if you type the worst week of the year as a lifetime average. They will undercount care work if you only enter paid hours. Use them to see the shape, then decide whether a habit is worth the years it is buying.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Count days first. Add meaning after, if you want it.",
+      "Weekends left is a budget of Saturday mornings, not a threat.",
+      "Life expectancy in these tools is a number you typed, not a medical forecast.",
+      "Habit totals are only as honest as the average week you used.",
+    ],
+  },
+  {
+    slug: "hundred-a-month-and-ten-a-day",
+    title: "What $100 a month and $10 a day actually turn into",
+    description:
+      "A grounded look at small deposits, coffee, inflation, and the first $100k—without pretending a latte is the reason you are not rich.",
+    published: "2026-09-08",
+    updated: "2026-09-08",
+    category: "Money",
+    relatedToolHrefs: [
+      {
+        href: "/tools/money-curiosity/if-i-invested-100-every-month",
+        label: "If I invested $100 every month",
+      },
+      {
+        href: "/tools/money-curiosity/if-i-stop-spending-10-a-day",
+        label: "If I stop spending $10 a day",
+      },
+      {
+        href: "/tools/money-curiosity/how-long-to-save-first-100k",
+        label: "How long to the first $100k",
+      },
+    ],
+    intro:
+      "The internet loves two stories. One says a daily coffee ruined your retirement. The other says $100 a month is a joke. Both are lazy. $100 a month for 20 years at a mid-single-digit return is a real pile. A $10 daily leak is also a real pile if you actually invest the difference. Rent, interest, and a car payment still dwarf both. Hold those facts in the same hand.",
+    sections: [
+      {
+        heading: "$100 a month is not cute if you keep it up",
+        paragraphs: [
+          "Skip the “what if you had bought Apple in 1997” version. Use a return you would accept from a boring index fund, and a monthly amount you can still send after a bad month. Twenty or thirty years later the deposits are the smaller share. That is the whole trick, and it only works if the money stays invested when the account looks red.",
+          "If $100 is what you have, start there. If you can do $400 after the 401(k) match, do that. The calculator does not give you a medal for the smaller number.",
+        ],
+      },
+      {
+        heading: "Stopping $10 a day is only magic if the $10 leaves the checking account",
+        paragraphs: [
+          "I have “cut coffee” years that produced nothing because the money became takeout on Thursday. The page that asks what happens if you stop spending $10 a day assumes you invest about $304 a month instead. If you just spend less and feel virtuous, you get a lighter month, not a future value.",
+          "Coffee over a lifetime is the same idea with a longer clock. Homebrew changes the price. Quitting changes the count. Either field moves the total more than arguing about oat milk.",
+        ],
+      },
+      {
+        heading: "Inflation is the quiet tax on cash you never touch",
+        paragraphs: [
+          "A number that sits in a checking account still prints the same digits. It buys less. Three percent for ten years is not a headline. It is still a fifth of the purchasing power gone. If you need that cash for a year of bills, keep it. If it is “someday” money earning nothing, the inflation page is the honest one.",
+        ],
+        bullets: [
+          "First $100k is mostly deposits. After that, growth does more of the lifting.",
+          "A car’s real cost is payment plus insurance, fuel, parking, repairs, and the value it loses.",
+          "Lifestyle extras (the monthly fun number plus trips) are the budget people undercount.",
+        ],
+      },
+      {
+        heading: "The “if I had started ten years ago” trap",
+        paragraphs: [
+          "That page is useful once: it shows what a decade of deposits would have been. Then close it. You cannot invest in 2016 from 2026. You can start the same habit on the next payday. Shame is not a contribution.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Small monthly investing works when it is automatic and left alone.",
+      "A cut habit only compounds if the money is invested, not vaguely saved.",
+      "Cash that sits still loses buying power; that is inflation, not a mystery fee.",
+      "The first $100k is a deposit problem more than a stock-picking problem.",
+    ],
+  },
+  {
+    slug: "how-long-you-have-been-together",
+    title: "How long you have been together, without the greeting-card math",
+    description:
+      "Days since you met, days as a couple, the 1,000th day, and why a percentage of a life is a better anniversary prompt than a restaurant default.",
+    published: "2026-09-08",
+    updated: "2026-09-08",
+    category: "Work",
+    relatedToolHrefs: [
+      {
+        href: "/tools/relationship-curiosity/days-we-have-been-together",
+        label: "Days we have been together",
+      },
+      {
+        href: "/tools/relationship-curiosity/percentage-of-life-together",
+        label: "Percentage of life together",
+      },
+      {
+        href: "/tools/relationship-curiosity/days-until-1000th-day-together",
+        label: "Days until the 1,000th day",
+      },
+    ],
+    intro:
+      "I know the year we started dating. I did not know it was 2,400 days until I counted. That is not more romantic than an anniversary. It is just harder to shrug off. A thousand days is a little under three years. If you have already passed it, you can still pick a dinner. The calendar does not collect a late fee.",
+    sections: [
+      {
+        heading: "Pick the date you actually mean",
+        paragraphs: [
+          "“How long have I known you” and “how long have we been together” are different clocks. One starts the night you met. The other starts the day it was a relationship, or the day you moved in, or the wedding—your call. Use the same start if you want one number. Use both if you like the gap.",
+          "Long-distance stretches feel longer than the day count. The page will not add extra for that. You can.",
+        ],
+      },
+      {
+        heading: "A percentage of a life is the unnerving one",
+        paragraphs: [
+          "Days together divided by days you have been alive. If you met at 28 and you are 36, a large slice of your adult life is this person. If you met at 19, an even larger slice of the whole life. That is not a reason to stay. It is a reason the breakup, or the next decade, is not a small edit.",
+        ],
+      },
+      {
+        heading: "The 1,000th day is a better party than a made-up “monthiversary”",
+        paragraphs: [
+          "It is a round number with no greeting-card company behind it. About two years and nine months from the start date. If you like rituals and hate the pressure of a yearly anniversary, this is a decent stand-in. If you already passed it, the page shows how far past. Throw the dinner anyway.",
+        ],
+        bullets: [
+          "Known-since and together-since can be different dates. Say which one you used.",
+          "On-off years: pick the start you both still tell, or the latest restart.",
+          "Memory guesses are not science. They are “events we would still mention” times time.",
+        ],
+      },
+      {
+        heading: "About “memories”",
+        paragraphs: [
+          "That calculator multiplies days by a weekly guess—meals that were not leftovers, trips, fights you still tell. It will never match a camera roll. I use it when I want a number that is not days. Then I stop, because counting memories is a good way to ruin one.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Decide whether you are counting from the day you met or the day it was a relationship.",
+      "A thousand days is a real milestone with no industry attached.",
+      "Share-of-life is a conversation starter, not a loyalty score.",
+      "Guessed memories are a sketch. Days are the part you can defend.",
+    ],
+  },
+  {
     slug: "emergency-fund-how-many-months",
     title: "How many months should your emergency fund cover?",
     description:

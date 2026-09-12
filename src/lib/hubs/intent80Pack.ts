@@ -52,7 +52,7 @@ const laundryCostPerLoad: Calculator = {
   realWorldExample:
     "0.5 kWh at $0.14 ($0.07) + 15 gal at $0.01 ($0.15) + $0.35 detergent ≈ $0.57 per load.",
   seoContextTemplate:
-    "Looking for “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}—instant, no sign up.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} Free {{title}} for “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -178,7 +178,7 @@ const shiftDifferentialPay: Calculator = {
   realWorldExample:
     "$24/hr with 10% differential → $26.40/hr. An 8-hour shift pays $211.20 (before taxes).",
   seoContextTemplate:
-    "Searching “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -298,7 +298,7 @@ const freelanceRateAfterFees: Calculator = {
   realWorldExample:
     "$75/hr with 20% platform fee → $60 net/hr. A 10-hour job nets $600 after fees.",
   seoContextTemplate:
-    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -419,7 +419,7 @@ const dryerCostPerLoad: Calculator = {
   realWorldExample:
     "2.5 kWh at $0.14 ≈ $0.35 per load. Four loads/week ≈ $1.40.",
   seoContextTemplate:
-    "Looking for “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} Free {{title}} for “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -541,7 +541,7 @@ const twelveHourShiftPay: Calculator = {
   realWorldExample:
     "$28/hr with 10% differential → $30.80/hr. A 12-hour shift pays $369.60 (before taxes).",
   seoContextTemplate:
-    "Searching “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -601,7 +601,7 @@ const masterBedroomFairRent: Calculator = {
   realWorldExample:
     "$2,400 rent, 180/400 sq ft base share $1,080 + 10% premium → $1,188 for the master.",
   seoContextTemplate:
-    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -722,7 +722,7 @@ const recipeCostPerServing: Calculator = {
   realWorldExample:
     "$24 batch with 5% waste → $25.20. Six servings ≈ $4.20 each.",
   seoContextTemplate:
-    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [

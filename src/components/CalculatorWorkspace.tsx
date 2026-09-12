@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import Link from "next/link";
-import type { Calculator } from "@/lib/types";
+import type { Calculator, CalcResult } from "@/lib/types";
 import { runCalculation } from "@/lib/formulas";
 import { getToolHref } from "@/lib/cryptoFormulas";
 import { getSmartAdvice } from "@/lib/smartAdvice";
@@ -33,6 +33,10 @@ import { InvestingEnhancements } from "@/components/investing/InvestingEnhanceme
 import { isInvestingCalculator } from "@/lib/investingEnhancements";
 import { ToolMemoryBar } from "@/components/shared/ToolMemoryBar";
 import { ScenarioComparePanel } from "@/components/shared/ScenarioComparePanel";
+import { HandoffCards } from "@/components/shared/HandoffCards";
+import { HandoffArrivalBanner } from "@/components/shared/HandoffArrivalBanner";
+import { takeScenarioBag } from "@/components/shared/useHandoffHydration";
+import { parseMoneyText } from "@/lib/handoffs";
 import { FreelanceEnhancements } from "@/components/freelance/FreelanceEnhancements";
 import { UtilitiesEnhancements } from "@/components/utilities/UtilitiesEnhancements";
 import { RealEstateEnhancements } from "@/components/realEstate/RealEstateEnhancements";
@@ -45,6 +49,8 @@ import {
   HealthEnhancements,
   ProgressSnapshotsPanel,
 } from "@/components/health/HealthEnhancements";
+import { LifeCuriosityWorkspace } from "@/components/lifeCuriosity/LifeCuriosityWorkspace";
+import { isLifeCuriosityFormula } from "@/lib/hubs/lifeCuriosityPack";
 
 function usesStickyMemory(calculator: Calculator): boolean {
   return (
@@ -181,6 +187,12 @@ export function CalculatorWorkspace({
     return <CarTcoPlanner calculator={calculator} related={related} />;
   }
 
+  if (isLifeCuriosityFormula(calculator.formulaType)) {
+    return (
+      <LifeCuriosityWorkspace calculator={calculator} related={related} />
+    );
+  }
+
   return (
     <StandardCalculatorWorkspace
       calculator={calculator}
@@ -189,6 +201,22 @@ export function CalculatorWorkspace({
       setValues={setValues}
     />
   );
+}
+
+function handoffExtrasFromResult(
+  formulaType: string,
+  result: CalcResult
+): Record<string, number> | undefined {
+  const extras: Record<string, number> = {};
+  if (formulaType === "healthTdee") {
+    const tdee = parseMoneyText(result.primary.value);
+    if (tdee != null) extras.tdee = tdee;
+  }
+  if (formulaType === "homeAffordability") {
+    const payment = parseMoneyText(result.featured?.[0]?.value);
+    if (payment != null) extras.monthlyPayment = payment;
+  }
+  return Object.keys(extras).length ? extras : undefined;
 }
 
 function StandardCalculatorWorkspace({
@@ -212,6 +240,12 @@ function StandardCalculatorWorkspace({
     [calculator.formulaType, values, result]
   );
 
+  useEffect(() => {
+    const bag = takeScenarioBag();
+    if (!bag) return;
+    setValues((prev) => ({ ...prev, ...bag }));
+  }, [calculator.slug, setValues]);
+
   const update = (id: string, raw: string) => {
     const next = Number(raw);
     setValues((prev) => ({
@@ -222,6 +256,15 @@ function StandardCalculatorWorkspace({
 
   return (
     <div className="space-y-6">
+      <HandoffArrivalBanner
+        onClear={() =>
+          setValues(
+            Object.fromEntries(
+              calculator.inputs.map((input) => [input.id, input.defaultValue])
+            )
+          )
+        }
+      />
       {usesStickyMemory(calculator) ? (
         <ToolMemoryBar
           slug={calculator.slug}
@@ -367,7 +410,26 @@ function StandardCalculatorWorkspace({
         </aside>
       </div>
 
+      {calculator.formulaType === "carRentalTotal" ? (
+        <CarRentalHowCalculated
+          values={values}
+          onTaxPreset={(n) =>
+            setValues((prev) => ({
+              ...prev,
+              taxRate: n,
+            }))
+          }
+        />
+      ) : null}
+
       <SmartAdviceBox items={advice} />
+
+      <HandoffCards
+        slug={calculator.slug}
+        values={values}
+        result={result}
+        extras={handoffExtrasFromResult(calculator.formulaType, result)}
+      />
 
       <ScenarioComparePanel calculator={calculator} values={values} />
 
@@ -459,5 +521,112 @@ function StandardCalculatorWorkspace({
         </ul>
       </aside>
     </div>
+  );
+}
+
+function money(n: number): string {
+  if (!Number.isFinite(n)) return "—";
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 2,
+  }).format(n);
+}
+
+function CarRentalHowCalculated({
+  values,
+  onTaxPreset,
+}: {
+  values: Record<string, number>;
+  onTaxPreset: (n: number) => void;
+}) {
+  const dailyRate = values.dailyRate ?? 0;
+  const days = values.days ?? 0;
+  const taxRate = values.taxRate ?? 0;
+  const extras = values.extras ?? 0;
+  const base = dailyRate * days;
+  const taxShare = Math.max(0, base * (taxRate / 100));
+  const taxed = base + taxShare;
+  const total = taxed + extras;
+  const parts = [
+    { label: "Days", value: base, color: "bg-[#2979FF]" },
+    { label: "Taxes / fees", value: taxShare, color: "bg-[#00E5FF]" },
+    { label: "Extras", value: extras, color: "bg-[#f59e0b]" },
+  ];
+  const partTotal = parts.reduce((sum, p) => sum + Math.max(0, p.value), 0);
+
+  return (
+    <section
+      className="max-w-3xl space-y-4"
+      aria-labelledby="car-rental-how-calculated-heading"
+    >
+      <h2
+        id="car-rental-how-calculated-heading"
+        className="font-[family-name:var(--font-display)] text-base font-semibold tracking-tight sm:text-lg"
+      >
+        How the rental car total is calculated
+      </h2>
+      <p className="font-mono text-sm text-[var(--foreground)]">
+        Total = (daily rate × days) × (1 + taxes/fees %) + extras
+      </p>
+      <p className="text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))]">
+        Base days cost {money(dailyRate)} × {days} = {money(base)}. After{" "}
+        {taxRate}% taxes and fees that is {money(taxed)}, then extras{" "}
+        {money(extras)} bring the rental total to {money(total)}.
+      </p>
+      {partTotal > 0 ? (
+        <div>
+          <div className="flex h-4 overflow-hidden rounded-full">
+            {parts.map((part) => (
+              <div
+                key={part.label}
+                className={part.color}
+                style={{
+                  width: `${Math.max(0, part.value) / partTotal * 100}%`,
+                }}
+                title={`${part.label} ${money(part.value)}`}
+              />
+            ))}
+          </div>
+          <div className="mt-2 flex flex-wrap gap-3 text-xs text-[var(--muted)]">
+            {parts.map((part) => (
+              <span key={part.label} className="inline-flex items-center gap-1.5">
+                <span className={`h-2 w-2 rounded-full ${part.color}`} />
+                {part.label} {money(part.value)}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => onTaxPreset(12)}
+          className={
+            taxRate === 12
+              ? "rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-1.5 text-xs font-semibold text-white"
+              : "rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold"
+          }
+        >
+          Off-airport 12%
+        </button>
+        <button
+          type="button"
+          onClick={() => onTaxPreset(18)}
+          className={
+            taxRate === 18
+              ? "rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-1.5 text-xs font-semibold text-white"
+              : "rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold"
+          }
+        >
+          Airport 18%
+        </button>
+      </div>
+      <p className="text-sm text-[var(--muted)]">
+        Airport counters often add concession and facility fees. Put those in
+        the taxes/fees % instead of the daily rate so the day count stays
+        honest.
+      </p>
+    </section>
   );
 }

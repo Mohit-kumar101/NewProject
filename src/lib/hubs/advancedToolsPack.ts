@@ -67,10 +67,9 @@ function buildAdvancedTool(spec: {
     formulaSummary: spec.formulaSummary,
     realWorldExample: spec.realWorldExample,
     longTailModifiers: spec.longTailModifiers,
-    seoContextTemplate:
-      'Searching "{{focusKeyword}}"? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}—instant, private, no sign up.',
+    seoContextTemplate: "{{formulaSummary}} Worked numbers: {{example}}",
     explanationTemplate:
-      '{{variantExplanation}} Use this free {{title}} for "{{focusKeyword}}" ({{year}}).',
+      "{{variantExplanation}} {{formulaSummary}} Example: {{example}}",
     seoContent: {
       intro: spec.description,
       howToUse: spec.howToUse,

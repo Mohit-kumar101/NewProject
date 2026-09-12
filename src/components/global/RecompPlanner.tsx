@@ -4,6 +4,15 @@ import { useMemo, useState } from "react";
 import type { Calculator } from "@/lib/types";
 import { Field, Panel, ResultHero, Row } from "@/components/global/ui";
 import { calculateRecomp } from "@/lib/globalPlanners/recomp";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const RECOMP_DEFAULTS = {
+  age: 30,
+  weightKg: 78,
+  heightCm: 178,
+  trainingDays: 4,
+};
 
 export function RecompPlanner({
   calculator,
@@ -12,12 +21,21 @@ export function RecompPlanner({
   related: Calculator[];
 }) {
   const [sex, setSex] = useState<"male" | "female">("male");
-  const [age, setAge] = useState(30);
-  const [weightKg, setWeightKg] = useState(78);
-  const [heightCm, setHeightCm] = useState(178);
+  const [age, setAge] = useState(RECOMP_DEFAULTS.age);
+  const [weightKg, setWeightKg] = useState(RECOMP_DEFAULTS.weightKg);
+  const [heightCm, setHeightCm] = useState(RECOMP_DEFAULTS.heightCm);
   const [activityMultiplier, setActivityMultiplier] = useState(1.55);
   const [hardSetsPerWeek, setHardSetsPerWeek] = useState(70);
-  const [trainingDays, setTrainingDays] = useState(4);
+  const [trainingDays, setTrainingDays] = useState(RECOMP_DEFAULTS.trainingDays);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      age: setAge,
+      weightKg: setWeightKg,
+      heightCm: setHeightCm,
+      trainingDays: setTrainingDays,
+    })
+  );
 
   const result = useMemo(
     () =>
@@ -34,7 +52,16 @@ export function RecompPlanner({
   );
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{ age, weightKg, heightCm, trainingDays }}
+      onClear={() => {
+        setAge(RECOMP_DEFAULTS.age);
+        setWeightKg(RECOMP_DEFAULTS.weightKg);
+        setHeightCm(RECOMP_DEFAULTS.heightCm);
+        setTrainingDays(RECOMP_DEFAULTS.trainingDays);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Volume-aware deficit cap:</strong>{" "}
         more hard sets per week → smaller calorie deficit and higher protein so
@@ -96,6 +123,6 @@ export function RecompPlanner({
         </div>
       </div>
       <p className="text-xs text-[var(--muted)]">{calculator.seoContent.intro}</p>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

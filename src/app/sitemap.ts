@@ -30,6 +30,7 @@ const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/workflows/money-runway`, changeFrequency: "monthly", priority: 0.88 },
   { url: `${SITE_URL}/hubs/fitness-planners`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${SITE_URL}/hubs/money-milestones`, changeFrequency: "weekly", priority: 0.9 },
+  { url: `${SITE_URL}/hubs/life-questions`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${SITE_URL}/affordability`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/crypto`, changeFrequency: "weekly", priority: 0.9 },
   {

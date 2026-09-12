@@ -11,6 +11,7 @@ import {
   LoanRelatedTools,
   LoanScheduleTable,
   LoanSparkline,
+  ExtraPaymentChips,
   LoanWhatIfBanner,
   LoanWorkspaceFrame,
 } from "@/components/loans/LoanUi";
@@ -28,6 +29,8 @@ import {
   simulateHomeEquity,
   simulateRefinance,
 } from "@/lib/loanTools";
+import { HandoffCards } from "@/components/shared/HandoffCards";
+import { takeScenarioBag } from "@/components/shared/useHandoffHydration";
 
 const LOAN_FORMULA_TYPES = new Set([
   "carLoanPayoff",
@@ -61,6 +64,12 @@ function usePersistedLoanValues(calculator: Calculator) {
   );
 
   useEffect(() => {
+    const bag = takeScenarioBag();
+    if (bag) {
+      setValues((prev) => ({ ...prev, ...bag }));
+      setHydrated(true);
+      return;
+    }
     const saved = loadLoanToolState(calculator.formulaType);
     if (saved) {
       setValues((prev) => ({ ...prev, ...saved }));
@@ -194,9 +203,19 @@ function AmortExtraWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title={title}
       blurb="Saved in this browser. Slide extra payments to see live payoff savings — then export a PDF summary."
     >
+      {kind === "car" && extraPayment > 0 && !withExtra.unreachable ? (
+        <p className="rounded-2xl border border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_8%,var(--background))] px-4 py-3 text-sm font-semibold text-[var(--foreground)] sm:text-base">
+          Pay extra {formatLoanMoney(extraPayment)} → done{" "}
+          {Math.max(0, baseline.months - withExtra.months)} months sooner, save{" "}
+          {formatLoanMoney(Math.max(0, baseline.interest - withExtra.interest))}{" "}
+          interest.
+        </p>
+      ) : null}
+
       <LoanMetricCards
         items={[
           {
@@ -241,6 +260,12 @@ function AmortExtraWorkspace({
             set={set}
             ids={["principal", "annualRate", "termMonths", "extraPayment"]}
           />
+          {kind === "car" ? (
+            <ExtraPaymentChips
+              value={extraPayment}
+              onSelect={(n) => set("extraPayment", n)}
+            />
+          ) : null}
           <div className="mt-5">
             <LoanWhatIfBanner text={whatIf} />
             <LoanSparkline
@@ -288,6 +313,15 @@ function AmortExtraWorkspace({
 
       <LoanScheduleTable rows={schedulePreview(withExtra.schedule)} />
       <SmartAdviceBox items={advice} />
+      <HandoffCards
+        slug={calculator.slug}
+        values={values}
+        extras={
+          kind === "car"
+            ? { monthlyPayment: withExtra.basePayment + extraPayment }
+            : undefined
+        }
+      />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -372,9 +406,18 @@ function PersonalLoanWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Personal loan comparison studio"
-      blurb="Compare two offers on total cost, then stress-test Offer A with extra payments. Autosaved locally."
+      blurb="Compare two offers before you apply. Winner and interest gap sit at the top. Autosaved locally."
     >
+      {hydrated && winner ? (
+        <p className="rounded-2xl border border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_8%,var(--background))] px-4 py-3 text-sm font-semibold sm:text-base">
+          {winner.label} wins on total cost at {formatLoanMoney(winner.totalCost)}
+          {compared[1]
+            ? ` — ${compared[1].label} is ${formatLoanMoney(Math.max(0, compared[1].totalCost - winner.totalCost))} more.`
+            : "."}
+        </p>
+      ) : null}
       <LoanMetricCards
         items={[
           {
@@ -521,6 +564,7 @@ function PersonalLoanWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -590,9 +634,16 @@ function CreditCardWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Credit card payoff studio"
-      blurb="Compare minimum-only vs minimum+extra vs a fixed monthly payment. Progress autosaves in this browser."
+      blurb="See the cost of paying only the minimum, then the payment that finishes the card in 12, 24, or 36 months."
     >
+      {hydrated && !minOnly.unreachable ? (
+        <p className="rounded-2xl border border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_8%,var(--background))] px-4 py-3 text-sm font-semibold sm:text-base">
+          Minimum only → paid off in {formatLoanMonths(minOnly.months)},{" "}
+          {formatLoanMoney(minOnly.interest)} interest.
+        </p>
+      ) : null}
       <LoanMetricCards
         items={[
           {
@@ -627,6 +678,34 @@ function CreditCardWorkspace({
         ]}
       />
 
+      <div className="grid gap-3 sm:grid-cols-3">
+        {([12, 24, 36] as const).map((months) => {
+          const r = annualRate / 100 / 12;
+          const payment =
+            balance <= 0
+              ? 0
+              : r < 1e-9
+                ? balance / months
+                : (balance * r) / (1 - Math.pow(1 + r, -months));
+          return (
+            <button
+              key={months}
+              type="button"
+              onClick={() => set("fixedPayment", Math.ceil(payment))}
+              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-left"
+            >
+              <p className="text-[11px] font-semibold tracking-[0.12em] text-[var(--accent)] uppercase">
+                Done in {months} months
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold">
+                {formatLoanMoney(payment)}
+                <span className="text-sm font-medium text-[var(--muted)]">/mo</span>
+              </p>
+            </button>
+          );
+        })}
+      </div>
+
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="calc-panel rounded-2xl p-5 sm:p-6">
           <div className="mb-5 flex justify-between">
@@ -659,6 +738,10 @@ function CreditCardWorkspace({
               max={2000}
               step={25}
               onChange={(n) => set("extraPayment", n)}
+            />
+            <ExtraPaymentChips
+              value={extraPayment}
+              onSelect={(n) => set("extraPayment", n)}
             />
             <LoanNumberField
               id="fixedPayment"
@@ -741,6 +824,7 @@ function CreditCardWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -774,6 +858,7 @@ function RefinanceWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Refinance decision studio"
       blurb="Current vs new side-by-side with break-even timing. Autosaved locally — export when you’re ready to decide."
     >
@@ -901,6 +986,7 @@ function RefinanceWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -931,6 +1017,7 @@ function HomeEquityWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Home equity loan studio"
       blurb="See available equity under your LTV cap, payment, and interest — then export a summary."
     >
@@ -1031,6 +1118,7 @@ function HomeEquityWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -1066,6 +1154,7 @@ function BiWeeklyWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Bi-weekly mortgage studio"
       blurb="Compare standard monthly, bi-weekly (26 half-payments/year), and an equivalent extra monthly payment."
     >
@@ -1204,6 +1293,7 @@ function BiWeeklyWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );
@@ -1232,6 +1322,7 @@ function BalloonWorkspace({
 
   return (
     <LoanWorkspaceFrame
+      onHandoffClear={reset}
       title="Balloon loan studio"
       blurb="See the amortizing payment, interest before the balloon, and the lump sum due — plan the exit early."
     >
@@ -1314,6 +1405,7 @@ function BalloonWorkspace({
           },
         ]}
       />
+      <HandoffCards slug={calculator.slug} values={values} />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );

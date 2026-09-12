@@ -58,11 +58,11 @@ export function ConverterPrivacyRecent({
     <div className="space-y-4">
       <div className="rounded-2xl border border-[color-mix(in_srgb,var(--accent)_40%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_10%,var(--background))] px-4 py-3 sm:px-5">
         <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
-          Private · In-browser · No signup
+          Files never leave your browser
         </p>
         <p className="mt-1 text-sm text-[color-mix(in_srgb,var(--foreground)_82%,var(--muted))]">
-          Your files are processed on this device. CalculioHub does not receive
-          uploads of your documents, photos, or media.
+          Conversion runs on this device. CalculioHub does not receive uploads
+          of your documents, photos, or media. No account required.
         </p>
         <dl className="mt-3 grid gap-2 text-xs sm:grid-cols-2 sm:text-sm">
           <div className="rounded-xl border border-[color-mix(in_srgb,var(--accent)_25%,var(--border))] bg-[var(--background)]/50 px-3 py-2">

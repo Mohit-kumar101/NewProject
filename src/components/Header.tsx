@@ -2,21 +2,35 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
+  { href: "/tools", label: "Tools" },
   { href: "/guides", label: "Guides" },
-  { href: "/workflows", label: "Workflows" },
-  { href: "/tools", label: "All Tools" },
   { href: "/hubs/money-milestones", label: "Money" },
+  { href: "/hubs/life-questions", label: "Life" },
   { href: "/hubs/fitness-planners", label: "Fitness" },
-  { href: "/about", label: "About" },
+  { href: "/workflows", label: "Workflows" },
   { href: "/crypto", label: "Crypto" },
+  { href: "/about", label: "About" },
 ];
 
+function linkActive(pathname: string, href: string) {
+  if (href === "/tools") {
+    return pathname === "/tools" || pathname.startsWith("/tools/");
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -32,31 +46,38 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_78%,transparent)] shadow-[0_10px_40px_-28px_rgba(0,0,0,0.45)] backdrop-blur-2xl dark:bg-[color-mix(in_srgb,var(--surface-solid)_92%,transparent)]">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-3 sm:h-16 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface-solid)]/95 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
         <div className="min-w-0 shrink">
           <Logo size="sm" priority />
         </div>
 
         <nav
           aria-label="Primary"
-          className="flex shrink-0 items-center gap-1.5 sm:gap-3"
+          className="flex shrink-0 items-center gap-1.5 sm:gap-2"
         >
-          <div className="hidden items-center gap-1 md:flex">
-            {links.slice(0, 5).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover-tint rounded-xl px-3 py-2 text-sm font-medium text-[var(--muted)] hover:bg-[color-mix(in_srgb,var(--surface)_70%,transparent)] hover:text-[var(--foreground)]"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden items-center gap-0.5 lg:flex">
+            {links.map((link) => {
+              const active = linkActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`rounded-lg px-2.5 py-1.5 text-sm font-medium transition ${
+                    active
+                      ? "bg-[var(--background)] text-[var(--foreground)]"
+                      : "text-[var(--muted)] hover:bg-[var(--background)] hover:text-[var(--foreground)]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
           <ThemeToggle />
           <button
             type="button"
-            className="glass-3d inline-flex h-10 w-10 items-center justify-center rounded-xl text-[var(--foreground)] md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface-solid)] text-[var(--foreground)] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -87,15 +108,19 @@ export function Header() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_92%,transparent)] backdrop-blur-2xl dark:bg-[var(--surface-solid)] md:hidden"
+          className="border-t border-[var(--border)] bg-[var(--surface-solid)] lg:hidden"
         >
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-3 py-3 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col gap-0.5 px-4 py-3 sm:px-6">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium text-[var(--foreground)] transition hover:bg-[var(--surface)] hover:text-[var(--accent)]"
+                className={`rounded-lg px-3 py-2.5 text-base font-medium ${
+                  linkActive(pathname, link.href)
+                    ? "bg-[var(--background)] text-[var(--foreground)]"
+                    : "text-[var(--foreground)] hover:bg-[var(--background)]"
+                }`}
               >
                 {link.label}
               </Link>
@@ -103,7 +128,7 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-center text-sm font-semibold text-[var(--accent)]"
+              className="mt-2 rounded-lg border border-[var(--border)] px-3 py-2.5 text-center text-sm font-semibold text-[var(--foreground)]"
             >
               Contact
             </Link>

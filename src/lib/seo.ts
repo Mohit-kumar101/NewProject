@@ -58,6 +58,49 @@ export function getToolMetricName(calculator: Calculator): string {
  * Kept for on-page SEO; meta <title> uses the shorter getToolMetaTitle().
  */
 const LONG_TAIL_H1: Record<string, string> = {
+  "when-can-i-retire": "When Can I Retire?",
+  "how-long-will-my-money-last": "How Long Will My Money Last?",
+  "how-rich-will-i-be-at-40": "How Rich Will I Be at 40?",
+  "what-will-my-net-worth-be-at-50": "What Will My Net Worth Be at 50?",
+  "when-will-i-become-a-millionaire": "When Will I Become a Millionaire?",
+  "how-much-money-do-i-need-to-retire": "How Much Money Do I Need to Retire?",
+  "what-age-can-i-stop-working": "What Age Can I Stop Working?",
+  "how-much-will-i-have-saved-at-60": "How Much Will I Have Saved at 60?",
+  "what-will-1000-a-month-become-in-20-years":
+    "What Will $1,000/Month Become in 20 Years?",
+  "how-much-time-do-i-have-left-to-retire":
+    "How Much Time Do I Have Left to Retire?",
+  "how-many-days-have-i-been-alive": "How Many Days Have I Been Alive?",
+  "days-until-i-turn-30-40-50": "How Many Days Until I Turn 30, 40, or 50?",
+  "weekends-left-until-80": "How Many Weekends Do I Have Left Until 80?",
+  "hours-spent-sleeping": "How Many Hours Have I Spent Sleeping?",
+  "how-much-of-my-life-have-i-spent-working":
+    "How Much of My Life Have I Spent Working?",
+  "phone-time-in-a-lifetime": "How Much Time Do I Spend on My Phone in a Lifetime?",
+  "days-spent-commuting": "How Many Days Do I Spend Commuting?",
+  "years-spent-working": "How Many Years Do I Spend Working?",
+  "how-much-of-my-life-is-left": "How Much of My Life Is Left?",
+  "percentage-of-life-lived": "What Percentage of My Life Have I Lived?",
+  "if-i-invested-100-every-month":
+    "What Would I Be Worth If I Invested $100 Every Month?",
+  "money-worth-in-10-years": "What Would My Money Be Worth in 10 Years?",
+  "money-lost-to-inflation": "How Much Money Am I Losing to Inflation?",
+  "lifestyle-cost-per-year": "How Much Does My Lifestyle Cost Me Per Year?",
+  "how-much-does-my-car-really-cost": "How Much Does My Car Really Cost Me?",
+  "coffee-spend-in-a-lifetime": "How Much Do I Spend on Coffee in a Lifetime?",
+  "if-i-stop-spending-10-a-day": "What Happens If I Stop Spending $10 a Day?",
+  "if-i-started-investing-10-years-ago":
+    "How Much Would I Have If I Started Investing 10 Years Ago?",
+  "how-long-to-save-first-100k": "How Long Until I Save My First $100K?",
+  "what-salary-to-become-a-millionaire":
+    "What Salary Do I Need to Become a Millionaire?",
+  "how-long-have-i-known-my-partner": "How Long Have I Known My Partner?",
+  "days-we-have-been-together": "How Many Days Have We Been Together?",
+  "percentage-of-life-together":
+    "What Percentage of My Life Have We Been Together?",
+  "days-until-1000th-day-together": "How Long Until Our 1,000th Day Together?",
+  "memories-we-have-created-together":
+    "How Many Memories Have We Probably Created Together?",
   "scientific-calculator":
     "How to Solve Trig and Log Problems on a Scientific Calculator",
   "compound-interest-calculator":
@@ -70,8 +113,9 @@ const LONG_TAIL_H1: Record<string, string> = {
   "personal-loan-calculator":
     "How to Calculate Personal Loan Payments Before You Borrow",
   "json-csv-converter": "How to Convert JSON to CSV Without Uploading a File",
-  "heic-jpg-converter": "How to Convert iPhone HEIC Photos to JPG in Browser",
-  "pdf-merge-split": "How to Merge or Split PDF Files Without an Account",
+  "heic-jpg-converter": "How to Convert iPhone HEIC Photos to JPG Without Uploading",
+  "pdf-merge-split": "How to Merge PDFs Without an Account",
+  "home-affordability-calculator": "How Much House Can I Afford?",
   "mp4-mp3-converter": "How to Extract MP3 Audio from an MP4 in Your Browser",
   "pdf-text-converter": "How to Extract Text from a PDF Without Uploading",
   "crypto-profit-calculator":

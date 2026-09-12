@@ -82,14 +82,18 @@ export default function FitnessPlannersHubPage() {
 
       <EmailCapture
         source="hub-fitness"
-        headline="Get fitness planner tips"
-        subtext="Weekly tip on macros, reverse diets, and recomp — plus one free tool. No spam."
+        headline="Get a note when we add a fitness planner"
+        subtext="Occasional email when we ship a macro or phase tool. No weekly blast."
       />
 
       <p className="mt-10 text-sm text-[var(--muted)]">
         Also explore{" "}
         <Link href="/hubs/money-milestones" className="text-[var(--accent)] hover:underline">
           Money milestones
+        </Link>
+        ,{" "}
+        <Link href="/hubs/life-questions" className="text-[var(--accent)] hover:underline">
+          Life questions
         </Link>{" "}
         or{" "}
         <Link href="/tools" className="text-[var(--accent)] hover:underline">

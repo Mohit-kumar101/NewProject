@@ -23,8 +23,8 @@ export function FeaturedPlanners() {
               Start with high-intent tools
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-[var(--muted)] sm:text-base">
-              Fitness phase planners and money milestone tools — built for searches
-              people already make.
+              Fitness phase planners, money milestones, and life questions people
+              already type into a search box.
             </p>
           </div>
           <div className="flex flex-wrap gap-3 text-sm font-semibold">
@@ -39,13 +39,17 @@ export function FeaturedPlanners() {
             ))}
           </div>
         </div>
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {tools.map((tool) =>
+        <ul className="reveal-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {tools.map((tool, index) =>
             tool ? (
-              <li key={tool.slug}>
+              <li
+                key={tool.slug}
+                data-reveal
+                style={{ transitionDelay: `${index * 70}ms` }}
+              >
                 <Link
                   href={getToolHref(tool.slug)}
-                  className="hover-lift flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--background)] px-4 py-4"
+                  className="hover-lift glass-3d pressable-3d flex h-full flex-col rounded-2xl px-4 py-4"
                 >
                   <span className="text-sm font-semibold">{tool.title}</span>
                   <span className="mt-2 line-clamp-2 text-xs text-[var(--muted)]">

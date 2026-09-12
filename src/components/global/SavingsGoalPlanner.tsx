@@ -9,6 +9,10 @@ import {
   type SavingsGoal,
 } from "@/lib/globalPlanners/savingsGoals";
 import { money } from "@/lib/globalPlanners/money";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const SAVINGS_DEFAULTS = { monthlyBudget: 900, currentSaved: 1500 };
 
 export function SavingsGoalPlanner({
   calculator,
@@ -16,8 +20,8 @@ export function SavingsGoalPlanner({
   calculator: Calculator;
   related: Calculator[];
 }) {
-  const [monthlyBudget, setMonthlyBudget] = useState(900);
-  const [currentSaved, setCurrentSaved] = useState(1500);
+  const [monthlyBudget, setMonthlyBudget] = useState(SAVINGS_DEFAULTS.monthlyBudget);
+  const [currentSaved, setCurrentSaved] = useState(SAVINGS_DEFAULTS.currentSaved);
   const [goals, setGoals] = useState<SavingsGoal[]>([
     createGoal("Trip", 3000, 10, 2),
     createGoal("Emergency top-up", 5000, 18, 1),
@@ -29,12 +33,26 @@ export function SavingsGoalPlanner({
     [monthlyBudget, currentSaved, goals]
   );
 
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      monthlyBudget: setMonthlyBudget,
+      currentSaved: setCurrentSaved,
+    })
+  );
+
   const updateGoal = (id: string, patch: Partial<SavingsGoal>) => {
     setGoals((g) => g.map((x) => (x.id === id ? { ...x, ...patch } : x)));
   };
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{ monthlyBudget, currentSaved }}
+      onClear={() => {
+        setMonthlyBudget(SAVINGS_DEFAULTS.monthlyBudget);
+        setCurrentSaved(SAVINGS_DEFAULTS.currentSaved);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Multi-goal optimizer:</strong>{" "}
         compares sequential vs split funding and recommends the fastest path to
@@ -123,6 +141,6 @@ export function SavingsGoalPlanner({
         </Panel>
       </div>
       <p className="text-xs text-[var(--muted)]">{calculator.seoContent.intro}</p>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

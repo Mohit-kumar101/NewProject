@@ -16,6 +16,7 @@ const PRODUCT_LINKS = [
   { href: "/guides", label: "Guides" },
   { href: "/hubs/fitness-planners", label: "Fitness Planners" },
   { href: "/hubs/money-milestones", label: "Money Milestones" },
+  { href: "/hubs/life-questions", label: "Life Questions" },
   { href: "/workflows", label: "Workflows" },
   { href: "/crypto", label: "Crypto Calculators" },
   { href: "/workflows/fitness-phase", label: "Fitness Phase Guide" },
@@ -32,7 +33,7 @@ function categoryHref(category: string) {
 
 export function Footer() {
   return (
-    <footer className="relative z-0 mt-auto border-t border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--glass)_70%,transparent)] backdrop-blur-xl">
+    <footer className="relative z-0 mt-auto border-t border-[var(--border)] bg-[var(--surface-solid)]">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div className="space-y-4">
           <Logo size="sm" />
@@ -113,6 +114,12 @@ export function Footer() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/site-index"
+            className="text-[var(--muted)]/70 hover:text-[var(--muted)]"
+          >
+            Site index
+          </Link>
         </p>
       </div>
     </footer>

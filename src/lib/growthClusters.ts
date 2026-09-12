@@ -3,7 +3,7 @@
  * Used for hub pages, related-tool ranking, and internal linking.
  */
 
-export type GrowthClusterId = "fitness" | "money";
+export type GrowthClusterId = "fitness" | "money" | "life";
 
 export type GrowthCluster = {
   id: GrowthClusterId;
@@ -72,8 +72,39 @@ export const GROWTH_CLUSTERS: GrowthCluster[] = [
       "wedding-budget-cashflow-planner",
       "baby-first-year-cost-planner",
       "keep-lease-buy-car-tco",
+      "when-can-i-retire",
+      "how-much-money-do-i-need-to-retire",
+      "how-long-will-my-money-last",
     ],
     workflowSlug: "money-runway",
+  },
+  {
+    id: "life",
+    slug: "life-questions",
+    href: "/hubs/life-questions",
+    title: "Life questions",
+    h1: "When Can I Retire — and What Does the Rest of Life Add Up To?",
+    description:
+      "Question-led calculators for retirement timing, days you have already lived, small money habits, and how long you have been with someone. Planning estimates, not fortune-telling.",
+    seoKeywords: [
+      "when can I retire calculator",
+      "how many days have I been alive",
+      "how long will my money last",
+      "days we have been together",
+      "first 100k calculator",
+    ],
+    toolSlugs: [
+      "when-can-i-retire",
+      "how-long-will-my-money-last",
+      "how-much-money-do-i-need-to-retire",
+      "how-many-days-have-i-been-alive",
+      "weekends-left-until-80",
+      "if-i-invested-100-every-month",
+      "how-long-to-save-first-100k",
+      "if-i-stop-spending-10-a-day",
+      "days-we-have-been-together",
+      "days-until-1000th-day-together",
+    ],
   },
 ];
 
@@ -115,4 +146,6 @@ export const FEATURED_PLANNER_SLUGS = [
   "freelance-true-rate-planner",
   "financial-freedom-property-planner",
   "subscription-runway-audit",
+  "when-can-i-retire",
+  "how-many-days-have-i-been-alive",
 ] as const;

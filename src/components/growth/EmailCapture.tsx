@@ -9,8 +9,8 @@ import { useState } from "react";
  */
 export function EmailCapture({
   source,
-  headline = "Get the weekly planner tip",
-  subtext = "Join the free tip list. We never share your email. Unsubscribe anytime.",
+  headline = "Get a note when we add a planner",
+  subtext = "Occasional email when something new is worth opening. We never share your address. Unsubscribe anytime.",
 }: {
   source: string;
   headline?: string;
@@ -39,7 +39,7 @@ export function EmailCapture({
         return;
       }
       setStatus("ok");
-      setMessage("You're on the list. We'll send tips when new ones go out.");
+      setMessage("You're on the list. We'll email only when we add something worth opening.");
       setEmail("");
     } catch {
       setStatus("error");
@@ -73,7 +73,7 @@ export function EmailCapture({
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-[#041018] disabled:opacity-60"
+          className="shrink-0 rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface)] disabled:cursor-not-allowed disabled:opacity-60 dark:text-[#041018] dark:hover:brightness-105"
         >
           {status === "loading" ? "Saving…" : "Join free list"}
         </button>

@@ -8323,7 +8323,7 @@
     "slug": "video-bitrate-file-size-calculator",
     "title": "Video Bitrate File Size Calculator",
     "category": "Media, Photography, Cooking & Lifestyle",
-    "description": "Estimate video file size from bitrate and duration. Plan storage and upload bandwidth ahead of shoots.",
+    "description": "Camera-card planner: how many gigabytes a shoot eats at your record bitrate, including audio. Use this before you buy cards—not the encode-for-YouTube bitrate tool.",
     "inputs": [
       {
         "id": "bitrateMbps",
@@ -8352,11 +8352,11 @@
     ],
     "formulaType": "videoBitrateSize",
     "seoContent": {
-      "intro": "Bitrate \u00d7 time determines approximate media file size. Estimate gigabytes needed for a clip including audio overhead.",
+      "intro": "On a camera, Mbps \u00d7 minutes is how fast the card fills. Add the audio track so a long interview does not surprise you at wrap. Variable bitrate and container overhead mean this is a ceiling, not a receipt.",
       "howToUse": [
-        "Enter video bitrate in Mbps.",
-        "Set duration in minutes.",
-        "Add audio bitrate and review estimated file size."
+        "Enter the record bitrate from the camera menu, not the YouTube recommend.",
+        "Set the longest clip or the whole card day in minutes.",
+        "Add the audio bitrate you are embedding. Read gigabytes so you know how many cards to pack."
       ],
       "faqs": [
         {
@@ -9466,6 +9466,14 @@
         {
           "question": "Are Live Photos supported?",
           "answer": "Still frames convert; multi-image HEIC sequences use the primary frame."
+        },
+        {
+          "question": "Does converting HEIC to JPG reduce quality?",
+          "answer": "JPG is lossy. The quality slider (default ~92%) keeps most detail for sharing. Use Archive / 98%+ if you need a near-lossless copy, and keep the original HEIC as your master."
+        },
+        {
+          "question": "Can I convert HEIC from AirDrop or Windows?",
+          "answer": "Yes. Drop the .heic file you received via AirDrop, email, or a Windows transfer. Conversion stays in this browser."
         }
       ]
     }
@@ -9785,7 +9793,7 @@
       "faqs": [
         {
           "question": "Does merge keep order?",
-          "answer": "Yes\u2014files are appended in the order shown in the dropzone list."
+          "answer": "Yes. Use the up/down buttons to reorder files before you convert. Pages are appended in that list order."
         },
         {
           "question": "What do ranges look like?",
@@ -9825,8 +9833,8 @@
       ],
       "faqs": [
         {
-          "question": "Is my video uploaded?",
-          "answer": "No. FFmpeg.wasm runs in your browser. Large files need enough device memory."
+          "question": "Does this upload my video?",
+          "answer": "No. The file never leaves this browser. FFmpeg.wasm converts it on your device. Large files need enough RAM."
         },
         {
           "question": "What is MP3 \u2192 MP4 output?",

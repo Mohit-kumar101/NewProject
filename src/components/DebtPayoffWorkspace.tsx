@@ -9,6 +9,8 @@ import { BalanceTrendChart } from "@/components/loans/BalanceTrendChart";
 import type { Calculator } from "@/lib/types";
 import type { AdviceItem } from "@/lib/types";
 import { getToolHref } from "@/lib/cryptoFormulas";
+import { HandoffArrivalBanner } from "@/components/shared/HandoffArrivalBanner";
+import { takeScenarioBag } from "@/components/shared/useHandoffHydration";
 import {
   EXTRA_PAYMENT_MAX,
   INITIAL_EMPTY_DEBT,
@@ -202,8 +204,29 @@ export function DebtPayoffWorkspace({
   const [hydrated, setHydrated] = useState(false);
   const [debts, setDebts] = useState<DebtEntry[]>([INITIAL_EMPTY_DEBT]);
   const [extraPayment, setExtraPayment] = useState(200);
+  const [viewStrategy, setViewStrategy] = useState<DebtStrategy>(preferredStrategy);
 
   useEffect(() => {
+    const bag = takeScenarioBag();
+    const carriedBalance = bag?.balance ?? bag?.debt1;
+    if (bag && typeof carriedBalance === "number" && carriedBalance >= 1) {
+      const apr = bag.annualRate ?? bag.avgRate ?? 18;
+      const minPayment = Math.max(
+        25,
+        Math.round(carriedBalance * (apr >= 15 ? 0.03 : 0.02))
+      );
+      setDebts([
+        {
+          id: createDebtId(),
+          name: "From last calculator",
+          balance: carriedBalance,
+          apr,
+          minPayment,
+        },
+      ]);
+      setHydrated(true);
+      return;
+    }
     const saved = loadDebtPayoffState();
     if (saved && saved.debts.length > 0) {
       setDebts(saved.debts);
@@ -218,6 +241,10 @@ export function DebtPayoffWorkspace({
     saveDebtPayoffState({ debts, extraPayment });
   }, [debts, extraPayment, hydrated]);
 
+  useEffect(() => {
+    setViewStrategy(preferredStrategy);
+  }, [preferredStrategy]);
+
   const comparison = useMemo(() => {
     if (activeDebts(debts).length === 0) return null;
     return compareDebtStrategies(debts, extraPayment, preferredStrategy);
@@ -229,7 +256,7 @@ export function DebtPayoffWorkspace({
   );
 
   const preferredResult =
-    preferredStrategy === "avalanche"
+    viewStrategy === "avalanche"
       ? comparison?.avalanche
       : comparison?.snowball;
 
@@ -339,6 +366,12 @@ export function DebtPayoffWorkspace({
 
   return (
     <div className="space-y-6">
+      <HandoffArrivalBanner
+        onClear={() => {
+          setDebts([createEmptyDebt()]);
+          setExtraPayment(200);
+        }}
+      />
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="relative overflow-hidden calc-panel rounded-2xl p-4 sm:p-5">
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-[#00E5FF33] to-[#2979FF22] blur-2xl" />
@@ -366,6 +399,36 @@ export function DebtPayoffWorkspace({
           </p>
         </div>
       </div>
+
+      {comparison && clashLine ? (
+        <div className="rounded-2xl border border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_8%,var(--background))] px-4 py-3 sm:px-5 sm:py-4">
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setViewStrategy("avalanche")}
+              className={
+                viewStrategy === "avalanche"
+                  ? "rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-1.5 text-xs font-semibold text-white"
+                  : "rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold"
+              }
+            >
+              Avalanche
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewStrategy("snowball")}
+              className={
+                viewStrategy === "snowball"
+                  ? "rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-1.5 text-xs font-semibold text-white"
+                  : "rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold"
+              }
+            >
+              Snowball
+            </button>
+          </div>
+          <p className="mt-2 text-sm font-semibold sm:text-base">{clashLine}</p>
+        </div>
+      ) : null}
 
       <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -555,7 +618,7 @@ export function DebtPayoffWorkspace({
         {preferredResult && scheduleValues.length > 1 && (
           <BalanceTrendChart
             values={scheduleValues}
-            label={`${preferredStrategy === "avalanche" ? "Avalanche" : "Snowball"} remaining balance`}
+            label={`${viewStrategy === "avalanche" ? "Avalanche" : "Snowball"} remaining balance`}
             className="mt-5"
           />
         )}
@@ -567,13 +630,13 @@ export function DebtPayoffWorkspace({
             title="Debt Avalanche"
             subtitle="Highest APR first — minimize interest"
             result={comparison.avalanche}
-            emphasized={preferredStrategy === "avalanche"}
+            emphasized={viewStrategy === "avalanche"}
           />
           <StrategyCard
             title="Debt Snowball"
             subtitle="Smallest balance first — fastest wins"
             result={comparison.snowball}
-            emphasized={preferredStrategy === "snowball"}
+            emphasized={viewStrategy === "snowball"}
           />
         </div>
       )}

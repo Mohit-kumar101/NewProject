@@ -18,6 +18,7 @@ import { TRADES_NICHE_READY_TOOLS } from "@/lib/hubs/tradesNichePack";
 import { TECH_NICHE_READY_TOOLS } from "@/lib/hubs/techNichePack";
 import { ADVANCED_TOOLS } from "@/lib/hubs/advancedToolsPack";
 import { GLOBAL_PLANNER_TOOLS } from "@/lib/hubs/globalPlannersPack";
+import { LIFE_CURIOSITY_TOOLS } from "@/lib/hubs/lifeCuriosityPack";
 import {
   AFFORDABILITY_DISPLAY_CATEGORY,
   AFFORDABILITY_HUB_CATEGORIES,
@@ -47,6 +48,11 @@ import {
   CLOUD_AI_CATEGORY,
   ELECTRONICS_HW_CATEGORY,
   DIGITAL_SEO_CATEGORY,
+  LIFE_CALENDAR_CATEGORY,
+  LIFE_CURIOSITY_CATEGORIES,
+  LIFE_FUTURE_CATEGORY,
+  MONEY_CURIOSITY_CATEGORY,
+  RELATIONSHIP_CURIOSITY_CATEGORY,
 } from "@/lib/categoryPaths";
 import { pseoToolsAsCalculators } from "@/lib/pseo/calculatorsData";
 import { getClusterMateSlugs } from "@/lib/growthClusters";
@@ -65,6 +71,7 @@ export const calculators: Calculator[] = [
   ...TECH_NICHE_READY_TOOLS,
   ...ADVANCED_TOOLS,
   ...GLOBAL_PLANNER_TOOLS,
+  ...LIFE_CURIOSITY_TOOLS,
 ];
 
 export const CATEGORIES = [
@@ -73,6 +80,10 @@ export const CATEGORIES = [
   "Short-term Rental & Housing",
   "Rent & Roommate Splits",
   "Investing & Wealth Building",
+  LIFE_FUTURE_CATEGORY,
+  LIFE_CALENDAR_CATEGORY,
+  MONEY_CURIOSITY_CATEGORY,
+  RELATIONSHIP_CURIOSITY_CATEGORY,
   "Crypto & Digital Assets",
   "Freelance & Self-Employment",
   "Freelance & Micro-Business",
@@ -154,6 +165,11 @@ export {
   CLOUD_AI_CATEGORY,
   ELECTRONICS_HW_CATEGORY,
   DIGITAL_SEO_CATEGORY,
+  LIFE_FUTURE_CATEGORY,
+  LIFE_CALENDAR_CATEGORY,
+  MONEY_CURIOSITY_CATEGORY,
+  RELATIONSHIP_CURIOSITY_CATEGORY,
+  LIFE_CURIOSITY_CATEGORIES,
 };
 
 /** File-converter categories registered in the master directory. */

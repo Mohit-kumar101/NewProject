@@ -281,6 +281,20 @@ export function OfferStackComparator({
             (~{money(winner.annualized)}/yr avg)
           </span>
         </p>
+        {scored
+          .filter((o) => o.key !== winner.key)
+          .sort((a, b) => b.threeYear - a.threeYear)
+          .slice(0, 1)
+          .map((runnerUp) => (
+            <p
+              key={runnerUp.key}
+              className="mt-3 rounded-xl border border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] bg-[color-mix(in_srgb,var(--accent)_8%,var(--background))] px-3 py-2 text-sm font-semibold"
+            >
+              {runnerUp.label} is{" "}
+              {money(winner.threeYear - runnerUp.threeYear)} behind over 3
+              years.
+            </p>
+          ))}
 
         <div className="mt-5 -mx-1 overflow-x-auto border-t border-[var(--border)] pt-4 sm:mt-6 sm:mx-0 sm:pt-5">
           <table className="w-full min-w-[20rem] text-left text-xs sm:min-w-[28rem] sm:text-sm">

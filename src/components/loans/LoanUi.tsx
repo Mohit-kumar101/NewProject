@@ -9,6 +9,7 @@ import {
   type AmortRow,
 } from "@/lib/loanTools";
 import { BalanceTrendChart } from "@/components/loans/BalanceTrendChart";
+import { HandoffArrivalBanner } from "@/components/shared/HandoffArrivalBanner";
 import { jsPDF } from "jspdf";
 import { downloadTextFile } from "@/lib/tokenomicsSeries";
 
@@ -270,13 +271,18 @@ export function LoanWorkspaceFrame({
   title,
   blurb,
   children,
+  onHandoffClear,
 }: {
   title: string;
   blurb: string;
   children: ReactNode;
+  onHandoffClear?: () => void;
 }) {
   return (
     <div className="space-y-6">
+      {onHandoffClear ? (
+        <HandoffArrivalBanner onClear={onHandoffClear} />
+      ) : null}
       <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
           Interactive workspace
@@ -287,6 +293,38 @@ export function LoanWorkspaceFrame({
         <p className="mt-1 text-sm text-[var(--muted)]">{blurb}</p>
       </div>
       {children}
+    </div>
+  );
+}
+
+export function ExtraPaymentChips({
+  value,
+  amounts = [50, 100, 200],
+  onSelect,
+}: {
+  value: number;
+  amounts?: number[];
+  onSelect: (n: number) => void;
+}) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {amounts.map((amount) => {
+        const active = value === amount;
+        return (
+          <button
+            key={amount}
+            type="button"
+            onClick={() => onSelect(amount)}
+            className={
+              active
+                ? "rounded-lg bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-3 py-1.5 text-xs font-semibold text-white"
+                : "rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold text-[var(--foreground)] hover:border-[var(--accent)]"
+            }
+          >
+            +${amount}/mo
+          </button>
+        );
+      })}
     </div>
   );
 }

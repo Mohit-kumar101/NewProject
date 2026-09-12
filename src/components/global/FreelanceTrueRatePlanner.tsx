@@ -5,6 +5,15 @@ import type { Calculator } from "@/lib/types";
 import { Field, Panel, ResultHero, Row } from "@/components/global/ui";
 import { calculateFreelanceRate } from "@/lib/globalPlanners/freelanceRate";
 import { money } from "@/lib/globalPlanners/money";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const FREELANCE_DEFAULTS = {
+  desiredNetMonthly: 4000,
+  billableHoursPerWeek: 25,
+  weeksPerMonth: 4,
+  taxPct: 25,
+};
 
 export function FreelanceTrueRatePlanner({
   calculator,
@@ -12,15 +21,28 @@ export function FreelanceTrueRatePlanner({
   calculator: Calculator;
   related: Calculator[];
 }) {
-  const [desiredNetMonthly, setDesiredNetMonthly] = useState(4000);
-  const [billableHoursPerWeek, setBillableHoursPerWeek] = useState(25);
-  const [weeksPerMonth, setWeeksPerMonth] = useState(4);
+  const [desiredNetMonthly, setDesiredNetMonthly] = useState(
+    FREELANCE_DEFAULTS.desiredNetMonthly
+  );
+  const [billableHoursPerWeek, setBillableHoursPerWeek] = useState(
+    FREELANCE_DEFAULTS.billableHoursPerWeek
+  );
+  const [weeksPerMonth, setWeeksPerMonth] = useState(FREELANCE_DEFAULTS.weeksPerMonth);
   const [platformFeePct, setPlatformFeePct] = useState(20);
   const [processorFeePct, setProcessorFeePct] = useState(2.9);
   const [processorFixed, setProcessorFixed] = useState(0.3);
   const [fxLossPct, setFxLossPct] = useState(1);
   const [taxPct, setTaxPct] = useState(25);
   const [nonBillablePct, setNonBillablePct] = useState(30);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      desiredNetMonthly: setDesiredNetMonthly,
+      billableHoursPerWeek: setBillableHoursPerWeek,
+      weeksPerMonth: setWeeksPerMonth,
+      taxPct: setTaxPct,
+    })
+  );
 
   const result = useMemo(
     () =>
@@ -49,7 +71,22 @@ export function FreelanceTrueRatePlanner({
   );
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{
+        desiredNetMonthly,
+        billableHoursPerWeek,
+        weeksPerMonth,
+        taxPct,
+      }}
+      extras={{ invoiceGross: result.invoiceGross }}
+      onClear={() => {
+        setDesiredNetMonthly(FREELANCE_DEFAULTS.desiredNetMonthly);
+        setBillableHoursPerWeek(FREELANCE_DEFAULTS.billableHoursPerWeek);
+        setWeeksPerMonth(FREELANCE_DEFAULTS.weeksPerMonth);
+        setTaxPct(FREELANCE_DEFAULTS.taxPct);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Fee waterfall:</strong>{" "}
         platform → processor → FX → tax → admin time, then reverse-solves the
@@ -69,12 +106,16 @@ export function FreelanceTrueRatePlanner({
         </Panel>
         <div className="space-y-5">
           <ResultHero
-            eyebrow="Invoice this amount"
-            value={money(result.invoiceGross)}
+            eyebrow="Hourly floor to hit your net"
+            value={money(result.hourlyBillRate, 2)}
             insight={result.insight}
           >
+            <p className="mt-2 text-sm font-medium text-[var(--foreground)]">
+              This assumes {billableHoursPerWeek} billable hours/week, not
+              40×52.
+            </p>
             <dl className="mt-4 space-y-2 border-t border-[var(--border)] pt-4">
-              <Row label="Hourly bill rate" value={money(result.hourlyBillRate, 2)} />
+              <Row label="Invoice gross" value={money(result.invoiceGross)} />
               <Row label="Take-home %" value={`${result.effectiveTakeHomePct.toFixed(1)}%`} />
             </dl>
           </ResultHero>
@@ -102,6 +143,6 @@ export function FreelanceTrueRatePlanner({
         </div>
         <p className="text-xs text-[var(--muted)]">{calculator.seoContent.intro}</p>
       </Panel>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

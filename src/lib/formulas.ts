@@ -475,11 +475,24 @@ export function runCalculation(
         else loan = payment * ((1 - Math.pow(1 + r, -termMonths)) / r);
       }
       const maxPrice = loan + inputs.downPayment;
-      return result("Max Home Price", currency(maxPrice), [
-        { label: "Max Loan Amount", value: currency(loan) },
-        { label: "Affordable Monthly P&I", value: currency(payment) },
-        { label: "Down Payment", value: currency(inputs.downPayment) },
-      ]);
+      return {
+        primary: {
+          label: "Max Home Price",
+          value: currency(maxPrice),
+          highlight: true,
+        },
+        featured: [
+          {
+            label: "Estimated monthly P&I",
+            value: currency(payment),
+            highlight: true,
+          },
+        ],
+        secondary: [
+          { label: "Max Loan Amount", value: currency(loan) },
+          { label: "Down Payment", value: currency(inputs.downPayment) },
+        ],
+      };
     }
 
     case "propertyTax": {

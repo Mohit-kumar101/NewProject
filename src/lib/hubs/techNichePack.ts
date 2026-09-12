@@ -4,6 +4,11 @@
  */
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
+import {
+  UNIQUE_SEO_CONTEXT,
+  uniqueFaqs,
+  uniqueHowToUse,
+} from "@/lib/uniqueToolCopy";
 import { TECH_PACK_SPECS } from "@/lib/hubs/techPackData";
 import {
   CLOUD_AI_CATEGORY,
@@ -54,14 +59,13 @@ function buildFromSpec(
     seoTitle: spec.seoH1,
     seoH1: spec.seoH1,
     seoDescription: spec.seoDescription,
-    seoKeywords: [spec.focusKeyword, spec.title, "free calculator", "no sign up"],
+    seoKeywords: [spec.focusKeyword, spec.title],
     inputs,
     formulaSummary: spec.formulaSummary,
     realWorldExample: spec.realWorldExample,
-    seoContextTemplate:
-      'Looking for "{{focusKeyword}}"? {{formulaSummary}} Example: {{example}} Free {{title}} — instant, no sign up.',
+    seoContextTemplate: UNIQUE_SEO_CONTEXT,
     explanationTemplate:
-      '{{variantExplanation}} Free {{title}} for "{{focusKeyword}}".',
+      "{{variantExplanation}} {{formulaSummary}} Example: {{example}}",
     longTailModifiers: [
       modifier("free-online", spec.focusKeyword, spec.description, {
         faqs: [
@@ -74,21 +78,18 @@ function buildFromSpec(
     ],
     seoContent: {
       intro: `${spec.description} Planning estimates only — verify with production tools and vendor pricing where applicable.`,
-      howToUse: [
-        "Enter your values in the input sliders.",
-        "Read the primary result and supporting breakdown.",
-        "Adjust inputs to compare scenarios.",
-      ],
-      faqs: [
-        {
-          question: `How is this ${spec.title.toLowerCase()} calculated?`,
-          answer: spec.formulaSummary,
-        },
-        {
-          question: "Is this calculator free?",
-          answer: "Yes. Instant browser results with no sign up required.",
-        },
-      ],
+      howToUse: uniqueHowToUse({
+        inputLabels: inputs.map((input) => input.label),
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: "tech",
+      }),
+      faqs: uniqueFaqs({
+        title: spec.title,
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: "tech",
+      }),
     },
   };
 }

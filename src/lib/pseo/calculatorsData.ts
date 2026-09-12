@@ -37,7 +37,7 @@ function definePseoTool(opts: {
     id: opts.id,
     slug: slugFromKeyword(targetKeyword),
     targetKeyword,
-    seoTitle: `${targetKeyword} (Free Online Calculator & Formula)`,
+    seoTitle: opts.targetKeyword,
     metaDescription: clampMeta(opts.metaDescription),
     h1: targetKeyword,
     category: opts.category,
@@ -606,22 +606,19 @@ export function pseoToolsAsCalculators(): Calculator[] {
     seoContent: {
       intro: tool.whatIsIt,
       howToUse: [
-        "Enter the inputs in the calculator above.",
-        "Read the live result and compare it to the formula below.",
-        "Use the real-world example to sanity-check your numbers.",
+        tool.whatIsIt.split(/(?<=\.)\s/)[0] || tool.whatIsIt,
+        tool.formula,
+        `Worked case: ${tool.realWorldExample}`,
+        tool.whyItMatters,
       ],
       faqs: tool.schemaData.faqs,
     },
     seoTitle: tool.seoTitle,
     seoDescription: tool.metaDescription,
     seoH1: tool.h1,
-    seoKeywords: [
-      tool.targetKeyword,
-      "free online calculator",
-      "no sign up",
-      "instant calculation",
-      "formula & step-by-step example",
-    ],
+    seoKeywords: [tool.targetKeyword, tool.h1],
+    formulaSummary: tool.formula,
+    realWorldExample: tool.realWorldExample,
   }));
 }
 

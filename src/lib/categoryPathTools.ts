@@ -64,6 +64,11 @@ import {
   GLOBAL_CATEGORY_PATH_SLUGS,
   getGlobalPlannerBySlug,
 } from "@/lib/hubs/globalPlannersPack";
+import {
+  LIFE_CURIOSITY_TOOLS,
+  LIFE_CURIOSITY_SLUGS,
+  getLifeCuriosityToolBySlug,
+} from "@/lib/hubs/lifeCuriosityPack";
 
 export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...EXPANSION_READY_TOOLS,
@@ -76,6 +81,7 @@ export const CATEGORY_PATH_READY_TOOLS: Calculator[] = [
   ...TECH_NICHE_READY_TOOLS,
   ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
   ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
+  ...LIFE_CURIOSITY_TOOLS,
 ];
 
 export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
@@ -89,6 +95,7 @@ export const CATEGORY_PATH_ALL_TOOLS: Calculator[] = [
   ...TECH_NICHE_TOOLS,
   ...ADVANCED_TOOLS.filter((t) => t.useCategoryPath),
   ...GLOBAL_PLANNER_TOOLS.filter((t) => t.useCategoryPath),
+  ...LIFE_CURIOSITY_TOOLS,
 ];
 
 export const CATEGORY_PATH_SLUGS = new Set([
@@ -102,6 +109,7 @@ export const CATEGORY_PATH_SLUGS = new Set([
   ...TECH_NICHE_SLUGS,
   ...ADVANCED_CATEGORY_PATH_SLUGS,
   ...GLOBAL_CATEGORY_PATH_SLUGS,
+  ...LIFE_CURIOSITY_SLUGS,
 ]);
 
 /** Prefer newer hub packs when slugs overlap. */
@@ -109,6 +117,7 @@ export function getCategoryPathToolBySlug(
   slug: string
 ): Calculator | undefined {
   return (
+    getLifeCuriosityToolBySlug(slug) ??
     getGlobalPlannerBySlug(slug) ??
     getAdvancedToolBySlug(slug) ??
     getTechNicheToolBySlug(slug) ??

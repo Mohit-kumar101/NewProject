@@ -4,6 +4,14 @@ import { useMemo, useState } from "react";
 import type { Calculator } from "@/lib/types";
 import { Field, Panel, ResultHero, Row } from "@/components/global/ui";
 import { calculateReverseDiet } from "@/lib/globalPlanners/reverseDiet";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const REVERSE_DEFAULTS = {
+  currentCalories: 1800,
+  maintenanceCalories: 2500,
+  currentWeightKg: 72,
+};
 
 export function ReverseDietPlanner({
   calculator,
@@ -11,13 +19,24 @@ export function ReverseDietPlanner({
   calculator: Calculator;
   related: Calculator[];
 }) {
-  const [currentCalories, setCurrentCalories] = useState(1800);
-  const [maintenanceCalories, setMaintenanceCalories] = useState(2500);
-  const [currentWeightKg, setCurrentWeightKg] = useState(72);
+  const [currentCalories, setCurrentCalories] = useState(REVERSE_DEFAULTS.currentCalories);
+  const [maintenanceCalories, setMaintenanceCalories] = useState(
+    REVERSE_DEFAULTS.maintenanceCalories
+  );
+  const [currentWeightKg, setCurrentWeightKg] = useState(REVERSE_DEFAULTS.currentWeightKg);
   const [targetWeeklyGainKg, setTargetWeeklyGainKg] = useState(0.15);
   const [plannedBumpKcal, setPlannedBumpKcal] = useState(100);
   const [weeks, setWeeks] = useState(12);
   const [observedWeeklyChangeKg, setObservedWeeklyChangeKg] = useState(0.05);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      currentCalories: setCurrentCalories,
+      maintenanceCalories: setMaintenanceCalories,
+      currentWeightKg: setCurrentWeightKg,
+      weightKg: setCurrentWeightKg,
+    })
+  );
 
   const result = useMemo(
     () =>
@@ -42,7 +61,15 @@ export function ReverseDietPlanner({
   );
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{ currentCalories, maintenanceCalories, currentWeightKg }}
+      onClear={() => {
+        setCurrentCalories(REVERSE_DEFAULTS.currentCalories);
+        setMaintenanceCalories(REVERSE_DEFAULTS.maintenanceCalories);
+        setCurrentWeightKg(REVERSE_DEFAULTS.currentWeightKg);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Adaptive bumps:</strong>{" "}
         if your scale is still dropping too fast, next week’s calorie increase
@@ -111,6 +138,6 @@ export function ReverseDietPlanner({
         </div>
         <p className="text-xs text-[var(--muted)]">★ = adaptive smaller bump. {calculator.seoContent.intro}</p>
       </Panel>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

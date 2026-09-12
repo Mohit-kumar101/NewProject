@@ -7,7 +7,7 @@ export function HomeGuidesSpotlight() {
 
   return (
     <section
-      className="relative border-t border-[var(--glass-border)]"
+      className="relative border-t border-[var(--border)]"
       aria-labelledby="home-guides-heading"
     >
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
@@ -38,11 +38,12 @@ export function HomeGuidesSpotlight() {
           </div>
         </div>
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="reveal-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((article) => (
             <li key={article.slug}>
               <Link
                 href={`/guides/${article.slug}`}
+                data-reveal
                 className="glass-3d pressable-3d block h-full rounded-2xl px-4 py-4"
               >
                 <p className="text-[10px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">

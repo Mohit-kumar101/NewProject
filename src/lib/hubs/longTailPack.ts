@@ -51,7 +51,7 @@ const warehouseOvertimePay: Calculator = {
   realWorldExample:
     "At $22/hr with 40 regular + 8 OT at 1.5×, regular pay is $880, OT is $264, and weekly total is $1,144.",
   seoContextTemplate:
-    "Looking up “{{focusKeyword}}”? {{formulaSummary}} Real-world example: {{example}} Updated for {{year}}—free, instant, no sign up.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} Free {{title}} for “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -243,7 +243,7 @@ const groceryCostPerMeal: Calculator = {
   realWorldExample:
     "$120 covering 21 meals for 2 people → $5.71 per meal batch, or about $2.86 per person-meal.",
   seoContextTemplate:
-    "Searching for “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [

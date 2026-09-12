@@ -15,6 +15,23 @@ import {
   type TrainingExperience,
   type UnitSystem,
 } from "@/lib/bulkCutPlanner/formulas";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const ACTIVITY_MULT: Record<ActivityLevel, number> = {
+  sedentary: 1.2,
+  light: 1.375,
+  moderate: 1.55,
+  active: 1.725,
+  veryActive: 1.9,
+};
+
+const BULK_CUT_DEFAULTS = {
+  age: 28,
+  weight: 75,
+  heightCm: 178,
+  trainingDays: 4,
+};
 
 function MacroBar({
   label,
@@ -54,9 +71,9 @@ export function BulkCutMacroPlanner({
 }) {
   const [units, setUnits] = useState<UnitSystem>("metric");
   const [sex, setSex] = useState<"male" | "female">("male");
-  const [age, setAge] = useState(28);
-  const [weight, setWeight] = useState(75);
-  const [heightCm, setHeightCm] = useState(178);
+  const [age, setAge] = useState(BULK_CUT_DEFAULTS.age);
+  const [weight, setWeight] = useState(BULK_CUT_DEFAULTS.weight);
+  const [heightCm, setHeightCm] = useState(BULK_CUT_DEFAULTS.heightCm);
   const [heightFt, setHeightFt] = useState(5);
   const [heightIn, setHeightIn] = useState(10);
   const [activity, setActivity] = useState<ActivityLevel>("moderate");
@@ -65,14 +82,21 @@ export function BulkCutMacroPlanner({
   const [weeklyRate, setWeeklyRate] = useState(0.75);
   const [targetWeight, setTargetWeight] = useState(70);
   const [useTarget, setUseTarget] = useState(true);
-  const [trainingDays, setTrainingDays] = useState(4);
+  const [trainingDays, setTrainingDays] = useState(BULK_CUT_DEFAULTS.trainingDays);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      age: setAge,
+      trainingDays: setTrainingDays,
+    })
+  );
+
+  const metric =
+    units === "metric"
+      ? { weightKg: weight, heightCm }
+      : imperialToMetric(weight, heightFt, heightIn);
 
   const result = useMemo(() => {
-    const metric =
-      units === "metric"
-        ? { weightKg: weight, heightCm }
-        : imperialToMetric(weight, heightFt, heightIn);
-
     return calculateBulkCut({
       sex,
       age,
@@ -104,6 +128,8 @@ export function BulkCutMacroPlanner({
     targetWeight,
     useTarget,
     trainingDays,
+    metric.weightKg,
+    metric.heightCm,
   ]);
 
   const displayWeight = (kg: number) =>
@@ -112,7 +138,27 @@ export function BulkCutMacroPlanner({
       : `${kgToLbs(kg).toFixed(1)} lb`;
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{ age, trainingDays }}
+      extras={{
+        dailyCalories: result.dailyCalories,
+        tdee: result.tdee,
+        weightKg: metric.weightKg,
+        heightCm: metric.heightCm,
+        sexMale: sex === "male" ? 1 : 0,
+        activityMultiplier: ACTIVITY_MULT[activity],
+      }}
+      onClear={() => {
+        setAge(BULK_CUT_DEFAULTS.age);
+        setWeight(BULK_CUT_DEFAULTS.weight);
+        setHeightCm(BULK_CUT_DEFAULTS.heightCm);
+        setTrainingDays(BULK_CUT_DEFAULTS.trainingDays);
+        setUnits("metric");
+        setSex("male");
+        setActivity("moderate");
+      }}
+    >
       <div className="flex flex-wrap gap-2">
         {(["metric", "imperial"] as UnitSystem[]).map((u) => (
           <button
@@ -360,7 +406,7 @@ export function BulkCutMacroPlanner({
       <p className="text-xs text-[var(--muted)]">
         {calculator.seoContent.intro} Estimates use Mifflin–St Jeor and the ~3,500 kcal/lb rule — not medical advice.
       </p>
-    </div>
+    </PlannerHandoffChrome>
   );
 }
 

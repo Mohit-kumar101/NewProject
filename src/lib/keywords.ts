@@ -1,5 +1,10 @@
 import keywordsData from "../../data/keywords.json";
 import type { Calculator, CalculatorFaq } from "@/lib/types";
+import {
+  uniqueKeywordFeatures,
+  uniqueKeywordRegions,
+  uniqueKeywordUseCases,
+} from "@/lib/uniqueToolCopy";
 
 export const SEO_CONTENT_YEAR = 2026;
 
@@ -96,36 +101,32 @@ export function buildFallbackKeywordPack(calculator: Calculator): KeywordPack {
     ? "track"
     : "calculate";
   const hint = inputHint(calculator);
+  const example = calculator.realWorldExample?.replace(/\s+/g, " ").trim();
 
   return {
     primary: `how to ${verb} ${metricLower}`,
     benefit: converter
       ? `Convert ${metric} without uploading a file`
-      : `See how ${hint} changes ${metricLower}`,
+      : calculator.formulaSummary
+        ? calculator.formulaSummary
+        : `See how ${hint} changes ${metricLower}`,
     synonyms: [metricLower, `${metricLower} ${converter ? "converter" : "formula"}`],
-    useCases: [
-      `Adjust ${hint} and watch ${metricLower} update`,
-      `Compare two ${metricLower} scenarios before you commit`,
-      `Cross-check a quote or spreadsheet with the same inputs`,
-    ],
+    useCases: uniqueKeywordUseCases(calculator),
     regions: converter
-      ? ["Works in the browser on iPhone, Android, and desktop"]
-      : [`${calculator.category} planning examples`],
+      ? [
+          "Runs in this browser on iPhone, Android, and desktop. The file is not uploaded for the conversion itself.",
+        ]
+      : uniqueKeywordRegions(calculator),
     longTails: [
       `how to ${verb} ${metricLower}`,
-      `${metricLower} with ${hint}`,
-      `${metricLower} formula explained`,
+      calculator.formulaSummary
+        ? `${metricLower}: ${calculator.formulaSummary}`
+        : `${metricLower} with ${hint}`,
+      example
+        ? `${metricLower} example: ${example}`
+        : `${metricLower} formula explained`,
     ],
-    features: [
-      calculator.inputs
-        .slice(0, 3)
-        .map((input) => input.label)
-        .join(", ") || "Live inputs",
-      calculator.formulaSummary || packBenefitFallback(converter, metric),
-      converter
-        ? "Conversion runs on this device — files are not uploaded"
-        : "Planning estimate you can verify against the formula",
-    ],
+    features: uniqueKeywordFeatures(calculator),
     faqs: [
       {
         question: `What do I enter to ${verb} ${metricLower}?`,
@@ -139,12 +140,6 @@ export function buildFallbackKeywordPack(calculator: Calculator): KeywordPack {
       },
     ],
   };
-}
-
-function packBenefitFallback(converter: boolean, metric: string): string {
-  return converter
-    ? `${metric} conversion with a live preview`
-    : `${metric} result from the inputs below`;
 }
 
 function looksClonedUseCases(useCases: string[]): boolean {

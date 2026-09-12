@@ -67,13 +67,18 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
   const [progress, setProgress] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const [preset, setPreset] = useState<QualityPreset>("custom");
-  const [resizeMode, setResizeMode] = useState<ResizeMode>("original");
-  const [width, setWidth] = useState(1024);
-  const [height, setHeight] = useState(1024);
+  const emailDefault = slug === "png-jpg-converter";
+  const [preset, setPreset] = useState<QualityPreset>(
+    emailDefault ? "email" : "custom"
+  );
+  const [resizeMode, setResizeMode] = useState<ResizeMode>(
+    emailDefault ? "max" : "original"
+  );
+  const [width, setWidth] = useState(emailDefault ? 1600 : 1024);
+  const [height, setHeight] = useState(emailDefault ? 1600 : 1024);
   const [percent, setPercent] = useState(100);
   const [lockAspect, setLockAspect] = useState(true);
-  const [quality, setQuality] = useState(0.92);
+  const [quality, setQuality] = useState(emailDefault ? 0.72 : 0.92);
   const [background, setBackground] = useState("#ffffff");
   const [icoSizes, setIcoSizes] = useState<number[]>([16, 32, 48]);
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null);
@@ -275,9 +280,31 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
     direction.target === "bmp" ||
     direction.target === "tiff";
 
+  const sourceSize = active?.file.size ?? files[0]?.size ?? 0;
+  const resultSize = active?.blob.size ?? 0;
+  const savedBytes = sourceSize > 0 && resultSize > 0 ? sourceSize - resultSize : 0;
+  const savedPct =
+    sourceSize > 0 && resultSize > 0
+      ? Math.round((savedBytes / sourceSize) * 100)
+      : 0;
+  const flattensTransparency = showOpaqueBg;
+
   return (
     <div className="space-y-5">
       <ConverterPrivacyRecent toolSlug={slug} engine="canvas" />
+      {slug === "heic-jpg-converter" ? (
+        <p className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--muted)]">
+          <strong className="text-[var(--foreground)]">iPhone HEIC:</strong>{" "}
+          Convert photos from AirDrop, Windows, or Google Photos here. Files
+          stay on this device — nothing is uploaded.
+        </p>
+      ) : null}
+      {slug === "webp-png-converter" ? (
+        <p className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--muted)]">
+          WebP → PNG keeps transparency. Use PNG → JPG only when you want a
+          smaller photo file.
+        </p>
+      ) : null}
       <div className="calc-panel rounded-2xl p-4 sm:p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -285,8 +312,7 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
               Direction
             </p>
             <p className="mt-1 text-sm text-[var(--muted)]">
-              Converts with Canvas in your browser—nothing is uploaded. Batch up
-              to {MAX_BATCH} images.
+              Files never leave your browser. Batch up to {MAX_BATCH} images.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -501,6 +527,13 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
             </label>
           ) : null}
 
+          {flattensTransparency ? (
+            <p className="sm:col-span-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-300">
+              JPG, BMP, and TIFF flatten transparency. Transparent PNG/WebP
+              pixels become this background color.
+            </p>
+          ) : null}
+
           {showOpaqueBg ? (
             <label className="block text-sm">
               <span className="mb-1.5 block text-xs font-medium text-[var(--muted)]">
@@ -627,6 +660,18 @@ export function ImageFileConverter({ slug }: { slug: ImageConverterSlug }) {
           </div>
         </figure>
       </div>
+
+      {active && sourceSize > 0 ? (
+        <p className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm">
+          <strong className="text-[var(--foreground)]">Size:</strong>{" "}
+          {formatFileSize(sourceSize)} → {formatFileSize(resultSize)}
+          {savedBytes > 0
+            ? ` · saved ${formatFileSize(savedBytes)} (${savedPct}%)`
+            : savedBytes < 0
+              ? ` · ${formatFileSize(-savedBytes)} larger (quality/format)`
+              : ""}
+        </p>
+      ) : null}
 
       {progress ? (
         <p className="text-sm font-medium text-[var(--accent)]">{progress}</p>

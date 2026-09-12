@@ -5,6 +5,11 @@
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
 import { HEALTH_DISPLAY_CATEGORY } from "@/lib/categoryPaths";
+import {
+  UNIQUE_SEO_CONTEXT,
+  uniqueFaqs,
+  uniqueHowToUse,
+} from "@/lib/uniqueToolCopy";
 
 export { HEALTH_DISPLAY_CATEGORY };
 
@@ -45,7 +50,6 @@ function buildHealthTool(spec: {
   realWorldExample: string;
   inputs: CalculatorInput[];
 }): Calculator {
-  const metric = spec.title.replace(/ Calculator$/i, "");
   return {
     slug: spec.slug,
     title: spec.title,
@@ -57,14 +61,13 @@ function buildHealthTool(spec: {
     seoTitle: spec.seoH1,
     seoH1: spec.seoH1,
     seoDescription: spec.seoDescription,
-    seoKeywords: [spec.focusKeyword, spec.title, "free online", "health calculator"],
+    seoKeywords: [spec.focusKeyword, spec.title],
     inputs: spec.inputs,
     formulaSummary: spec.formulaSummary,
     realWorldExample: spec.realWorldExample,
-    seoContextTemplate:
-      'Looking for "{{focusKeyword}}"? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}—instant, no sign up. Estimates only, not medical advice.',
+    seoContextTemplate: UNIQUE_SEO_CONTEXT,
     explanationTemplate:
-      '{{variantExplanation}} Free {{title}} for "{{focusKeyword}}" ({{year}}).',
+      "{{variantExplanation}} {{formulaSummary}} Example: {{example}}",
     longTailModifiers: [
       modifier(
         "free-online",
@@ -72,42 +75,29 @@ function buildHealthTool(spec: {
         spec.description,
         {
           benefit: "Instant estimate",
-          faqs: [
-            {
-              question: `How do I use the ${spec.title}?`,
-              answer: spec.formulaSummary,
-            },
-            {
-              question: `Is this ${metric.toLowerCase()} free?`,
-              answer:
-                "Yes. Results run instantly in your browser with no sign up. Outputs are planning estimates—not medical, legal, or financial advice.",
-            },
-          ],
+          faqs: uniqueFaqs({
+            title: spec.title,
+            formulaSummary: spec.formulaSummary,
+            example: spec.realWorldExample,
+            domain: "health",
+          }),
         }
       ),
     ],
     seoContent: {
       intro: `${spec.description} Estimates only—not a diagnosis or prescription.`,
-      howToUse: [
-        "Adjust the sliders or enter values for your situation.",
-        "Read the primary result and supporting metrics.",
-        "Use the figures for planning; confirm health decisions with a qualified professional.",
-      ],
-      faqs: [
-        {
-          question: `How is ${metric.toLowerCase()} calculated?`,
-          answer: spec.formulaSummary,
-        },
-        {
-          question: `What is a real-world example?`,
-          answer: spec.realWorldExample,
-        },
-        {
-          question: "Is this tool medical advice?",
-          answer:
-            "No. These calculators provide general estimates for education and planning. They do not replace advice from a doctor, dietitian, or other licensed professional.",
-        },
-      ],
+      howToUse: uniqueHowToUse({
+        inputLabels: spec.inputs.map((input) => input.label),
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: "health",
+      }),
+      faqs: uniqueFaqs({
+        title: spec.title,
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: "health",
+      }),
     },
   };
 }

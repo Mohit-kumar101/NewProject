@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { SmartAdviceBox } from "@/components/SmartAdviceBox";
+import { HandoffCards } from "@/components/shared/HandoffCards";
+import { HandoffArrivalBanner } from "@/components/shared/HandoffArrivalBanner";
+import { takeScenarioBag } from "@/components/shared/useHandoffHydration";
 import { StrategicInsightsPanel } from "@/components/strategic/StrategicInsightsPanel";
 import type { AdviceItem } from "@/lib/types";
 import type { Calculator } from "@/lib/types";
@@ -12,6 +15,7 @@ import {
   LoanNumberField,
   LoanRelatedTools,
   LoanSparkline,
+  ExtraPaymentChips,
   LoanWhatIfBanner,
   LoanWorkspaceFrame,
 } from "@/components/loans/LoanUi";
@@ -139,10 +143,16 @@ export function MonthlyMortgageWorkspace({
   const [values, setValues] = useState<Record<string, number>>(() =>
     defaultsFromCalculator(calculator)
   );
-  const [accelerateOpen, setAccelerateOpen] = useState(false);
+  const [accelerateOpen, setAccelerateOpen] = useState(true);
   const [amortView, setAmortView] = useState<"first" | "last">("first");
 
   useEffect(() => {
+    const bag = takeScenarioBag();
+    if (bag) {
+      setValues((prev) => ({ ...prev, ...bag }));
+      setHydrated(true);
+      return;
+    }
     const saved = loadLoanToolState(FORMULA_TYPE);
     if (saved) {
       setValues((prev) => ({ ...prev, ...saved }));
@@ -269,6 +279,9 @@ export function MonthlyMortgageWorkspace({
       title="Monthly mortgage payment studio"
       blurb="Core inputs unchanged — add optional PITI, explore extra or bi-weekly payoffs, and compare how interest vs principal shifts over time."
     >
+      <HandoffArrivalBanner
+        onClear={() => setValues(defaultsFromCalculator(calculator))}
+      />
       <div className="calc-panel rounded-2xl p-5 sm:p-6">
         <p className="text-[11px] font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
           {pitiEnabled ? "Estimated monthly PITI" : "Principal & interest"}
@@ -449,6 +462,10 @@ export function MonthlyMortgageWorkspace({
                   step={25}
                   onChange={(n) => set("extraPayment", n)}
                 />
+                <ExtraPaymentChips
+                  value={extraPayment}
+                  onSelect={(n) => set("extraPayment", n)}
+                />
                 <LoanWhatIfBanner text={accelerateLine} />
                 <p className="text-sm leading-relaxed text-[var(--muted)]">
                   {biWeeklyLine}
@@ -527,6 +544,14 @@ export function MonthlyMortgageWorkspace({
       />
 
       <SmartAdviceBox items={advice} />
+      <HandoffCards
+        slug={calculator.slug}
+        values={values}
+        extras={{
+          monthlyPayment: pitiEnabled ? monthlyPITI : monthlyPI,
+          principal,
+        }}
+      />
       <LoanRelatedTools calculator={calculator} related={related} />
     </LoanWorkspaceFrame>
   );

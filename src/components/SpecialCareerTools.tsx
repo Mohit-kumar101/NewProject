@@ -38,12 +38,16 @@ export function SpecialCareerTools({ variant = "home" }: Props) {
           </p>
         </div>
 
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {CONFIG_CALCULATORS.map((tool) => (
-            <li key={tool.slug}>
+        <ul className="reveal-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {CONFIG_CALCULATORS.map((tool, index) => (
+            <li
+              key={tool.slug}
+              data-reveal
+              style={{ transitionDelay: `${index * 60}ms` }}
+            >
               <Link
                 href={`/tools/${tool.slug}`}
-                className="hover-lift flex h-full flex-col calc-panel rounded-2xl px-4 py-4"
+                className="hover-lift glass-3d pressable-3d flex h-full flex-col rounded-2xl px-4 py-4"
               >
                 <span className="text-sm font-semibold">{tool.topic}</span>
                 <span className="mt-2 line-clamp-2 text-xs text-[var(--muted)]">

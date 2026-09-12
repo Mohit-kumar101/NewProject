@@ -267,6 +267,7 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
     pitfalls: [
       "Deleting HEIC originals after a low-quality conversion",
       "Re-saving JPG many times during edits",
+      "Assuming default quality is lossless — lower the slider only if you need a smaller email file",
     ],
     sections: [
       {
@@ -468,6 +469,97 @@ export const TOOL_EDITORIAL_GUIDES: ToolEditorialGuide[] = [
       {
         heading: "Hit the target with food you like",
         body: "The best protein number is one you can repeat. Use the calculator for a range, then build meals you will not abandon in week two.",
+      },
+    ],
+  },
+  {
+    slug: "when-can-i-retire",
+    relatedGuideSlug: "retirement-year-is-a-spreadsheet",
+    whoItsFor:
+      "Anyone who wants a first retirement year from savings, monthly investing, and the income they actually want later—not a brochure age.",
+    workedExample:
+      "Age 34, $48,000 saved, $900/month at 7%, needing $42,000 a year at 4% → about $1.05M, around age 58 if the deposits hold.",
+    pitfalls: [
+      "Typing today’s full lifestyle as the retirement budget",
+      "Using a 10%+ return to force an earlier year",
+      "Ignoring a bad first decade of withdrawals",
+    ],
+    sections: [
+      {
+        heading: "What the year actually is",
+        body: "The page grows today’s pile plus monthly deposits until it covers annual spend divided by your withdrawal rate. Change spend or the monthly amount before you change the return. Social Security is not included unless you subtract it from the income field.",
+      },
+    ],
+  },
+  {
+    slug: "how-long-will-my-money-last",
+    relatedGuideSlug: "retirement-year-is-a-spreadsheet",
+    whoItsFor:
+      "People with a lump sum and a yearly burn rate who need years until the account hits zero—not a savings goal.",
+    workedExample:
+      "$380,000, $32,000/year, 5% return, 2.5% inflation → a finite run of years; raise spend and the clock shortens fast.",
+    pitfalls: [
+      "Forgetting that spend rises with inflation each year",
+      "Treating the year count as guaranteed in a crash",
+    ],
+    sections: [
+      {
+        heading: "This is a burn clock",
+        body: "Balance grows by the return, then the year’s spend comes out, then spend is inflated. It is a planning sketch. A part-time income or a cheaper year lengthens it.",
+      },
+    ],
+  },
+  {
+    slug: "how-many-days-have-i-been-alive",
+    relatedGuideSlug: "days-alive-and-weekends-left",
+    whoItsFor:
+      "Anyone who wants finished midnights since birth, usually around a birthday or a reset year.",
+    workedExample:
+      "Born 12 March 1993 → tens of thousands of days by 2026, a bit over 33 years on the calendar.",
+    pitfalls: [
+      "Expecting the count to include today as a finished day",
+      "Using it as a medical or actuarial forecast",
+    ],
+    sections: [
+      {
+        heading: "It is only a date difference",
+        body: "Birthday to today in whole days. Pair it with weekends-until-80 if you want a number that changes how you book a Saturday.",
+      },
+    ],
+  },
+  {
+    slug: "if-i-invested-100-every-month",
+    relatedGuideSlug: "hundred-a-month-and-ten-a-day",
+    whoItsFor:
+      "People testing whether a small automatic deposit is worth starting, or comparing $100 to a larger amount they can actually send.",
+    workedExample:
+      "$100/month for 30 years at 7% is a real pile; most of it is growth, which only happens if the money stays invested.",
+    pitfalls: [
+      "Using a fantasy return to make $100 look like a fortune",
+      "Skipping the deposit in bad months and still quoting the 30-year number",
+    ],
+    sections: [
+      {
+        heading: "The habit matters more than the story",
+        body: "Raise the monthly field if $100 is a thought experiment. Leave it if that is what you can do. Either way, the page assumes you did not raid the account.",
+      },
+    ],
+  },
+  {
+    slug: "days-we-have-been-together",
+    relatedGuideSlug: "how-long-you-have-been-together",
+    whoItsFor:
+      "Couples who want a day count from the start date they both still tell—not a social-app anniversary.",
+    workedExample:
+      "Started 18 October 2019 → thousands of days by 2026; the 1,000th day is a separate countdown if you have not hit it yet.",
+    pitfalls: [
+      "Mixing the day you met with the day it became a relationship",
+      "Treating the count as a reason to stay or leave",
+    ],
+    sections: [
+      {
+        heading: "Say which clock you used",
+        body: "Known-since and together-since can differ by years. The percentage-of-life page needs a birthday as well. None of these scores a relationship.",
       },
     ],
   },

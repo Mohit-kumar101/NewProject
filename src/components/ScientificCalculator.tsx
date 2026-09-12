@@ -64,7 +64,6 @@ export function ScientificCalculator() {
   const [hasMemory, setHasMemory] = useState(false);
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
-  const [sciOpen, setSciOpen] = useState(false);
   const [justEvaluated, setJustEvaluated] = useState(false);
 
   const memoryLabel = hasMemory ? formatDisplayValue(memory) : "Empty";
@@ -617,7 +616,7 @@ export function ScientificCalculator() {
       type="button"
       aria-label={key.ariaLabel}
       onClick={key.action}
-      className={`flex h-full min-h-[2.25rem] items-center justify-center rounded-lg border text-[12px] font-semibold transition active:scale-[0.98] sm:min-h-[2.5rem] sm:rounded-xl sm:text-sm ${toneClass(
+      className={`flex min-h-[2.35rem] items-center justify-center rounded-lg border text-[11px] font-semibold transition active:scale-[0.98] sm:min-h-[2.6rem] sm:rounded-xl sm:text-sm ${toneClass(
         key.tone
       )} ${key.span === 2 ? "col-span-2" : ""}`}
     >
@@ -627,10 +626,8 @@ export function ScientificCalculator() {
 
   return (
     <div className="space-y-5">
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(200px,0.75fr)] lg:items-stretch">
-        <section
-          className="results-card flex h-[min(600px,calc(100dvh-9rem))] max-h-[calc(100dvh-9rem)] min-h-0 flex-col overflow-hidden calc-panel rounded-2xl"
-        >
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1.7fr)_minmax(200px,0.75fr)] lg:items-start">
+        <section className="results-card flex min-h-0 flex-col overflow-hidden calc-panel rounded-2xl">
         {/* Toolbar */}
         <div className="shrink-0 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--background)_70%,transparent)] px-3 py-2 sm:px-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -669,17 +666,6 @@ export function ScientificCalculator() {
               </button>
               <button
                 type="button"
-                onClick={() => setSciOpen((v) => !v)}
-                className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold transition md:hidden ${
-                  sciOpen
-                    ? "border-transparent bg-gradient-to-r from-[#00E5FF] to-[#2979FF] text-white"
-                    : "border-[var(--border)] text-[var(--muted)] hover:text-[var(--foreground)]"
-                }`}
-              >
-                Sci
-              </button>
-              <button
-                type="button"
                 onClick={() => setHistoryOpen((v) => !v)}
                 className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[11px] font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)] lg:hidden"
               >
@@ -690,9 +676,9 @@ export function ScientificCalculator() {
         </div>
 
         {/* Display */}
-        <div className="shrink-0 px-3 pt-2.5 sm:px-4 sm:pt-3">
+        <div className="shrink-0 px-3 pt-2 sm:px-4 sm:pt-2.5">
           <div
-            className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-2 sm:px-4 sm:py-2.5"
+            className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 sm:px-4 sm:py-2"
             aria-live="polite"
             aria-atomic="true"
             id={liveId}
@@ -708,7 +694,7 @@ export function ScientificCalculator() {
               )}
             </div>
             <p
-              className={`mt-0.5 break-all text-right font-[family-name:var(--font-display)] text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl ${
+              className={`mt-0.5 break-all text-right font-[family-name:var(--font-display)] text-xl font-bold tracking-tight sm:text-2xl ${
                 error ? "text-[#d64545] dark:text-[#ff8a8a]" : "result-glow"
               }`}
             >
@@ -726,19 +712,12 @@ export function ScientificCalculator() {
           </div>
         </div>
 
-        {/* Keypad fills remaining height — scrolls internally if needed */}
-        <div className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto overscroll-contain px-3 pb-3 pt-2 sm:gap-2 sm:px-4 sm:pb-3.5">
-          <div
-            className={`${
-              sciOpen ? "block" : "hidden"
-            } shrink-0 md:block`}
-          >
-            <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
-              {sciKeys.map(renderKey)}
-            </div>
+        {/* All keys visible — functions left, numbers right from sm up */}
+        <div className="grid grid-cols-[1.15fr_0.85fr] gap-1.5 px-2.5 pb-2.5 pt-2 sm:gap-2 sm:px-4 sm:pb-3.5">
+          <div className="grid grid-cols-5 gap-1 sm:gap-1.5">
+            {sciKeys.map(renderKey)}
           </div>
-
-          <div className="grid min-h-0 flex-1 grid-cols-4 content-stretch gap-1.5 sm:gap-2">
+          <div className="grid grid-cols-4 gap-1 sm:gap-1.5">
             {mainKeys.map(renderKey)}
           </div>
         </div>
@@ -748,7 +727,7 @@ export function ScientificCalculator() {
       <aside
         className={`flex min-h-0 flex-col overflow-hidden calc-panel rounded-2xl p-3 sm:p-4 ${
           historyOpen ? "flex max-h-[40vh]" : "hidden"
-        } lg:flex lg:h-[min(600px,calc(100dvh-9rem))] lg:max-h-[calc(100dvh-9rem)]`}
+        } lg:flex lg:max-h-[32rem]`}
       >
         <div className="flex shrink-0 items-center justify-between gap-3">
           <div>

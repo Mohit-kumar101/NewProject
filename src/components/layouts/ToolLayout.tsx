@@ -19,22 +19,24 @@ export function ToolLayout({
 }: ToolLayoutProps) {
   return (
     <div
-      className={`w-full overflow-x-clip px-3 py-6 sm:px-6 sm:py-10 ${className}`}
+      className={`w-full overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 ${className}`}
     >
-      <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 justify-center gap-5 sm:gap-6 md:grid-cols-1 lg:grid-cols-[200px_minmax(0,820px)_300px]">
-        <div className="hidden min-w-0 lg:block" />
-
-        <div className="mx-auto w-full min-w-0 max-w-[820px] tablet-readable calc-stage lg:max-w-none">
+      <div
+        className={`mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 lg:gap-8 ${
+          sidebar ? "lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start" : ""
+        }`}
+      >
+        <div className="mx-auto w-full min-w-0 max-w-3xl tablet-readable calc-stage lg:max-w-none">
           {children}
         </div>
 
-        <div className="hidden min-w-0 lg:block">
-          {sidebar ? (
+        {sidebar ? (
+          <div className="hidden min-w-0 lg:block">
             <aside aria-label="Terms and how this tool works">
               <div className="sticky top-24 space-y-4">{sidebar}</div>
             </aside>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

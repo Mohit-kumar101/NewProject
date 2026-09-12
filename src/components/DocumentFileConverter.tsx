@@ -372,11 +372,88 @@ export function DocumentFileConverter({
             ? `Drop ${direction.id === "merge-pdfs" ? "PDFs" : "images"}, or browse`
             : `Drop a file, or browse`
         }
-        hint={`Max ${formatFileSize(MAX_SIZE)} per file · private browser processing`}
+        hint={`Max ${formatFileSize(MAX_SIZE)} per file · files never leave this browser`}
         onFilesChange={(next) => {
           void onFilesChange(next);
         }}
       />
+
+      {direction.id === "merge-pdfs" && files.length > 0 ? (
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
+          <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
+            Merge order
+          </p>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            Drag is not required — use up/down to set page order. Max{" "}
+            {formatFileSize(MAX_SIZE)} each.
+          </p>
+          <ol className="mt-3 space-y-2">
+            {files.map((file, index) => (
+              <li
+                key={`${file.name}-${file.size}-${index}`}
+                className="flex items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-2"
+              >
+                <span className="min-w-0 truncate text-sm">
+                  {index + 1}. {file.name}
+                </span>
+                <span className="flex shrink-0 gap-1">
+                  <button
+                    type="button"
+                    disabled={index === 0}
+                    onClick={() => {
+                      if (index === 0) return;
+                      const next = [...files];
+                      [next[index - 1], next[index]] = [next[index], next[index - 1]];
+                      setFiles(next);
+                    }}
+                    className="rounded-lg border border-[var(--border)] px-2 py-1 text-xs font-semibold disabled:opacity-40"
+                  >
+                    Up
+                  </button>
+                  <button
+                    type="button"
+                    disabled={index === files.length - 1}
+                    onClick={() => {
+                      if (index === files.length - 1) return;
+                      const next = [...files];
+                      [next[index + 1], next[index]] = [next[index], next[index + 1]];
+                      setFiles(next);
+                    }}
+                    className="rounded-lg border border-[var(--border)] px-2 py-1 text-xs font-semibold disabled:opacity-40"
+                  >
+                    Down
+                  </button>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ) : null}
+
+      {direction.id === "split-pdf" && pageCount ? (
+        <div className="calc-panel rounded-2xl p-4 sm:p-5">
+          <p className="text-xs font-semibold tracking-[0.14em] text-[var(--muted)] uppercase">
+            Pages in this PDF
+          </p>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            {pageCount} page{pageCount === 1 ? "" : "s"} detected. Split exports
+            one file per page (or your ranges) as a ZIP.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {Array.from({ length: Math.min(pageCount, 24) }, (_, i) => (
+              <span
+                key={i}
+                className="rounded-lg border border-[var(--border)] bg-[var(--background)] px-2.5 py-1 text-xs font-semibold"
+              >
+                {i + 1}
+              </span>
+            ))}
+            {pageCount > 24 ? (
+              <span className="text-xs text-[var(--muted)]">+{pageCount - 24} more</span>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
 
       {direction.textInput ? (
         <label className="block">

@@ -186,6 +186,15 @@ export default function AboutPage() {
             </li>
             <li>
               <Link
+                href="/hubs/life-questions"
+                className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
+              >
+                Life questions
+              </Link>{" "}
+              — retirement year, days alive, small money habits
+            </li>
+            <li>
+              <Link
                 href="/hubs/fitness-planners"
                 className="font-medium text-[var(--accent)] underline-offset-2 hover:underline"
               >

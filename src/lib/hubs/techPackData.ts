@@ -916,14 +916,17 @@ export const TECH_PACK_SPECS: TechPackToolSpec[] = [
     slug: "video-file-size-bitrate-calculator",
     title: "Video File Size & Bitrate Calculator",
     category: DIGITAL_SEO_CATEGORY,
-    seoH1: "Video File Size Calculator — Bitrate & Duration Estimate",
+    seoH1: "What Bitrate Should I Encode At for This File Size?",
     seoDescription:
-      "Calculate video file size from bitrate and duration for streaming bandwidth planning.",
-    focusKeyword: "video file size bitrate calculator",
+      "Streaming and upload planning: turn a target file size into a video bitrate, or the other way, including audio. Separate from the camera-card size estimator.",
+    focusKeyword: "encode bitrate for a target video file size",
     formulaType: "techVideoFileSize",
-    description: "Estimate video file size from bitrate and duration.",
-    formulaSummary: "File size (MB) = (bitrate Mbps × duration sec) ÷ 8.",
-    realWorldExample: "10 Mbps, 60 min → ~4.5 GB file.",
+    description:
+      "Encode-side planner: given a delivery bitrate and runtime, how large is the file you will upload or host? Includes audio so a 128 kbps track does not surprise you.",
+    formulaSummary:
+      "File size ≈ (video Mbps × seconds + audio kbps × seconds / 1000) ÷ 8. Flip it when you have a host cap and need a bitrate ceiling.",
+    realWorldExample:
+      "10 Mbps video + 128 kbps audio for 60 minutes → about 4.5 GB. A 2 GB host cap wants closer to 4.4 Mbps.",
     inputs: [
       ["bitrateMbps", "Video bitrate (Mbps)", 10, 0.5, 100, 0.5],
       ["durationMin", "Duration (minutes)", 60, 0.1, 600, 1],

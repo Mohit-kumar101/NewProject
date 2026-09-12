@@ -1,5 +1,6 @@
 import explanationsData from "../../data/tool-explanations.json";
 import type { Calculator, ToolExplanationContent } from "./types";
+import { explanationFromCalculator } from "@/lib/uniqueToolCopy";
 
 const explanations = explanationsData as Record<string, ToolExplanationContent>;
 
@@ -125,7 +126,9 @@ export type ToolTermsGuideData = {
 export function getToolExplanation(
   calculator: Calculator
 ): ToolExplanationContent {
-  return explanations[calculator.formulaType] ?? FALLBACK;
+  const curated = explanations[calculator.formulaType];
+  if (curated) return curated;
+  return explanationFromCalculator(calculator);
 }
 
 function describeInput(id: string, label: string): string {
@@ -136,14 +139,23 @@ function describeInput(id: string, label: string): string {
   return `The “${label}” value used in this tool’s formula. Adjust it to see results update live.`;
 }
 
-function buildHowItWorks(explanation: ToolExplanationContent): string[] {
-  const steps = [
-    "Enter the values that match your loan, debt, or file scenario.",
-    `The tool applies: ${explanation.formula}`,
+function buildHowItWorks(
+  calculator: Calculator,
+  explanation: ToolExplanationContent
+): string[] {
+  const labels = calculator.inputs
+    .map((input) => input.label)
+    .filter((label) => !/placeholder|focus|workspace/i.test(label))
+    .slice(0, 3);
+  const enter = labels.length
+    ? `Enter ${labels.join(", ")} as they actually are.`
+    : "Enter the fields in the workspace with your own numbers.";
+  return [
+    enter,
+    `The page applies: ${explanation.formula}`,
     explanation.summary,
-    "Results update instantly in your browser — nothing is sent to a server for the calculation itself.",
+    "The calculation stays in this browser. Confirm anything you would sign with the source document or a professional.",
   ];
-  return steps;
 }
 
 /** Sidebar-ready glossary + methodology for any calculator / converter. */
@@ -167,7 +179,7 @@ export function buildToolTermsGuide(
   return {
     summary: explanation.summary,
     formula: explanation.formula,
-    howItWorks: buildHowItWorks(explanation),
+    howItWorks: buildHowItWorks(calculator, explanation),
     inputTerms,
     formulaTerms,
     notes: explanation.notes ?? FALLBACK.notes ?? [],

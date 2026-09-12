@@ -55,14 +55,14 @@ function WasmLoadingCard({ state }: { state: FfmpegLoadState }) {
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-xs font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
-            FFmpeg.wasm engine
+            On-device converter
           </p>
           <p className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--foreground)]">
             {state.phase === "ready"
-              ? "WebAssembly core ready"
+              ? "Ready — files stay on this device"
               : state.phase === "error"
                 ? "Engine failed to load"
-                : "Loading WebAssembly core"}
+                : "Preparing converter (one-time, stays on this device)"}
           </p>
           <p className="mt-1 text-sm text-[var(--muted)]">{state.message}</p>
           {state.error ? (
@@ -111,6 +111,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
   const [processPercent, setProcessPercent] = useState(0);
   const [isConverting, setIsConverting] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const [outputSeconds, setOutputSeconds] = useState<number | null>(null);
 
   const direction: MediaDirection | undefined = useMemo(
     () => directions.find((d) => d.id === directionId) ?? directions[0],
@@ -178,6 +179,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
         revokeObjectUrl(previewUrl);
         const url = URL.createObjectURL(next.blob);
         setPreviewUrl(url);
+        setOutputSeconds(null);
       } catch (err) {
         setResult(null);
         setError(
@@ -212,6 +214,7 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
     setPreviewUrl(null);
     setError(null);
     setProcessPercent(0);
+    setOutputSeconds(null);
   };
 
   const isVideoOut = direction.to === "mp4" || direction.to === "mov" || direction.to === "webm";
@@ -274,9 +277,17 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
             ? `Drop a ${direction.from.toUpperCase()} file, or browse`
             : "Waiting for FFmpeg WASM to finish loading…"
         }
-        hint={`${direction.from.toUpperCase()} → ${direction.to.toUpperCase()} · max ${formatFileSize(MAX_SIZE)} · private`}
+        hint={`${direction.from.toUpperCase()} → ${direction.to.toUpperCase()} · max ${formatFileSize(MAX_SIZE)} · files never leave this browser`}
         onFilesChange={setFiles}
       />
+
+      {file && engineReady && !isConverting ? (
+        <p className="text-sm text-[var(--muted)]">
+          Typical time for {formatFileSize(file.size)}: about{" "}
+          {Math.max(8, Math.round((file.size / (1024 * 1024)) * 2.5))} seconds
+          on this device. Nothing is uploaded.
+        </p>
+      ) : null}
 
       {(isConverting || processPercent > 0) && (
         <div className="calc-panel rounded-2xl px-4 py-3 sm:px-5">
@@ -322,9 +333,19 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
                 src={previewUrl}
                 controls
                 className="max-h-[360px] w-full rounded-lg"
+                onLoadedMetadata={(e) =>
+                  setOutputSeconds(e.currentTarget.duration || null)
+                }
               />
             ) : isAudioOut || result.mimeType.startsWith("audio/") ? (
-              <audio src={previewUrl} controls className="w-full" />
+              <audio
+                src={previewUrl}
+                controls
+                className="w-full"
+                onLoadedMetadata={(e) =>
+                  setOutputSeconds(e.currentTarget.duration || null)
+                }
+              />
             ) : (
               <p className="text-sm text-[var(--muted)]">
                 Preview unavailable — download to play.
@@ -332,7 +353,12 @@ export function MediaFileConverter({ slug }: { slug: MediaConverterSlug }) {
             )}
           </div>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            {formatFileSize(result.blob.size)} · {result.mimeType}
+            Output {formatFileSize(result.blob.size)}
+            {file ? ` · source ${formatFileSize(file.size)}` : ""}
+            {outputSeconds && outputSeconds > 0
+              ? ` · ~${Math.round((result.blob.size * 8) / outputSeconds / 1000)} kbps`
+              : ""}
+            {` · ${result.mimeType}`}
           </p>
         </div>
       ) : null}

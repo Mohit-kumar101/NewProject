@@ -9,6 +9,14 @@ import {
   type SubItem,
 } from "@/lib/globalPlanners/subscriptionAudit";
 import { money } from "@/lib/globalPlanners/money";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const SUB_DEFAULTS = {
+  liquidSavings: 9000,
+  monthlyExpensesExSubs: 2800,
+  monthlyIncome: 5200,
+};
 
 export function SubscriptionAuditPlanner({
   calculator,
@@ -16,9 +24,11 @@ export function SubscriptionAuditPlanner({
   calculator: Calculator;
   related: Calculator[];
 }) {
-  const [liquidSavings, setLiquidSavings] = useState(9000);
-  const [monthlyExpensesExSubs, setMonthlyExpensesExSubs] = useState(2800);
-  const [monthlyIncome, setMonthlyIncome] = useState(5200);
+  const [liquidSavings, setLiquidSavings] = useState(SUB_DEFAULTS.liquidSavings);
+  const [monthlyExpensesExSubs, setMonthlyExpensesExSubs] = useState(
+    SUB_DEFAULTS.monthlyExpensesExSubs
+  );
+  const [monthlyIncome, setMonthlyIncome] = useState(SUB_DEFAULTS.monthlyIncome);
   const [goalAmount, setGoalAmount] = useState(5000);
   const [goalMonthsLeft, setGoalMonthsLeft] = useState(10);
   const [subscriptions, setSubscriptions] = useState<SubItem[]>([
@@ -29,6 +39,14 @@ export function SubscriptionAuditPlanner({
     createSub("Gym", 45),
     createSub("Software", 29),
   ]);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      liquidSavings: setLiquidSavings,
+      monthlyExpensesExSubs: setMonthlyExpensesExSubs,
+      monthlyIncome: setMonthlyIncome,
+    })
+  );
 
   const result = useMemo(
     () =>
@@ -57,7 +75,15 @@ export function SubscriptionAuditPlanner({
   };
 
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{ liquidSavings, monthlyExpensesExSubs, monthlyIncome }}
+      onClear={() => {
+        setLiquidSavings(SUB_DEFAULTS.liquidSavings);
+        setMonthlyExpensesExSubs(SUB_DEFAULTS.monthlyExpensesExSubs);
+        setMonthlyIncome(SUB_DEFAULTS.monthlyIncome);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Runway extension meter:</strong>{" "}
         pause subscriptions and see +months of emergency runway — no cut of your
@@ -147,6 +173,6 @@ export function SubscriptionAuditPlanner({
         </div>
       </div>
       <p className="text-xs text-[var(--muted)]">{calculator.seoContent.intro}</p>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

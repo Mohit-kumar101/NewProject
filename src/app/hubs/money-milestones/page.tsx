@@ -82,12 +82,16 @@ export default function MoneyMilestonesHubPage() {
 
       <EmailCapture
         source="hub-money"
-        headline="Get money milestone tips"
-        subtext="One tip on runway, goals, and rates each week — plus a free planner. No spam."
+        headline="Get a note when we add a money planner"
+        subtext="Occasional email when we ship a runway, savings, or rate tool. No weekly blast."
       />
 
       <p className="mt-10 text-sm text-[var(--muted)]">
         Also explore{" "}
+        <Link href="/hubs/life-questions" className="text-[var(--accent)] hover:underline">
+          Life questions
+        </Link>
+        ,{" "}
         <Link href="/hubs/fitness-planners" className="text-[var(--accent)] hover:underline">
           Fitness planners
         </Link>{" "}

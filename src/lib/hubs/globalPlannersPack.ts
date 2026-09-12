@@ -26,6 +26,7 @@ function buildGlobalTool(spec: {
   formulaSummary: string;
   realWorldExample: string;
   useCategoryPath?: boolean;
+  howToUse: string[];
   faqs: { question: string; answer: string }[];
 }): Calculator {
   return {
@@ -43,15 +44,10 @@ function buildGlobalTool(spec: {
     inputs: [input("placeholder", "Use workspace controls", 0, 0, 1, 1)],
     formulaSummary: spec.formulaSummary,
     realWorldExample: spec.realWorldExample,
-    seoContextTemplate:
-      'Searching "{{focusKeyword}}"? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}—instant, private, no sign up.',
+    seoContextTemplate: "{{formulaSummary}} Worked numbers: {{example}}",
     seoContent: {
       intro: spec.description,
-      howToUse: [
-        "Enter your amounts in any currency — results update instantly.",
-        "Use the unique scenario controls (adaptive bumps, shocks, forks, etc.).",
-        "Compare outcomes before you commit — estimates only, not professional advice.",
-      ],
+      howToUse: spec.howToUse,
       faqs: spec.faqs,
     },
   };
@@ -80,6 +76,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Start below maintenance; add planned kcal/week; if observed weight change is below the gain band, next bump is halved.",
     realWorldExample:
       "1,800 kcal → 2,500 maintenance, +100 kcal/week, still losing → weeks 2–4 use +50 kcal bumps.",
+    howToUse: [
+      "Enter current calories and the maintenance you are climbing toward.",
+      "Set the planned weekly bump and the weight-change band that means “still dropping too fast.”",
+      "If the scale is still falling, the next bump is halved so you do not jump calories into a rebound.",
+      "This is a recovery sketch, not a medical diet. Stop if you feel unwell and talk to a clinician.",
+    ],
     faqs: [
       {
         question: "What is a reverse diet?",
@@ -114,6 +116,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Runway months = liquid savings ÷ monthly expenses; shocks cut income or raise expenses and recompute runway.",
     realWorldExample:
       "12,000 saved / 3,200 expenses = 3.8 months; job-loss shock drops income to 0 and shows burn timeline.",
+    howToUse: [
+      "Enter liquid cash you could spend next month without selling a house or taking a penalty.",
+      "Use essential monthly burn, not lifestyle spend.",
+      "Turn on a shock (job loss, medical bill, rent hike) and see how many months remain.",
+      "Size the fund from that worst month, then stop stacking cash once you hit the target.",
+    ],
     faqs: [
       {
         question: "How many months should an emergency fund cover?",
@@ -148,6 +156,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Sequential funds goals by priority; split weights budget by urgency; recommend the mode that finishes all goals soonest on time.",
     realWorldExample:
       "900/mo for trip, emergency top-up, and laptop — optimizer picks sequential or split based on deadlines.",
+    howToUse: [
+      "List each goal with a dollar target and a month you actually care about.",
+      "Set the surplus you can send after bills.",
+      "Compare sequential (one goal at a time) vs split (every goal gets a slice).",
+      "Pick the path that finishes the hard deadline without starving the emergency floor.",
+    ],
     faqs: [
       {
         question: "Should I save for goals one at a time or split?",
@@ -178,6 +192,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "TDEE from Mifflin–St Jeor; deficit capped by weekly hard sets; protein g/kg rises with volume; optional training/rest carb split.",
     realWorldExample:
       "70 hard sets/week → ~250 kcal deficit, ~2.0 g/kg protein, training-day carbs +12%.",
+    howToUse: [
+      "Enter body weight, activity, and weekly hard sets you can actually recover from.",
+      "The deficit shrinks as volume rises so the gym does not eat the cut.",
+      "Protein scales with that volume. Carbs can split training vs rest days.",
+      "If performance drops for two weeks, the deficit is too large—raise calories, do not add cardio first.",
+    ],
     faqs: [
       {
         question: "What is body recomposition?",
@@ -212,6 +232,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Work backward from desired net through tax, FX, processor, and platform fees to the invoice amount and hourly bill rate.",
     realWorldExample:
       "Want 4,000 net with 20% platform + 25% tax → invoice ~6,900+ depending on processor and admin time.",
+    howToUse: [
+      "Start from the monthly net you need after rent, not a rate you saw on Twitter.",
+      "Stack platform, processor, FX, tax, and hours you do not bill.",
+      "Read the invoice amount and the hourly floor that produces that net.",
+      "If a client wants a discount, cut scope. Do not cut below the floor without a reason.",
+    ],
     faqs: [
       {
         question: "How do I calculate a freelance rate after fees?",
@@ -241,6 +267,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Sum line items; schedule deposit % and finals by month; subtract from savings + monthly contributions; flag shortfall months.",
     realWorldExample:
       "Venue deposit month 2 + catering final month 10 vs 800/mo savings — tool shows if month 10 goes negative.",
+    howToUse: [
+      "Enter each vendor line and when the deposit vs final is due.",
+      "Set current savings and what you can add each month.",
+      "Look for the month the balance goes red—usually a venue deposit or catering final.",
+      "Move a date or a savings amount until that month clears. Do not hope the card covers it.",
+    ],
     faqs: [
       {
         question: "How do I avoid wedding payment cash crunches?",
@@ -270,6 +302,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "One-time + monthly costs; income reduced during leave months; childcare from a start month; track monthly net and cumulative.",
     realWorldExample:
       "4 months at 55% pay, childcare from month 7 — worst net often lands when leave ends and care begins.",
+    howToUse: [
+      "List one-time newborn costs and the monthly burn after the baby arrives.",
+      "Set leave length and the percent of pay you will actually receive.",
+      "Mark the month paid childcare starts. That is usually the worst cash month.",
+      "The planner finds the trough. Fill it before the due date, not after.",
+    ],
     faqs: [
       {
         question: "What is the parental leave bridge?",
@@ -299,6 +337,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Runway = savings ÷ (expenses + active subs); pausing subs raises runway and frees monthly cash toward goals.",
     realWorldExample:
       "Pause 80/mo of streaming → runway rises ~0.3–0.5 months depending on burn rate, plus 960/year free cash.",
+    howToUse: [
+      "Enter savings and the rest of your monthly burn.",
+      "Add each subscription. Pause the ones you would not miss for 30 days.",
+      "Read months of runway gained and the yearly cash that comes free.",
+      "Cancel after the pause if you did not notice. Leave the ones you use weekly.",
+    ],
     faqs: [
       {
         question: "How does pausing subscriptions extend runway?",
@@ -328,6 +372,12 @@ export const GLOBAL_PLANNER_TOOLS: Calculator[] = [
       "Accumulate fuel, insurance, repairs, payments, and depreciation/fees for keep, lease, and buy; mark cheapest cumulative cost each year.",
     realWorldExample:
       "Over 5 years keep may win early; buy can win later after residual credit — matrix shows the flip year.",
+    howToUse: [
+      "Enter what you still owe, fuel, insurance, and the repairs you expect if you keep the car.",
+      "Fill lease payment and fees, then the buy path with down payment and residual.",
+      "Read the year-by-year matrix. The cheapest fork often flips after year three.",
+      "Taxes and your commute miles move this more than the badge on the trunk.",
+    ],
     faqs: [
       {
         question: "Is keeping my old car cheaper than leasing?",

@@ -1,6 +1,9 @@
 /** Encode / decode calculator inputs in the URL for shareable scenarios. */
 
-const PARAM = "scenario";
+export const SCENARIO_PARAM = "scenario";
+export const HANDOFF_FROM_PARAM = "from";
+
+const PARAM = SCENARIO_PARAM;
 
 export function encodeScenarioValues(
   values: Record<string, number>
@@ -75,6 +78,41 @@ export function buildScenarioUrl(
   const url = new URL(path || window.location.href, window.location.origin);
   url.searchParams.set(PARAM, encoded);
   return url.toString();
+}
+
+/** Path + query for a tool-to-tool hand-off (no origin). */
+export function buildHandoffHref(
+  toPath: string,
+  fields: Record<string, number>,
+  fromSlug: string
+): string {
+  const encoded = encodeScenarioValues(fields);
+  const params = new URLSearchParams();
+  if (encoded) params.set(PARAM, encoded);
+  params.set(HANDOFF_FROM_PARAM, fromSlug);
+  const path = toPath.split("?")[0] || toPath;
+  return `${path}?${params.toString()}`;
+}
+
+export function readHandoffFromSlug(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return new URLSearchParams(window.location.search).get(HANDOFF_FROM_PARAM);
+  } catch {
+    return null;
+  }
+}
+
+export function stripHandoffQuery(): void {
+  if (typeof window === "undefined") return;
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(PARAM);
+    url.searchParams.delete(HANDOFF_FROM_PARAM);
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  } catch {
+    /* ignore */
+  }
 }
 
 export async function copyText(text: string): Promise<boolean> {

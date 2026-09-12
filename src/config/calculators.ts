@@ -579,8 +579,10 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
       const cobraDelta = Math.max(0, cobra - employerHealth);
       const uiMonthly = uiWeekly * 4.345;
       const netBurn = Math.max(1, burn + cobraDelta - uiMonthly);
+      const netBurnNoCobra = Math.max(1, burn - uiMonthly);
       const months = cashIn / netBurn;
       const weeks = months * 4.345;
+      const weeksNoCobra = (cashIn / netBurnNoCobra) * 4.345;
       return {
         primaryLabel: "Estimated weeks until cash zero",
         primaryValue: `${num(weeks, 1)} weeks`,
@@ -590,6 +592,8 @@ export const CONFIG_CALCULATORS: ConfigCalculator[] = [
           { label: "COBRA premium shock / mo", value: money(cobraDelta) },
           { label: "UI offset / mo", value: money(uiMonthly) },
           { label: "Net monthly burn", value: money(netBurn) },
+          { label: "Weeks with COBRA", value: num(weeks, 1) },
+          { label: "Weeks without COBRA", value: num(weeksNoCobra, 1) },
           { label: "Months of runway", value: num(months, 1) },
         ],
         howCalculated: `How it's calculated: Cash in = savings ${money(savings)} + (${num(sevWeeks, 0)} × ${money(weeklyPay)}) = ${money(cashIn)}. COBRA shock = ${money(cobra)} − ${money(employerHealth)} = ${money(cobraDelta)}/mo. Net burn = burn ${money(burn)} + COBRA shock − UI ${money(uiMonthly)} = ${money(netBurn)}. Runway weeks = (${money(cashIn)} ÷ ${money(netBurn)}) × 4.345 ≈ ${num(weeks, 1)}.`,

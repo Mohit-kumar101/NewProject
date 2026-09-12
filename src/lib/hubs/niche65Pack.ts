@@ -53,7 +53,7 @@ const amazonFbaStorageByBox: Calculator = {
   realWorldExample:
     "An 18×14×12 in box is ~1.75 cu ft. Ten boxes at $0.87/cu ft ≈ $15.23/month.",
   seoContextTemplate:
-    "Looking for “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}—instant, no sign up.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} Free {{title}} for “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -176,7 +176,7 @@ const dogFoodCostPerMonth: Calculator = {
   realWorldExample:
     "A $54 / 30 lb bag is $1.80/lb. Feeding 3 cups/day at 4 cups/lb ≈ 0.75 lb/day → about $40.50/month.",
   seoContextTemplate:
-    "Need “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} ({{year}}).",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [
@@ -298,7 +298,7 @@ const houseCleaningJobPrice: Calculator = {
   realWorldExample:
     "3 hrs × $45 ($135) + $12 supplies + $8 travel = $155 cost. At 25% margin, quote ≈ $206.67.",
   seoContextTemplate:
-    "Searching “{{focusKeyword}}”? {{formulaSummary}} Example: {{example}} Free {{title}} for {{year}}.",
+    "{{formulaSummary}} Worked numbers: {{example}}",
   explanationTemplate:
     "{{variantExplanation}} {{title}} — “{{focusKeyword}}” ({{year}}).",
   longTailModifiers: [

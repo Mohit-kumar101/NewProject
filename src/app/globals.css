@@ -4,14 +4,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #eef3f8;
-  --foreground: #0b1220;
-  --surface: rgba(255, 255, 255, 0.72);
+  --background: #f4f6f9;
+  --foreground: #111827;
+  --surface: #ffffff;
   --surface-solid: #ffffff;
-  --muted: #3a4a5c;
-  --border: rgba(15, 35, 55, 0.12);
-  --accent: #00a8c4;
-  --accent-strong: #1e6fff;
+  --muted: #4b5563;
+  --border: #e5e7eb;
+  --accent: #0e7490;
+  --accent-strong: #1d4ed8;
   --glow: rgba(0, 184, 212, 0.32);
   --glow-warm: rgba(255, 140, 66, 0.22);
   --glass: rgba(255, 255, 255, 0.55);
@@ -145,7 +145,7 @@ body {
   position: absolute;
   border-radius: 999px;
   filter: blur(50px);
-  opacity: 0.7;
+  opacity: 0.55;
   will-change: transform;
 }
 
@@ -223,7 +223,6 @@ body {
   }
 }
 
-/* Hero floating slabs (CSS 3D) */
 .hero-stage {
   perspective: 1200px;
   transform-style: preserve-3d;
@@ -253,6 +252,51 @@ body {
   }
   50% {
     transform: translate3d(0, -14px, 12px) rotateX(10deg) rotateY(-10deg);
+  }
+}
+
+.reveal-grid {
+  perspective: 1100px;
+}
+
+.scroll-reveal {
+  position: relative;
+  opacity: 0;
+  filter: blur(8px);
+  transform-origin: center center;
+  transform: translate3d(0, 18px, -140px) scale(0.88);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.65s ease;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-inview {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.scroll-reveal.is-inview::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 48%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  animation: sheen-sweep 0.85s 0.12s ease-out both;
+}
+
+@keyframes sheen-sweep {
+  to {
+    transform: translateX(130%);
   }
 }
 
@@ -294,107 +338,27 @@ body {
 .results-card {
   position: relative;
   overflow: hidden;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    var(--inset-shine),
-    0 24px 48px -28px var(--glow),
-    var(--depth-shadow);
-  backdrop-filter: blur(16px) saturate(1.25);
-  -webkit-backdrop-filter: blur(16px) saturate(1.25);
-  transform: translateZ(0);
-  animation: calc-panel-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(15, 35, 55, 0.06);
 }
 
-.results-card::before {
-  content: "";
-  position: absolute;
-  inset: -40% auto auto 35%;
-  width: 180px;
-  height: 180px;
-  border-radius: 999px;
-  background: radial-gradient(circle, var(--glow), transparent 70%);
-  opacity: 0.55;
-  pointer-events: none;
-  animation: result-orb 8s ease-in-out infinite alternate;
-}
-
+.results-card::before,
 .results-card::after {
-  content: "";
-  position: absolute;
-  right: -30px;
-  bottom: -40px;
-  width: 140px;
-  height: 140px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-  box-shadow: 0 0 40px -10px var(--glow-warm);
-  opacity: 0.45;
-  pointer-events: none;
-  animation: result-ring 10s ease-in-out infinite alternate;
-}
-
-@keyframes result-orb {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(-20px, 24px, 0) scale(1.12);
-  }
-}
-
-@keyframes result-ring {
-  from {
-    transform: rotate(0deg) scale(1);
-  }
-  to {
-    transform: rotate(18deg) scale(1.08);
-  }
+  display: none;
 }
 
 /* Shared calculator panels (inputs / sidebars / tool cards) */
 .calc-panel {
   position: relative;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    var(--inset-shine),
-    var(--depth-shadow);
-  backdrop-filter: blur(16px) saturate(1.3);
-  -webkit-backdrop-filter: blur(16px) saturate(1.3);
-  transform: translateZ(0);
-  transition:
-    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 240ms ease,
-    border-color 240ms ease;
-  animation: calc-panel-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.calc-panel:nth-child(2) {
-  animation-delay: 0.06s;
-}
-
-.calc-panel:nth-child(3) {
-  animation-delay: 0.12s;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .calc-panel:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
-    box-shadow:
-      var(--inset-shine),
-      0 26px 48px -26px rgba(20, 50, 90, 0.48),
-      0 0 24px -12px var(--glow);
-  }
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(15, 35, 55, 0.06);
 }
 
 .calc-inset {
-  background: color-mix(in srgb, var(--background) 55%, transparent);
-  border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 var(--glass-highlight);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--background);
+  border: 1px solid var(--border);
 }
 
 .calc-stage {
@@ -403,38 +367,11 @@ body {
 }
 
 .calc-stage::before {
-  content: "";
-  position: absolute;
-  inset: -8% -4% auto;
-  height: 55%;
-  z-index: -1;
-  border-radius: 40%;
-  background:
-    radial-gradient(ellipse at 20% 40%, var(--glow), transparent 55%),
-    radial-gradient(ellipse at 80% 30%, var(--glow-warm), transparent 50%);
-  opacity: 0.55;
-  filter: blur(8px);
-  pointer-events: none;
-  animation: glow-shift 14s ease-in-out infinite alternate;
-}
-
-@keyframes calc-panel-rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
+  display: none;
 }
 
 .result-glow {
-  background: linear-gradient(120deg, #00e5ff, #2979ff 70%, #ff9a4d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 18px rgba(0, 229, 255, 0.22));
+  color: var(--accent-strong);
 }
 
 /* Dark mode: readable tool surfaces — less glow, more solid panels */
@@ -454,102 +391,38 @@ body {
   animation: none;
 }
 
-.dark .glass-3d,
-.dark .glass-3d-strong,
 .dark .calc-panel,
 .dark .results-card {
   background: var(--surface-solid);
   border-color: var(--border);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 12px 32px -24px rgba(0, 0, 0, 0.65);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.dark .glass-3d-strong {
-  background: color-mix(in srgb, var(--surface-solid) 96%, var(--accent) 4%);
-}
-
-.dark .calc-panel:hover {
-  transform: none;
-  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 14px 28px -22px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .dark .pressable-3d:hover {
   transform: translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 16px 28px -20px rgba(0, 0, 0, 0.7);
-}
-
-.dark .results-card::before,
-.dark .results-card::after {
-  opacity: 0.12;
-  animation: none;
-}
-
-.dark .calc-stage::before {
-  opacity: 0.14;
-  filter: blur(28px);
-  animation: none;
+  box-shadow: 0 8px 20px -16px rgba(0, 0, 0, 0.7);
 }
 
 .dark .calc-inset {
   background: color-mix(in srgb, var(--background) 70%, #000 30%);
   border-color: var(--border);
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 .dark .result-glow {
-  background: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  color: color-mix(in srgb, var(--accent) 50%, #ffffff 50%);
-  filter: none;
-  text-shadow: none;
+  color: color-mix(in srgb, var(--accent) 45%, #ffffff 55%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dark .depth-scene__orb,
-  .dark .calc-stage::before,
-  .dark .results-card::before,
-  .dark .results-card::after {
+  .dark .depth-scene__orb {
     animation: none !important;
   }
 }
 
-/* Mobile: keep tool UI readable, prevent glow/overlap crowding */
+/* Mobile: keep tool UI readable */
 @media (max-width: 640px) {
   .depth-scene__orb {
-    opacity: 0.28;
+    opacity: 0.2;
     filter: blur(64px);
-  }
-
-  .calc-stage::before {
-    opacity: 0.22;
-    inset: -4% -2% auto;
-    height: 40%;
-    filter: blur(18px);
-    animation: none;
-  }
-
-  .results-card::before,
-  .results-card::after {
-    opacity: 0.18;
-    animation: none;
-  }
-
-  .calc-panel,
-  .results-card {
-    box-shadow:
-      var(--inset-shine),
-      0 12px 28px -22px rgba(20, 40, 70, 0.35);
   }
 
   .calc-panel:hover,
@@ -557,15 +430,10 @@ body {
     transform: none;
   }
 
-  .result-glow {
-    filter: none;
-  }
-
   .hero-glow {
     animation: none;
   }
 
-  /* Avoid horizontal bleed from decorative blurs */
   .calc-stage,
   .calc-panel,
   .results-card {
@@ -679,6 +547,7 @@ body {
   .result-card,
   .pressable-3d,
   .hero-slab,
+  .scroll-reveal,
   .depth-scene__orb,
   .results-card,
   .calc-panel,
@@ -696,6 +565,16 @@ body {
   .calc-panel:hover {
     transform: none !important;
     box-shadow: none !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .scroll-reveal.is-inview::after {
+    display: none;
   }
 
   .results-card::before,

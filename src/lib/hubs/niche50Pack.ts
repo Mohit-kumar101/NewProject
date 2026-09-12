@@ -5,6 +5,12 @@
 
 import type { Calculator, CalculatorInput, LongTailModifier } from "@/lib/types";
 import {
+  UNIQUE_SEO_CONTEXT,
+  domainForCategory,
+  uniqueFaqs,
+  uniqueHowToUse,
+} from "@/lib/uniqueToolCopy";
+import {
   CRAFTERS_MAKERS_CATEGORY,
   GIG_ECONOMY_CATEGORY,
   HOMESTEADING_CATEGORY,
@@ -61,14 +67,13 @@ function buildTool(spec: {
     seoTitle: spec.seoH1,
     seoH1: spec.seoH1,
     seoDescription: spec.seoDescription,
-    seoKeywords: [spec.focusKeyword, spec.title, "free calculator", "no sign up"],
+    seoKeywords: [spec.focusKeyword, spec.title],
     inputs: spec.inputs,
     formulaSummary: spec.formulaSummary,
     realWorldExample: spec.realWorldExample,
-    seoContextTemplate:
-      'Looking for "{{focusKeyword}}"? {{formulaSummary}} Example: {{example}} Free {{title}} — instant, no sign up.',
+    seoContextTemplate: UNIQUE_SEO_CONTEXT,
     explanationTemplate:
-      '{{variantExplanation}} Free {{title}} for "{{focusKeyword}}".',
+      "{{variantExplanation}} {{formulaSummary}} Example: {{example}}",
     longTailModifiers: [
       modifier("free-online", spec.focusKeyword, spec.description, {
         faqs: [
@@ -81,21 +86,18 @@ function buildTool(spec: {
     ],
     seoContent: {
       intro: `${spec.description} Planning estimates only — verify measurements independently.`,
-      howToUse: [
-        "Enter your project or scenario values.",
-        "Read the primary result and supporting breakdown.",
-        "Adjust inputs to compare scenarios.",
-      ],
-      faqs: [
-        {
-          question: `How is this ${spec.title.toLowerCase()} calculated?`,
-          answer: spec.formulaSummary,
-        },
-        {
-          question: "Is this calculator free?",
-          answer: "Yes. Instant browser results with no sign up required.",
-        },
-      ],
+      howToUse: uniqueHowToUse({
+        inputLabels: spec.inputs.map((input) => input.label),
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: domainForCategory(spec.category),
+      }),
+      faqs: uniqueFaqs({
+        title: spec.title,
+        formulaSummary: spec.formulaSummary,
+        example: spec.realWorldExample,
+        domain: domainForCategory(spec.category),
+      }),
     },
   };
 }

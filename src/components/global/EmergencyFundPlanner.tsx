@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Calculator } from "@/lib/types";
 import { Field, Panel, ResultHero, Row } from "@/components/global/ui";
@@ -9,6 +10,16 @@ import {
   type ShockType,
 } from "@/lib/globalPlanners/emergencyFund";
 import { money } from "@/lib/globalPlanners/money";
+import { PlannerHandoffChrome } from "@/components/shared/PlannerHandoffChrome";
+import { applyBagToSetters, useApplyScenarioBag } from "@/components/shared/useHandoffHydration";
+
+const EMERGENCY_DEFAULTS = {
+  liquidSavings: 12000,
+  monthlyExpenses: 3200,
+  monthlyIncome: 5500,
+  targetMonths: 6,
+  monthlySavingsCapacity: 800,
+};
 
 export function EmergencyFundPlanner({
   calculator,
@@ -16,15 +27,27 @@ export function EmergencyFundPlanner({
   calculator: Calculator;
   related: Calculator[];
 }) {
-  const [liquidSavings, setLiquidSavings] = useState(12000);
-  const [monthlyExpenses, setMonthlyExpenses] = useState(3200);
-  const [monthlyIncome, setMonthlyIncome] = useState(5500);
-  const [targetMonths, setTargetMonths] = useState(6);
-  const [monthlySavingsCapacity, setMonthlySavingsCapacity] = useState(800);
+  const [liquidSavings, setLiquidSavings] = useState(EMERGENCY_DEFAULTS.liquidSavings);
+  const [monthlyExpenses, setMonthlyExpenses] = useState(EMERGENCY_DEFAULTS.monthlyExpenses);
+  const [monthlyIncome, setMonthlyIncome] = useState(EMERGENCY_DEFAULTS.monthlyIncome);
+  const [targetMonths, setTargetMonths] = useState(EMERGENCY_DEFAULTS.targetMonths);
+  const [monthlySavingsCapacity, setMonthlySavingsCapacity] = useState(
+    EMERGENCY_DEFAULTS.monthlySavingsCapacity
+  );
   const [shock, setShock] = useState<ShockType>("none");
   const [medicalBillAmount, setMedicalBillAmount] = useState(4000);
   const [rentHikePct, setRentHikePct] = useState(20);
   const [partnerIncomeShare, setPartnerIncomeShare] = useState(40);
+
+  useApplyScenarioBag((bag) =>
+    applyBagToSetters(bag, {
+      liquidSavings: setLiquidSavings,
+      monthlyExpenses: setMonthlyExpenses,
+      monthlyIncome: setMonthlyIncome,
+      targetMonths: setTargetMonths,
+      monthlySavingsCapacity: setMonthlySavingsCapacity,
+    })
+  );
 
   const result = useMemo(
     () =>
@@ -52,8 +75,27 @@ export function EmergencyFundPlanner({
     ]
   );
 
+  const runway =
+    shock === "none" ? result.currentMonths : result.postShockMonths;
+
   return (
-    <div className="space-y-6">
+    <PlannerHandoffChrome
+      slug={calculator.slug}
+      values={{
+        liquidSavings,
+        monthlyExpenses,
+        monthlyIncome,
+        targetMonths,
+        monthlySavingsCapacity,
+      }}
+      onClear={() => {
+        setLiquidSavings(EMERGENCY_DEFAULTS.liquidSavings);
+        setMonthlyExpenses(EMERGENCY_DEFAULTS.monthlyExpenses);
+        setMonthlyIncome(EMERGENCY_DEFAULTS.monthlyIncome);
+        setTargetMonths(EMERGENCY_DEFAULTS.targetMonths);
+        setMonthlySavingsCapacity(EMERGENCY_DEFAULTS.monthlySavingsCapacity);
+      }}
+    >
       <p className="rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 px-4 py-3 text-sm text-[var(--muted)]">
         <strong className="text-[var(--foreground)]">Life-shock simulator:</strong>{" "}
         stress-test job loss, medical bills, rent hikes, or lost partner income —
@@ -98,9 +140,17 @@ export function EmergencyFundPlanner({
         <div className="space-y-5">
           <ResultHero
             eyebrow={shock === "none" ? "Current runway" : "Post-shock runway"}
-            value={`${(shock === "none" ? result.currentMonths : result.postShockMonths).toFixed(1)} mo`}
+            value={`${runway.toFixed(1)} mo`}
             insight={result.insight}
+            tone={runway < 3 ? "warning" : "default"}
           >
+            <button
+              type="button"
+              onClick={() => setShock("jobLoss")}
+              className="mt-4 w-full rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#2979FF] px-4 py-2.5 text-sm font-semibold text-white"
+            >
+              Tap to simulate job loss
+            </button>
             <dl className="mt-4 space-y-2 border-t border-[var(--border)] pt-4">
               <Row label="Target fund" value={money(result.targetAmount)} />
               <Row label="Gap" value={money(result.gap)} />
@@ -113,6 +163,12 @@ export function EmergencyFundPlanner({
                 }
               />
             </dl>
+            <Link
+              href="/guides/emergency-fund-how-many-months"
+              className="mt-4 inline-block text-sm font-semibold text-[var(--accent)] underline-offset-2 hover:underline"
+            >
+              How many months of expenses should you keep?
+            </Link>
           </ResultHero>
         </div>
       </div>
@@ -132,6 +188,6 @@ export function EmergencyFundPlanner({
         </div>
         <p className="text-xs text-[var(--muted)]">{calculator.seoContent.intro}</p>
       </Panel>
-    </div>
+    </PlannerHandoffChrome>
   );
 }

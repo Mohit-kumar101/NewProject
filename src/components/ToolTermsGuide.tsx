@@ -38,7 +38,7 @@ export function ToolTermsGuide({
         compact ? "text-[13px]" : ""
       }`}
     >
-      <div className="border-b border-[var(--glass-border)] bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] px-3.5 py-3 sm:px-4">
+      <div className="border-b border-[var(--border)] bg-[var(--background)] px-3.5 py-3 sm:px-4">
         <p className="text-[10px] font-semibold tracking-[0.16em] text-[var(--accent)] uppercase">
           Plain-English guide
         </p>

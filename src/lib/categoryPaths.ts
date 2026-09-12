@@ -110,6 +110,18 @@ export const TECH_NICHE_HUB_CATEGORIES = [
   DIGITAL_SEO_CATEGORY,
 ] as const;
 
+export const LIFE_FUTURE_CATEGORY = "Life & Future" as const;
+export const LIFE_CALENDAR_CATEGORY = "Life Calendar" as const;
+export const MONEY_CURIOSITY_CATEGORY = "Money Curiosity" as const;
+export const RELATIONSHIP_CURIOSITY_CATEGORY = "Relationship Curiosity" as const;
+
+export const LIFE_CURIOSITY_CATEGORIES = [
+  LIFE_FUTURE_CATEGORY,
+  LIFE_CALENDAR_CATEGORY,
+  MONEY_CURIOSITY_CATEGORY,
+  RELATIONSHIP_CURIOSITY_CATEGORY,
+] as const;
+
 export type ExpansionCategory = (typeof EXPANSION_CATEGORIES)[number];
 export type LongtailHubCategory = (typeof LONGTAIL_HUB_CATEGORIES)[number];
 export type Intent80HubCategory = (typeof INTENT80_HUB_CATEGORIES)[number];

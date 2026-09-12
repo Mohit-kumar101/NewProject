@@ -1,4 +1,6 @@
 import { HomeExplorer } from "@/components/HomeExplorer";
+import { ContinueHandoffStrip } from "@/components/home/ContinueHandoffStrip";
+import { HomeScrollEffects } from "@/components/home/HomeScrollEffects";
 import { HomeGuidesSpotlight } from "@/components/HomeGuidesSpotlight";
 import { FeaturedPlanners } from "@/components/growth/FeaturedPlanners";
 import { SpecialCareerTools } from "@/components/SpecialCareerTools";
@@ -91,7 +93,9 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
+      <HomeScrollEffects />
       <HomeExplorer calculators={getPublicCalculators()} />
+      <ContinueHandoffStrip />
       <HomeGuidesSpotlight />
       <SpecialCareerTools />
       <FeaturedPlanners />

@@ -103,18 +103,18 @@ export function ToolPageShell({
       />
 
       <header className="mb-6 max-w-3xl sm:mb-8">
-        <p className="mb-2 text-[10px] font-semibold tracking-[0.12em] text-[var(--accent)] uppercase sm:mb-3 sm:text-xs sm:tracking-[0.18em]">
+        <p className="mb-3 inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[var(--muted)] uppercase">
           {calculator.category}
         </p>
-        <h1 className="font-[family-name:var(--font-display)] text-[1.65rem] font-bold leading-snug tracking-tight break-words-safe sm:text-3xl sm:leading-tight md:text-4xl">
+        <h1 className="font-[family-name:var(--font-display)] text-[1.55rem] font-bold leading-snug tracking-tight break-words-safe sm:text-3xl sm:leading-tight">
           {modifier?.focusKeyword ||
             resolvedVariation?.focus ||
             getToolPageH1(calculator)}
         </h1>
-        <p className="mt-2 text-sm font-medium text-[var(--accent)] break-words-safe sm:mt-3 sm:text-base">
+        <p className="mt-2 text-sm font-medium text-[var(--accent)] break-words-safe sm:mt-2.5">
           {subtitle}
         </p>
-        <p className="mt-3 text-sm leading-relaxed text-[color-mix(in_srgb,var(--foreground)_78%,var(--muted))] sm:mt-4 sm:text-base md:text-lg">
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--muted)] sm:text-[15px]">
           {modifier?.explanation ||
             resolvedVariation?.intro ||
             calculator.seoContent.intro}
@@ -216,8 +216,10 @@ export function ToolPageShell({
             source={`tool-${calculator.slug}`}
             headline={
               cluster.id === "fitness"
-                ? "Email me fitness planner tips"
-                : "Email me money milestone tips"
+                ? "Email me when you add a fitness planner"
+                : cluster.id === "life"
+                  ? "Email me when you add a life tool"
+                  : "Email me when you add a money planner"
             }
           />
         ) : (

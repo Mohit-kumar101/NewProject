@@ -2839,7 +2839,7 @@
     ]
   },
   "carRentalTotal": {
-    "formula": "Result = f(Dai, Day, Tax, Ext)",
+    "formula": "Total = (daily rate × days) × (1 + taxes/fees %) + extras",
     "summary": "Estimate total car rental cost including daily rate, taxes, and extras. Budget rental cars without fee surprises. Trip and vehicle estimates depend on the efficiency and price assumptions you enter.",
     "variables": [
       {
